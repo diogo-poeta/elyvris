@@ -1,0 +1,43 @@
+{
+  "verified_on": "2026-10-17",
+  "sources": [
+    {
+      "study": "anapoles",
+      "article_doi": "10.1364/OL.536925",
+      "supplement_doi": "10.6084/m9.figshare.27648525.v5",
+      "supplement_url": "https://opticapublishing.figshare.com/articles/journal_contribution/Supplementary_document_for_Optical_Anapoles_Excited_by_UV-A_Illumination_-_7271024_pdf/27648525",
+      "supplement_version_publication_date": "2025-03-04T17:41:44Z",
+      "supplement_license": {
+        "value": 1,
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "file": {
+        "name": "7271024.pdf",
+        "bytes": 1715961,
+        "md5": "22aa47ce620bde228362914d72c65be3",
+        "sha256": "ac9af68f6bd209a005057a11ddb71b53b237d08f48d0d60f6481bc0db51edac3"
+      },
+      "verification": "Supplied PDF MD5 matches the public Figshare file metadata."
+    },
+    {
+      "study": "energy-velocity",
+      "article_doi": "10.1364/OME.611814",
+      "supplement_doi": "10.6084/m9.figshare.33781774.v2",
+      "supplement_url": "https://opticapublishing.figshare.com/articles/journal_contribution/Supplementary_document_for_Energy_velocity_as_an_optical_design_indicator_for_the_ultraviolet_nonlinear_response_of_ALD-grown_TiO_thin_films_-_8054805_pdf/33781774",
+      "supplement_version_publication_date": "2026-09-21T15:47:50Z",
+      "supplement_license": {
+        "value": 1,
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "file": {
+        "name": "8054805.pdf",
+        "bytes": 4737481,
+        "md5": "10b2c42ea580900faaff510260672281",
+        "sha256": "65412db789cfcd4e36270683a8d47b2e94fd108733fd87922774ca6573c2e9ed"
+      },
+      "verification": "Supplied PDF MD5 matches the public Figshare file metadata."
+    }
+  ]
+}
