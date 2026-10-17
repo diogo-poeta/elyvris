@@ -8,7 +8,7 @@ Diogo Poeta, Christian Maibohm, Carlos Calaza, Adelaide Miranda, Martín López-
 
 Ozone-grown TiO₂ combines a high refractive index with relatively small extinction in the investigated UV-A range. The paper uses energy velocity as an **optical design indicator**, alongside material characterization and relative reflection THG measurements. Its results do not establish that lowering energy velocity alone increases the measured nonlinear signal.
 
-| Wavelength | Analytical estimate of vₑ/c, Table 1 | FDTD volume-averaged vₑ/c, §3 |
+| Wavelength | Analytical estimate of vₑ/c, Table 1 | FDTD volume-averaged vₑ/c, Section 3 |
 | --- | --- | --- |
 | 380 nm | About 0.20 | 0.185 |
 | 400 nm | About 0.21 | 0.201 |
@@ -30,7 +30,7 @@ With SI fields, ε and μ are absolute constitutive quantities: S has units W/m�
 
 Specify whether a reported scalar is a local magnitude, a mean of local magnitudes, or a ratio of averaged flux magnitude and energy density. These operations generally differ. Define the spatial mask and cell weights, and exclude PML. A flux-plane power divided by a volume-integrated energy has units 1/s; a length or equivalent geometric normalization is required to obtain a velocity.
 
-The supplement describes an averaging region containing the slab plus nearby air/interface cells. Its silica control at 380 nm gives approximately vₚ/c = 0.676, v𝗀/c = 0.656, and vₑ/c = 0.585. The paper explicitly recognizes the averaging offset as comparable to the reported 5–15% energy/group-velocity difference. Do not interpret that entire difference as a resolved material effect or a THG enhancement factor. Sources: main §2.1 and §3; Supplement §2A, Fig. S10.
+The supplement describes an averaging region containing the slab plus nearby air/interface cells. Its silica control at 380 nm gives approximately vₚ/c = 0.676, v𝗀/c = 0.656, and vₑ/c = 0.585. The paper explicitly recognizes the averaging offset as comparable to the reported 5–15% energy/group-velocity difference. Do not interpret that entire difference as a resolved material effect or a THG enhancement factor. Sources: main Section 2.1 and Section 3; Supplement Section 2A, Fig. S10.
 
 ## Published linear-transport setup
 
@@ -45,19 +45,19 @@ The supplement describes an averaging region containing the slab plus nearby air
 | Wavelengths | Separate narrowband runs at 380, 400, and 800 nm |
 | Analysis | Fourier-domain fields, Poynting vector, dispersive energy density; non-PML averaging |
 
-Sources: main §2.1.2 and Fig. 3; Supplement §2. Exact nonzero field components, source extent, Fourier normalization, averaging mask, and numerical convergence must be recovered from the original scripts rather than inferred from the polarization label.
+Sources: main Section 2.1.2 and Fig. 3; Supplement Section 2. Exact nonzero field components, source extent, Fourier normalization, averaging mask, and numerical convergence must be recovered from the original scripts rather than inferred from the polarization label.
 
 The main methods discuss both fitted Lorentz–Drude dispersion and matching the complex index at each analysis frequency with an ohmic medium. A release must identify which material implementation generated each figure and how its energy-density derivative was obtained. The three n,k samples in Table S8 do not uniquely determine a causal broadband fit or a reliable band-edge derivative.
 
 ## Keep the three calculations separate
 
 1. **Linear energy transport:** the 380–400 nm results describe transport at the generated-harmonic wavelengths. The experimental pump wavelengths are 1140 and 1200 nm. A low harmonic-wavelength velocity is not evidence of the same slowing at the pump.
-2. **Nonlinear model check:** Supplement §2 describes a 1200 nm Gaussian source with 5% bandwidth, a source-amplitude sweep, χ⁽³⁾ = 2.6 × 10⁻²¹ m²/V², and flux planes 0.5 µm before and after the slab. The SI-to-MEEP normalization and complete material model are needed before using these numbers. This numerical sweep does not validate an experimental power-law series for every film.
+2. **Nonlinear model check:** Supplement Section 2 describes a 1200 nm Gaussian source with 5% bandwidth, a source-amplitude sweep, χ⁽³⁾ = 2.6 × 10⁻²¹ m²/V², and flux planes 0.5 µm before and after the slab. The SI-to-MEEP normalization and complete material model are needed before using these numbers. This numerical sweep does not validate an experimental power-law series for every film.
 3. **Reflection from a stack:** Supplement Fig. S11 uses air/TiO₂/semi-infinite Si, film thicknesses 50/75/100 nm, and incidence angles 30°/45°/60°. The simulated reflectance minimum near 500 nm differs from the measured feature near 380 nm; the supplement supports a qualitative thickness trend, not exact spectral reproduction.
 
 ## Interpreting the THG measurements
 
-The measured signal comes from the complete TiO₂/Si stack. Silicon generates a third harmonic, while the film changes interference, absorption, and extraction. Film thickness and chemistry also vary. The reported spectra are relative; the paper does not provide absolute conversion efficiencies, an intrinsic film χ⁽³⁾ extraction, or a complete THG uncertainty budget. Raw THG acquisitions are reported as no longer available for retrospective repeatability analysis (§2.2.3).
+The measured signal comes from the complete TiO₂/Si stack. Silicon generates a third harmonic, while the film changes interference, absorption, and extraction. Film thickness and chemistry also vary. The reported spectra are relative; the paper does not provide absolute conversion efficiencies, an intrinsic film χ⁽³⁾ extraction, or a complete THG uncertainty budget. Raw THG acquisitions are reported as no longer available for retrospective repeatability analysis (Section 2.2.3).
 
 A useful future simulation release would therefore start with the air control and a clearly masked silica control, then reproduce the TiO₂ transport calculation with the exact dispersion data. A validated nonlinear stack model is a separate task.
 
