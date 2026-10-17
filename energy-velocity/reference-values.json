@@ -1,0 +1,81 @@
+{
+  "status": "Transcribed published values, not newly generated simulation outputs.",
+  "article_doi": "10.1364/OME.611814",
+  "supplement_doi": "10.6084/m9.figshare.33781774.v2",
+  "wavelength_unit": "nm",
+  "optical_constants": {
+    "source": "Supplement Table S8 (printed page 10; PDF page 11)",
+    "convention": "Complex refractive index n + i k; n and k dimensionless.",
+    "limitations": "Three selected wavelength samples; insufficient for a broadband causal material fit or an accurate band-edge derivative.",
+    "values": [
+      {
+        "wavelength_nm": 380,
+        "TiO2": {
+          "n": 2.9786,
+          "k": 0.0192
+        },
+        "Si": {
+          "n": 6.4734,
+          "k": 0.9665
+        },
+        "SiO2": {
+          "n": 1.4778,
+          "k": 0.0028
+        }
+      },
+      {
+        "wavelength_nm": 400,
+        "TiO2": {
+          "n": 2.8797,
+          "k": 0.0141
+        },
+        "Si": {
+          "n": 5.5695,
+          "k": 0.387
+        },
+        "SiO2": {
+          "n": 1.4755,
+          "k": 0.0027
+        }
+      },
+      {
+        "wavelength_nm": 800,
+        "TiO2": {
+          "n": 2.4586,
+          "k": 0.0007
+        },
+        "Si": {
+          "n": 3.6923,
+          "k": 0.0064
+        },
+        "SiO2": {
+          "n": 1.4607,
+          "k": 0.0013
+        }
+      }
+    ]
+  },
+  "TiO2_energy_velocity": {
+    "normalization": "Velocity divided by vacuum speed of light c; dimensionless.",
+    "analytical_source": "Main article Table 1; rounded values for the approximately 98 nm O3-grown film.",
+    "fdtd_source": "Main article section 3, page 3350; volume-averaged 100 nm slab results.",
+    "limitations": "Averaging-window effects affect the comparison; values alone do not establish a physical energy/group-velocity difference or predict THG.",
+    "values": [
+      {
+        "wavelength_nm": 380,
+        "analytical_ve_over_c_approx": 0.2,
+        "fdtd_volume_averaged_ve_over_c": 0.185
+      },
+      {
+        "wavelength_nm": 400,
+        "analytical_ve_over_c_approx": 0.21,
+        "fdtd_volume_averaged_ve_over_c": 0.201
+      },
+      {
+        "wavelength_nm": 800,
+        "analytical_ve_over_c_approx": 0.39,
+        "fdtd_volume_averaged_ve_over_c": 0.328
+      }
+    ]
+  }
+}
