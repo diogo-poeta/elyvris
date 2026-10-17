@@ -23,7 +23,7 @@ The paper uses **Lumerical FDTD** for field simulations and an adapted **MENP** 
 
 ## Checks that carry the physical interpretation
 
-- **Combine spectrum, multipoles, and fields.** Inspect the total scattering minimum together with the electric and toroidal contributions and their relative phase. Check localized fields at that same wavelength. A dip alone is insufficient. Sources: main Fig. 2(c–d), Fig. 3; Supplement §7.
+- **Combine spectrum, multipoles, and fields.** Inspect the total scattering minimum together with the electric and toroidal contributions and their relative phase. Check localized fields at that same wavelength. A dip alone is insufficient. Sources: main Fig. 2(c–d), Fig. 3; Supplement Section 7.
 - **Preserve aspect ratio and polarization.** The rectangle's width sweep changes the resonance; the square case with width 190 nm does not show the selected anapole. Report which geometric dimension is parallel to the incident electric field. Source: main Fig. 3(c).
 - **Check array modes independently.** Supplement Fig. S9 shows transmission minima for other periods without the anapole field pattern. Do not assign an anapole solely from a transmission spectrum or a grating condition.
 - **Treat angular tolerance as geometry-specific.** Supplement Fig. S1 reports persistence up to roughly 25° for the investigated structure; larger angles degrade the scattering minimum. This is not a general tolerance for every array or polarization.
