@@ -317,6 +317,25 @@ for(const polarization of ['s','p']){
  const near=model.calculate({filmIndex:Math.sin(Math.PI/6)+1e-8,thicknessNm:200,wavelengthNm:550,angleDeg:30,polarization});
  close(critical.R,near.R,2e-7);close(critical.T,near.T,2e-7);close(critical.A,0);checks++;
 }
+// Regression: q1 close to zero may still accumulate finite phase in a very
+// thick film. A film identical to the substrate cannot create a new interface,
+// so changing its thickness must preserve the bare-interface power exactly.
+for(const polarization of ['s','p'])for(const thicknessNm of [100000,10000000]){
+ const o={filmIndex:.5,substrateIndex:.5,thicknessNm,wavelengthNm:1,angleDeg:30,polarization};
+ const actual=model.calculate(o),bare=model.calculate({...o,thicknessNm:0});
+ close(actual.R,bare.R,2e-14);close(actual.T,bare.T,2e-14);close(actual.A,0);checks++;
+}
+// Normal-incidence powers are independent of the s/p amplitude-sign convention,
+// including absorbing films and absorbing semi-infinite substrates.
+for(const filmIndex of [{n:2.3,k:0},{n:.2,k:3.5}])for(const substrateIndex of [{n:1.5,k:0},{n:3.8,k:.2}]){
+ const o=model.calculate({filmIndex,substrateIndex,thicknessNm:88,wavelengthNm:550});
+ for(const key of ['R','T','A'])close(o.s[key],o.p[key],2e-14);checks++;
+}
+// An evanescent field in a lossless final medium carries no normal power.
+for(const polarization of ['s','p']){
+ const o=model.calculate({filmIndex:2,substrateIndex:.5,thicknessNm:0,wavelengthNm:550,angleDeg:60,polarization});
+ close(o.R,1,2e-14);close(o.T,0,2e-14);close(o.A,0,2e-14);checks++;
+}
 // Known material check values and direct tabulated data preservation.
 close(materials.get('silica-malitson',587.6).n,1.4584623420532408,1e-12);
 close(materials.get('bk7-schott',587.6).n,1.5167984379050088,1e-12);
@@ -325,6 +344,28 @@ assert.equal(materials.get('silica-malitson',550).k,0);
 assert.throws(()=>materials.get('silica-malitson',209));
 assert.throws(()=>materials.get('silicon-green',1451));
 const overlap=materials.range(['silica-malitson','silicon-green']);close(overlap.minNm,250);close(overlap.maxNm,1450);
+// The loader must preserve exact table nodes, interpolate in wavelength,
+// and reject both endpoints outside each record rather than extrapolate.
+const materialData=JSON.parse(readFileSync(new URL('../materials-data.json',import.meta.url),'utf8'));
+let materialTableChecks=0;
+for(const record of materialData.records){
+ assert.throws(()=>materials.get(record.id,record.minNm-Math.max(1e-8,record.minNm*1e-10)));
+ assert.throws(()=>materials.get(record.id,record.maxNm+Math.max(1e-8,record.maxNm*1e-10)));
+ for(const table of record.models.filter(m=>m.type.startsWith('tabulated'))){
+  for(let i=0;i<table.data.length;i++){
+   const row=table.data[i];if(row[0]<record.minNm||row[0]>record.maxNm)continue;
+   const value=materials.get(record.id,row[0]);
+   if(table.type==='tabulated nk'){close(value.n,row[1],1e-13);close(value.k,row[2],1e-13);}
+   else close(value[table.type==='tabulated k'?'k':'n'],row[1],1e-13);
+   materialTableChecks++;
+   if(i+1<table.data.length){const next=table.data[i+1],mid=(row[0]+next[0])/2;if(mid>record.maxNm)continue;const middle=materials.get(record.id,mid);
+    if(table.type==='tabulated nk'){close(middle.n,(row[1]+next[1])/2,2e-12);close(middle.k,(row[2]+next[2])/2,2e-12);}
+    else close(middle[table.type==='tabulated k'?'k':'n'],(row[1]+next[1])/2,2e-12);
+    materialTableChecks++;
+   }
+  }
+ }
+}
 const disp=model.calculate({filmIndex:w=>materials.get('tio2-siefke',w),substrateIndex:w=>materials.get('silica-malitson',w),thicknessNm:100,wavelengthNm:350,angleDeg:45,polarization:'unpolarized'});assert.ok(disp.A>0&&disp.A<1);
 const points=model.spectrum({filmIndex:w=>materials.get('tio2-siefke',w),substrateIndex:w=>materials.get('silica-malitson',w),thicknessNm:120,angleDeg:45,polarization:'unpolarized',startNm:350,endNm:800,stepNm:2});
 assert.equal(points.length,226);assert.equal(points[0].wavelengthNm,350);assert.equal(points.at(-1).wavelengthNm,800);assert.equal(model.toCSV(points).trim().split('\n').length,227);assert.ok(model.toCSV(points).startsWith('wavelength_nm,reflectance,transmittance,film_absorptance,R_s,R_p,T_s,T_p,A_s,A_p'));
@@ -332,4 +373,4 @@ assert.throws(()=>model.calculate({filmIndex:NaN,thicknessNm:100,wavelengthNm:55
 assert.throws(()=>model.calculate({filmIndex:2,filmK:-.1,thicknessNm:100,wavelengthNm:550}));
 assert.throws(()=>model.calculate({filmIndex:2,thicknessNm:-1,wavelengthNm:550}));
 assert.throws(()=>model.spectrum({filmIndex:2,thicknessNm:100,stepNm:0}));
-console.log(JSON.stringify({status:'passed',analyticAndReferenceCases:checks,independentTmmCases:references.length,passivePowerSamples:sampleCount,largestLosslessAbsorptanceError:largestLosslessError,smallestAbsorptance,materials:materials.list().length,materialRevision:materials.provenance().revision},null,2));
+console.log(JSON.stringify({status:'passed',analyticAndReferenceCases:checks,independentTmmCases:references.length,passivePowerSamples:sampleCount,largestLosslessAbsorptanceError:largestLosslessError,smallestAbsorptance,materials:materials.list().length,materialTableChecks,materialRevision:materials.provenance().revision},null,2));

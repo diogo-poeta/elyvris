@@ -9,6 +9,7 @@ function loadModel(filename) {
 }
 const energy = loadModel('energy-animation.js');
 const anapole = loadModel('anapole-animation.js');
+const hero = loadModel('hero-field.js');
 function close(actual, expected, tolerance, label) {
   assert.ok(Number.isFinite(actual), `${label}: result must be finite`);
   assert.ok(Math.abs(actual - expected) <= tolerance, `${label}: ${actual} differs from ${expected} (tolerance ${tolerance})`);
@@ -97,6 +98,36 @@ for (const index of [1, 1.3, 2.6, 3]) {
 assert.throws(() => energy.fieldAt(0, 0, 0.9));
 assert.throws(() => energy.fieldAt(0, NaN, 2.6));
 
+// The separate homepage field animation has a shorter slab and uses the
+// real instantaneous field rather than quadrature-smoothed profiles. Verify
+// its Maxwell interface conditions and single-pulse integrated energy too.
+let heroMaximumFieldJump=0,heroMaximumIntegratedEnergyError=0,heroContinuityCases=0;
+for(const repeat of [false,true])for(const time of [-1,0,.6,1.3,3,5,7,10])for(const boundary of [0,hero.thickness]){
+ const left=hero.fieldAt(boundary-1e-9,time,repeat),right=hero.fieldAt(boundary+1e-9,time,repeat);
+ for(const field of ['e','h']){heroMaximumFieldJump=Math.max(heroMaximumFieldJump,Math.abs(left[field]-right[field]));close(left[field],right[field],1e-7,'hero interface '+field);}
+ close(left.flux,right.flux,1e-7,'hero interface flux');heroContinuityCases++;
+}
+const heroInputEnergy=.5*Math.sqrt(Math.PI)*.66*(1+Math.exp(-((2*Math.PI*.66)**2)));
+for(const time of [0,2,5,9]){
+ let total=0;
+ for(const [start,end] of [[-20,0],[0,hero.thickness],[hero.thickness,20]]){
+  const count=Math.ceil((end-start)/.001),step=(end-start)/count;
+  for(let i=0;i<count;i++)total+=hero.fieldAt(start+(i+.5)*step,time,false).energy*step;
+ }
+ heroMaximumIntegratedEnergyError=Math.max(heroMaximumIntegratedEnergyError,Math.abs(total-heroInputEnergy));
+ close(total,heroInputEnergy,3e-6,'hero integrated instantaneous energy');
+}
+// Local one-dimensional Poynting theorem away from discontinuities:
+// partial_t u + partial_z flux = 0 in the normalised (z,ct) coordinates.
+let maximumPoyntingResidual=0,poyntingCases=0;
+const step=1e-5;
+for(const time of [0,.4,1.1,2,4,7])for(const z of [-1,-.2,.1,.2,.5,1.5]){
+ const timeDerivative=(hero.fieldAt(z,time+step,false).energy-hero.fieldAt(z,time-step,false).energy)/(2*step);
+ const spaceDerivative=(hero.fieldAt(z+step,time,false).flux-hero.fieldAt(z-step,time,false).flux)/(2*step);
+ maximumPoyntingResidual=Math.max(maximumPoyntingResidual,Math.abs(timeDerivative+spaceDerivative));
+ close(timeDerivative+spaceDerivative,0,2e-6,'hero local Poynting theorem');poyntingCases++;
+}
+
 // Anapole-like cancellation concerns one shared far-field channel, not a
 // vanishing driven internal amplitude or zero radiation from all multipoles.
 const cancel = anapole.channel(0);
@@ -151,5 +182,7 @@ assert.throws(() => anapole.channel(0, NaN));
 console.log(JSON.stringify({
   status: 'passed',
   energy: { interfaceCases, vacuumCases, conservationCases, localSamples, maximumFieldJump, maximumIntegratedEnergyError, bulkVelocityAtIndex2_6: energy.bulkVelocityOverC(2.6) },
+  hero: {heroContinuityCases,heroMaximumFieldJump,heroMaximumIntegratedEnergyError,poyntingCases,maximumPoyntingResidual},
   anapole: { cancellation: 'exact channel zero with both contributions nonzero', constructiveMaximum: constructive.relativePeak, radiationSamples, maximumAngularIntegralError }
 }, null, 2));
+
