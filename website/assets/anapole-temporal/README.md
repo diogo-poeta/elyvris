@@ -1,0 +1,3 @@
+# Anapole research figures
+The S2 table and S3 power figure are reproduced from Diogo Poeta, Rafael Vilarinho, Martin Lopez-Garcia and Pieter A. A. De Beule, Optical anapoles excited by UV-A illumination, Optics Letters 49(24),7198-7201(2024), DOI:10.1364/OL.536925. Supplement version5: https://doi.org/10.6084/m9.figshare.27648525.v5 . Published figures are licensed CC BY4.0: https://creativecommons.org/licenses/by/4.0/ . The SVG wrappers retain their original scales and image content.
+The independent Meep field dataset is documented separately in anapoles/temporal/SIMULATION.md at the repository root.
