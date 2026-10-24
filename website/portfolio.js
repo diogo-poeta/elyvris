@@ -1,7 +1,6 @@
-/* Two equal, z-polarised plane waves in a homogeneous medium.
- * E_z/E0 = cos(kx*x + ky*y - omega*t) + cos(kx*x - ky*y - omega*t).
- * Each wave has |k| = 2*pi/lambda. Coordinates and time are normalised.
- * This analytical illustration is not an FDTD calculation or measured data.
+/* Homepage reference spectrum: an ideal lossless quarter-wave matching layer
+ * between air and n=1.5 glass, calculated by the same thin-film engine.
+ * DOI copy buttons retain publication links. No measured data are implied.
  */
 (() => {
   'use strict';

@@ -1,4 +1,4 @@
-# DPoeta — portfolio and optics lab
+# DPoeta — portfolio and OptiBench
 
 This folder contains the actual, portable source for Diogo Poeta's portfolio: HTML, CSS, JavaScript, original illustrations, and a bundled optical-material dataset. It is a static website with no build step, server application, runtime dependencies, account integration, or API keys.
 
@@ -8,7 +8,7 @@ The current Sites deployment is <https://diogo-poeta-photonics.classy-mesa-1544.
 
 - `index.html`: selected research, experience, publications, and professional links.
 - `research.html`: source-linked explanations of energy velocity and optical anapoles.
-- `lab.html`: an educational single-film optical interference calculator.
+- `lab.html`: OptiBench, a coherent single-film optical calculation tool.
 - `optics-model.js`: coherent transfer-matrix model for complex refractive indices, s/p polarization, and oblique incidence.
 - `materials.js` and `materials-data.json`: interpolation and curated optical-constant records, with provenance and validity ranges.
 - `anapole-animation.js` and `energy-animation.js`: interactive explanatory animations with explicit schematic/model boundaries; validation checks cover interface continuity, lossless pulse energy, and anapole cancellation limits.
@@ -16,7 +16,8 @@ The current Sites deployment is <https://diogo-poeta-photonics.classy-mesa-1544.
 - `cv.html`: a printable professional résumé.
 - `assets/`: original explanatory schematics, not exported research simulation data.
 - `publications.bib`: citation-tool export; publisher records remain the authority for complete metadata.
-- `scripts/`: model and local-link validation scripts.
+- `scripts/`: model, animation, export-state and local-link validation scripts.
+- [Physics and mathematics audit](PHYSICS-AUDIT.md): audited conventions, corrections, numerical checks and scope.
 
 The repository's original scientific notes remain in [`../anapoles/`](../anapoles/) and [`../energy-velocity/`](../energy-velocity/). The website does not include the original MEEP scripts, Lumerical projects, fitted thesis material models, raw acquisitions, or thesis PDF.
 
@@ -38,16 +39,17 @@ From the repository root, run:
 node website/scripts/check-optics.mjs
 node website/scripts/check-exports.mjs
 node website/scripts/check-animations.mjs
+node website/scripts/check-lab-state.mjs
 python website/scripts/check-site.py
 ```
 
 The model checks exercise analytical limiting cases, s/p and unpolarized behaviour, absorbing films, total internal reflection, material interpolation and out-of-range handling, and independent reference values generated with [Steven Byrnes' transfer-matrix implementation](https://github.com/sbyrnes321/tmm). No Python or JavaScript third-party packages are required for these checks.
 
-The calculator follows the coherent single-film setting described in [Byrnes, *Multilayer optical calculations*](https://arxiv.org/abs/1603.02720). Reflectance is returned power; transmittance is power entering the semi-infinite substrate; absorptance is loss in the finite film. The model excludes substrate back-face reflections, anisotropy, roughness and nonlinear generation. An absorbing substrate can dissipate transmitted power beyond the modelled film.
+OptiBench follows the coherent single-film setting described in [Byrnes, *Multilayer optical calculations*](https://arxiv.org/abs/1603.02720). Reflectance is returned power; transmittance is power entering the semi-infinite substrate; absorptance is loss in the finite film. The model excludes substrate back-face reflections, anisotropy, roughness and nonlinear generation. An absorbing substrate can dissipate transmitted power beyond the modelled film.
 
 ## Optical-data provenance
 
-The bundled `materials-data.json` contains selected [refractiveindex.info database](https://github.com/polyanskiy/refractiveindex.info-database) records under **CC0 1.0**, with a pinned upstream revision, original literature citations, measurement conditions, ranges, and source checksums. See the JSON and the lab's source notes for each record. The dataset's CC0 status applies to that upstream database content; it does not assign a new blanket license to the papers or every file in this repository.
+The bundled `materials-data.json` contains selected [refractiveindex.info database](https://github.com/polyanskiy/refractiveindex.info-database) records under **CC0 1.0**, with a pinned upstream revision, original literature citations, measurement conditions, ranges, and source checksums. See the JSON and OptiBench's source notes for each record. The dataset's CC0 status applies to that upstream database content; it does not assign a new blanket license to the papers or every file in this repository.
 
 Data are not extrapolated beyond their stated ranges. Tabulated data are interpolated in vacuum wavelength; formula-based records use the cited formula. Sources that provide refractive index only retain an explicit zero-extinction modelling assumption. These records do not substitute for the sample-specific optical constants used in the thesis.
 

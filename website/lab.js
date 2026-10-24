@@ -3,7 +3,7 @@
   const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg';
   const inputs=['film-thickness','probe-wavelength','angle','film-n','film-k','substrate-n','substrate-k','spectrum-start','spectrum-end','spectrum-step'];
   const selects=['film-material','substrate-material','polarization'];
-  let ready=false,points=[],last=null,queued=0;
+  let ready=false,points=[],last=null,queued=0,lastExportMeta=null,lastSetupValues=null;
   const bounds={left:56,right:640,top:22,bottom:274};
   const x=(v,s,e)=>bounds.left+(v-s)/(e-s)*(bounds.right-bounds.left), y=v=>bounds.bottom-v*(bounds.bottom-bounds.top);
   const fmt=v=>Math.abs(v)<1e-13?'0.000%':v>0&&v<.00001?'<0.001%':(100*v).toFixed(3)+'%';
@@ -60,10 +60,21 @@
       if(fringes>points.length/5)$('model-reading').textContent+=' The film may produce narrow fringes; reduce the wavelength step to resolve them.';
       $('thickness-range').max=Math.max(1000,o.thicknessNm);$('thickness-range').value=o.thicknessNm;
       $('wavelength-range').min=Math.min(o.startNm,o.wavelengthNm);$('wavelength-range').max=Math.max(o.endNm,o.wavelengthNm);$('wavelength-range').value=o.wavelengthNm;$('angle-range').value=o.angleDeg;
-      plot(o);$('calculation-error').hidden=true;$('result-content').classList.remove('stale-results');$('data-loading').hidden=true;$('export-csv').disabled=false;$('export-txt').disabled=false;$('copy-setup').disabled=false;$('export-status').textContent='';
-    }catch(error){$('calculation-error').textContent=error.message;$('calculation-error').hidden=false;$('result-content').classList.add('stale-results');$('export-csv').disabled=true;$('export-txt').disabled=true;$('copy-setup').disabled=true;}
+      plot(o);
+      let revision='';try{revision=OpticalMaterials.provenance().revision||'';}catch{}
+      lastExportMeta={film:selectedCitation('film'),substrate:selectedCitation('substrate'),revision};
+      lastSetupValues=Object.fromEntries([...inputs,...selects].map(id=>[id,$(id).value]));
+      $('calculation-error').hidden=true;$('result-content').classList.remove('stale-results');$('data-loading').hidden=true;$('export-csv').disabled=false;$('export-txt').disabled=false;$('copy-setup').disabled=false;$('export-status').textContent='';
+    }catch(error){lastExportMeta=null;lastSetupValues=null;$('calculation-error').textContent=error.message;$('calculation-error').hidden=false;$('result-content').classList.add('stale-results');$('export-csv').disabled=true;$('export-txt').disabled=true;$('copy-setup').disabled=true;}
   }
-  function schedule(){cancelAnimationFrame(queued);queued=requestAnimationFrame(update);}
+  function schedule(){
+    // A pending input change makes the visible spectrum stale immediately.
+    // Never pair previously calculated points with newly selected citations.
+    lastExportMeta=null;lastSetupValues=null;
+    $('result-content').classList.add('stale-results');
+    for(const id of ['export-csv','export-txt','copy-setup'])$(id).disabled=true;
+    cancelAnimationFrame(queued);queued=requestAnimationFrame(update);
+  }
   function preset(name){
     const normal={film:'tio2-siefke',substrate:'silica-malitson',n:2.1,k:0,sn:1.5,sk:0,d:100,l:550,angle:0,pol:'unpolarized',start:350,end:800,step:2};
     const p=name==='metal'?{...normal,film:'gold-johnson',d:40,angle:45}:name==='ar'?{...normal,film:'manual',substrate:'manual',n:Math.sqrt(1.5),d:550/(4*Math.sqrt(1.5))}:normal;
@@ -77,16 +88,14 @@
   $('reset-model').addEventListener('click',()=>preset('tio2'));
   function selectedCitation(which){const r=record(which);return r?{id:r.id,reference:r.citation,url:r.sourceUrl,database:r.databaseUrl}:{id:'manual',reference:'User-entered wavelength-independent n,k',url:'',database:''};}
   function exportSpectrum(format){
-    if(!last||!points.length)return;
-    let revision='';try{revision=OpticalMaterials.provenance().revision||'';}catch{}
-    const meta={film:selectedCitation('film'),substrate:selectedCitation('substrate'),revision};
-    const content=SpectrumExport[format](points,meta),mime=format==='txt'?'text/plain':'text/csv';
-    const url=URL.createObjectURL(new Blob([content],{type:mime+';charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='dpoeta-optics-spectrum.'+format;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+    if(!last||!points.length||!lastExportMeta)return;
+    const content=SpectrumExport[format](points,lastExportMeta),mime=format==='txt'?'text/plain':'text/csv';
+    const url=URL.createObjectURL(new Blob([content],{type:mime+';charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='optibench-spectrum.'+format;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
     $('export-status').textContent=`Exported ${points.length} samples as ${format.toUpperCase()} with settings and references.`;
   }
   $('export-csv').addEventListener('click',()=>exportSpectrum('csv'));
   $('export-txt').addEventListener('click',()=>exportSpectrum('txt'));
-  $('copy-setup').addEventListener('click',async()=>{const u=new URL(location.href);u.search='';u.hash='explorer';for(const id of [...inputs,...selects])u.searchParams.set(id,$(id).value);try{await navigator.clipboard.writeText(u.href);$('export-status').textContent='Setup link copied.';}catch{$('export-status').textContent='Copy is unavailable. Download the CSV to retain the settings.';}});
+  $('copy-setup').addEventListener('click',async()=>{if(!lastSetupValues)return;const u=new URL(location.href);u.search='';u.hash='explorer';for(const [id,value] of Object.entries(lastSetupValues))u.searchParams.set(id,value);try{await navigator.clipboard.writeText(u.href);$('export-status').textContent='Setup link copied.';}catch{$('export-status').textContent='Copy is unavailable. Download the CSV to retain the settings.';}});
   function references(){
     const list=$('material-reference-list');for(const r of OpticalMaterials.list()){
       const article=document.createElement('article'),h=document.createElement('h3'),p=document.createElement('p'),range=document.createElement('p');h.textContent=r.label;p.textContent=r.conditions+' '+(r.absorptionNote||'');range.textContent=`Supported range: ${rangeLabel(r.minNm)}–${rangeLabel(r.maxNm)} nm.`;range.className='source-range';article.append(h,p,range);

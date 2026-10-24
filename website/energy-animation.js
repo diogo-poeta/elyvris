@@ -107,7 +107,7 @@
     text('Bulk forward-wave speed: '+(1/n).toFixed(3)+' c',left,foot,palette.curve,compact?10:12);
     text('Local S/u at slab centre: '+local,left,foot+20,palette.muted,compact?9:11);
     if(!compact)text('Direct-path delay: '+model.ballisticDelayFs(n).toFixed(2)+' fs',width-right,foot,palette.curve,12,'right');
-    text(compact?'Area: energy density · arrows: signed flux':'Filled curve: quadrature-averaged energy density · arrows: signed Poynting flux',left,height-13,palette.muted,compact?8:10);
+    text(compact?'Curve: energy density · arrows: signed flux':'Filled curve: quadrature-averaged energy density · arrows: signed Poynting flux',left,height-13,palette.muted,compact?8:10);
   }
   function resize(){const bounds=canvas.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const ratio=Math.min(window.devicePixelRatio||1,1.75);canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);ctx.setTransform(ratio,0,0,ratio,0,0);draw();}
   function readouts(){if(slider)slider.value=String(n);if(numeric)numeric.value=String(n);if(bulk)bulk.textContent=(1/n).toFixed(3)+' c';if(delay)delay.textContent=model.ballisticDelayFs(n).toFixed(2)+' fs';}

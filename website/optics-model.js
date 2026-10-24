@@ -73,18 +73,30 @@
     var r,t;
     if(d===0){var bare=fresnel(pol,n0,ns,ci,cs);r=bare.r;t=bare.t;}
     else if(abs2(q1)<1e-16){
-      // Exact limiting characteristic matrix at a film's critical angle.
-      // sin(delta)/q1 tends to 2*pi*d/lambda, avoiding a 0/0 Airy ratio.
-      var length=2*Math.PI*d/wavelength,den,num;
+      // A small longitudinal wavevector is not necessarily a zero phase:
+      // an extremely thick film can still accumulate finite delta. Use the
+      // characteristic expression with sin(delta)/q1, evaluated by its sinc
+      // limit at q1=0, instead of replacing the entire layer by zero phase.
+      var length=2*Math.PI*d/wavelength;
+      var cosine=c(Math.cos(phase.re)*Math.cosh(phase.im),-Math.sin(phase.re)*Math.sinh(phase.im));
+      var sine=c(Math.sin(phase.re)*Math.cosh(phase.im),Math.cos(phase.re)*Math.sinh(phase.im));
+      var sineOverQ;
+      if(abs2(phase)<1e-8){
+        var phase2=mul(phase,phase),phase4=mul(phase2,phase2),phase6=mul(phase4,phase2);
+        sineOverQ=scale(add(sub(add(c(1),scale(phase4,1/120)),scale(phase2,1/6)),scale(phase6,-1/5040)),length);
+      }else sineOverQ=div(sine,q1);
+      var qSine=mul(q1,sine),den,num;
       if(pol==='s'){
-        var coupling=mul(c(cos0),qs);
-        den=add(add(c(cos0),qs),mul(c(0,-length),coupling));
-        num=add(sub(c(cos0),qs),mul(c(0,-length),coupling));
+        var coupling=mul(scale(qs,cos0),sineOverQ);
+        den=add(mul(add(c(cos0),qs),cosine),mul(c(0,-1),add(coupling,qSine)));
+        num=add(mul(sub(c(cos0),qs),cosine),mul(c(0,1),sub(qSine,coupling)));
         r=div(num,den);t=div(c(2*cos0),den);
       }else{
         var n12=mul(n1,n1),ns2=mul(ns,ns),qOverCos=scale(qs,1/cos0);
-        var critical=mul(c(0,-length),mul(qs,n12));
-        den=add(add(qOverCos,ns2),critical);num=add(sub(ns2,qOverCos),critical);
+        var first=mul(mul(qs,n12),sineOverQ);
+        var second=mul(div(ns2,scale(n12,cos0)),qSine);
+        den=add(mul(add(qOverCos,ns2),cosine),mul(c(0,-1),add(first,second)));
+        num=add(mul(sub(ns2,qOverCos),cosine),mul(c(0,-1),sub(first,second)));
         r=div(num,den);t=div(scale(ns,2),den);
       }
     }else{
