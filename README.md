@@ -1,5 +1,7 @@
 # Lumefern
 
+Research animations: [electric and magnetic timing](anapoles/temporal/) and an [independent three-dimensional FDTD field cycle](anapoles/temporal/SIMULATION.md). Processing scripts, source data, numerical checks and shareable media are collected in the research companion.
+
 Lumefern is a project for optical surrogate modelling and inverse design, with predictions evaluated against electromagnetic reference solvers and accompanied by error, validity-range and provenance checks.
 
 **Available now:** a browser-based coherent **single-film** calculator, a portfolio and curated research records in [`website/`](website/), and the source-linked UV nanophotonics research notes below. The current calculator runs locally in the browser using referenced optical constants; it is not a trained surrogate or a multilayer design package.
@@ -13,6 +15,8 @@ Repository: [diogo-poeta/lumefern](https://github.com/diogo-poeta/lumefern). See
 # UV nanophotonics — research companion
 
 **Energy transport and optical anapoles in titanium dioxide.**
+
+This is Diogo Poeta's companion to two collaborative publications. It collects physical insights, published simulation settings, and reference values for other researchers.
 
 **Available:** source-linked research notes and selected published numerical values. **Original MEEP scripts, Lumerical projects, fitted material files, and raw field data are not included.** This repository documents the research; it does not reproduce the paper figures.
 
