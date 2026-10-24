@@ -15,7 +15,7 @@
   }
   function txt(points,meta){
     validate(points);meta=meta||{};const f=meta.film||{},s=meta.substrate||{},p=points[0];
-    const lines=['# Lumefern: coherent single-film spectrum',
+    const lines=['# Film Bench: coherent single-film spectrum',
       '# R: reflected power; T: power entering semi-infinite substrate; A: absorption in the film.',
       '# Fractions are dimensionless (0 to 1). Wavelength and thickness are in nm; angle is in degrees.',
       '# Polarization: '+clean(p.polarization),

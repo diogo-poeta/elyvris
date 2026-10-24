@@ -17,3 +17,13 @@
   .site-header nav > a.records-nav,
   .rn-header nav > a.records-nav { display: none; }
 }
+
+/* Lumafern identity and project context. */
+.wordmark,.rn-wordmark{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;line-height:1.1}
+.wordmark img,.rn-wordmark img{display:block;width:40px;height:40px;object-fit:contain;flex-shrink:0}
+.project-story{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;border-top:1px solid var(--line);padding-top:58px;padding-bottom:24px}
+.project-story h2{font-size:39px}.project-story-copy p{font-size:14px;line-height:1.9;color:var(--muted);margin:0 0 18px;max-width:650px}.project-story-copy p a{border-bottom:1px solid #a68b6e}
+.project-story-copy .text-link{margin-top:4px}.resume-footer{color:var(--muted);border-color:var(--line);padding-top:22px;padding-bottom:22px}
+@media(max-width:1050px){.project-story{gap:40px}}
+@media(max-width:700px){.wordmark,.rn-wordmark{font-size:25px;letter-spacing:-1.2px;gap:5px}.wordmark img,.rn-wordmark img{width:31px;height:31px}.project-story{grid-template-columns:1fr;gap:24px;padding-top:40px;padding-bottom:0}.project-story h2{font-size:35px}.project-story-copy p{font-size:13px}.site-header,.rn-header{gap:16px}}
+@media print{.project-story{display:block;padding:24px 0}.project-story h2{font-size:30px;margin-bottom:20px}.wordmark img,.rn-wordmark img{width:28px;height:28px}}

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "spie-prague-2025",
+      "status": "published",
+      "category": "research",
+      "kind": "photograph",
+      "title": "SPIE conference, Prague",
+      "caption": "SPIE conference in Prague, April 2025.",
+      "alt": "Conference auditorium with a presentation on high-power lasers projected above the stage.",
+      "location": "Prague, Czech Republic",
+      "credit": "Photograph supplied by Diogo Poeta.",
+      "featured": true,
+      "rights": {
+        "status": "cleared",
+        "license": "User-approved portfolio use; no reuse licence granted."
+      },
+      "date": {
+        "value": "2025-04",
+        "precision": "month"
+      },
+      "src": "assets/gallery/spie-prague-2025.jpg",
+      "thumbnail": "assets/gallery/spie-prague-2025.jpg",
+      "width": 1200,
+      "height": 900,
+      "thumbnailWidth": 1200,
+      "thumbnailHeight": 900
+    },
+    {
+      "id": "thg-detection",
+      "status": "published",
+      "category": "research",
+      "kind": "photograph",
+      "title": "Third-harmonic detection",
+      "caption": "Optical setup used for third-harmonic detection.",
+      "alt": "Optical table with mounted optics, a detector assembly, gas tubing and electronic connections.",
+      "credit": "Photograph supplied by Diogo Poeta.",
+      "rights": {
+        "status": "cleared",
+        "license": "User-approved portfolio use; no reuse licence granted."
+      },
+      "src": "assets/gallery/thg-detection.jpg",
+      "thumbnail": "assets/gallery/thg-detection.jpg",
+      "width": 881,
+      "height": 1173,
+      "thumbnailWidth": 881,
+      "thumbnailHeight": 1173
+    },
+    {
+      "id": "brussels-interior",
+      "status": "published",
+      "category": "travel",
+      "kind": "photograph",
+      "title": "Brussels",
+      "caption": "Interior photographed during a visit to Brussels.",
+      "alt": "Decorated vaulted ceiling, glass roof and columns in an interior in Brussels.",
+      "location": "Brussels, Belgium",
+      "credit": "Photograph supplied by Diogo Poeta.",
+      "rights": {
+        "status": "cleared",
+        "license": "User-approved portfolio use; no reuse licence granted."
+      },
+      "src": "assets/gallery/brussels-interior.jpg",
+      "thumbnail": "assets/gallery/brussels-interior.jpg",
+      "width": 1200,
+      "height": 900,
+      "thumbnailWidth": 1200,
+      "thumbnailHeight": 900
+    },
+    {
+      "id": "reading-madrid",
+      "status": "published",
+      "category": "travel",
+      "kind": "photograph",
+      "title": "Reading in Madrid",
+      "caption": "Reading a travel diary about the Azores in Madrid.",
+      "alt": "An open book about the Azores, held while sitting outdoors.",
+      "location": "Madrid, Spain",
+      "credit": "Photograph supplied by Diogo Poeta.",
+      "rights": {
+        "status": "cleared",
+        "license": "User-approved portfolio use; no reuse licence granted."
+      },
+      "src": "assets/gallery/reading-madrid.jpg",
+      "thumbnail": "assets/gallery/reading-madrid.jpg",
+      "width": 900,
+      "height": 1200,
+      "thumbnailWidth": 900,
+      "thumbnailHeight": 1200
+    },
+    {
+      "id": "photoionization-detector",
+      "status": "published",
+      "category": "research",
+      "kind": "illustration",
+      "title": "Photoionization detector",
+      "caption": "User-supplied schematic of a photoionization detector and its electrical readout.",
+      "alt": "Diagram of an RF-driven lamp, gas flow through an ionization chamber, biased electrodes and a transimpedance amplifier.",
+      "credit": "Illustration supplied by Diogo Poeta.",
+      "rights": {
+        "status": "cleared",
+        "license": "User-approved portfolio use; no reuse licence granted."
+      },
+      "src": "assets/gallery/photoionization-detector.jpg",
+      "thumbnail": "assets/gallery/photoionization-detector.jpg",
+      "width": 1200,
+      "height": 541,
+      "thumbnailWidth": 1200,
+      "thumbnailHeight": 541
+    },
+    {
+      "id": "learn-project",
+      "status": "published",
+      "category": "research",
+      "kind": "reference",
+      "title": "LEARN project",
+      "caption": "LEARN project website. The project investigated indoor air quality in schools and its impact on children's health.",
+      "alt": "Screenshot of the LEARN project website with its project description and consortium logos.",
+      "credit": "LEARN project website; screenshot supplied by Diogo Poeta.",
+      "sourceUrl": "https://www.learnproject-heu.eu/",
+      "rights": {
+        "status": "cleared",
+        "license": "Reference screenshot; third-party rights retained."
+      },
+      "src": "assets/gallery/learn-project.jpg",
+      "thumbnail": "assets/gallery/learn-project.jpg",
+      "width": 691,
+      "height": 462,
+      "thumbnailWidth": 691,
+      "thumbnailHeight": 462
+    }
+  ]
+}
