@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 540" role="img" aria-labelledby="title desc">
+  <title id="title">Energy velocity: energy flow divided by stored energy density</title>
+  <desc id="desc">Two equal material cells have the same cycle-averaged net flux. The first has less stored recoverable energy and a higher flux-to-energy-density ratio; the second has more stored energy and a lower ratio. A bottom strip distinguishes moving phase from an envelope. This is a qualitative schematic, not measured or simulated data.</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M1 1 7 4.5 1 8" fill="none" stroke="#547044" stroke-width="1.5"/></marker><pattern id="dots" width="19" height="19" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.6" fill="#869b63"/></pattern></defs>
+  <rect width="1120" height="540" rx="5" fill="#f8f7f1"/>
+  <g font-family="Arial,Helvetica,sans-serif" fill="#19251f"><text x="46" y="44" fill="#88654d" font-size="11" letter-spacing="1.6">SAME NET FLUX · SAME CELL VOLUME</text><text x="46" y="81" font-family="Georgia,serif" font-size="29">How much flows, compared with how much is stored?</text>
+    <rect x="46" y="112" width="499" height="270" rx="4" fill="#e9ece2" stroke="#cbd2c0"/><rect x="575" y="112" width="499" height="270" rx="4" fill="#ebe4d9" stroke="#d3c7b8"/>
+    <text x="70" y="144" font-size="12" font-weight="600">Less stored energy</text><text x="599" y="144" font-size="12" font-weight="600">More stored energy</text>
+    <rect x="213" y="167" width="162" height="136" rx="3" fill="#f8f7f1" stroke="#71875b"/>
+    <rect x="742" y="167" width="162" height="136" rx="3" fill="#f8f7f1" stroke="#88654d"/>
+    <g fill="#869b63"><circle cx="250" cy="205" r="9"/><circle cx="294" cy="205" r="9"/><circle cx="338" cy="205" r="9"/><circle cx="250" cy="260" r="9"/><circle cx="294" cy="260" r="9"/><circle cx="338" cy="260" r="9"/></g>
+    <rect x="755" y="180" width="136" height="110" fill="url(#dots)"/>
+    <g stroke="#547044" fill="none" stroke-width="3" marker-end="url(#arrow)"><path d="M77 220H192"/><path d="M394 220H510"/><path d="M606 220H721"/><path d="M923 220H1039"/></g>
+    <text x="89" y="201" font-size="12" fill="#526846">⟨S⟩</text><text x="618" y="201" font-size="12" fill="#526846">⟨S⟩</text>
+    <text x="232" y="327" font-size="11" fill="#5d665e">energy density ⟨u⟩</text><text x="761" y="327" font-size="11" fill="#5d665e">energy density ⟨u⟩</text>
+    <text x="70" y="357" font-size="13" fill="#47603e">Higher ratio: vₑ = ⟨S⟩ / ⟨u⟩</text><text x="599" y="357" font-size="13" fill="#79563e">Lower ratio: vₑ = ⟨S⟩ / ⟨u⟩</text>
+    <path d="M46 413H1074" stroke="#d4d9cd"/>
+    <text x="46" y="445" font-size="11" fill="#88654d" letter-spacing="1.2">A DIFFERENT QUESTION</text>
+    <text x="46" y="474" font-size="13">Phase: follow a crest.</text><text x="46" y="499" font-size="13">Group: follow a narrowband envelope.</text>
+    <path d="M420 477C438 477 438 435 455 435S472 519 489 519 506 435 523 435 540 519 557 519 574 435 591 435 608 519 625 519 642 435 659 435 676 519 693 519 710 435 727 435 744 477 762 477" fill="none" stroke="#768f59" stroke-width="1.7"/>
+    <path d="M408 477C476 477 489 423 591 423S709 477 775 477M408 477C476 477 489 531 591 531S709 477 775 477" fill="none" stroke="#88654d" stroke-width="1.4" stroke-dasharray="5 4"/>
+    <path d="M815 450H871" fill="none" stroke="#547044" stroke-width="2" marker-end="url(#arrow)"/><text x="815" y="481" font-size="11" fill="#5d665e">Envelope interpretation</text><text x="815" y="499" font-size="11" fill="#5d665e">needs propagation assumptions.</text>
+  </g>
+</svg>
