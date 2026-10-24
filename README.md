@@ -14,8 +14,6 @@ Repository: [diogo-poeta/lumefern](https://github.com/diogo-poeta/lumefern). See
 
 **Energy transport and optical anapoles in titanium dioxide.**
 
-This is Diogo Poeta's companion to two collaborative publications. It collects physical insights, published simulation settings, and reference values for other researchers.
-
 **Available:** source-linked research notes and selected published numerical values. **Original MEEP scripts, Lumerical projects, fitted material files, and raw field data are not included.** This repository documents the research; it does not reproduce the paper figures.
 
 ## Publications
