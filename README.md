@@ -29,6 +29,6 @@ The linked notes give the supporting figures, numerical settings, and limits for
 - [Selected reference values](energy-velocity/reference-values.json): Table S8 optical constants and reported TiO₂ velocities, transcribed with units and provenance. These sparse values are **not a broadband material model**.
 - [Source record](sources.json): article identifiers, exact supplement versions, and checksums verified against the public Figshare records on 17 October 2026.
 
-## Portfolio and interactive optics lab
+## Portfolio and OptiBench
 
-The complete static website source is in [`website/`](website/), including the portfolio, research explainers, optical-material data, and an interactive thin-film calculator. See the [website guide](website/README.md) for local preview, source attribution, validation, and free static-hosting options. These educational website calculations are distinct from the original paper simulations; the research companion folders above remain the source-linked record of the published methods and limits.
+The complete static website source is in [`website/`](website/), including the portfolio, research explainers, optical-material data, and OptiBench, a coherent thin-film calculator. See the [website guide](website/README.md) for local preview, source attribution, validation, and free static-hosting options. These educational website calculations are distinct from the original paper simulations; the research companion folders above remain the source-linked record of the published methods and limits.
