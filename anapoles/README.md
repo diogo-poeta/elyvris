@@ -35,4 +35,5 @@ The PDFs do not provide a complete runnable project. Add the original Lumerical 
 
 A useful first released run would reproduce the isolated 190 × 160 × 100 nm rectangle, export its scattering spectrum and complex multipole moments, and compare the spectral minimum and field pattern with Figs. 2–3. An array reproduction should be a separate run with its own boundary conditions and convergence evidence.
 
-**Current status:** documented published configuration; no executable simulation or new validation result is supplied in this folder. See the [release guide](../simulations/README.md).
+**Current status:** documented published configuration; no executable simulation or new validation result is supplied in this folder.
+
