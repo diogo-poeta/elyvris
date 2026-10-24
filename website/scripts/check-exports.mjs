@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
+const context={};
+for(const file of ['optics-model.js','spectrum-export.js'])runInNewContext(readFileSync(new URL('../'+file,import.meta.url),'utf8'),context);
+const points=context.ThinFilmModel.spectrum({filmIndex:{n:2.2,k:.1},substrateIndex:{n:1.46,k:0},thicknessNm:77.25,angleDeg:53.2,polarization:'p',startNm:350,endNm:800,stepNm:2});
+const meta={film:{id:'custom',reference:'Example "quoted", reference\ncontinued',url:'https://example.org/film'},substrate:{id:'custom',reference:'User values'},revision:'test-revision'};
+const txt=context.SpectrumExport.txt(points,meta),csv=context.SpectrumExport.csv(points,meta);
+const numeric=txt.trim().split('\n').filter(line=>!line.startsWith('#')).map(row=>row.split('\t').map(Number));
+assert.equal(numeric.length,226);
+numeric.forEach((row,i)=>{
+ assert.equal(row.length,16);assert.ok(row.every(Number.isFinite));
+ assert.equal(row[0],points[i].wavelengthNm);assert.equal(row[1],points[i].R);assert.equal(row[2],points[i].T);assert.equal(row[3],points[i].A);
+ assert.equal(row[14],77.25);assert.equal(row[15],53.2);
+});
+assert.ok(txt.includes('# Polarization: p'));
+assert.ok(txt.includes('reference continued'));
+assert.ok(csv.includes('"Example ""quoted"", reference\ncontinued"'));
+assert.ok(csv.includes('database_revision'));
+assert.throws(()=>context.SpectrumExport.txt([],meta));
+console.log(JSON.stringify({status:'passed',txtRows:numeric.length,numericColumns:16,metadata:'preserved',precision:'preserved',csvQuotes:'escaped'}));
