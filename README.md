@@ -2,9 +2,9 @@
 
 **Energy transport and optical anapoles in titanium dioxide.**
 
-This is Diogo Poeta's companion to two collaborative publications. It collects the physical insights, published simulation settings, reference values, and checks that would make future simulation releases useful to other researchers.
+This is Diogo Poeta's companion to two collaborative publications. It collects physical insights, published simulation settings, and reference values for other researchers.
 
-**Available now:** source-linked research notes and selected published numerical values. **Original MEEP scripts, Lumerical projects, fitted material files, and raw field data are not included.** This repository does not yet reproduce the paper figures.
+**Available:** source-linked research notes and selected published numerical values. **Original MEEP scripts, Lumerical projects, fitted material files, and raw field data are not included.** This repository documents the research; it does not reproduce the paper figures.
 
 ## Publications
 
@@ -24,8 +24,7 @@ Full author lists and BibTeX entries are in [references.bib](references.bib). Po
 
 The linked notes give the supporting figures, numerical settings, and limits for each point.
 
-## Simulations and reusable reference values
+## Reference values and sources
 
-- [Simulation release guide](simulations/README.md): where original projects and future reproductions belong, and the evidence each run needs.
 - [Selected reference values](energy-velocity/reference-values.json): Table S8 optical constants and reported TiO₂ velocities, transcribed with units and provenance. These sparse values are **not a broadband material model**.
 - [Source record](sources.json): article identifiers, exact supplement versions, and checksums verified against the public Figshare records on 17 October 2026.
