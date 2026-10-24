@@ -35,5 +35,9 @@ The PDFs do not provide a complete runnable project. Add the original Lumerical 
 
 A useful first released run would reproduce the isolated 190 × 160 × 100 nm rectangle, export its scattering spectrum and complex multipole moments, and compare the spectral minimum and field pattern with Figs. 2–3. An array reproduction should be a separate run with its own boundary conditions and convergence evidence.
 
-**Current status:** documented published configuration; no executable simulation or new validation result is supplied in this folder.
+## Time-dependent fields and reported timing
+
+The [temporal companion](temporal/) provides all fourteen electric/magnetic timing pairs from supplementary Fig. S2, an animated timing graph, source attribution and portable processing code. A separate [three-dimensional Meep reference](temporal/SIMULATION.md) calculates the steady-state fields of the published isolated rectangle at 366.5 nm. Its mesh, boundary, source-tail, vacuum-wave and flux checks are available with the code and data.
+
+The original Lumerical project and transient field exports remain unavailable. The new Meep calculation reconstructs one steady-state optical cycle; it does not reproduce the published formation transient or independently identify an anapole from a single field image.
 
