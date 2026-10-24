@@ -61,4 +61,5 @@ The measured signal comes from the complete TiO₂/Si stack. Silicon generates a
 
 A useful future simulation release would therefore start with the air control and a clearly masked silica control, then reproduce the TiO₂ transport calculation with the exact dispersion data. A validated nonlinear stack model is a separate task.
 
-**Current status:** published-method notes and reference values only. Original scripts, full optical datasets, and field exports are not included. See the [simulation release guide](../simulations/README.md).
+**Current status:** published-method notes and reference values only. Original scripts, full optical datasets, and field exports are not included.
+
