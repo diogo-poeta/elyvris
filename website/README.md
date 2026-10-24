@@ -80,8 +80,6 @@ The included `github.io` address can be used without buying a domain under GitHu
 
 Edit HTML for content, CSS for presentation, and the JavaScript modules for calculations and interactions. Re-run validation after changes. Preserve source attribution, distinguish illustrative calculations from published results, and keep professional claims grounded in the work.
 
-## Add photos from a phone
+## Managing photographs through GitHub
 
-Open [Add photos](https://diogo-poeta.github.io/lumafern/photos.html), sign in to GitHub and complete the photo form. Attach one image, choose Research or Travel and supply its title and caption. Submissions are public GitHub issues and wait for manual review. No automatic publishing or repository-write automation is installed.
-
-To publish a chosen submission, ask Codex to publish the pending Lumafern photos, or review it manually: validate and re-encode the image, remove camera metadata, put the JPEG in website/assets/gallery, add its caption/category/dimensions to gallery-data.json, and commit the reviewed files. The existing Pages deployment publishes that reviewed commit. Close the submission after verifying the live gallery.
+Use the repository photo submission form at https://github.com/diogo-poeta/lumafern/issues/new?template=photo.yml. Review submissions manually before publication. Store approved images in website/assets/gallery and update gallery-data.json with their captions, categories and dimensions. Commit the reviewed files to publish through the existing Pages workflow.
