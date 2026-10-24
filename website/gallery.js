@@ -74,7 +74,7 @@
   const source=document.querySelector('#lightbox-source');
   const imageError=document.querySelector('#lightbox-load-error');
   const loading=document.querySelector('#lightbox-loading');
-  let items=[],visibleItems=[],active='all',index=-1,originButton=null;
+  let items=[],visibleItems=[],active='research',index=-1,originButton=null;
   let scrollLock=null,touch=null;
 
   function node(tag,className,text){const element=document.createElement(tag);if(className)element.className=className;if(text!==undefined)element.textContent=text;return element;}
@@ -87,7 +87,7 @@
   }
   function metadata(item){return [item.location,formattedDate(item.date)].filter(Boolean).join(' · ');}
   function render(){
-    visibleItems=items.filter(item=>active==='all'||item.category===active);
+    visibleItems=items.filter(item=>item.category===active);
     const fragment=document.createDocumentFragment();
     visibleItems.forEach((item,i)=>{
       const figure=node('figure','gallery-piece');figure.dataset.kind=item.kind;figure.dataset.photoId=item.id;
