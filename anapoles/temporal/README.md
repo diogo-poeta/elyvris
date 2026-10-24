@@ -4,7 +4,7 @@ This companion contains two distinct results: the fourteen published electric/ma
 
 Diogo Poeta, Rafael Vilarinho, Martín López-García and Pieter A. A. De Beule, *Optical anapoles excited by UV-A illumination*, **Optics Letters 49**(24), 7198–7201 (2024). Poeta and Vilarinho contributed equally.
 
-[Article](https://doi.org/10.1364/OL.536925) · [Supplement, version 5](https://doi.org/10.6084/m9.figshare.27648525.v5) · [Interactive research notes](https://diogo-poeta-photonics.classy-mesa-1544.chatgpt.site/research.html#anapole-temporal)
+[Article](https://doi.org/10.1364/OL.536925) · [Supplement, version 5](https://doi.org/10.6084/m9.figshare.27648525.v5) · [Interactive research notes](https://diogo-poeta.github.io/lumafern/research.html#anapole-temporal)
 
 ## Shareable media
 
