@@ -1,0 +1,46 @@
+name: Add a gallery photo
+description: Submit a photo and caption for manual publication on Lumafern.
+title: "[Photo] Gallery submission"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Photo submissions for Diogo Poeta's gallery. The picture and caption are stored publicly on GitHub and wait for manual review before appearing on the website.
+  - type: input
+    id: photo-title
+    attributes:
+      label: Photo title
+      placeholder: e.g. Optical setup at INL
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Research
+        - Travel
+    validations:
+      required: true
+  - type: textarea
+    id: caption
+    attributes:
+      label: Caption / description
+      description: One or two sentences describing the picture.
+    validations:
+      required: true
+  - type: textarea
+    id: photo
+    attributes:
+      label: Photo
+      description: Tap the attachment button below this box and choose one picture from your phone. Wait until its link appears before submitting. JPEG, PNG and WebP are supported.
+      placeholder: Attach one picture here.
+    validations:
+      required: true
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Permission
+      options:
+        - label: I own this picture or have permission to publish it.
+          required: true
