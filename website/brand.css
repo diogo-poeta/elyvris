@@ -11,3 +11,9 @@
     white-space: nowrap;
   }
 }
+.about-links { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 18px 24px; }
+.rn-footer { flex-wrap: wrap; }
+@media (max-width: 700px) {
+  .site-header nav > a.records-nav,
+  .rn-header nav > a.records-nav { display: none; }
+}

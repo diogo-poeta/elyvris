@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "title": "Laboratory and academic record",
+  "records": [
+    {
+      "id": "inl-learn-2022-2026",
+      "status": "published",
+      "category": "laboratory",
+      "title": "Research Assistant — EU LEARN project",
+      "date": { "start": "2022-09", "end": "2026-04", "precision": "month" },
+      "institution": "International Iberian Nanotechnology Laboratory",
+      "event": null,
+      "place": { "label": "Braga, Portugal", "country": "Portugal", "online": false },
+      "summary": "Research on nonlinear UV nanophotonics and selective VOC photoionization sensing for indoor air-quality monitoring in schools.",
+      "activities": [
+        "Designed dielectric nanostructures and analysed electromagnetic fields using Lumerical FDTD and MEEP.",
+        "Operated a femtosecond Yb laser system with tunable UV–VIS pulses and investigated third-harmonic generation in dielectric nanomembranes.",
+        "Operated gas-handling and flow-control equipment; acquired experimental data with LabVIEW/National Instruments hardware and analysed it using Python."
+      ],
+      "methods": ["Computational photonics", "Nonlinear optics", "VOC photoionization", "Python analysis"],
+      "references": [
+        { "label": "Related publication: tunable VUV generation", "url": "https://doi.org/10.1364/OE.564577" },
+        { "label": "Related publication: BTEX sensing", "url": "https://doi.org/10.1016/j.eti.2026.104895" }
+      ],
+      "media": []
+    },
+    {
+      "id": "bielefeld-phd-2023-2026",
+      "status": "published",
+      "category": "affiliation",
+      "title": "PhD in Physics",
+      "date": { "start": "2023", "end": "2026", "precision": "year" },
+      "institution": "Bielefeld University",
+      "event": null,
+      "place": { "label": "Germany", "country": "Germany", "online": false },
+      "summary": "Doctoral research on tunable VUV photoionization, third-harmonic generation, energy velocity in TiO₂ films and UV-A optical anapoles.",
+      "activities": [],
+      "methods": ["Electromagnetic simulation", "Ultraviolet photonics", "Nonlinear optics"],
+      "references": [
+        { "label": "Doctoral dissertation", "url": "https://doi.org/10.4119/unibi/3020621" },
+        { "label": "Research notes", "url": "research.html" }
+      ],
+      "media": []
+    },
+    {
+      "id": "spie-metamaterials-2025",
+      "status": "published",
+      "category": "presentation",
+      "title": "TiO₂/SiO₂ metasurfaces for enhancement of THG with pump wavelengths in the UV-A",
+      "date": { "start": "2025-04", "end": null, "precision": "month" },
+      "institution": null,
+      "event": "SPIE Optics + Optoelectronics — Metamaterials XV",
+      "place": { "label": "Prague", "country": "Czech Republic", "online": false },
+      "format": "Poster",
+      "summary": "Poster presentation on TiO₂/SiO₂ metasurfaces and third-harmonic generation under UV-A pumping.",
+      "activities": [],
+      "methods": ["Metasurfaces", "Third-harmonic generation", "UV-A"],
+      "references": [
+        { "label": "Presentation record in curriculum vitae", "url": "cv.html" }
+      ],
+      "media": []
+    },
+    {
+      "id": "inl-symposium-2024",
+      "status": "published",
+      "category": "presentation",
+      "title": "Optical anapoles excited by UV-A illumination",
+      "date": { "start": "2024-04", "end": null, "precision": "month" },
+      "institution": "International Iberian Nanotechnology Laboratory",
+      "event": "INL Annual Research Symposium",
+      "place": { "label": "Braga, Portugal", "country": "Portugal", "online": false },
+      "format": "3MT talk",
+      "summary": "Three-minute research presentation on optical anapole excitation in the UV-A.",
+      "activities": [],
+      "methods": ["Optical anapoles", "Nanophotonics", "Research presentation"],
+      "references": [
+        { "label": "Related publication: UV-A anapoles", "url": "https://doi.org/10.1364/OL.536925" }
+      ],
+      "media": []
+    },
+    {
+      "id": "inl-internship-2020-2021",
+      "status": "published",
+      "category": "laboratory",
+      "title": "Research Intern",
+      "date": { "start": "2020-11", "end": "2021-12", "precision": "month" },
+      "institution": "International Iberian Nanotechnology Laboratory",
+      "event": null,
+      "place": { "label": "Braga, Portugal", "country": "Portugal", "online": false },
+      "summary": "Numerical and experimental work on transition-metal dichalcogenide metasurfaces and plasmonic nanostructures.",
+      "activities": [
+        "Used Lumerical FDTD to investigate optical transmission and field enhancement.",
+        "Performed Raman and photoluminescence spectroscopy, spectroscopic ellipsometry and 2D-material transfer."
+      ],
+      "methods": ["Lumerical FDTD", "Raman spectroscopy", "Photoluminescence", "2D materials"],
+      "references": [
+        { "label": "Research history in curriculum vitae", "url": "cv.html" }
+      ],
+      "media": []
+    },
+    {
+      "id": "spanish-nanophotonics-2021",
+      "status": "published",
+      "category": "presentation",
+      "title": "Extraordinary transparency in continuous metallic thin film based on transition-metal-dichalcogenide metasurfaces",
+      "date": { "start": "2021-09", "end": null, "precision": "month" },
+      "institution": null,
+      "event": "Conferencia Española de Nanofotónica",
+      "place": { "label": "Online", "country": null, "online": true },
+      "format": "Talk",
+      "summary": "Conference presentation on optical transmission in metallic thin films with transition-metal-dichalcogenide metasurfaces.",
+      "activities": [],
+      "methods": ["Metasurfaces", "Optical transmission", "TMDC materials"],
+      "references": [
+        { "label": "Presentation record in curriculum vitae", "url": "cv.html" }
+      ],
+      "media": []
+    },
+    {
+      "id": "ubi-proteomics-2017-2018",
+      "status": "published",
+      "category": "laboratory",
+      "title": "Invited Researcher in Proteomics",
+      "date": { "start": "2017-02", "end": "2018-06", "precision": "month" },
+      "institution": "University of Beira Interior",
+      "event": null,
+      "place": { "label": "Portugal", "country": "Portugal", "online": false },
+      "summary": "Research on the biosynthesis, recovery and functional characterisation of therapeutic proteins.",
+      "activities": [
+        "Operated GC–MS for sample measurements."
+      ],
+      "methods": ["Protein biosynthesis", "Protein recovery", "Functional characterisation", "GC–MS"],
+      "references": [
+        { "label": "Research history in curriculum vitae", "url": "cv.html" }
+      ],
+      "media": []
+    }
+  ]
+}

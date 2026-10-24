@@ -90,7 +90,7 @@
   function exportSpectrum(format){
     if(!last||!points.length||!lastExportMeta)return;
     const content=SpectrumExport[format](points,lastExportMeta),mime=format==='txt'?'text/plain':'text/csv';
-    const url=URL.createObjectURL(new Blob([content],{type:mime+';charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='optibench-spectrum.'+format;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+    const url=URL.createObjectURL(new Blob([content],{type:mime+';charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='lumefern-spectrum.'+format;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
     $('export-status').textContent=`Exported ${points.length} samples as ${format.toUpperCase()} with settings and references.`;
   }
   $('export-csv').addEventListener('click',()=>exportSpectrum('csv'));
