@@ -1,0 +1,45 @@
+{
+  "sampleCount": 14,
+  "instanceCounts": {
+    "1": 3,
+    "2": 4,
+    "3": 4,
+    "4": 3
+  },
+  "electricRangeFs": [
+    8.36,
+    10.26
+  ],
+  "magneticRangeFs": [
+    8.63,
+    10.52
+  ],
+  "delayRangeFs": [
+    0.26,
+    0.32
+  ],
+  "meanDelayFs": 0.29214285714285715,
+  "medianDelayFs": 0.31,
+  "vacuumOpticalPeriodAt366_5nmFs": 1.2225124089012274,
+  "quarterPeriodFs": 0.30562810222530684,
+  "delayOverPeriodRange": [
+    0.21267677784447475,
+    0.2617560342701228
+  ],
+  "phaseEquivalentDegreesRange": [
+    76.56364002401091,
+    94.2321723372442
+  ],
+  "sourceAssets": [
+    {
+      "file": "published-s2-table.svg",
+      "bytes": 387604,
+      "sha256": "c19857d6c08f1b283652cb0e62057e268018327cc4811324c3daf5eb465c9128"
+    },
+    {
+      "file": "published-s3-power.svg",
+      "bytes": 84539,
+      "sha256": "32846c28b71561d74297dcbba89fbfe3f514afb21cbe66f4784739ceb5c54ed9"
+    }
+  ]
+}

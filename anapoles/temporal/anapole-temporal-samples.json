@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "title": "Electric and magnetic field timing",
+  "source": {
+    "url": "https://doi.org/10.6084/m9.figshare.27648525.v5",
+    "title": "Optical anapoles excited by UV-A illumination: supplement, Fig. S2",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "articleUrl": "https://doi.org/10.1364/OL.536925",
+    "credit": "Diogo Poeta, Rafael Vilarinho, Martín López-García and Pieter A. A. De Beule, Optical anapoles excited by UV-A illumination, Optics Letters 49(24), 7198–7201 (2024), DOI:10.1364/OL.536925. Supplement Fig. S2, DOI:10.6084/m9.figshare.27648525.v5. CC BY 4.0.",
+    "pdfPage": 3,
+    "printedPage": 2
+  },
+  "electricIntensityLabel": "|E|²/|E0|²",
+  "electricIntensityUnit": "dimensionless",
+  "timeUnit": "fs",
+  "samples": [
+    {
+      "id": "instance-1-sample-1",
+      "instance": 1,
+      "electricTimeFs": 8.36,
+      "magneticTimeFs": 8.63,
+      "electricIntensity": 0.733,
+      "delayFs": 0.27
+    },
+    {
+      "id": "instance-1-sample-2",
+      "instance": 1,
+      "electricTimeFs": 8.42,
+      "magneticTimeFs": 8.68,
+      "electricIntensity": 0.745,
+      "delayFs": 0.26
+    },
+    {
+      "id": "instance-1-sample-3",
+      "instance": 1,
+      "electricTimeFs": 8.47,
+      "magneticTimeFs": 8.73,
+      "electricIntensity": 0.645,
+      "delayFs": 0.26
+    },
+    {
+      "id": "instance-2-sample-1",
+      "instance": 2,
+      "electricTimeFs": 8.89,
+      "magneticTimeFs": 9.2,
+      "electricIntensity": 0.543,
+      "delayFs": 0.31
+    },
+    {
+      "id": "instance-2-sample-2",
+      "instance": 2,
+      "electricTimeFs": 8.94,
+      "magneticTimeFs": 9.26,
+      "electricIntensity": 0.678,
+      "delayFs": 0.32
+    },
+    {
+      "id": "instance-2-sample-3",
+      "instance": 2,
+      "electricTimeFs": 9.0,
+      "magneticTimeFs": 9.31,
+      "electricIntensity": 0.716,
+      "delayFs": 0.31
+    },
+    {
+      "id": "instance-2-sample-4",
+      "instance": 2,
+      "electricTimeFs": 9.05,
+      "magneticTimeFs": 9.36,
+      "electricIntensity": 0.649,
+      "delayFs": 0.31
+    },
+    {
+      "id": "instance-3-sample-1",
+      "instance": 3,
+      "electricTimeFs": 9.47,
+      "magneticTimeFs": 9.78,
+      "electricIntensity": 0.433,
+      "delayFs": 0.31
+    },
+    {
+      "id": "instance-3-sample-2",
+      "instance": 3,
+      "electricTimeFs": 9.52,
+      "magneticTimeFs": 9.84,
+      "electricIntensity": 0.58,
+      "delayFs": 0.32
+    },
+    {
+      "id": "instance-3-sample-3",
+      "instance": 3,
+      "electricTimeFs": 9.57,
+      "magneticTimeFs": 9.89,
+      "electricIntensity": 0.651,
+      "delayFs": 0.32
+    },
+    {
+      "id": "instance-3-sample-4",
+      "instance": 3,
+      "electricTimeFs": 9.63,
+      "magneticTimeFs": 9.94,
+      "electricIntensity": 0.625,
+      "delayFs": 0.31
+    },
+    {
+      "id": "instance-4-sample-1",
+      "instance": 4,
+      "electricTimeFs": 10.15,
+      "magneticTimeFs": 10.41,
+      "electricIntensity": 0.554,
+      "delayFs": 0.26
+    },
+    {
+      "id": "instance-4-sample-2",
+      "instance": 4,
+      "electricTimeFs": 10.2,
+      "magneticTimeFs": 10.47,
+      "electricIntensity": 0.564,
+      "delayFs": 0.27
+    },
+    {
+      "id": "instance-4-sample-3",
+      "instance": 4,
+      "electricTimeFs": 10.26,
+      "magneticTimeFs": 10.52,
+      "electricIntensity": 0.495,
+      "delayFs": 0.26
+    }
+  ],
+  "fullFigureSrc": "/assets/anapole-temporal/published-s2-table.svg",
+  "powerSrc": "/assets/anapole-temporal/published-s3-power.svg",
+  "notes": [
+    "Rows reproduce the published S2 table exactly; delayFs is H time minus E time, rounded to0.01fs.",
+    "The pairs are not simultaneous spatial field frames.",
+    "The table does not identify the selected spatial observation point or state that every row is a maximum.",
+    "Instance labels are published; individual formation/stabilization/decay labels are not assigned to rows.",
+    "The published prose gives8.36–10.26fs, matching electric times; magnetic times extend to10.52fs."
+  ]
+}
