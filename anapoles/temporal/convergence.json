@@ -1,0 +1,255 @@
+{
+  "runs": [
+    {
+      "directory": "simulation/res100",
+      "checks": {
+        "vacuumFaraday": {
+          "value": 0.007647086658086201,
+          "bound": 0.015,
+          "passed": true
+        },
+        "vacuumAmpere": {
+          "value": 0.00030612630644419374,
+          "bound": 0.003,
+          "passed": true
+        },
+        "vacuumImpedance": {
+          "value": 0.0036898617595373167,
+          "bound": 0.01,
+          "passed": true
+        },
+        "vacuumTransverse": {
+          "value": 3.0163931898055194e-17,
+          "bound": 1e-08,
+          "passed": true
+        },
+        "vacuumYeeWaveNumber": {
+          "value": 1.8573993243453657e-06,
+          "bound": 0.002,
+          "passed": true
+        },
+        "vacuumClosedFlux": {
+          "value": -1.9297769527402783e-08,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleFaradayAwayFromInterfaces": {
+          "value": 0.03103097983159157,
+          "bound": 0.08,
+          "passed": true
+        },
+        "rectangleAmpereAwayFromInterfaces": {
+          "value": 0.0003061262924804972,
+          "bound": 0.005,
+          "passed": true
+        },
+        "rectangleLosslessFlux": {
+          "value": -0.00021482997000996657,
+          "bound": 0.003,
+          "passed": true
+        },
+        "vacuumElectricTail": {
+          "value": 1.1182370033815938e-10,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "vacuumMagneticTail": {
+          "value": 1.8146615842258265e-09,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleElectricTail": {
+          "value": 6.487323332157296e-10,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleMagneticTail": {
+          "value": 1.5758281318427566e-09,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "positiveScattering": {
+          "value": 0.07097129999968232,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "directory": "simulation/res150",
+      "checks": {
+        "vacuumFaraday": {
+          "value": 0.0034003774972332285,
+          "bound": 0.015,
+          "passed": true
+        },
+        "vacuumAmpere": {
+          "value": 0.00013606308054668942,
+          "bound": 0.003,
+          "passed": true
+        },
+        "vacuumImpedance": {
+          "value": 0.0016360292393264328,
+          "bound": 0.01,
+          "passed": true
+        },
+        "vacuumTransverse": {
+          "value": 3.287543119158204e-17,
+          "bound": 1e-08,
+          "passed": true
+        },
+        "vacuumYeeWaveNumber": {
+          "value": 4.403511690842521e-07,
+          "bound": 0.002,
+          "passed": true
+        },
+        "vacuumClosedFlux": {
+          "value": 9.648578948052094e-07,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleFaradayAwayFromInterfaces": {
+          "value": 0.019314507326297276,
+          "bound": 0.08,
+          "passed": true
+        },
+        "rectangleAmpereAwayFromInterfaces": {
+          "value": 0.00013606309192911725,
+          "bound": 0.005,
+          "passed": true
+        },
+        "rectangleLosslessFlux": {
+          "value": -1.158324220823352e-05,
+          "bound": 0.003,
+          "passed": true
+        },
+        "vacuumElectricTail": {
+          "value": 1.9656801293884563e-12,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "vacuumMagneticTail": {
+          "value": 5.499837006476001e-11,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleElectricTail": {
+          "value": 6.185301674081758e-10,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleMagneticTail": {
+          "value": 1.1714835547887943e-09,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "positiveScattering": {
+          "value": 0.06786267754556063,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "directory": "simulation/domain100",
+      "checks": {
+        "vacuumFaraday": {
+          "value": 0.00764708669595869,
+          "bound": 0.015,
+          "passed": true
+        },
+        "vacuumAmpere": {
+          "value": 0.00030612631924137145,
+          "bound": 0.003,
+          "passed": true
+        },
+        "vacuumImpedance": {
+          "value": 0.0036912186145004167,
+          "bound": 0.01,
+          "passed": true
+        },
+        "vacuumTransverse": {
+          "value": 2.6733230219610106e-17,
+          "bound": 1e-08,
+          "passed": true
+        },
+        "vacuumYeeWaveNumber": {
+          "value": 6.471470361812948e-07,
+          "bound": 0.002,
+          "passed": true
+        },
+        "vacuumClosedFlux": {
+          "value": -8.61380063596101e-08,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleFaradayAwayFromInterfaces": {
+          "value": 0.03103096325075185,
+          "bound": 0.08,
+          "passed": true
+        },
+        "rectangleAmpereAwayFromInterfaces": {
+          "value": 0.0003061262931630435,
+          "bound": 0.005,
+          "passed": true
+        },
+        "rectangleLosslessFlux": {
+          "value": -0.0002149685270769655,
+          "bound": 0.003,
+          "passed": true
+        },
+        "vacuumElectricTail": {
+          "value": 1.5170981462779867e-10,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "vacuumMagneticTail": {
+          "value": 1.3083768471959084e-09,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleElectricTail": {
+          "value": 6.507163391123644e-10,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "rectangleMagneticTail": {
+          "value": 1.371906019943526e-09,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "positiveScattering": {
+          "value": 0.07097110806705102,
+          "passed": true
+        }
+      },
+      "passed": true
+    }
+  ],
+  "meshComparison": {
+    "first": "simulation/res100",
+    "second": "simulation/res150",
+    "comparisonSamplesAwayFromInterfaces": 15152,
+    "electricPhasorRelativeL2": 0.02869130174208385,
+    "magneticPhasorRelativeL2": 0.02794481080590032,
+    "electricSquaredNormIntegralRelativeChange": 0.01972728783045885,
+    "magneticSquaredNormIntegralRelativeChange": 0.028973344812637913,
+    "scatteringCrossSectionRelativeChange": 0.0458075420327273,
+    "method": "Normalize both runs to vacuum E at physical origin; interpolate second complex vector fields onto first common grid; no extrapolation; exclude 2.5 coarse cells around interfaces.",
+    "passed": true
+  },
+  "interpretation": "Numerical checks of independent single-frequency fields, not original Lumerical data, transient reproduction, or anapole identification.",
+  "domainComparison": {
+    "first": "simulation/res100",
+    "second": "simulation/domain100",
+    "comparisonSamplesAwayFromInterfaces": 20536,
+    "electricPhasorRelativeL2": 1.5787910730567593e-05,
+    "magneticPhasorRelativeL2": 1.366917551399812e-05,
+    "electricSquaredNormIntegralRelativeChange": 1.0250390027888301e-05,
+    "magneticSquaredNormIntegralRelativeChange": 6.438294576804893e-06,
+    "scatteringCrossSectionRelativeChange": 2.704376985684931e-06,
+    "method": "Normalize both runs to vacuum E at physical origin; interpolate second complex vector fields onto first common grid; no extrapolation; exclude 2.5 coarse cells around interfaces.",
+    "passed": true
+  },
+  "passed": true
+}

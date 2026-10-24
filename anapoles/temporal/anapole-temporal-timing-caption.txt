@@ -1,0 +1,16 @@
+When do the electric and magnetic events occur during UV-A anapole excitation?
+
+Our temporal analysis reports a 0.26–0.32 fs offset between selected electric- and magnetic-field events in a free-standing amorphous TiO₂ resonator. At 366.5 nm, this is approximately a quarter of the optical period.
+
+This animation redraws all 14 reported pairs from the supplementary table. It preserves each electric time, magnetic time and normalized electric-intensity value. The moving selection steps through published samples; it does not reconstruct spatial fields or introduce a magnetic-field amplitude.
+
+The temporal observation complements the multipole and scattering analysis. It does not, on its own, establish the phase of the entire field or prove zero radiation.
+
+Source: Diogo Poeta, Rafael Vilarinho, Martín López-García and Pieter A. A. De Beule, “Optical anapoles excited by UV-A illumination,” Optics Letters 49(24), 7198–7201 (2024).
+https://doi.org/10.1364/OL.536925
+
+Data: supplement Fig. S2, version 5, CC BY 4.0.
+https://doi.org/10.6084/m9.figshare.27648525.v5
+https://creativecommons.org/licenses/by/4.0/
+
+Graph redrawn and time differences calculated from the published values. The animation is silent and advances through 14 discrete samples over 14 seconds.

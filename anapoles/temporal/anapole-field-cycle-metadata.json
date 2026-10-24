@@ -1,0 +1,204 @@
+{
+  "title": "Fields over one optical cycle",
+  "dataset": "rectangle-xy.json",
+  "datasetSha256": "30992646cb21075f24b2a9c6fcac5ea3f227e3a10e58e75618caaeaf6ad1d872",
+  "dimensions": [
+    1080,
+    1080
+  ],
+  "displayDurationSeconds": 10.0,
+  "wavelengthNm": 366.5,
+  "periodFs": 1.2225124089012274,
+  "planeZNm": 0.0,
+  "phaseConvention": "exp(-i omega t)",
+  "posterFractionOfPeriod": 0.4,
+  "observable": "sum of squared instantaneous real normalized vector components",
+  "colourScale": "separate exact full-cycle maxima, fixed in all frames",
+  "electricCycleMaximum": 5.890378892745738,
+  "magneticCycleMaximum": 44.52010994620767,
+  "arrows": "equal-length in-plane directions with a 3% threshold",
+  "caveat": "Independent steady-state calculation; not original Lumerical or formation dynamics; not independent anapole identification.",
+  "normalization": {
+    "electric": "E/E0",
+    "magnetic": "H/H0",
+    "electricReferenceAmplitudeSI": 1.0,
+    "magneticReferenceAmplitudeSI": 0.0026544187279930135
+  },
+  "simulationValidation": {
+    "kind": "independent-Meep-steady-state-reference",
+    "meepVersion": "1.29.0",
+    "wavelengthNm": 366.5,
+    "material": {
+      "record": "Jolivet-amorphous",
+      "n": 2.8080755555555554,
+      "k": 0.0,
+      "publication": "https://doi.org/10.1016/j.apsusc.2022.155214",
+      "databaseCommit": "c5c2f188e848453def5970e347399d653df2ffc2",
+      "path": "database/data/main/TiO2/nk/Jolivet-amorphous.yml",
+      "sha256": "a00fb2d2ba7c4009b1fbd4163d4dbabe9537545337e476f6970cbd5cfd814d56",
+      "interpolation": "linear in wavelength; no extrapolation",
+      "model": "epsilon=n(lambda0)^2, constant during this single-frequency calculation"
+    },
+    "geometryNm": [
+      190.0,
+      160.0,
+      100.0
+    ],
+    "resolutionPixelsPerUm": 150,
+    "meshNm": 6.666666666666667,
+    "cellUm": 1.0,
+    "pmlUm": 0.2,
+    "source": {
+      "polarization": "Ex",
+      "direction": "+z",
+      "planeZUm": -0.25,
+      "fractionalFrequencyWidth": 0.18
+    },
+    "afterSourceTimeUnits": 12.0,
+    "additionalTailTimeUnits": 6.0,
+    "timeUnitFs": 3.3356409519815204,
+    "referenceDFTAmplitudeBeforeNormalization": 0.5072967898436166,
+    "normalization": "E0=1 V/m, H0=1/Z0 A/m after shared vacuum-reference calibration at physical origin (linear complex z interpolation)",
+    "phaseConvention": "exp(-i omega t)",
+    "vacuum": {
+      "tail": {
+        "electricRelativeChange": 1.9656801293884563e-12,
+        "magneticRelativeChange": 5.499837006476001e-11
+      },
+      "maxwell": {
+        "faradayRelativeL2": 0.0034003774972332285,
+        "ampereRelativeL2": 0.00013606308054668942,
+        "interiorSamples": 77760,
+        "note": "Discretization residual only; sources, PML and interfaces must be excluded by the supplied mask."
+      },
+      "E_H_impedanceRelativeL2": 0.0016360292393264328,
+      "electricTransverseRelativeL2": 3.287543119158204e-17,
+      "fittedWaveNumberPerUm": 17.150768293315664,
+      "yeeWaveNumberPerUm": 17.15076074095812,
+      "continuumWaveNumberPerUm": 17.143752543464082,
+      "fittedVsYeeRelativeError": 4.403511690842521e-07,
+      "netClosedFluxOverIncidentFacePower": 9.648578948052094e-07
+    },
+    "rectangle": {
+      "tail": {
+        "electricRelativeChange": 6.185301674081758e-10,
+        "magneticRelativeChange": 1.1714835547887943e-09
+      },
+      "maxwellAwayFromInterfaces": {
+        "faradayRelativeL2": 0.019314507326297276,
+        "ampereRelativeL2": 0.00013606309192911725,
+        "interiorSamples": 63280,
+        "note": "Discretization residual only; sources, PML and interfaces must be excluded by the supplied mask."
+      },
+      "scatteringCrossSectionUm2": 0.06786267754556063,
+      "netTotalFluxOverScatteredPower": -1.158324220823352e-05,
+      "phasorElectricMagnitudeMaximumOverE0": 2.5805998310686697,
+      "phasorMagneticMagnitudeMaximumOverH0": 7.129258298388587
+    },
+    "runtimeSeconds": 507.24645226400025,
+    "limitations": [
+      "Not the original Lumerical project or the published formation transient.",
+      "One wavelength with n(lambda0)^2; no claim of broadband dispersive pulse dynamics.",
+      "No new multipole decomposition or anapole-condition verification.",
+      "Spatial convergence must be assessed from separate resolution/domain runs."
+    ]
+  },
+  "methodUrl": "https://meep.readthedocs.io/en/latest/",
+  "posterAlt": "Side-by-side electric and magnetic squared-field maps of a 190 \u00d7 160 \u00d7 100 nm TiO2 resonator from an independent 3D FDTD calculation. Both use the same optical phase. Each field has its own colour scale, fixed for the whole cycle; a dashed rectangle marks the resonator.",
+  "files": [
+    "anapole-field-cycle-poster.png",
+    "anapole-field-cycle.gif",
+    "anapole-field-cycle.mp4",
+    "anapole-field-cycle-caption.txt"
+  ],
+  "convergence": {
+    "record": "convergence.json",
+    "passed": true,
+    "meshComparison": {
+      "comparisonSamplesAwayFromInterfaces": 15152,
+      "electricPhasorRelativeL2": 0.02869130174208385,
+      "magneticPhasorRelativeL2": 0.02794481080590032,
+      "electricSquaredNormIntegralRelativeChange": 0.01972728783045885,
+      "magneticSquaredNormIntegralRelativeChange": 0.028973344812637913,
+      "scatteringCrossSectionRelativeChange": 0.0458075420327273,
+      "method": "Normalize both runs to vacuum E at physical origin; interpolate second complex vector fields onto first common grid; no extrapolation; exclude 2.5 coarse cells around interfaces.",
+      "passed": true
+    },
+    "domainComparison": {
+      "comparisonSamplesAwayFromInterfaces": 20536,
+      "electricPhasorRelativeL2": 1.5787910730567593e-05,
+      "magneticPhasorRelativeL2": 1.366917551399812e-05,
+      "electricSquaredNormIntegralRelativeChange": 1.0250390027888301e-05,
+      "magneticSquaredNormIntegralRelativeChange": 6.438294576804893e-06,
+      "scatteringCrossSectionRelativeChange": 2.704376985684931e-06,
+      "method": "Normalize both runs to vacuum E at physical origin; interpolate second complex vector fields onto first common grid; no extrapolation; exclude 2.5 coarse cells around interfaces.",
+      "passed": true
+    }
+  },
+  "exportValidation": {
+    "mp4": {
+      "ffmpeg_version": "7.1-essentials_build-www.gyan.dev built with gcc 14.2.0 (Rev1, Built by MSYS2 project)",
+      "codec": "h264",
+      "pix_fmt": "yuv420p(progressive)",
+      "fps": 24.0,
+      "source_size": [
+        1080,
+        1080
+      ],
+      "size": [
+        1080,
+        1080
+      ],
+      "rotate": 0,
+      "duration": 10.0
+    },
+    "gif": {
+      "size": [
+        1080,
+        1080
+      ],
+      "frames": 100,
+      "frameDurationsMs": [
+        100
+      ],
+      "durationSeconds": 10.0,
+      "loop": 0
+    },
+    "posterVisuallyInspected": true,
+    "gifQuarterCycleVisuallyInspected": true,
+    "files": [
+      {
+        "name": "anapole-field-cycle.mp4",
+        "bytes": 4514768,
+        "sha256": "a2fd23790ffa597cdbe6d4c7cb6b0ce610541dc84ac5c8b5401fe34288604407"
+      },
+      {
+        "name": "anapole-field-cycle.gif",
+        "bytes": 8093058,
+        "sha256": "1c6a7001151726d2fdc7fc3cc21ecafbb44b1ad0cd421ab19f2ad3c1877907d7"
+      },
+      {
+        "name": "anapole-field-cycle-poster.png",
+        "bytes": 132361,
+        "sha256": "91bb3d5797260b4027f98192ce9743e916e01f7251ad4465d81955040411557c"
+      },
+      {
+        "name": "anapole-field-cycle-caption.txt",
+        "bytes": 1037,
+        "sha256": "157298391be1ecb960c1ab902d19befa48399ecbe6cbc0ca39f92ad803c86e96"
+      }
+    ]
+  },
+  "rendererSha256": "84ab62b85ecd98a21bd35cc33e37159b39d90ddebed91b18e081bc5a890ac54e",
+  "publication": {
+    "includedMedia": [
+      "anapole-field-cycle.mp4",
+      "anapole-field-cycle-poster.png",
+      "anapole-field-cycle-caption.txt"
+    ],
+    "omittedMedia": [
+      "anapole-field-cycle.gif"
+    ],
+    "note": "Large GIF omitted from compact public package; original render provenance and scientific dataset hash retained."
+  }
+}

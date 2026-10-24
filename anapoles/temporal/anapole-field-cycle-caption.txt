@@ -1,0 +1,20 @@
+Fields over one optical cycle
+
+Electric and magnetic fields in a 190 × 160 × 100 nm amorphous TiO₂ resonator in air, illuminated at 366.5 nm.
+
+Both panels share one phase clock. Colour shows |E(t)|²/E₀² and |H(t)|²/H₀², including all three vector components, in the x–y plane at z=0 nm. The two colour scales differ, and each remains fixed for the entire cycle.
+
+One optical period, 1.222512 fs, is slowed to 10 seconds. The instantaneous fields are reconstructed directly from the complex vectors with exp(−iωt), using the same time origin.
+
+New independent steady-state Meep reference at the published geometry, not the original Lumerical formation transient.
+
+Geometry: Poeta et al., “Optical anapoles excited by UV-A illumination,” Optics Letters (2024).
+https://doi.org/10.1364/OL.536925
+
+Method: Meep FDTD.
+https://meep.readthedocs.io/en/latest/
+
+Optical constants: Jolivet et al. (2023).
+https://doi.org/10.1016/j.apsusc.2022.155214
+
+Equal-length arrows indicate in-plane field direction.

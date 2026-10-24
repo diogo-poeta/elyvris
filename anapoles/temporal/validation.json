@@ -1,0 +1,79 @@
+{
+  "kind": "independent-Meep-steady-state-reference",
+  "meepVersion": "1.29.0",
+  "wavelengthNm": 366.5,
+  "material": {
+    "record": "Jolivet-amorphous",
+    "n": 2.8080755555555554,
+    "k": 0.0,
+    "publication": "https://doi.org/10.1016/j.apsusc.2022.155214",
+    "databaseCommit": "c5c2f188e848453def5970e347399d653df2ffc2",
+    "path": "database/data/main/TiO2/nk/Jolivet-amorphous.yml",
+    "sha256": "a00fb2d2ba7c4009b1fbd4163d4dbabe9537545337e476f6970cbd5cfd814d56",
+    "interpolation": "linear in wavelength; no extrapolation",
+    "model": "epsilon=n(lambda0)^2, constant during this single-frequency calculation"
+  },
+  "geometryNm": [
+    190.0,
+    160.0,
+    100.0
+  ],
+  "resolutionPixelsPerUm": 150,
+  "meshNm": 6.666666666666667,
+  "cellUm": 1.0,
+  "pmlUm": 0.2,
+  "source": {
+    "polarization": "Ex",
+    "direction": "+z",
+    "planeZUm": -0.25,
+    "fractionalFrequencyWidth": 0.18
+  },
+  "afterSourceTimeUnits": 12.0,
+  "additionalTailTimeUnits": 6.0,
+  "timeUnitFs": 3.3356409519815204,
+  "referenceDFTAmplitudeBeforeNormalization": 0.5072967898436166,
+  "normalization": "E0=1 V/m, H0=1/Z0 A/m after shared vacuum-reference calibration at physical origin (linear complex z interpolation)",
+  "phaseConvention": "exp(-i omega t)",
+  "vacuum": {
+    "tail": {
+      "electricRelativeChange": 1.9656801293884563e-12,
+      "magneticRelativeChange": 5.499837006476001e-11
+    },
+    "maxwell": {
+      "faradayRelativeL2": 0.0034003774972332285,
+      "ampereRelativeL2": 0.00013606308054668942,
+      "interiorSamples": 77760,
+      "note": "Discretization residual only; sources, PML and interfaces must be excluded by the supplied mask."
+    },
+    "E_H_impedanceRelativeL2": 0.0016360292393264328,
+    "electricTransverseRelativeL2": 3.287543119158204e-17,
+    "fittedWaveNumberPerUm": 17.150768293315664,
+    "yeeWaveNumberPerUm": 17.15076074095812,
+    "continuumWaveNumberPerUm": 17.143752543464082,
+    "fittedVsYeeRelativeError": 4.403511690842521e-07,
+    "netClosedFluxOverIncidentFacePower": 9.648578948052094e-07
+  },
+  "rectangle": {
+    "tail": {
+      "electricRelativeChange": 6.185301674081758e-10,
+      "magneticRelativeChange": 1.1714835547887943e-09
+    },
+    "maxwellAwayFromInterfaces": {
+      "faradayRelativeL2": 0.019314507326297276,
+      "ampereRelativeL2": 0.00013606309192911725,
+      "interiorSamples": 63280,
+      "note": "Discretization residual only; sources, PML and interfaces must be excluded by the supplied mask."
+    },
+    "scatteringCrossSectionUm2": 0.06786267754556063,
+    "netTotalFluxOverScatteredPower": -1.158324220823352e-05,
+    "phasorElectricMagnitudeMaximumOverE0": 2.5805998310686697,
+    "phasorMagneticMagnitudeMaximumOverH0": 7.129258298388587
+  },
+  "runtimeSeconds": 507.24645226400025,
+  "limitations": [
+    "Not the original Lumerical project or the published formation transient.",
+    "One wavelength with n(lambda0)^2; no claim of broadband dispersive pulse dynamics.",
+    "No new multipole decomposition or anapole-condition verification.",
+    "Spatial convergence must be assessed from separate resolution/domain runs."
+  ]
+}
