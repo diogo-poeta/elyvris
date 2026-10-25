@@ -1,6 +1,6 @@
 # Lumafern website
 
-Static HTML, CSS and JavaScript for my research portfolio and Film Bench.
+Static HTML, CSS and JavaScript for the Lumafern project journal and research pages.
 
 [Website](https://diogo-poeta.github.io/lumafern/) · [Gallery editor](../GALLERY-EDITING.md)
 
@@ -22,6 +22,14 @@ node website/scripts/check-records.mjs
 node website/scripts/check-gallery.mjs
 python website/scripts/check-site.py
 ```
+
+## Editing the project journal
+
+Edit the idea and dated development entry in `index.html`. Add progress only when it has happened; keep future work labelled as planned. Layout is in `project-home.css`.
+
+`research.html` holds the four papers and anapole viewers. `records.html` is the photo gallery; the CMS still updates `gallery-data.json` and gallery images. The CV is in `cv.html`.
+
+Film Bench remains at `lab.html` for existing links and reference use. It is no longer part of the homepage or research navigation. The old energy-velocity and analytical animation sources remain in the repository as references.
 
 ## Methods and sources
 

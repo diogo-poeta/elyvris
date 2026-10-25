@@ -13,7 +13,7 @@ assert.equal(items.length,data.items.filter(item=>item.status==='published'&&ite
 for(const item of data.items.filter(item=>item.status==='published'&&item.rights?.status==='cleared')){
   assert.equal(item.status,'published');
   assert.equal(item.rights.status,'cleared');
-  for(const name of [item.src,item.thumbnail]){
+  for(const name of new Set([item.src,...(item.thumbnail?[item.thumbnail]:[])])){
     assert.match(name,/^assets\/gallery\/[a-z0-9_.-]+\.(?:jpe?g|png|webp|avif)$/i);
     assert.ok(existsSync(new URL('../'+name,import.meta.url)),name);
     const bytes=readFileSync(new URL('../'+name,import.meta.url));

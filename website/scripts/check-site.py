@@ -27,6 +27,11 @@ for page in pages.values():
         if u.fragment and target.suffix=='.html':
             assert unquote(u.fragment) in pages[target.name].ids, f'{page.path.name}: missing anchor {href}'
         checked+=1
-assert all(x in (root/'index.html').read_text(encoding='utf-8') for x in ['Research Intern','Invited Researcher in Proteomics','wave-field','lab.html'])
+home=(root/'index.html').read_text(encoding='utf-8')
+research=(root/'research.html').read_text(encoding='utf-8')
+assert 'lab.html' not in home, 'The legacy calculator must not return to the homepage'
+assert all(x in research for x in ['anapole-field-cycle','anapole-temporal','OL.536925','OME.611814','OE.564577','eti.2026.104895']), 'Retain the research viewers and all four papers'
+assert all(x in (root/'cv.html').read_text(encoding='utf-8') for x in ['Research Intern','Invited Researcher in Proteomics']), 'Preserve the CV research history'
+assert 'Jolivet' in research and 'apsusc.2022.155214' in research, 'Show the field-map optical-property source'
 assert (root/'publications.bib').read_text(encoding='utf-8').count('@article{')==4
-print(json.dumps({'status':'passed','pages':list(pages),'local_links_checked':checked,'missing_roles':'present','publication_exports':4}))
+print(json.dumps({'status':'passed','pages':list(pages),'local_links_checked':checked,'research_and_cv':'retained','publication_exports':4}))

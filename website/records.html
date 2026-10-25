@@ -6,15 +6,15 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Photographs and research records | Lumafern</title>
-  <meta name="description" content="My photographs, laboratory work and research record.">
+  <title>Gallery | Lumafern</title>
+  <meta name="description" content="My photographs from research and travel.">
   <meta name="theme-color" content="#f4f3ed">
   <link rel="icon" href="favicon.svg?v=11" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=7">
-  <link rel="stylesheet" href="brand.css?v=12">
-  <link rel="stylesheet" href="records.css?v=7">
+  <link rel="stylesheet" href="brand.css?v=13">
+  <link rel="stylesheet" href="records.css?v=9">
   <link rel="stylesheet" href="gallery.css?v=7">
-  <script defer src="records.js?v=7"></script>
+
   <script defer src="gallery.js?v=13"></script>
 <link rel="canonical" href="https://diogo-poeta.github.io/lumafern/records.html"><meta property="og:url" content="https://diogo-poeta.github.io/lumafern/records.html">
 </head>
@@ -22,19 +22,14 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header records-header wrap">
     <a class="wordmark" href="index.html" aria-label="Lumafern home"><img src="assets/brand/lumafern-mark.svg" width="40" height="40" alt="" aria-hidden="true">Lumafern</a>
-    <nav aria-label="Main navigation">
-      <a href="index.html#research">Selected work</a>
-      <a href="research.html">Research notes</a>
-      <a href="lab.html">Film Bench</a>
-      <a href="index.html#contact" class="nav-contact">Connect <span aria-hidden="true">↗</span></a>
-    </nav>
+    <nav aria-label="Main navigation"><a href="research.html">Research</a><a href="index.html#contact" class="nav-contact">Connect <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main id="main">
     <section class="records-intro wrap" aria-labelledby="records-title">
-      <p class="eyebrow">RESEARCH AND TRAVEL</p>
+      <p class="eyebrow">DIOGO POETA</p>
       <div class="records-intro-grid">
-        <h1 id="records-title">Photographs<br><em>and research records.</em></h1>
-        <div class="records-lead"><p>Laboratory work, conferences and travel.</p><p><a class="gallery-jump" href="#research-records">Research history ↓</a></p><a class="text-link" href="cv.html">Curriculum vitae <span aria-hidden="true">↗</span></a></div>
+        <h1 id="records-title">Gallery.</h1>
+        <div class="records-lead"><p>Research and travel.</p><a class="text-link" href="cv.html">Curriculum vitae <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
     <section class="photo-collection wrap" id="photographs" aria-labelledby="gallery-title">
@@ -42,22 +37,14 @@
       <div id="photo-gallery" class="photo-sequence" aria-busy="true"></div>
       <p id="gallery-empty" class="gallery-message" hidden>No published images match this category.</p>
       <p id="gallery-error" class="gallery-message gallery-error" role="alert" hidden>The gallery could not be loaded. Please try again later.</p>
-      <noscript><p class="gallery-message">JavaScript is needed to display and enlarge the gallery images. The research history is available below and in the curriculum vitae.</p></noscript>
+      <noscript><p class="gallery-message">JavaScript is needed to display and enlarge the gallery images. My research history is in the curriculum vitae.</p></noscript>
     </section>
-    <section class="record-collection wrap" id="research-records" aria-labelledby="collection-title">
-      <div class="record-history-heading"><p class="eyebrow">RESEARCH HISTORY</p><h2>Laboratory and academic record.</h2><p>Research roles, conference presentations and doctoral affiliation.</p></div>
-      <details class="content-details"><summary>View research experience and presentations</summary><div class="record-collection-top"><h2 id="collection-title" class="visually-hidden">Research records</h2><div class="record-filters" role="group" aria-label="Filter records by category"><button type="button" data-category="all" aria-pressed="true" disabled>All records</button><button type="button" data-category="laboratory" aria-pressed="false" disabled>Laboratory</button><button type="button" data-category="presentation" aria-pressed="false" disabled>Presentations</button><button type="button" data-category="affiliation" aria-pressed="false" disabled>Affiliations</button></div><p id="record-count" class="record-count" role="status" aria-live="polite">Loading records…</p></div>
-      <div id="records-list" class="records-list" aria-busy="true"></div>
-      <p id="records-error" class="records-error" role="alert" hidden>The research record could not be loaded. The same research history and presentations are listed in the <a href="cv.html">curriculum vitae</a>.</p>
-      <noscript><div class="records-noscript"><h2>Research history</h2><p>Research Assistant at INL, 2022–2026; Research Intern at INL, 2020–2021; Invited Researcher in Proteomics at the University of Beira Interior, 2017–2018. Presentations include SPIE Metamaterials XV in Prague (2025), the INL Annual Research Symposium (2024) and the online Conferencia Española de Nanofotónica (2021).</p><p><a href="cv.html">Read the complete curriculum vitae ↗</a></p></div></noscript></details>
-    </section>
-    <section class="records-related"><div class="wrap"><div><p class="eyebrow">RELATED RESEARCH</p><h2>Ultraviolet photonics<br><em>and molecular sensing.</em></h2></div><div class="records-related-links"><a href="index.html#publications">Journal publications <span aria-hidden="true">↗</span></a><a href="research.html">Energy velocity and optical anapoles <span aria-hidden="true">↗</span></a><a href="lab.html">Film Bench <span aria-hidden="true">↗</span></a></div></div></section>
   </main>
   <dialog id="gallery-lightbox" class="photo-lightbox" aria-labelledby="lightbox-title" aria-describedby="lightbox-caption">
     <div class="lightbox-toolbar"><p id="lightbox-position" class="lightbox-position" role="status" aria-live="polite" aria-atomic="true"></p><span id="lightbox-kind" class="lightbox-kind"></span><button id="lightbox-close" class="lightbox-close" type="button" aria-label="Close image viewer"><span aria-hidden="true">×</span><span class="close-label">Close</span></button></div>
     <div class="lightbox-stage" id="lightbox-stage"><button id="lightbox-previous" class="lightbox-direction lightbox-previous" type="button" aria-label="Previous image"><span aria-hidden="true">←</span></button><div class="lightbox-image-container"><img id="lightbox-image" class="lightbox-image" alt="" decoding="async"><p id="lightbox-loading" class="lightbox-loading" role="status" hidden>Loading image…</p><p id="lightbox-load-error" class="lightbox-load-error" role="status" hidden>This image could not be loaded.</p></div><button id="lightbox-next" class="lightbox-direction lightbox-next" type="button" aria-label="Next image"><span aria-hidden="true">→</span></button></div>
     <div id="lightbox-caption-region" class="lightbox-caption" role="region" aria-label="Image caption and credits" tabindex="0"><div><h2 id="lightbox-title"></h2><p id="lightbox-caption"></p></div><div class="lightbox-metadata"><p id="lightbox-context"></p><p id="lightbox-credit"></p><a id="lightbox-source" target="_blank" rel="noopener noreferrer" hidden>Source reference <span aria-hidden="true">↗</span></a></div></div>
   </dialog>
-  <footer class="records-footer wrap"><span>© 2026 Diogo Poeta · Lumafern</span><a href="index.html">Portfolio <span aria-hidden="true">↗</span></a><a href="https://pt.linkedin.com/in/diogo-poeta" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="#main">Back to top <span aria-hidden="true">↑</span></a></footer>
+  <footer class="records-footer wrap"><span>© 2026 Diogo Poeta · Lumafern</span><a href="index.html">Lumafern <span aria-hidden="true">↗</span></a><a href="https://pt.linkedin.com/in/diogo-poeta" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="#main">Back to top <span aria-hidden="true">↑</span></a></footer>
 </body>
 </html>
