@@ -1,0 +1,146 @@
+media:
+  - name: gallery-images
+    label: Photos
+    input: website/assets/gallery
+    output: assets/gallery
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: random
+
+content:
+  - name: gallery
+    label: Photo gallery
+    type: file
+    path: website/gallery-data.json
+    format: json
+    operations:
+      delete: false
+      rename: false
+    fields:
+      - name: schemaVersion
+        type: number
+        hidden: true
+        default: 1
+      - name: items
+        label: Photos
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title} · {category}"
+        fields:
+          - name: src
+            label: Picture
+            type: image
+            required: true
+            options:
+              media: gallery-images
+              extensions: [jpg, jpeg, png, webp, avif]
+              rename: random
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: caption
+            label: Caption
+            type: text
+            required: true
+          - name: category
+            label: Category
+            type: select
+            default: research
+            options:
+              values:
+                - name: research
+                  label: Research
+                - name: travel
+                  label: Travel
+          - name: status
+            label: Visibility
+            type: select
+            default: draft
+            description: Choose Published when the photo is ready for the website, then save.
+            options:
+              values:
+                - name: draft
+                  label: Draft — hidden from the website
+                - name: published
+                  label: Published
+          - name: rights
+            label: Permission
+            type: object
+            fields:
+              - name: status
+                label: Permission to display this picture
+                type: select
+                default: pending
+                options:
+                  values:
+                    - name: pending
+                      label: Not confirmed
+                    - name: cleared
+                      label: I own it or have permission
+              - name: license
+                type: string
+                hidden: true
+                default: Owner-approved gallery use; no reuse licence granted.
+          - name: alt
+            label: Image description (optional)
+            type: text
+            description: Describe what is visible. The caption is used when this is empty.
+          - name: location
+            label: Location (optional)
+            type: string
+          - name: credit
+            label: Photo credit (optional)
+            type: string
+          - name: id
+            type: string
+            hidden: true
+            default: ""
+          - name: kind
+            type: string
+            hidden: true
+            default: photograph
+          - name: thumbnail
+            type: string
+            hidden: true
+            default: ""
+          - name: width
+            type: number
+            hidden: true
+            default: 0
+          - name: height
+            type: number
+            hidden: true
+            default: 0
+          - name: thumbnailWidth
+            type: number
+            hidden: true
+            default: 0
+          - name: thumbnailHeight
+            type: number
+            hidden: true
+            default: 0
+          - name: featured
+            type: boolean
+            hidden: true
+            default: false
+          - name: sourceUrl
+            type: string
+            hidden: true
+          - name: date
+            type: object
+            hidden: true
+            fields:
+              - name: value
+                type: string
+              - name: precision
+                type: string
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      update: Update photo gallery
+      create: Add gallery image
