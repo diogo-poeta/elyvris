@@ -9,16 +9,15 @@ const {normaliseGallery,mediaURL}=context.module.exports;
 const data=JSON.parse(readFileSync(new URL('../gallery-data.json',import.meta.url),'utf8'));
 const base='https://diogo-poeta.github.io/lumafern/records.html';
 const items=normaliseGallery(data,base);
-assert.equal(data.items.length,6);
-assert.equal(items.length,6);
-for(const item of data.items){
+assert.equal(items.length,data.items.filter(item=>item.status==='published'&&item.rights?.status==='cleared').length);
+for(const item of data.items.filter(item=>item.status==='published'&&item.rights?.status==='cleared')){
   assert.equal(item.status,'published');
   assert.equal(item.rights.status,'cleared');
   for(const name of [item.src,item.thumbnail]){
-    assert.match(name,/^assets\/gallery\/[a-z0-9_-]+\.jpg$/);
+    assert.match(name,/^assets\/gallery\/[a-z0-9_.-]+\.(?:jpe?g|png|webp|avif)$/i);
     assert.ok(existsSync(new URL('../'+name,import.meta.url)),name);
     const bytes=readFileSync(new URL('../'+name,import.meta.url));
-    assert.equal(bytes[0],0xff);assert.equal(bytes[1],0xd8);
+    assert.ok(bytes.length>0,'Image file must not be empty');
     assert.ok(mediaURL(name,base));
   }
 }
@@ -32,8 +31,15 @@ const rejected=[
   'assets/gallery/photo.svg',
 ];
 for(const value of rejected)assert.equal(mediaURL(value,base),null,value);
-const drafts=structuredClone(data);drafts.items[0].status='draft';
-assert.equal(normaliseGallery(drafts,base).length,5,'draft records must not render');
+const sample={id:'test',status:'published',category:'research',kind:'photograph',title:'Test image',caption:'Test description',alt:'',src:'assets/gallery/new-photo.png',rights:{status:'cleared'}};
+const fresh=normaliseGallery({schemaVersion:1,items:[{...sample,id:'',width:0,height:0,thumbnail:'assets/gallery/old-photo.jpg'}]},base)[0];
+assert.equal(fresh.id,'image-new-photo');
+assert.equal(fresh.alt,sample.caption,'caption supplies a missing image description');
+assert.equal(fresh.thumbnail,fresh.src,'replacing an image must also replace the thumbnail');
+assert.equal(fresh.width,null,'new photos must not need manually entered pixel dimensions');
+assert.equal(fresh.height,null);
+assert.equal(normaliseGallery({items:[{...sample,status:'draft'}]},base).length,0,'all-draft gallery is a valid empty gallery');
+assert.equal(normaliseGallery({items:[{...sample,rights:{status:'pending'}}]},base).length,0,'unconfirmed rights must not publish');
 assert.equal(source.match(/fetch\(/g).length,1,'only local JSON loading is present');
 assert.ok(!source.includes('/api/')&&!source.includes('/media/'));
 const html=readFileSync(new URL('../records.html',import.meta.url),'utf8');
