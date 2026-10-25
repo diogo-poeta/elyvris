@@ -2,8 +2,6 @@
 
 Optics tools and research code.
 
-[Website](https://diogo-poeta.github.io/lumafern/) · [Film Bench](https://diogo-poeta.github.io/lumafern/lab.html) · [Research notes](https://diogo-poeta.github.io/lumafern/research.html)
-
 I work on computational photonics, nonlinear ultraviolet optics and photoionization sensing. Lumafern brings together my research notes, numerical references and optical modelling tools.
 
 ## Available
@@ -11,7 +9,6 @@ I work on computational photonics, nonlinear ultraviolet optics and photoionizat
 - **Film Bench:** coherent single-film reflection, transmission and absorption, using referenced optical constants.
 - **Optical anapoles:** [methods and data](anapoles/), [FDTD reference](anapoles/temporal/SIMULATION.md) and [field timing](anapoles/temporal/).
 - **Energy velocity:** [research notes and reference values](energy-velocity/).
-- **Website:** [source and validation](website/README.md).
 
 I am developing a Python toolkit for multilayer optical modelling. Surrogate training and inverse design are planned; they are not implemented here.
 
