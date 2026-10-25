@@ -79,7 +79,3 @@ The included `github.io` address can be used without buying a domain under GitHu
 ## Updating
 
 Edit HTML for content, CSS for presentation, and the JavaScript modules for calculations and interactions. Re-run validation after changes. Preserve source attribution, distinguish illustrative calculations from published results, and keep professional claims grounded in the work.
-
-## Managing photographs through GitHub
-
-Use the repository photo submission form at https://github.com/diogo-poeta/lumafern/issues/new?template=photo.yml. Review submissions manually before publication. Store approved images in website/assets/gallery and update gallery-data.json with their captions, categories and dimensions. Commit the reviewed files to publish through the existing Pages workflow.
