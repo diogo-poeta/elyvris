@@ -4,7 +4,6 @@
     {
       "src": "assets/gallery/spie-prague-2025.jpg",
       "title": "SPIE conference, Prague",
-      "caption": "SPIE conference in Prague, April 2025.",
       "category": "research",
       "status": "published",
       "rights": {
@@ -30,7 +29,6 @@
     {
       "src": "assets/gallery/thg-detection.jpg",
       "title": "Third-harmonic detection",
-      "caption": "Optical setup used for third-harmonic detection.",
       "category": "research",
       "status": "published",
       "rights": {
@@ -50,8 +48,7 @@
     },
     {
       "src": "assets/gallery/brussels-interior.jpg",
-      "title": "Brussels",
-      "caption": "Interior photographed during a visit to Brussels.",
+      "title": "The Bourse",
       "category": "travel",
       "status": "published",
       "rights": {
@@ -72,8 +69,7 @@
     },
     {
       "src": "assets/gallery/reading-madrid.jpg",
-      "title": "Volta aos Açores em 15 Dias",
-      "caption": "\"Diário de bordo de uma viagem para (não) esquecer\"\nAutor: José Pedro Castanheira",
+      "title": "“Diário de bordo de uma viagem para (não) esquecer” Autor: José Pedro Castanheira",
       "category": "travel",
       "status": "published",
       "rights": {
@@ -94,7 +90,6 @@
     {
       "src": "assets/gallery/photoionization-detector.jpg",
       "title": "Photoionization detector",
-      "caption": "Schematic of a photoionization detector and its electrical readout.",
       "category": "research",
       "status": "published",
       "rights": {
@@ -115,7 +110,6 @@
     {
       "src": "assets/gallery/learn-project.jpg",
       "title": "LEARN project",
-      "caption": "LEARN project website. The project investigated indoor air quality in schools and its impact on children's health.",
       "category": "research",
       "status": "published",
       "rights": {
@@ -137,7 +131,6 @@
     {
       "src": "assets/gallery/mvn55ke3-f3osyzvq.jpg",
       "title": "Quiet moment at work",
-      "caption": "After a delicious borscht soup 🥣💻",
       "category": "research",
       "status": "published",
       "rights": {
@@ -153,15 +146,14 @@
     },
     {
       "src": "assets/gallery/mvn4joyi-0b87kozb.jpg",
-      "title": "Mountain view",
-      "caption": "Takes your breath away",
+      "title": "Lake Geneva",
       "category": "travel",
       "status": "published",
       "rights": {
         "status": "cleared",
         "license": "Owner-approved gallery use; no reuse licence granted."
       },
-      "location": "Lake Genebra, Switzerland",
+      "location": "Switzerland",
       "kind": "photograph",
       "width": 0,
       "height": 0,

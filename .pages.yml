@@ -40,10 +40,6 @@ content:
             label: Title
             type: string
             required: true
-          - name: caption
-            label: Caption
-            type: text
-            required: true
           - name: category
             label: Category
             type: select
@@ -84,9 +80,8 @@ content:
                 hidden: true
                 default: Owner-approved gallery use; no reuse licence granted.
           - name: alt
-            label: Image description (optional)
             type: text
-            description: Describe what is visible. The caption is used when this is empty.
+            hidden: true
           - name: location
             label: Location (optional)
             type: string

@@ -5,18 +5,19 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lumefern — Optical modelling, in progress</title>
-  <meta name="description" content="The ideas, reference calculations and development notes behind Lumefern, a Python optical-modelling project by Diogo Poeta.">
+  <title>Lumefern — Thin-film optical modelling</title>
+  <meta name="description" content="Lumefern is a Python project for modelling coherent thin-film optical stacks.">
   <meta name="theme-color" content="#f4f3ed">
-  <meta property="og:title" content="Lumefern — Optical modelling, in progress">
-  <meta property="og:description" content="A project journal for optical modelling: the idea, the physics and the next calculation.">
+  <meta property="og:title" content="Lumefern — Thin-film optical modelling">
+  <meta property="og:description" content="A Python project for thin-film optical modelling and validation.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://diogo-poeta.github.io/lumefern/">
   <meta property="og:url" content="https://diogo-poeta.github.io/lumefern/">
   <link rel="icon" href="favicon.svg?v=11" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=7">
   <link rel="stylesheet" href="brand.css?v=13">
-  <link rel="stylesheet" href="project-home.css?v=1">
+  <link rel="stylesheet" href="project-home.css?v=2">
+  <script defer src="workflow-dialog.js?v=1"></script>
 </head>
 <body class="project-home">
   <a class="skip" href="#main">Skip to content</a>
@@ -24,17 +25,17 @@
     <a class="wordmark" href="#main" aria-label="Lumefern home"><img src="assets/brand/lumefern-mark.svg" width="40" height="40" alt="" aria-hidden="true">Lumefern</a>
     <nav aria-label="Main navigation"><a href="research.html">Research</a><a href="#contact" class="nav-contact">Connect <span aria-hidden="true">↗</span></a></nav>
   </header>
-  <main id="main">
-    <section class="project-opening wrap" aria-labelledby="project-title">
-      <div class="project-intro">
-        <p class="eyebrow">OPTICAL MODELLING / PROJECT JOURNAL</p>
-        <h1 id="project-title">Lumefern,<br><em>in progress.</em></h1>
-        <p class="project-lead">I’m working towards a Python tool for thin-film optical modelling. I want to understand the reference calculations first, then explore faster ways to design optical structures.</p>
-        <div class="project-links"><a class="text-link" href="#idea">The idea <span aria-hidden="true">↓</span></a><a class="text-link" href="#progress">Development notes <span aria-hidden="true">↓</span></a></div>
-        <p class="project-stage"><span aria-hidden="true"></span> Current stage: defining the reference model</p>
-      </div>
-      <figure class="workflow-figure" aria-labelledby="workflow-title">
-        <div class="workflow-heading"><span id="workflow-title">PROPOSED WORKFLOW</span><span>01 — 03</span></div>
+  <main id="main" class="landing-main wrap">
+    <section class="landing-copy" aria-labelledby="project-title">
+      <p class="eyebrow">OPTICAL MODELLING / PYTHON</p>
+      <h1 id="project-title">Lumefern</h1>
+      <p class="landing-headline">A Python toolkit for designing and checking thin-film optical structures.</p>
+      <p class="landing-description">The current prototype calculates reflection, transmission and absorption in coherent multilayer stacks. Faster design tools and inverse design are planned.</p>
+      <div class="landing-actions"><button class="workflow-open" type="button" aria-haspopup="dialog" aria-controls="workflow-document">View workflow <span aria-hidden="true">↗</span></button><a class="landing-research" href="research.html">Research <span aria-hidden="true">↗</span></a></div>
+      <p class="landing-status"><span aria-hidden="true"></span> Early prototype · validation in progress</p>
+    </section>
+    <figure class="landing-figure" aria-labelledby="landing-figure-title">
+      <div class="landing-figure-heading"><span id="landing-figure-title">MULTILAYER OPTICS</span><span>REFERENCE MODEL</span></div>
         <svg class="stack-sketch" viewBox="0 0 520 290" role="img" aria-labelledby="stack-title stack-desc">
           <title id="stack-title">Thin-film stack inputs</title>
           <desc id="stack-desc">A schematic incident beam reaches a stack of layers on a substrate. Some light reflects and some transmits. Wavelength, optical constants and layer thicknesses are the model inputs.</desc>
@@ -51,30 +52,22 @@
           <text x="59" y="47">incident light</text><text x="367" y="47">reflected</text>
           <text x="113" y="243">substrate</text><text x="319" y="278">transmitted</text><text x="463" y="188">d</text>
         </svg>
-        <ol class="workflow-steps">
-          <li><span class="step-number">01</span><div><strong>Describe the stack</strong><span>Wavelength · optical constants · thicknesses</span></div></li>
-          <li><span class="step-number">02</span><div><strong>Calculate and check</strong><span>Fresnel / transfer-matrix reference</span></div></li>
-          <li><span class="step-number">03</span><div><strong>Explore designs</strong><span>Later: surrogate modelling and inverse design</span></div></li>
-        </ol>
-        <figcaption>The intended sequence, starting with a checked physical model.</figcaption>
-      </figure>
-    </section>
-    <section class="reference-section wrap" id="idea" aria-labelledby="idea-title">
-      <div><p class="eyebrow">THE STARTING POINT</p><h2 id="idea-title">Begin with<br><em>the reference.</em></h2><p class="section-copy">The first step is a small calculation I can explain and test. Then one film, then a multilayer stack.</p></div>
-      <div class="reference-calculation">
-        <p class="calculation-label">ONE INTERFACE · NORMAL INCIDENCE</p>
-        <div class="interface-equation" aria-label="Reflectance equals the squared magnitude of n zero minus n one divided by n zero plus n one"><span>R =</span><span class="equation-bars">|<span class="equation-fraction"><span>n<sub>0</sub> − n<sub>1</sub></span><span>n<sub>0</sub> + n<sub>1</sub></span></span>|<sup>2</sup></span></div>
-        <p class="reference-result">Air → glass <span>n<sub>0</sub> = 1 &nbsp; n<sub>1</sub> = 1.5</span><strong>R = 4%</strong></p>
-        <p class="calculation-scope">A plane wave between two transparent, non-magnetic media.</p>
-        <details class="method-notes"><summary>Model and reference</summary><p>The planned thin-film reference uses the transfer-matrix method for planar, isotropic layers, with wavelength-dependent optical constants. Initial checks will include the interface limit and conservation of power.</p><p><a href="https://arxiv.org/abs/1603.02720" target="_blank" rel="noopener noreferrer">Steven J. Byrnes — Multilayer optical calculations ↗</a></p></details>
-      </div>
-    </section>
-    <section class="journal-section wrap" id="progress" aria-labelledby="progress-title">
-      <div class="journal-heading"><p class="eyebrow">DEVELOPMENT NOTES</p><h2 id="progress-title">The project<br><em>as it takes shape.</em></h2></div>
-      <article class="journal-entry"><time datetime="2026-10-25">25 OCTOBER 2026</time><div><h3>Start with the physics.</h3><p>I’m setting the first scope: a Python reference for thin-film optics, with the assumptions and checks recorded alongside it. Faster models and inverse design come later.</p><p class="next-step"><span>Next calculation</span>Implement the normal-incidence interface in Python and check it against the result above.</p></div></article>
-    </section>
-    <section class="research-entry wrap" id="research" aria-labelledby="research-title"><div><p class="eyebrow">MY RESEARCH</p><h2 id="research-title">The work behind<br><em>the project.</em></h2><p>Papers, optical anapoles, photographs and my curriculum vitae.</p></div><a class="button primary" href="research.html">Research <span aria-hidden="true">↗</span></a></section>
-    <section class="project-contact" id="contact" aria-labelledby="contact-title"><div class="wrap"><div class="project-contact-top"><div><p class="eyebrow">DIOGO POETA</p><h2 id="contact-title">Connect.</h2></div><nav class="project-profiles" aria-label="Professional profiles"><a href="https://pt.linkedin.com/in/diogo-poeta" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/diogo-poeta" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://orcid.org/0009-0002-1451-5147" target="_blank" rel="noopener noreferrer">ORCID ↗</a></nav></div><footer><span>© 2026 Diogo Poeta · Lumefern</span><a href="#main">Back to top ↑</a></footer></div></section>
+      <figcaption>Light incident on a stack of thin films.</figcaption>
+    </figure>
   </main>
+    <section class="project-contact" id="contact" aria-labelledby="contact-title"><div class="wrap"><div class="project-contact-top"><div><p class="eyebrow">DIOGO POETA</p><h2 id="contact-title">Connect.</h2></div><nav class="project-profiles" aria-label="Professional profiles"><a href="https://pt.linkedin.com/in/diogo-poeta" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/diogo-poeta" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://orcid.org/0009-0002-1451-5147" target="_blank" rel="noopener noreferrer">ORCID ↗</a></nav></div><footer><span>© 2026 Diogo Poeta · Lumefern</span><a href="#main">Back to top ↑</a></footer></div></section>
+  <dialog class="workflow-document" id="workflow-document" aria-labelledby="document-title">
+    <div class="document-header"><div><span class="document-label">LUMEFERN / DOCUMENTATION</span><h2 id="document-title">Project workflow</h2><p>Python prototype · 29 October 2026</p></div><button class="document-close" type="button" aria-label="Close workflow document">×</button></div>
+    <div class="document-body">
+      <p class="document-intro">The current calculation and validation workflow:</p>
+      <ol class="document-flow">
+        <li><span class="document-number">01</span><div><h3>Inputs</h3><p>Layer thicknesses, optical constants, wavelength, angle and polarization. Tabulated n and k are interpolated within their supplied wavelength range.</p></div></li>
+        <li><span class="document-number">02</span><div><h3>Calculate</h3><p>The coherent multilayer model calculates reflection R, transmission T and absorption A.</p></div></li>
+        <li><span class="document-number">03</span><div><h3>Validate</h3><p>Analytical checks, regression tests and selected comparisons with a separate transfer-matrix calculation.</p></div></li>
+        <li><span class="document-number">04</span><div><h3>Record</h3><p>Save the spectrum and optional metadata; document changes, test results and limitations.</p></div></li>
+      </ol>
+      <div class="document-limits"><h3>Model limits</h3><p>Planar, isotropic layers and lossless exterior media. Absorption is calculated as A = 1 − R − T. The checks cover selected cases and do not constitute experimental validation.</p></div>
+    </div>
+  </dialog>
 </body>
 </html>
