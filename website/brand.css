@@ -18,7 +18,7 @@
   .rn-header nav > a.records-nav { display: none; }
 }
 
-/* Lumafern identity and project context. */
+/* Lumefern identity and project context. */
 .wordmark,.rn-wordmark{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;line-height:1.1}
 .wordmark img,.rn-wordmark img{display:block;width:40px;height:40px;object-fit:contain;flex-shrink:0}
 .project-story{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;border-top:1px solid var(--line);padding-top:58px;padding-bottom:24px}

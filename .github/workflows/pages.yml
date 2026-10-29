@@ -1,4 +1,4 @@
-name: Deploy Lumafern website
+name: Deploy Lumefern website
 
 on:
   push:

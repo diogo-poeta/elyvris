@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title desc">
-  <title id="title">Lumafern</title>
+  <title id="title">Lumefern</title>
   <desc id="desc">A fern frond growing along a beam of light.</desc>
   <path d="M22 55C30 43 33 27 38 10" stroke="#76543c" stroke-width="2.8" stroke-linecap="round"/>
   <path d="M29 43C19 42 13 36 12 30C21 30 27 34 29 43Z" fill="#76543c"/>

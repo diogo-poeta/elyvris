@@ -1,8 +1,8 @@
-# Lumafern
+# Lumefern
 
 Optics tools and research code.
 
-I work on computational photonics, nonlinear ultraviolet optics and photoionization sensing. Lumafern brings together my research notes, numerical references and optical modelling tools.
+I work on computational photonics, nonlinear ultraviolet optics and photoionization sensing. Lumefern brings together my research notes, numerical references and optical modelling tools.
 
 ## Available
 
