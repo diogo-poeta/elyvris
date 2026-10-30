@@ -1,4 +1,4 @@
-name: Deploy Lumefern website
+name: Deploy Elyvris website
 
 on:
   push:

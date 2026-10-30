@@ -7,7 +7,7 @@ const source=readFileSync(new URL('../gallery.js',import.meta.url),'utf8');
 runInNewContext(source,context);
 const {normaliseGallery,mediaURL}=context.module.exports;
 const data=JSON.parse(readFileSync(new URL('../gallery-data.json',import.meta.url),'utf8'));
-const base='https://diogo-poeta.github.io/lumefern/records.html';
+const base='https://diogo-poeta.github.io/elyvris/records.html';
 const items=normaliseGallery(data,base);
 assert.equal(items.length,data.items.filter(item=>item.status==='published'&&item.rights?.status==='cleared').length);
 for(const item of data.items.filter(item=>item.status==='published'&&item.rights?.status==='cleared')){
@@ -24,7 +24,7 @@ for(const item of data.items.filter(item=>item.status==='published'&&item.rights
 const rejected=[
   '/media/12345678-1234-1234-1234-123456789abc.jpg',
   'https://other.test/assets/gallery/photo.jpg',
-  'https://user:secret@diogo-poeta.github.io/lumefern/assets/gallery/photo.jpg',
+  'https://user:secret@diogo-poeta.github.io/elyvris/assets/gallery/photo.jpg',
   'assets/gallery/photo.jpg?tracking=1',
   'assets/gallery/photo.jpg#fragment',
   'assets/gallery/../private.jpg',

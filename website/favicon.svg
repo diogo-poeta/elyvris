@@ -1,9 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#29251f"/>
-  <g transform="translate(7 5) scale(.8)">
-    <path d="M22 55C30 43 33 27 38 10" stroke="#dbc3a0" stroke-width="3.2" stroke-linecap="round"/>
-    <path d="M29 43C19 42 13 36 12 30C21 30 27 34 29 43ZM32 33C23 31 19 25 20 19C27 21 32 25 32 33ZM35 23C30 19 29 13 31 8C36 12 38 17 35 23Z" fill="#dbc3a0"/>
-    <path d="M29 44C39 45 47 41 50 35C41 33 33 36 29 44ZM32 34C42 34 48 29 49 23C41 23 35 27 32 34ZM35 24C42 23 46 18 45 12C39 14 35 18 35 24Z" fill="#f4f3ed"/>
-    <circle cx="39.2" cy="5.7" r="2.5" fill="#dbc3a0"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Elyvris"><title>Elyvris</title><rect width="512" height="512" rx="94" fill="#131B23"/><g transform="translate(64 40) scale(1.2)"><defs><mask id="cut-favicon" maskUnits="userSpaceOnUse" x="0" y="0" width="320" height="340"><rect width="320" height="340" fill="white"/><path d="M214 12L181 100V155L157 214V250L135 310" stroke="black" stroke-width="23" stroke-linejoin="round" fill="none"/></mask></defs><g mask="url(#cut-favicon)"><path d="M32 103L176 34L289 91L145 161Z" fill="#F2EEE5"/><path d="M57 151L145 195L267 136V176L145 235L57 191Z" fill="#A38CD9"/><path d="M83 235L145 266L242 219V256L145 303L83 272Z" fill="#F2EEE5"/></g><path d="M214 12L181 100V155L157 214V250L135 310" stroke="#EFB653" stroke-width="7" stroke-linejoin="round" stroke-linecap="square" fill="none"/></g></svg>

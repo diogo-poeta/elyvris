@@ -1,13 +1,13 @@
-# Physics and mathematics audit — Lumefern static edition
+# Physics and mathematics audit — Elyvris static edition
 
-Audited the executable numerical models, their material library, scientific animations, spectrum exports and calculator input-to-result path. This is a mathematical/software audit of the stated models, not experimental validation or certification of arbitrary user configurations. The thin-film and pulse checks below retain the results of the earlier audit; the electric-anapole illustration was revised for the Lumefern static edition on 24 October 2026.
+Audited the executable numerical models, their material library, scientific animations, spectrum exports and calculator input-to-result path. This is a mathematical/software audit of the stated models, not experimental validation or certification of arbitrary user configurations. The thin-film and pulse checks below retain the results of the earlier audit; the electric-anapole illustration was revised for the Elyvris static edition on 24 October 2026.
 
 ## Findings corrected
 
 1. **Near-critical propagation retained finite phase.** The thin-film solver previously replaced a very small film longitudinal wavevector by its exact-zero limit without checking accumulated phase. For a sufficiently long path, small q does not imply small qd. A deliberately near-critical, identical-film/substrate case reproduced an absolute power error of 2.47×10⁻⁸ (about 18% relative error in the tiny transmitted fraction). The solver now evaluates the characteristic expression with the actual complex sin(δ), cos(δ) and a stable sin(δ)/q sinc limit. Four permanent thickness-invariance regressions cover this corner.
 2. **Export provenance follows the calculated state.** A queued input change previously left a short interval in which old spectral points could be combined with newly selected material citations. Inputs now invalidate export/setup actions immediately; a successful calculation captures its own citation and input snapshot. A persistent integration check exercises this pending-update window and invalid-input case using the actual event handlers.
 3. **Energy-density label corrected.** The compact animation label now says “Curve: energy density”. The area under u(z) would represent energy per transverse area, rather than local density. No physical equations changed.
-4. Removed an obsolete two-plane-wave comment from the homepage lab-preview script (`portfolio.js`); the lab teaser graphic is an ideal quarter-wave thin-film reference spectrum. The calculator is now named Film Bench; Lumefern names the broader project, repository and website.
+4. Removed an obsolete two-plane-wave comment from the homepage lab-preview script (`portfolio.js`); the lab teaser graphic is an ideal quarter-wave thin-film reference spectrum. The calculator is now named Film Bench; Elyvris names the broader project, repository and website.
 
 ## Thin-film calculation
 

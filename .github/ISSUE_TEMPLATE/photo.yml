@@ -1,5 +1,5 @@
 name: Add a gallery photo
-description: Submit a photo and caption for manual publication on Lumefern.
+description: Submit a photo and caption for manual publication on Elyvris.
 title: "[Photo] Gallery submission"
 body:
   - type: markdown

@@ -1,8 +1,10 @@
-# Lumefern
+<img src="website/assets/brand/elyvris-logo.svg" alt="Elyvris" width="360">
 
-Optics tools and research code.
+# Elyvris
 
-I work on computational photonics, nonlinear ultraviolet optics and photoionization sensing. Lumefern brings together my research notes, numerical references and optical modelling tools.
+Simulation and inverse design for layered optics. A project in development.
+
+I work on computational photonics, nonlinear ultraviolet optics and photoionization sensing. Elyvris brings together my research notes, numerical references and optical modelling tools.
 
 ## Available
 

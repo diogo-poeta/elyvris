@@ -1,8 +1,8 @@
-# Lumefern website
+# Elyvris website
 
-Static HTML, CSS and JavaScript for the Lumefern project journal and research pages.
+Static HTML, CSS and JavaScript for the Elyvris project journal and research pages.
 
-[Website](https://diogo-poeta.github.io/lumefern/) · [Gallery editor](../GALLERY-EDITING.md)
+[Website](https://diogo-poeta.github.io/elyvris/) · [Gallery editor](../GALLERY-EDITING.md)
 
 ## Preview
 

@@ -5,38 +5,47 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lumefern — Thin-film optical modelling</title>
-  <meta name="description" content="Lumefern is a Python project for modelling coherent thin-film optical stacks.">
-  <meta name="theme-color" content="#f4f3ed">
-  <meta property="og:title" content="Lumefern — Thin-film optical modelling">
-  <meta property="og:description" content="A Python project for thin-film optical modelling and validation.">
+  <title>Elyvris — Layered optics</title>
+  <meta name="description" content="Elyvris: simulation and inverse design for layered optics. A project by Diogo Poeta.">
+  <meta name="theme-color" content="#131B23">
+  <meta property="og:title" content="Elyvris — Layered optics">
+  <meta property="og:description" content="Simulation and inverse design for layered optics. A project in development by Diogo Poeta.">
   <meta property="og:type" content="website">
-  <link rel="canonical" href="https://diogo-poeta.github.io/lumefern/">
-  <meta property="og:url" content="https://diogo-poeta.github.io/lumefern/">
-  <link rel="icon" href="favicon.svg?v=11" type="image/svg+xml">
+  <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/">
+  <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
+  <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=7">
-  <link rel="stylesheet" href="brand.css?v=13">
-  <link rel="stylesheet" href="project-home.css?v=2">
+  <link rel="stylesheet" href="project-home.css?v=20">
   <script defer src="workflow-dialog.js?v=1"></script>
+  <link rel="stylesheet" href="brand.css?v=20">
 </head>
 <body class="project-home">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="wordmark" href="#main" aria-label="Lumefern home"><img src="assets/brand/lumefern-mark.svg" width="40" height="40" alt="" aria-hidden="true">Lumefern</a>
+    <a class="wordmark" href="#main" aria-label="Elyvris home"><img src="assets/brand/elyvris-mark.svg" width="40" height="40" alt="" aria-hidden="true">Elyvris</a>
     <nav aria-label="Main navigation"><a href="research.html">Research</a><a href="#contact" class="nav-contact">Connect <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main id="main" class="landing-main wrap">
     <section class="landing-copy" aria-labelledby="project-title">
-      <p class="eyebrow">OPTICAL MODELLING / PYTHON</p>
-      <h1 id="project-title">Lumefern</h1>
-      <p class="landing-headline">A Python toolkit for designing and checking thin-film optical structures.</p>
-      <p class="landing-description">The current prototype calculates reflection, transmission and absorption in coherent multilayer stacks. Faster design tools and inverse design are planned.</p>
+      <p class="eyebrow">LAYERED OPTICS / IN DEVELOPMENT</p>
+      <h1 id="project-title">Elyvris</h1>
+      <p class="landing-headline">Simulation and inverse design for layered optics.</p>
+      <p class="landing-description">I’m building a Python toolkit to calculate how light interacts with layered structures, then work back from a desired response. Inverse design is the next direction.</p>
       <div class="landing-actions"><button class="workflow-open" type="button" aria-haspopup="dialog" aria-controls="workflow-document">View workflow <span aria-hidden="true">↗</span></button><a class="landing-research" href="research.html">Research <span aria-hidden="true">↗</span></a></div>
-      <p class="landing-status"><span aria-hidden="true"></span> Early prototype · validation in progress</p>
+      <p class="landing-status"><span aria-hidden="true"></span> Reference model first · inverse design to follow</p>
     </section>
-    <figure class="landing-figure" aria-labelledby="landing-figure-title">
-      <div class="landing-figure-heading"><span id="landing-figure-title">MULTILAYER OPTICS</span><span>REFERENCE MODEL</span></div>
-        <svg class="stack-sketch" viewBox="0 0 520 290" role="img" aria-labelledby="stack-title stack-desc">
+    <figure class="identity-figure" aria-labelledby="identity-figure-title">
+      <div class="identity-figure-top"><span>01 / ELYVRIS</span><span aria-hidden="true">↗</span></div>
+      <img class="identity-symbol" src="assets/brand/elyvris-mark-light.svg" width="320" height="340" alt="Three layered forms crossed by a continuous amber path">
+      <figcaption id="identity-figure-title"><span>Understand the response.<br>Shape the result.</span><span class="identity-caption-small">LAYERS → RESPONSE → DESIGN</span></figcaption>
+    </figure>
+  </main>
+    <section class="project-contact" id="contact" aria-labelledby="contact-title"><div class="wrap"><div class="project-contact-top"><div><p class="eyebrow">DIOGO POETA</p><h2 id="contact-title">Connect.</h2></div><nav class="project-profiles" aria-label="Professional profiles"><a href="https://pt.linkedin.com/in/diogo-poeta" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/diogo-poeta" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://orcid.org/0009-0002-1451-5147" target="_blank" rel="noopener noreferrer">ORCID ↗</a></nav></div><footer><span>© 2026 Diogo Poeta · Elyvris</span><a href="#main">Back to top ↑</a></footer></div></section>
+  <dialog class="workflow-document" id="workflow-document" aria-labelledby="document-title">
+    <div class="document-header"><div><span class="document-label">Elyvris / DOCUMENTATION</span><h2 id="document-title">Project workflow</h2><p>Python prototype · 29 October 2026</p></div><button class="document-close" type="button" aria-label="Close workflow document">×</button></div>
+    <div class="document-body">
+      <p class="document-intro">From a physical reference model towards inverse design.</p>
+      <figure class="workflow-optics">        <svg class="stack-sketch" viewBox="0 0 520 290" role="img" aria-labelledby="stack-title stack-desc">
           <title id="stack-title">Thin-film stack inputs</title>
           <desc id="stack-desc">A schematic incident beam reaches a stack of layers on a substrate. Some light reflects and some transmits. Wavelength, optical constants and layer thicknesses are the model inputs.</desc>
           <defs><marker id="beam-arrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="currentColor" stroke-width="1.2"/></marker></defs>
@@ -51,22 +60,14 @@
           <path d="M446 151H454V215H446" class="thickness-bracket"/>
           <text x="59" y="47">incident light</text><text x="367" y="47">reflected</text>
           <text x="113" y="243">substrate</text><text x="319" y="278">transmitted</text><text x="463" y="188">d</text>
-        </svg>
-      <figcaption>Light incident on a stack of thin films.</figcaption>
-    </figure>
-  </main>
-    <section class="project-contact" id="contact" aria-labelledby="contact-title"><div class="wrap"><div class="project-contact-top"><div><p class="eyebrow">DIOGO POETA</p><h2 id="contact-title">Connect.</h2></div><nav class="project-profiles" aria-label="Professional profiles"><a href="https://pt.linkedin.com/in/diogo-poeta" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/diogo-poeta" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://orcid.org/0009-0002-1451-5147" target="_blank" rel="noopener noreferrer">ORCID ↗</a></nav></div><footer><span>© 2026 Diogo Poeta · Lumefern</span><a href="#main">Back to top ↑</a></footer></div></section>
-  <dialog class="workflow-document" id="workflow-document" aria-labelledby="document-title">
-    <div class="document-header"><div><span class="document-label">LUMEFERN / DOCUMENTATION</span><h2 id="document-title">Project workflow</h2><p>Python prototype · 29 October 2026</p></div><button class="document-close" type="button" aria-label="Close workflow document">×</button></div>
-    <div class="document-body">
-      <p class="document-intro">The current calculation and validation workflow:</p>
+        </svg><figcaption>Thin-film geometry: incident, reflected and transmitted light.</figcaption></figure>
       <ol class="document-flow">
         <li><span class="document-number">01</span><div><h3>Inputs</h3><p>Layer thicknesses, optical constants, wavelength, angle and polarization. Tabulated n and k are interpolated within their supplied wavelength range.</p></div></li>
         <li><span class="document-number">02</span><div><h3>Calculate</h3><p>The coherent multilayer model calculates reflection R, transmission T and absorption A.</p></div></li>
         <li><span class="document-number">03</span><div><h3>Validate</h3><p>Analytical checks, regression tests and selected comparisons with a separate transfer-matrix calculation.</p></div></li>
         <li><span class="document-number">04</span><div><h3>Record</h3><p>Save the spectrum and optional metadata; document changes, test results and limitations.</p></div></li>
       </ol>
-      <div class="document-limits"><h3>Model limits</h3><p>Planar, isotropic layers and lossless exterior media. Absorption is calculated as A = 1 − R − T. The checks cover selected cases and do not constitute experimental validation.</p></div>
+      <div class="document-limits"><h3>Model limits</h3><p>Planar, isotropic, non-magnetic layers with a lossless incident medium. The substrate may be absorbing. Absorption in the finite layers is calculated as A = 1 − R − T. The checks cover selected cases and do not constitute experimental validation.</p></div>
     </div>
   </dialog>
 </body>
