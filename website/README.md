@@ -1,6 +1,6 @@
 # Elyvris website
 
-Static HTML, CSS and JavaScript for the Elyvris project journal and research pages.
+Source for the Elyvris website and Film Bench.
 
 [Website](https://diogo-poeta.github.io/elyvris/) · [Gallery editor](../GALLERY-EDITING.md)
 
@@ -23,13 +23,13 @@ node website/scripts/check-gallery.mjs
 python website/scripts/check-site.py
 ```
 
-## Editing the project journal
+## Where to edit
 
-Edit the idea and dated development entry in `index.html`. Add progress only when it has happened; keep future work labelled as planned. Layout is in `project-home.css`.
-
-`research.html` holds the four papers and anapole viewers. `records.html` is the photo gallery; the CMS still updates `gallery-data.json` and gallery images. The CV is in `cv.html`.
-
-Film Bench remains at `lab.html` for existing links and reference use. It is no longer part of the homepage or research navigation. The old energy-velocity and analytical animation sources remain in the repository as references.
+- [Project home](index.html) and [its layout](project-home.css)
+- [Publications and anapole viewers](research.html)
+- [Film Bench](lab.html), the single-film calculator
+- [Photo gallery](records.html) and [gallery data](gallery-data.json)
+- [CV](cv.html)
 
 ## Methods and sources
 
