@@ -5,6 +5,8 @@
 .research-sections a:hover{text-decoration:none}.research-sections a:hover strong{text-decoration:underline;text-underline-offset:4px}
 .research-sections span{font:10px monospace;color:var(--earth)}.research-sections strong{font:400 23px var(--serif);letter-spacing:-.4px}.research-sections small{font-size:11px;color:var(--muted);line-height:1.6}.research-sections b{position:absolute;right:0;top:46px;font-weight:400}
 .research-papers{padding-top:36px;padding-bottom:50px;border-top:1px solid var(--line);scroll-margin-top:30px}
+.conference-heading{margin-top:56px}
+@media(max-width:700px){.conference-heading{margin-top:42px}}
 .research-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}.research-section-heading .rn-eyebrow{margin-bottom:16px}.research-section-heading h2{font:400 clamp(31px,4vw,45px) var(--serif);letter-spacing:-1.2px;margin:0}.research-section-heading>a{font-size:11px;white-space:nowrap;border-bottom:1px solid #b1b6a4;padding-bottom:5px}
 .research-paper-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:30px 45px}
 .research-paper-list li{border-top:1px solid var(--line);padding-top:18px}.research-paper-list h3{font-size:16px;line-height:1.65;font-weight:500;margin:12px 0}.research-paper-list .paper-year{font-size:10px;letter-spacing:.5px;color:var(--earth)}.research-paper-list p{font-size:11px;line-height:1.8;color:var(--muted);margin:0}.research-profile-links{display:flex;gap:25px;margin-top:28px;font-size:11px}
