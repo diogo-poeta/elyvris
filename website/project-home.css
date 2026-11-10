@@ -4,6 +4,23 @@
 .project-home .wordmark { color: #F2EEE5; }
 .project-home .wordmark img { content: url('assets/brand/elyvris-mark-light.svg'); }
 .project-home .site-header nav a:hover { color: #BDA7EE; }
+.recommendations-main { max-width: 940px; padding-top: 85px; padding-bottom: 100px; }
+.recommendations-main .eyebrow { color: #BDA7EE; margin-bottom: 22px; }
+.recommendations-main h1 { font: 500 clamp(42px, 6vw, 72px)/1.05 Arial,sans-serif; letter-spacing: -3px; margin: 0 0 42px; }
+.recommendations-list { border-top: 1px solid #F2EEE53D; }
+.recommendations-list a { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 25px 0; border-bottom: 1px solid #F2EEE53D; }
+.recommendations-list a:hover { color: #BDA7EE; text-decoration: none; }
+.recommendations-list strong, .recommendations-list small { display: block; }
+.recommendations-list strong { font-size: 19px; font-weight: 400; }
+.recommendations-list small { color: #B9BDC6; font-size: 12px; margin-top: 8px; }
+.recommendations-list a > span:last-child { font-size: 22px; color: #BDA7EE; }
+.recommendations-back { display: inline-block; margin-top: 40px; color: #B9BDC6; font-size: 13px; }
+@media (max-width: 720px) {
+  .project-home .site-header { height: auto; min-height: 82px; flex-wrap: wrap; gap: 8px 18px; padding: 18px 0; }
+  .project-home .site-header nav { flex-wrap: wrap; gap: 12px 18px; }
+  .recommendations-main { padding-top: 52px; padding-bottom: 70px; }
+  .recommendations-main h1 { letter-spacing: -1.5px; margin-bottom: 32px; }
+}
 .landing-main { min-height: 650px; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; padding-top: 56px; padding-bottom: 65px; }
 .landing-copy { padding: 18px 0; }
 .landing-copy .eyebrow { margin-bottom: 31px; color: #BDA7EE; font-size: 10px; letter-spacing: 1.4px; }
@@ -101,6 +118,9 @@
 @media (max-width: 370px) {
   .landing-copy h1 { font-size: 72px; }
   .landing-headline { font-size: 26px; }
+}
+@media (max-width: 720px) {
+  .project-home .site-header { height: auto; min-height: 82px; }
 }
 @media print {
   .project-home { color: #000; background: #FFF; }
