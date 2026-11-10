@@ -121,6 +121,7 @@
 }
 @media (max-width: 720px) {
   .project-home .site-header { height: auto; min-height: 82px; }
+  .project-home .site-header nav > a:nth-child(3) { display: inline-block; }
 }
 @media print {
   .project-home { color: #000; background: #FFF; }
