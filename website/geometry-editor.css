@@ -1,0 +1,26 @@
+.geometry-editor { padding: 2px 20px 24px; color: #242832; font: 14px/1.55 Arial,sans-serif; }
+.geometry-editor p { margin: 0 0 16px; }
+.geometry-toolbar, .geometry-actions, .geometry-presets { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0; }
+.geometry-editor button, .geometry-file { padding: 9px 12px; border: 1px solid #584371; background: #584371; color: white; font: 13px Arial,sans-serif; cursor: pointer; }
+.geometry-editor button:hover, .geometry-file:hover { background: #725995; }
+.geometry-editor .geometry-secondary, .geometry-file { background: transparent; color: #382b49; }
+.geometry-editor .geometry-secondary:hover, .geometry-file:hover { background: #d8cde2; }
+.geometry-editor button:disabled { opacity: .5; cursor: default; }
+.geometry-editor select, .geometry-editor input { font: 14px Arial,sans-serif; border: 1px solid #aaa0b2; background: white; color: #151b23; padding: 8px; min-width: 0; }
+.geometry-presets label { font-weight: 600; }
+#geometry-canvas { display: block; width: 100%; height: auto; border: 1px solid #bcb4c3; background: #f7f5f1; touch-action: none; }
+#geometry-shapes > * { cursor: grab; }
+#geometry-shapes > .selected { stroke: #db8d13; stroke-width: 3; }
+.geometry-key { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin: 6px 0 18px; color: #57525e; font-size: 12px; }
+.geometry-controls { border-top: 1px solid #c7bbd4; padding-top: 15px; }
+.geometry-controls > label { display: block; font-weight: 600; margin-bottom: 5px; }
+.geometry-controls > select { width: 100%; }
+.geometry-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: 10px; margin: 12px 0; }
+.geometry-fields label { display: grid; gap: 4px; color: #3e3a45; font-size: 12px; }
+.geometry-fields input { width: 100%; box-sizing: border-box; }
+.geometry-file { display: inline-block; }
+.geometry-file input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.geometry-file:focus-within, .geometry-editor button:focus-visible, .geometry-editor select:focus-visible, .geometry-editor input:focus-visible { outline: 2px solid #a56100; outline-offset: 2px; }
+.geometry-editor .geometry-status { min-height: 1.5em; color: #514168; margin: 8px 0; }
+.geometry-editor .geometry-limits { color: #59545e; font-size: 12px; margin-bottom: 0; }
+@media (max-width: 480px) { .geometry-editor { padding-left: 12px; padding-right: 12px; } .geometry-actions button, .geometry-file { flex: 1 1 42%; text-align: center; } }

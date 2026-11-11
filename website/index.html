@@ -18,8 +18,10 @@
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=7">
-  <link rel="stylesheet" href="project-home.css?v=23">
+  <link rel="stylesheet" href="project-home.css?v=24">
+  <link rel="stylesheet" href="geometry-editor.css?v=1">
   <script defer src="workflow-dialog.js?v=2"></script>
+  <script defer src="geometry-editor.js?v=2"></script>
   <link rel="stylesheet" href="brand.css?v=20">
 </head>
 <body class="project-home">
@@ -48,6 +50,19 @@
     <div class="document-header"><div><span class="document-label">Elyvris / DOCUMENTATION</span><h2 id="document-title">Project workflow</h2><p>Python prototype · 29 October 2026</p></div><button class="document-close" type="button" aria-label="Close workflow document">×</button></div>
     <div class="document-body">
       <p class="document-intro">The prototype takes a stack of materials and calculates its optical spectrum.</p>
+      <details class="command-reference geometry-workspace"><summary><span><strong>Geometry designer</strong><small>Draw and export a simple photonic layout</small></span><span class="reference-toggle" aria-hidden="true">+</span></summary>
+        <div class="geometry-editor" id="geometry-editor">
+          <p>Build a two-dimensional layout in micrometres. Select or drag a shape, then adjust its dimensions. The grid shows a 40 × 24 µm area.</p>
+          <div class="geometry-toolbar" aria-label="Add shapes"><button type="button" data-add="rectangle">+ Rectangle</button><button type="button" data-add="circle">+ Circle</button><button type="button" data-add="ring">+ Ring</button></div>
+          <div class="geometry-presets"><label for="geometry-preset">Examples</label><select id="geometry-preset"><option value="">Choose an example…</option><option value="waveguide">Straight waveguide</option><option value="ring">Ring and waveguide</option><option value="array">Circle array</option></select><button type="button" id="geometry-load-preset">Load example</button></div>
+          <svg id="geometry-canvas" viewBox="0 0 800 480" role="img" aria-label="Geometry canvas: 40 by 24 micrometres. Select shapes here or from the list below."><defs><pattern id="geometry-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#d4cfda" stroke-width="1"/></pattern></defs><rect width="800" height="480" fill="#f7f5f1"/><rect width="800" height="480" fill="url(#geometry-grid)"/><g id="geometry-shapes"></g></svg>
+          <div class="geometry-key"><span>1 grid square = 1 µm</span><span>Layout view · not a simulation</span></div>
+          <div class="geometry-controls"><label for="geometry-selection">Selected shape</label><select id="geometry-selection" aria-label="Selected shape"></select><div id="geometry-fields" class="geometry-fields"></div><button type="button" id="geometry-remove" class="geometry-secondary">Remove selected shape</button></div>
+          <div class="geometry-actions"><button type="button" id="geometry-python">Download Python</button><button type="button" id="geometry-svg" class="geometry-secondary">Download SVG</button><button type="button" id="geometry-json" class="geometry-secondary">Save design</button><label class="geometry-file">Open design<input type="file" id="geometry-import" accept=".json,application/json"></label></div>
+          <p id="geometry-status" class="geometry-status" role="status" aria-live="polite">Start with a shape or an example.</p>
+          <p class="geometry-limits">Exported Python creates <code>elyvris_layout.gds</code> in the folder where it runs and may replace a file with that name. The generic PDK uses a finite grid, so small dimensions can be rounded. SVG is a drawing; saved designs are JSON. Save a design before leaving this page. No optical simulation, fabrication checks, layers beyond 1/0 or material properties are included. Ring examples use approximated circular polygons.</p>
+        </div>
+      </details>
       <details class="command-reference"><summary><span><strong>Geometry commands</strong><small>Python, gdsfactory and KLayout · quick reference</small></span><span class="reference-toggle" aria-hidden="true">+</span></summary>
         <div class="reference-body">
           <p class="reference-lead">A short guide to creating and viewing photonic layouts. Examples use the generic gdsfactory PDK and dimensions in micrometres (µm).</p>
@@ -61,6 +76,8 @@ straight = layout.add_ref(waveguide)
 print(straight.ports)</code></pre><p>For a custom shape, give the polygon’s corner coordinates and a GDS layer number.</p><pre><code>layout.add_polygon([(0, 2), (4, 2), (4, 4), (0, 4)],
                    layer=(1, 0))</code></pre></section>
           <section id="ref-layout" class="reference-section"><span class="reference-number">03 / ARRANGE</span><h3>Move an instance</h3><p>An instance is a placed copy of a component. Move the waveguide 5 µm upward; the original component remains reusable.</p><pre><code>straight.movey(5)</code></pre><p class="reference-note">Moving a connected instance afterwards can break its alignment. Check connections and layer rules before using a layout.</p></section>
+          <section class="reference-section"><span class="reference-number">EXAMPLES / GEOMETRY</span><h3>Circles, rings and arrays</h3><p>Use the designer above to combine simple shapes and download a Python script. For ports, bends, routing and additional component types, see the gdsfactory references below. The ring example is a geometry, not a resonator simulation.</p><pre><code>disk = gf.components.circle(radius=3, layer=(1, 0))
+layout.add_ref(disk)</code></pre></section>
           <section id="ref-save" class="reference-section"><span class="reference-number">04 / SAVE &amp; VIEW</span><h3>Open the result</h3><p>Save the layout, then use <strong>File → Open</strong> in KLayout to inspect the GDS file.</p><pre><code>layout.write_gds("my_layout.gds")</code></pre><p>The filename is relative to the folder from which you run Python. Writing to an existing filename may replace that file. A GDS layout describes geometry; it does not calculate optical propagation.</p></section>
           <section id="ref-more" class="reference-section"><span class="reference-number">05 / MORE TOOLS</span><h3>Continue learning</h3><div class="reference-links"><a href="https://gdsfactory.github.io/gdsfactory/notebooks/00_geometry/" target="_blank" rel="noopener noreferrer"><span>gdsfactory</span>Component basics <span aria-hidden="true">↗</span></a><a href="https://www.klayout.de/doc/manual/measure.html" target="_blank" rel="noopener noreferrer"><span>KLayout</span>Measuring a layout <span aria-hidden="true">↗</span></a><a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer"><span>Python</span>Language tutorial <span aria-hidden="true">↗</span></a></div><p class="reference-note">Optical modes require a separate solver and a defined material cross-section. These examples do not establish optical performance or fabrication readiness.</p></section>
         </div>
