@@ -59,6 +59,18 @@ The separate spatial FDTD reference and the published formation-timing viewer re
 
 The calculator remains a coherent, linear, planar, isotropic single-film model. It excludes roughness, scattering, anisotropic tensors, nonlinear conversion, finite beams, coherence loss, backside reflections and manufacturing uncertainty. Constant manually entered n/κ are not a dispersive fit. Finite spectral sampling can miss narrow fringes, so the result is not an automatic convergence guarantee or an experimental prediction. Animation and model tests do not validate every visual layout or browser interaction; the root agent handles browser QA and the narrative owner handles thesis-specific prose.
 
+## Studio: Mie scattering (added 11 November 2026)
+
+`mie.js` calculates plane-wave scattering by one homogeneous sphere and by one infinitely long circular cylinder at normal incidence, in a uniform lossless medium. Convention: exp(−iωt), relative index m = (n + iκ)/n_medium with κ ≥ 0, size parameter x = 2π n_medium r/λ with λ the vacuum wavelength. Efficiencies are cross sections divided by πr² (sphere) or by 2r per unit length (cylinder). Coefficients follow Bohren and Huffman (1983), chapters 4 and 8, using the logarithmic derivative D_n by downward recurrence. Cylinder Bessel functions J_n and Y_n are computed in the file (Miller recurrence and Neumann series), because browsers have none.
+
+Finding corrected during this work: the downward recurrence for D_n first started 16 orders above |mx|, as in the BHMIE listing. For a lossless sphere at x = 80 this left a relative error of 4.9×10⁻⁷ in the electric-dipole term. The start is now |mx| + 6|mx|^(1/3) + 20 orders, and the same term agrees with the reference to 10⁻¹⁵.
+
+`check-mie.mjs` passes **213 checks**: 11 sphere and 8 cylinder cases against `mie-reference.json` (totals and the first two terms of each series), produced by `mie_reference.py` with SciPy Bessel functions and the direct textbook formulas, which is a different numerical route; the value printed in Bohren and Huffman appendix A (Q_ext = Q_sca = 3.10543 for x = 2π·0.525/0.6328, m = 1.55); energy conservation Q_sca = Q_ext for 15 lossless spheres and 30 lossless cylinder cases; the Rayleigh limit; and J_n, Y_n values with the Wronskian. Total efficiencies agree with the reference to better than 10⁻⁷ (the series is cut after x + 4x^(1/3) + 2 terms).
+
+How it was run: Node was not installed on the machine used, so the check file was executed in a browser from a local server on 11 November 2026 and passed there. It is written to run under Node as well, but that route has not been exercised yet.
+
+Scope: these are checks of the mathematics against an independent implementation and a published number. They are not a comparison with measurements. The multipole labels (a₁ electric dipole, b₁ magnetic dipole, a₂ and b₂ quadrupoles) apply to the sphere only; cylinder terms are reported as angular orders without multipole names. The surrounding medium has one constant real index. Each spectrum has 480 wavelengths, so very narrow resonances of large particles can be under-sampled. Finite cylinders, boxes and rectangles are drawn only; no spectrum is shown for them. The gdsfactory scripts exported for a circle and a rectangle were run with gdsfactory 9.51.0 and the resulting GDS files had the expected 0.28 µm and 0.3 × 0.2 µm outlines.
+
 ## Re-run from the repository root
 
 - `node website/scripts/check-optics.mjs`
