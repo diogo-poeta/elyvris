@@ -18,8 +18,8 @@
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=7">
-  <link rel="stylesheet" href="project-home.css?v=22">
-  <script defer src="workflow-dialog.js?v=1"></script>
+  <link rel="stylesheet" href="project-home.css?v=23">
+  <script defer src="workflow-dialog.js?v=2"></script>
   <link rel="stylesheet" href="brand.css?v=20">
 </head>
 <body class="project-home">
@@ -48,6 +48,23 @@
     <div class="document-header"><div><span class="document-label">Elyvris / DOCUMENTATION</span><h2 id="document-title">Project workflow</h2><p>Python prototype · 29 October 2026</p></div><button class="document-close" type="button" aria-label="Close workflow document">×</button></div>
     <div class="document-body">
       <p class="document-intro">The prototype takes a stack of materials and calculates its optical spectrum.</p>
+      <details class="command-reference"><summary><span><strong>Geometry commands</strong><small>Python, gdsfactory and KLayout · quick reference</small></span><span class="reference-toggle" aria-hidden="true">+</span></summary>
+        <div class="reference-body">
+          <p class="reference-lead">A short guide to creating and viewing photonic layouts. Examples use the generic gdsfactory PDK and dimensions in micrometres (µm).</p>
+          <nav class="reference-nav" aria-label="Reference sections"><a href="#ref-start">Start</a><a href="#ref-shapes">Shapes</a><a href="#ref-layout">Arrange</a><a href="#ref-save">Save &amp; view</a><a href="#ref-more">More tools</a></nav>
+          <section id="ref-start" class="reference-section"><span class="reference-number">01 / START</span><h3>Prepare a component</h3><p>Import gdsfactory, activate its example process kit and create an empty component. Run this first; the following snippets build on it.</p><pre><code>import gdsfactory as gf
+
+gf.gpdk.PDK.activate()
+layout = gf.Component()</code></pre><p class="reference-note">A component is a container for shapes, other components and connection points. The generic PDK is for learning; check a foundry’s rules before fabrication.</p></section>
+          <section id="ref-shapes" class="reference-section"><span class="reference-number">02 / SHAPES</span><h3>Add geometry</h3><p>Create a straight waveguide and place it in the layout. Its ends have connection points called ports.</p><pre><code>waveguide = gf.components.straight(length=10, width=0.5)
+straight = layout.add_ref(waveguide)
+print(straight.ports)</code></pre><p>For a custom shape, give the polygon’s corner coordinates and a GDS layer number.</p><pre><code>layout.add_polygon([(0, 2), (4, 2), (4, 4), (0, 4)],
+                   layer=(1, 0))</code></pre></section>
+          <section id="ref-layout" class="reference-section"><span class="reference-number">03 / ARRANGE</span><h3>Move an instance</h3><p>An instance is a placed copy of a component. Move the waveguide 5 µm upward; the original component remains reusable.</p><pre><code>straight.movey(5)</code></pre><p class="reference-note">Moving a connected instance afterwards can break its alignment. Check connections and layer rules before using a layout.</p></section>
+          <section id="ref-save" class="reference-section"><span class="reference-number">04 / SAVE &amp; VIEW</span><h3>Open the result</h3><p>Save the layout, then use <strong>File → Open</strong> in KLayout to inspect the GDS file.</p><pre><code>layout.write_gds("my_layout.gds")</code></pre><p>The filename is relative to the folder from which you run Python. Writing to an existing filename may replace that file. A GDS layout describes geometry; it does not calculate optical propagation.</p></section>
+          <section id="ref-more" class="reference-section"><span class="reference-number">05 / MORE TOOLS</span><h3>Continue learning</h3><div class="reference-links"><a href="https://gdsfactory.github.io/gdsfactory/notebooks/00_geometry/" target="_blank" rel="noopener noreferrer"><span>gdsfactory</span>Component basics <span aria-hidden="true">↗</span></a><a href="https://www.klayout.de/doc/manual/measure.html" target="_blank" rel="noopener noreferrer"><span>KLayout</span>Measuring a layout <span aria-hidden="true">↗</span></a><a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer"><span>Python</span>Language tutorial <span aria-hidden="true">↗</span></a></div><p class="reference-note">Optical modes require a separate solver and a defined material cross-section. These examples do not establish optical performance or fabrication readiness.</p></section>
+        </div>
+      </details>
       <figure class="workflow-optics">        <svg class="stack-sketch" viewBox="0 0 520 290" role="img" aria-labelledby="stack-title stack-desc">
           <title id="stack-title">Thin-film stack inputs</title>
           <desc id="stack-desc">A schematic incident beam reaches a stack of layers on a substrate. Some light reflects and some transmits. Wavelength, optical constants and layer thicknesses are the model inputs.</desc>

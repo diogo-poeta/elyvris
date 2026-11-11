@@ -30,6 +30,34 @@
 .landing-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; margin-top: 34px; }
 .workflow-open { background: #EFB653; border: 1px solid #EFB653; color: #131B23; border-radius: 0; padding: 16px 20px; display: inline-flex; gap: 33px; align-items: center; font: 500 12px Arial,sans-serif; cursor: pointer; }
 .workflow-open:hover { background: #F7C97A; }
+.command-reference { background: #e8e0ed; border: 1px solid #c7bbd4; margin: 0 0 28px; }
+.command-reference summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 18px 20px; cursor: pointer; list-style: none; }
+.command-reference summary::-webkit-details-marker { display: none; }
+.command-reference summary:hover { background: #ded2e8; }
+.command-reference summary strong, .command-reference summary small { display: block; }
+.command-reference summary strong { font-size: 16px; font-weight: 600; }
+.command-reference summary small { margin-top: 5px; color: #5d5966; font-size: 12px; line-height: 1.5; }
+.reference-toggle { color: #654989; font: 26px/1 Arial,sans-serif; }
+.command-reference[open] .reference-toggle { transform: rotate(45deg); }
+.command-reference summary:focus-visible, .document-close:focus-visible, .reference-nav a:focus-visible { outline: 2px solid #a56100; outline-offset: 3px; }
+.reference-body { padding: 0 20px 22px; }
+.reference-body { font-family: Arial,sans-serif; }
+.reference-lead { font-size: 15px; line-height: 1.65; color: #434750; margin: 0 0 22px; }
+.reference-nav { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 15px 0; border-top: 1px solid #CDC3D3; border-bottom: 1px solid #CDC3D3; }
+.reference-nav a { color: #654989; font-size: 13px; text-decoration: none; }
+.reference-nav a:hover { text-decoration: underline; }
+.reference-section { padding: 28px 0; border-bottom: 1px solid #D5CEC7; scroll-margin-top: 120px; }
+.reference-section:last-child { border-bottom: 0; padding-bottom: 0; }
+.reference-number { color: #75589A; font: 11px 'Courier New',monospace; letter-spacing: 1px; }
+.reference-section h3 { margin: 10px 0 10px; font-size: 22px; font-weight: 500; letter-spacing: -.4px; }
+.reference-section p { color: #454A53; font-size: 14px; line-height: 1.65; margin: 0 0 15px; }
+.reference-section pre { overflow-x: auto; background: #18212A; color: #F5F0E8; padding: 18px; font: 13px/1.65 Consolas,monospace; margin: 0 0 16px; }
+.reference-section .reference-note { font-size: 13px; color: #635D68; margin-bottom: 0; }
+.reference-links { display: grid; gap: 0; margin: 18px 0; border-top: 1px solid #D5CEC7; }
+.reference-links a { display: flex; gap: 12px; align-items: center; padding: 14px 0; color: #131B23; border-bottom: 1px solid #D5CEC7; text-decoration: none; font-size: 14px; }
+.reference-links a:hover { color: #654989; }
+.reference-links a span:first-child { min-width: 76px; color: #75589A; font: 11px 'Courier New',monospace; }
+.reference-links a span:last-child { margin-left: auto; }
 .landing-research { font-size: 12px; padding: 5px 0; border-bottom: 1px solid #7F848C; }
 .landing-research:hover { color: #BDA7EE; text-decoration: none; }
 .landing-status { display: flex; gap: 9px; align-items: center; color: #929AA6; margin: 31px 0 0; font: 10px/1.7 'Courier New',monospace; }
