@@ -5,11 +5,11 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Elyvris — Layered optics</title>
-  <meta name="description" content="Elyvris: simulation and inverse design for layered optics. A project by Diogo Poeta.">
-  <meta name="theme-color" content="#131B23">
-  <meta property="og:title" content="Elyvris — Layered optics">
-  <meta property="og:description" content="How thin films reflect and transmit light. A project in development by Diogo Poeta.">
+  <title>Elyvris · Light, unfolded</title>
+  <meta name="description" content="Elyvris is an open workshop for computational photonics by Diogo Poeta: explanations of the physics, free design tools for gdsfactory, KLayout and Meep, and the research behind them.">
+  <meta name="theme-color" content="#11161C">
+  <meta property="og:title" content="Elyvris · Light, unfolded">
+  <meta property="og:description" content="Explanations of the physics, free photonics design tools and the research behind them. By Diogo Poeta.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://diogo-poeta.github.io/elyvris/assets/brand/elyvris-social.png">
   <meta property="og:image:alt" content="Elyvris layered optical mark and wordmark">
@@ -17,96 +17,143 @@
   <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/">
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=7">
-  <link rel="stylesheet" href="project-home.css?v=24">
-  <link rel="stylesheet" href="geometry-editor.css?v=3">
-  <script defer src="workflow-dialog.js?v=2"></script>
-  <script defer src="geometry-materials.js?v=1"></script>
-  <script defer src="geometry-editor.js?v=4"></script>
-  <link rel="stylesheet" href="brand.css?v=20">
+  <link rel="stylesheet" href="home.css?v=1">
+  <script defer src="tour.js?v=1"></script>
 </head>
-<body class="project-home">
+<body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header wrap">
-    <a class="wordmark" href="#main" aria-label="Elyvris home"><img src="assets/brand/elyvris-mark.svg" width="40" height="40" alt="" aria-hidden="true">Elyvris</a>
-    <nav aria-label="Main navigation"><a href="studio.html">Studio</a><a href="recommendations.html">Recommendations</a><a href="research.html">Research</a><a href="#contact" class="nav-contact">Connect <span aria-hidden="true">↗</span></a></nav>
-  </header>
-  <main id="main" class="landing-main wrap">
-    <section class="landing-copy" aria-labelledby="project-title">
-      <p class="eyebrow">COMPUTATIONAL PHOTONICS</p>
-      <h1 id="project-title">Elyvris</h1>
-      <p class="landing-headline">Simulation and inverse design for layered optics.</p>
-      <p class="landing-description">I’m building a Python toolkit to calculate reflection, transmission, and absorption in layered materials. The research pages contain field simulations and examples from my work in ultraviolet optics.</p>
-      <div class="landing-actions"><button class="workflow-open" type="button" aria-haspopup="dialog" aria-controls="workflow-document">View workflow <span aria-hidden="true">↗</span></button><a class="landing-research" href="research.html">Research <span aria-hidden="true">↗</span></a></div>
-      <p class="landing-status"><span aria-hidden="true"></span> Python toolkit in development</p>
-    </section>
-    <figure class="identity-figure" aria-labelledby="identity-figure-title">
-      <div class="identity-figure-top"><span>01 / ELYVRIS</span><span aria-hidden="true">↗</span></div>
-      <img class="identity-symbol" src="assets/brand/elyvris-mark-light.svg" width="320" height="340" alt="Three layered forms crossed by a continuous amber path">
-      <figcaption id="identity-figure-title"><span>Elyvris project mark</span></figcaption>
-    </figure>
-  </main>
-    <section class="project-contact" id="contact" aria-labelledby="contact-title"><div class="wrap"><div class="project-contact-top"><div><p class="eyebrow">DIOGO POETA</p><h2 id="contact-title">Connect.</h2></div><nav class="project-profiles" aria-label="Professional profiles"><a href="https://pt.linkedin.com/in/diogo-poeta" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/diogo-poeta" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://orcid.org/0009-0002-1451-5147" target="_blank" rel="noopener noreferrer">ORCID ↗</a></nav></div><footer><span>© 2026 Diogo Poeta · Elyvris</span><a href="#main">Back to top ↑</a></footer></div></section>
-  <dialog class="workflow-document" id="workflow-document" aria-labelledby="document-title">
-    <div class="document-header"><div><span class="document-label">Elyvris / DOCUMENTATION</span><h2 id="document-title">Project workflow</h2><p>Python prototype · 29 October 2026</p></div><button class="document-close" type="button" aria-label="Close workflow document">×</button></div>
-    <div class="document-body">
-      <p class="document-intro">The prototype takes a stack of materials and calculates its optical spectrum.</p>
-      <details class="command-reference geometry-workspace"><summary><span><strong>Geometry designer</strong><small>Draw and export a simple photonic layout</small></span><span class="reference-toggle" aria-hidden="true">+</span></summary>
-        <div class="geometry-editor" id="geometry-editor">
-          <p>Choose a drawing tool, then click and drag on the canvas. For circles and rings, start at the centre and drag outwards. Use Select / move to reposition shapes. Enter precise dimensions below.</p>
-          <div class="geometry-settings"><label for="geometry-tool">Mouse tool</label><select id="geometry-tool"><option value="select">Select / move</option><option value="rectangle">Draw rectangle</option><option value="circle">Draw circle</option><option value="ring">Draw ring</option><option value="ellipse">Draw ellipse</option><option value="triangle">Draw triangle</option></select><label for="geometry-unit">Dimensions</label><select id="geometry-unit"><option value="nm" selected>Nanometres (nm)</option><option value="um">Micrometres (µm)</option><option value="mm">Millimetres (mm)</option></select></div>
-          <div class="geometry-toolbar" aria-label="Add shapes"><button type="button" data-add="rectangle">+ Rectangle</button><button type="button" data-add="circle">+ Circle</button><button type="button" data-add="ring">+ Ring</button><button type="button" data-add="ellipse">+ Ellipse</button><button type="button" data-add="triangle">+ Triangle</button></div>
-          <div class="geometry-presets"><label for="geometry-preset">Examples</label><select id="geometry-preset"><option value="">Choose an example…</option><option value="waveguide">Straight waveguide</option><option value="ring">Ring and waveguide</option><option value="array">Circle array</option><option value="ellipses">Ellipse array</option><option value="triangles">Triangle pair</option></select><button type="button" id="geometry-load-preset">Load example</button></div>
-          <div class="geometry-canvas-wrap"><svg id="geometry-canvas" viewBox="0 0 800 480" role="img" aria-label="Geometry canvas, 40 by 24 micrometres. Select shapes here or from the list below."><defs><pattern id="geometry-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#d4cfda" stroke-width="1"/></pattern></defs><rect width="800" height="480" fill="#f7f5f1"/><rect width="800" height="480" fill="url(#geometry-grid)"/><g id="geometry-shapes"></g></svg><div class="geometry-ruler" aria-label="Vertical coordinate scale"><span id="geometry-ruler-top">+12,000</span><span>0</span><span id="geometry-ruler-bottom">−12,000</span><span id="geometry-ruler-unit">nm</span></div></div>
-          <div class="geometry-key"><span id="geometry-grid-label">1 grid square = 1,000 nm</span><span>Layout view · not a simulation</span></div>
-          <div class="geometry-controls"><label for="geometry-selection">Selected shape</label><select id="geometry-selection" aria-label="Selected shape"></select><div id="geometry-fields" class="geometry-fields"></div><div class="geometry-material"><label for="geometry-material">Material label</label><select id="geometry-material"></select><p class="geometry-material-info" id="geometry-material-info">Material labels are for organisation and colour only; they do not add optical properties to a simulation.</p><a id="geometry-material-source" target="_blank" rel="noopener noreferrer" hidden>Read the source ↗</a></div><button type="button" id="geometry-remove" class="geometry-secondary">Remove selected shape</button></div>
-          <div class="geometry-actions"><button type="button" id="geometry-python">Download Python</button><button type="button" id="geometry-svg" class="geometry-secondary">Download SVG</button><button type="button" id="geometry-json" class="geometry-secondary">Save design</button><label class="geometry-file">Open design<input type="file" id="geometry-import" accept=".json,application/json"></label></div>
-          <p id="geometry-status" class="geometry-status" role="status" aria-live="polite">Choose a drawing tool, add a shape, or load an example.</p>
-          <p class="geometry-limits">Material labels and colours are annotations only. Exported Python creates <code>elyvris_layout.gds</code> in the folder where it runs and may replace a file with that name. All shapes use GDS layer 1/0. Very small dimensions can be rounded on export; curves are approximated by polygons. The canvas shows a fixed area and shapes outside it may be clipped. Save a design before leaving this page. No optical simulation or fabrication checks are included.</p>
-        </div>
-      </details>
-      <details class="command-reference"><summary><span><strong>Geometry commands</strong><small>Python, gdsfactory and KLayout · quick reference</small></span><span class="reference-toggle" aria-hidden="true">+</span></summary>
-        <div class="reference-body">
-          <p class="reference-lead">A short guide to creating and viewing photonic layouts. Examples use the generic gdsfactory PDK and dimensions in micrometres (µm).</p>
-          <nav class="reference-nav" aria-label="Reference sections"><a href="#ref-start">Start</a><a href="#ref-shapes">Shapes</a><a href="#ref-layout">Arrange</a><a href="#ref-save">Save &amp; view</a><a href="#ref-more">More tools</a></nav>
-          <section id="ref-start" class="reference-section"><span class="reference-number">01 / START</span><h3>Prepare a component</h3><p>Import gdsfactory, activate its example process kit and create an empty component. Run this first; the following snippets build on it.</p><pre><code>import gdsfactory as gf
 
-gf.gpdk.PDK.activate()
-layout = gf.Component()</code></pre><p class="reference-note">A component is a container for shapes, other components and connection points. The generic PDK is for learning; check a foundry’s rules before fabrication.</p></section>
-          <section id="ref-shapes" class="reference-section"><span class="reference-number">02 / SHAPES</span><h3>Add geometry</h3><p>Create a straight waveguide and place it in the layout. Its ends have connection points called ports.</p><pre><code>waveguide = gf.components.straight(length=10, width=0.5)
-straight = layout.add_ref(waveguide)
-print(straight.ports)</code></pre><p>For a custom shape, give the polygon’s corner coordinates and a GDS layer number.</p><pre><code>layout.add_polygon([(0, 2), (4, 2), (4, 4), (0, 4)],
-                   layer=(1, 0))</code></pre></section>
-          <section id="ref-layout" class="reference-section"><span class="reference-number">03 / ARRANGE</span><h3>Move an instance</h3><p>An instance is a placed copy of a component. Move the waveguide 5 µm upward; the original component remains reusable.</p><pre><code>straight.movey(5)</code></pre><p class="reference-note">Moving a connected instance afterwards can break its alignment. Check connections and layer rules before using a layout.</p></section>
-          <section class="reference-section"><span class="reference-number">EXAMPLES / GEOMETRY</span><h3>Circles, rings and arrays</h3><p>Use the designer above to combine simple shapes and download a Python script. For ports, bends, routing and additional component types, see the gdsfactory references below. The ring example is a geometry, not a resonator simulation.</p><pre><code>disk = gf.components.circle(radius=3, layer=(1, 0))
-layout.add_ref(disk)</code></pre></section>
-          <section id="ref-save" class="reference-section"><span class="reference-number">04 / SAVE &amp; VIEW</span><h3>Open the result</h3><p>Save the layout, then use <strong>File → Open</strong> in KLayout to inspect the GDS file.</p><pre><code>layout.write_gds("my_layout.gds")</code></pre><p>The filename is relative to the folder from which you run Python. Writing to an existing filename may replace that file. A GDS layout describes geometry; it does not calculate optical propagation.</p></section>
-          <section id="ref-more" class="reference-section"><span class="reference-number">05 / MORE TOOLS</span><h3>Continue learning</h3><div class="reference-links"><a href="https://gdsfactory.github.io/gdsfactory/notebooks/00_geometry/" target="_blank" rel="noopener noreferrer"><span>gdsfactory</span>Component basics <span aria-hidden="true">↗</span></a><a href="https://www.klayout.de/doc/manual/measure.html" target="_blank" rel="noopener noreferrer"><span>KLayout</span>Measuring a layout <span aria-hidden="true">↗</span></a><a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer"><span>Python</span>Language tutorial <span aria-hidden="true">↗</span></a></div><p class="reference-note">Optical modes require a separate solver and a defined material cross-section. These examples do not establish optical performance or fabrication readiness.</p></section>
-        </div>
-      </details>
-      <figure class="workflow-optics">        <svg class="stack-sketch" viewBox="0 0 520 290" role="img" aria-labelledby="stack-title stack-desc">
-          <title id="stack-title">Thin-film stack inputs</title>
-          <desc id="stack-desc">A schematic incident beam reaches a stack of layers on a substrate. Some light reflects and some transmits. Wavelength, optical constants and layer thicknesses are the model inputs.</desc>
-          <defs><marker id="beam-arrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="currentColor" stroke-width="1.2"/></marker></defs>
-          <path d="M68 66L224 146" class="beam incident" marker-end="url(#beam-arrow)"/>
-          <path d="M229 143L385 63" class="beam reflected" marker-end="url(#beam-arrow)"/>
-          <path d="M234 150V39" class="normal-line"/>
-          <path d="M105 150H433V172H105Z" class="layer-one"/>
-          <path d="M105 172H433V194H105Z" class="layer-two"/>
-          <path d="M105 194H433V216H105Z" class="layer-three"/>
-          <path d="M105 216H433V257H105Z" class="stack-substrate"/>
-          <path d="M234 152L267 214L300 266" class="beam transmitted" marker-end="url(#beam-arrow)"/>
-          <path d="M446 151H454V215H446" class="thickness-bracket"/>
-          <text x="59" y="47">incident light</text><text x="367" y="47">reflected</text>
-          <text x="113" y="243">substrate</text><text x="319" y="278">transmitted</text><text x="463" y="188">d</text>
-        </svg><figcaption>Thin-film geometry: incident, reflected and transmitted light.</figcaption></figure>
-      <ol class="document-flow">
-        <li><span class="document-number">01</span><div><h3>Inputs</h3><p>Layer thicknesses, optical constants, wavelength, angle and polarization. Tabulated n and k are interpolated within their supplied wavelength range.</p></div></li>
-        <li><span class="document-number">02</span><div><h3>Calculate</h3><p>The coherent multilayer model calculates reflection R, transmission T and absorption A.</p></div></li>
-        <li><span class="document-number">03</span><div><h3>Validate</h3><p>Analytical checks, regression tests and selected comparisons with a separate transfer-matrix calculation.</p></div></li>
-        <li><span class="document-number">04</span><div><h3>Record</h3><p>Save the spectrum and optional metadata; document changes, test results and limitations.</p></div></li>
+  <header class="top wrap">
+    <a class="brand" href="./" aria-label="Elyvris home"><img src="assets/brand/elyvris-mark.svg" width="34" height="36" alt="">Elyvris</a>
+    <nav aria-label="Main navigation">
+      <a href="#tools">Tools</a>
+      <a href="research.html">Research</a>
+      <a href="cv.html">CV</a>
+      <a href="#contact">Connect</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <h1 id="hero-title">Light, unfolded.</h1>
+        <p class="lede">Elyvris is an open workshop for computational photonics. It explains the physics in plain language, offers free tools that turn a sketch into a layout and a simulation script, and shows the published research behind them.</p>
+        <button class="tour-tile" type="button" aria-haspopup="dialog" aria-controls="tour">
+          <span class="tour-tile-art" aria-hidden="true">
+            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" class="tile-ring"/><path class="tile-wave" d="M8 40 Q 16 22 24 40 T 40 40 T 56 40 T 72 40"/><path class="tile-play" d="M33 28 L54 40 L33 52 Z"/></svg>
+          </span>
+          <span class="tour-tile-text"><strong>What is Elyvris?</strong><span>A one-minute visual tour. Plays automatically.</span></span>
+        </button>
+      </div>
+      <figure class="hero-mark">
+        <img src="assets/brand/elyvris-mark.svg" width="320" height="340" alt="The Elyvris mark: three layers crossed by a continuous amber path of light">
+        <figcaption><strong>Elyvris</strong> comes from the Greek <em>lyō</em>, “to unfold, to set free” (the root of <em>analysis</em>), the Greek letter <em>ν</em> that physicists use for the frequency of light, and <em>Iris</em>, the rainbow. Together: light unfolded into its colours.</figcaption>
+      </figure>
+    </section>
+
+    <section class="paths wrap" aria-labelledby="paths-title">
+      <h2 id="paths-title" class="section-title">Three ways in</h2>
+      <div class="path-grid">
+        <article class="path" id="learn">
+          <svg class="path-art" viewBox="0 0 200 90" aria-hidden="true"><path class="art-line" d="M0 45 Q12 15 25 45 T50 45 T75 45 T100 45"/><rect class="art-slab" x="100" y="10" width="50" height="70"/><path class="art-line art-fade" d="M100 45 Q106 30 112 45 T125 45 T137 45 T150 45"/><path class="art-line art-weak" d="M150 45 Q162 38 175 45 T200 45"/></svg>
+          <h3>Learn</h3>
+          <p>Short, illustrated explanations of the ideas behind every simulation: what the refractive index <em>n</em> and the extinction coefficient <em>k</em> do, why particles resonate, and how a design meets the cleanroom.</p>
+          <p class="status"><a class="arrow" href="refractive-index.html">n and k, explained</a><br><a class="arrow" href="anapoles.html">Anapoles, explained</a><br>More in preparation. Or start with the <button class="link-button" type="button" aria-controls="tour" aria-haspopup="dialog">tour</button>.</p>
+        </article>
+        <article class="path" id="tools">
+          <svg class="path-art" viewBox="0 0 200 90" aria-hidden="true"><path class="art-grid" d="M20 75 L100 50 L180 75 L100 88 Z"/><ellipse class="art-solid" cx="70" cy="62" rx="12" ry="5"/><path class="art-solid" d="M58 62 V36 A12 5 0 0 1 82 36 V62"/><ellipse class="art-top" cx="70" cy="36" rx="12" ry="5"/><ellipse class="art-solid" cx="128" cy="66" rx="12" ry="5"/><path class="art-solid" d="M116 66 V40 A12 5 0 0 1 140 40 V66"/><ellipse class="art-top" cx="128" cy="40" rx="12" ry="5"/></svg>
+          <h3>Tools</h3>
+          <p><a href="studio.html">Studio</a> lets you place spheres, cylinders, rings and other shapes in 3D, then gives you the matching gdsfactory layout script and Meep geometry. It runs in your browser; nothing is uploaded.</p>
+          <p class="status"><a class="arrow" href="studio.html">Open Studio</a></p>
+        </article>
+        <article class="path">
+          <svg class="path-art" viewBox="0 0 200 90" aria-hidden="true"><path class="art-axis" d="M10 80 H190 M10 80 V8"/><path class="art-line" d="M14 70 C50 68 70 64 85 50 C95 40 98 18 104 18 C110 18 114 44 124 58 C140 74 170 74 188 74"/><circle class="art-dot" cx="104" cy="18" r="3"/></svg>
+          <h3>Research</h3>
+          <p>From transparent metal films (2021) to ultraviolet anapoles, tunable vacuum-ultraviolet light for gas sensing and slow light in TiO₂ thin films (2026). Four journal articles and two theses.</p>
+          <p class="status"><a class="arrow" href="research.html">Read the research</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="journey wrap" aria-labelledby="journey-title">
+      <h2 id="journey-title" class="section-title">The work so far</h2>
+      <ol class="timeline">
+        <li>
+          <span class="year">2021</span>
+          <div><h3>Extraordinary transparency in continuous metallic thin films</h3>
+          <p>MSc thesis, University of Minho, with the International Iberian Nanotechnology Laboratory. A silver film 30 nm thick normally lets little light through. Placing a patterned layer of a 2D semiconductor (a transition metal dichalcogenide) above and below it raised the simulated transmission to as much as 90%, about ten times the bare film (FDTD simulation).</p></div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div><h3>Optical anapoles excited by UV-A illumination</h3>
+          <p><em>Optics Letters</em> 49, 7198. Simulations showing that TiO₂ nanostructures can host anapole states, in which the particle scatters very little while it concentrates light inside, at ultraviolet wavelengths. <a href="https://doi.org/10.1364/OL.536925">Article</a></p></div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div><h3>Tunable vacuum-ultraviolet light down to 120 nm</h3>
+          <p><em>Optics Express</em> 33, 26342. Third-harmonic generation in a suspended SiO₂ nanomembrane produced tunable vacuum-ultraviolet light that ionised volatile organic compounds. Co-author. <a href="https://doi.org/10.1364/OE.564577">Article</a></p></div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div><h3>Molecule-specific detection of BTEX gases</h3>
+          <p><em>Environmental Technology &amp; Innovation</em> 42, 104895. By scanning the photon energy across ionisation thresholds, the same source distinguished benzene, toluene, ethylbenzene and xylenes in a mixture at occupational exposure limits. Co-author. <a href="https://doi.org/10.1016/j.eti.2026.104895">Article</a></p></div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div><h3>Energy velocity as an optical design indicator</h3>
+          <p><em>Optical Materials Express</em> 16, 3342. In ozone-grown TiO₂ films made by atomic layer deposition, a strongly reduced energy velocity (light carrying its energy more slowly) went together with a stronger third-harmonic signal. <a href="https://doi.org/10.1364/OME.611814">Article</a></p></div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div><h3>PhD thesis, Bielefeld University</h3>
+          <p><em>Tunable VUV photoionization and slow-light enhanced third-harmonic generation in TiO₂ for selective VOC sensing.</em> It connects nonlinear nanophotonics, slow-light design and gas sensing, and points towards compact ultraviolet gas sensors. <a href="https://doi.org/10.4119/unibi/3020621">Thesis</a> · <a href="research.html">The full story</a></p></div>
+        </li>
       </ol>
-      <div class="document-limits"><h3>Model limits</h3><p>Planar, isotropic, non-magnetic layers with a lossless incident medium. The substrate may be absorbing. Absorption in the finite layers is calculated as A = 1 − R − T. The checks cover selected cases and do not constitute experimental validation.</p></div>
+    </section>
+  </main>
+
+  <footer class="foot" id="contact">
+    <div class="wrap foot-grid">
+      <div>
+        <p class="foot-name">Diogo Poeta</p>
+        <p class="foot-role">Physicist · computational and ultraviolet photonics</p>
+      </div>
+      <nav class="foot-links" aria-label="Professional profiles">
+        <a href="https://pt.linkedin.com/in/diogo-poeta" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/diogo-poeta" rel="noopener noreferrer">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" rel="noopener noreferrer">Google Scholar</a>
+        <a href="https://orcid.org/0009-0002-1451-5147" rel="noopener noreferrer">ORCID</a>
+        <a href="recommendations.html">Recommendations</a>
+      </nav>
+    </div>
+    <div class="wrap foot-small">
+      <span>© 2026 Diogo Poeta · Elyvris</span>
+      <details class="credits">
+        <summary>How this site is made</summary>
+        <p>The physics, the research questions and the ideas are mine. The code and parts of the writing are developed with the help of an AI assistant (Claude, by Anthropic). I review every page, and the calculations are tested against independent references before they are published. Scientific claims link to their sources.</p>
+      </details>
+    </div>
+  </footer>
+
+  <dialog class="tour" id="tour" aria-labelledby="tour-title">
+    <div class="tour-head">
+      <p id="tour-title">Elyvris · a short tour</p>
+      <button class="tour-close" type="button" aria-label="Close the tour">×</button>
+    </div>
+    <div class="tour-stage">
+      <svg id="tour-svg" viewBox="0 0 800 420" aria-hidden="true" focusable="false"></svg>
+    </div>
+    <div class="tour-caption" aria-live="polite">
+      <p class="tour-count"><span id="tour-index">1</span> of <span id="tour-total">6</span></p>
+      <h2 id="tour-heading"></h2>
+      <p id="tour-text"></p>
+      <p class="tour-actions" id="tour-actions" hidden><a class="button" href="studio.html">Open Studio</a><a class="button button-quiet" href="research.html">Read the research</a></p>
+    </div>
+    <div class="tour-controls">
+      <button type="button" id="tour-prev" aria-label="Previous scene">‹</button>
+      <button type="button" id="tour-play" aria-label="Pause">❚❚</button>
+      <button type="button" id="tour-next" aria-label="Next scene">›</button>
+      <div class="tour-progress" id="tour-progress" aria-hidden="true"></div>
     </div>
   </dialog>
 </body>

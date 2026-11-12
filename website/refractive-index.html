@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>n and k, explained · Elyvris</title>
+  <meta name="description" content="What the refractive index n and the extinction coefficient k mean, how to read them for real materials, and where they enter thin-film, metasurface, plasmonic, waveguide and FDTD simulations.">
+  <meta name="theme-color" content="#11161C">
+  <meta property="og:title" content="n and k, explained · Elyvris">
+  <meta property="og:description" content="The two numbers behind every optical simulation, with an explorer for real material data.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://diogo-poeta.github.io/elyvris/assets/brand/elyvris-social.png">
+  <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/refractive-index.html">
+  <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
+  <link rel="stylesheet" href="home.css?v=1">
+  <link rel="stylesheet" href="article.css?v=2">
+  <script defer src="materials.js?v=2"></script>
+  <script defer src="nk-explorer.js?v=1"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top wrap">
+    <a class="brand" href="./" aria-label="Elyvris home"><img src="assets/brand/elyvris-mark.svg" width="34" height="36" alt="">Elyvris</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html#tools">Tools</a>
+      <a href="research.html">Research</a>
+      <a href="cv.html">CV</a>
+      <a href="index.html#contact">Connect</a>
+    </nav>
+  </header>
+
+  <main id="main" class="article">
+    <header class="article-head wrap-text">
+      <p class="kicker"><a href="index.html#learn">Learn</a> · Optical materials</p>
+      <h1>n and k: the two numbers behind every optical simulation</h1>
+      <p class="standfirst">Tables of refractive indices are easy to find. What is harder to find is what the numbers mean, and how the same two numbers decide the result of a coating design, a metasurface, a plasmonic antenna or a photonic chip.</p>
+      <p class="byline">Diogo Poeta · about 8 minutes</p>
+      <nav class="toc" aria-label="On this page">
+        <a href="#meaning">1. What they mean</a>
+        <a href="#explorer">2. Explore real materials</a>
+        <a href="#surface">3. At a surface</a>
+        <a href="#linked">4. Why they come together</a>
+        <a href="#simulations">5. In simulations</a>
+        <a href="#pitfalls">6. Same name, different numbers</a>
+      </nav>
+    </header>
+
+    <section id="meaning" class="wrap-text">
+      <h2><span>1</span> One complex number per wavelength</h2>
+      <p>Inside a material, light behaves as if travelling through a medium with a <em>complex</em> refractive index</p>
+      <p class="equation"><i>ñ</i> = <i>n</i> + <i>i k</i></p>
+      <p>The real part <i>n</i>, the <strong>refractive index</strong>, tells how much the wave slows down. Its speed becomes <i>c</i>/<i>n</i> and its wavelength shrinks from λ to λ/<i>n</i>. The imaginary part <i>k</i>, the <strong>extinction coefficient</strong>, tells how fast it is absorbed. The intensity falls by a factor <i>e</i> ≈ 2.7 over a depth</p>
+      <p class="equation">δ = λ / (4π<i>k</i>)</p>
+      <p>Both depend on the wavelength. A material is never described by “its” refractive index, only by <i>n</i>(λ) and <i>k</i>(λ) over a stated range.<sup><a href="#ref-1">1</a></sup></p>
+    </section>
+
+    <figure class="fig wide" id="fig-1">
+      <svg class="diagram" viewBox="0 0 900 290" role="img" aria-labelledby="nk-fig1-t">
+        <title id="nk-fig1-t">A wave enters a slab. Inside, its wavelength is shorter (set by n) and its amplitude decays (set by k).</title>
+        <rect x="330" y="30" width="300" height="250" fill="#fff" stroke="#14191F" stroke-opacity=".35"/>
+        <text x="342" y="52" class="d-note">material: ñ = n + ik</text>
+        <text x="40" y="52" class="d-note">air</text>
+        <path class="d-wave" d="M40.0 88.9 L41.5 94.4 L43.0 100.2 L44.5 106.3 L46.0 112.6 L47.5 119.0 L49.0 125.6 L50.5 132.2 L52.0 138.8 L53.5 145.3 L55.0 151.6 L56.5 157.8 L58.0 163.7 L59.5 169.3 L61.0 174.6 L62.5 179.5 L64.0 183.9 L65.5 187.9 L67.0 191.3 L68.5 194.2 L70.0 196.6 L71.5 198.3 L73.0 199.4 L74.5 200.0 L76.0 199.9 L77.5 199.1 L79.0 197.8 L80.5 195.9 L82.0 193.3 L83.5 190.3 L85.0 186.6 L86.5 182.5 L88.0 177.9 L89.5 172.9 L91.0 167.5 L92.5 161.8 L94.0 155.8 L95.5 149.5 L97.0 143.1 L98.5 136.6 L100.0 130.0 L101.5 123.4 L103.0 116.9 L104.5 110.5 L106.0 104.2 L107.5 98.2 L109.0 92.5 L110.5 87.1 L112.0 82.1 L113.5 77.5 L115.0 73.4 L116.5 69.7 L118.0 66.7 L119.5 64.1 L121.0 62.2 L122.5 60.9 L124.0 60.1 L125.5 60.0 L127.0 60.6 L128.5 61.7 L130.0 63.4 L131.5 65.8 L133.0 68.7 L134.5 72.1 L136.0 76.1 L137.5 80.5 L139.0 85.4 L140.5 90.7 L142.0 96.3 L143.5 102.2 L145.0 108.4 L146.5 114.7 L148.0 121.2 L149.5 127.8 L151.0 134.4 L152.5 141.0 L154.0 147.4 L155.5 153.7 L157.0 159.8 L158.5 165.6 L160.0 171.1 L161.5 176.3 L163.0 181.0 L164.5 185.3 L166.0 189.1 L167.5 192.4 L169.0 195.1 L170.5 197.2 L172.0 198.8 L173.5 199.7 L175.0 200.0 L176.5 199.7 L178.0 198.8 L179.5 197.2 L181.0 195.1 L182.5 192.4 L184.0 189.1 L185.5 185.3 L187.0 181.0 L188.5 176.3 L190.0 171.1 L191.5 165.6 L193.0 159.8 L194.5 153.7 L196.0 147.4 L197.5 141.0 L199.0 134.4 L200.5 127.8 L202.0 121.2 L203.5 114.7 L205.0 108.4 L206.5 102.2 L208.0 96.3 L209.5 90.7 L211.0 85.4 L212.5 80.5 L214.0 76.1 L215.5 72.1 L217.0 68.7 L218.5 65.8 L220.0 63.4 L221.5 61.7 L223.0 60.6 L224.5 60.0 L226.0 60.1 L227.5 60.9 L229.0 62.2 L230.5 64.1 L232.0 66.7 L233.5 69.7 L235.0 73.4 L236.5 77.5 L238.0 82.1 L239.5 87.1 L241.0 92.5 L242.5 98.2 L244.0 104.2 L245.5 110.5 L247.0 116.9 L248.5 123.4 L250.0 130.0 L251.5 136.6 L253.0 143.1 L254.5 149.5 L256.0 155.8 L257.5 161.8 L259.0 167.5 L260.5 172.9 L262.0 177.9 L263.5 182.5 L265.0 186.6 L266.5 190.3 L268.0 193.3 L269.5 195.9 L271.0 197.8 L272.5 199.1 L274.0 199.9 L275.5 200.0 L277.0 199.4 L278.5 198.3 L280.0 196.6 L281.5 194.2 L283.0 191.3 L284.5 187.9 L286.0 183.9 L287.5 179.5 L289.0 174.6 L290.5 169.3 L292.0 163.7 L293.5 157.8 L295.0 151.6 L296.5 145.3 L298.0 138.8 L299.5 132.2 L301.0 125.6 L302.5 119.0 L304.0 112.6 L305.5 106.3 L307.0 100.2 L308.5 94.4 L310.0 88.9 L311.5 83.7 L313.0 79.0 L314.5 74.7 L316.0 70.9 L317.5 67.6 L319.0 64.9 L320.5 62.8 L322.0 61.2 L323.5 60.3 L325.0 60.0 L326.5 60.3 L328.0 61.2 L329.5 62.8 L331.0 67.1 L332.5 74.3 L334.0 83.3 L335.5 93.8 L337.0 105.3 L338.5 117.6 L340.0 130.0 L341.5 142.2 L343.0 153.7 L344.5 164.2 L346.0 173.3 L347.5 180.7 L349.0 186.2 L350.5 189.6 L352.0 190.8 L353.5 189.9 L355.0 186.9 L356.5 181.9 L358.0 175.2 L359.5 167.1 L361.0 157.8 L362.5 147.6 L364.0 137.1 L365.5 126.5 L367.0 116.2 L368.5 106.6 L370.0 98.0 L371.5 90.7 L373.0 84.9 L374.5 80.8 L376.0 78.5 L377.5 78.1 L379.0 79.5 L380.5 82.6 L382.0 87.4 L383.5 93.5 L385.0 100.9 L386.5 109.1 L388.0 117.9 L389.5 127.0 L391.0 136.0 L392.5 144.6 L394.0 152.6 L395.5 159.6 L397.0 165.4 L398.5 169.9 L400.0 172.9 L401.5 174.3 L403.0 174.2 L404.5 172.5 L406.0 169.3 L407.5 164.8 L409.0 159.2 L410.5 152.6 L412.0 145.4 L413.5 137.8 L415.0 130.0 L416.5 122.4 L418.0 115.2 L419.5 108.6 L421.0 102.9 L422.5 98.3 L424.0 94.9 L425.5 92.8 L427.0 92.0 L428.5 92.6 L430.0 94.5 L431.5 97.6 L433.0 101.8 L434.5 106.9 L436.0 112.7 L437.5 119.0 L439.0 125.6 L440.5 132.2 L442.0 138.6 L443.5 144.6 L445.0 150.0 L446.5 154.5 L448.0 158.2 L449.5 160.7 L451.0 162.1 L452.5 162.4 L454.0 161.5 L455.5 159.6 L457.0 156.6 L458.5 152.8 L460.0 148.2 L461.5 143.0 L463.0 137.5 L464.5 131.9 L466.0 126.3 L467.5 120.9 L469.0 115.9 L470.5 111.5 L472.0 107.9 L473.5 105.1 L475.0 103.2 L476.5 102.3 L478.0 102.4 L479.5 103.5 L481.0 105.5 L482.5 108.3 L484.0 111.8 L485.5 115.9 L487.0 120.4 L488.5 125.2 L490.0 130.0 L491.5 134.8 L493.0 139.3 L494.5 143.3 L496.0 146.9 L497.5 149.8 L499.0 151.9 L500.5 153.2 L502.0 153.7 L503.5 153.3 L505.0 152.2 L506.5 150.2 L508.0 147.6 L509.5 144.4 L511.0 140.8 L512.5 136.9 L514.0 132.8 L515.5 128.6 L517.0 124.6 L518.5 120.9 L520.0 117.5 L521.5 114.7 L523.0 112.4 L524.5 110.8 L526.0 109.9 L527.5 109.8 L529.0 110.3 L530.5 111.5 L532.0 113.4 L533.5 115.8 L535.0 118.7 L536.5 121.9 L538.0 125.3 L539.5 128.8 L541.0 132.3 L542.5 135.7 L544.0 138.8 L545.5 141.5 L547.0 143.8 L548.5 145.5 L550.0 146.7 L551.5 147.3 L553.0 147.2 L554.5 146.5 L556.0 145.3 L557.5 143.6 L559.0 141.4 L560.5 138.8 L562.0 136.0 L563.5 133.0 L565.0 130.0 L566.5 127.0 L568.0 124.2 L569.5 121.7 L571.0 119.5 L572.5 117.7 L574.0 116.3 L575.5 115.5 L577.0 115.2 L578.5 115.4 L580.0 116.2 L581.5 117.4 L583.0 119.0 L584.5 121.0 L586.0 123.2 L587.5 125.7 L589.0 128.3 L590.5 130.9 L592.0 133.4 L593.5 135.7 L595.0 137.8 L596.5 139.6 L598.0 141.0 L599.5 142.0 L601.0 142.5 L602.5 142.6 L604.0 142.3 L605.5 141.5 L607.0 140.4 L608.5 138.9 L610.0 137.1 L611.5 135.1 L613.0 132.9 L614.5 130.7 L616.0 128.5 L617.5 126.4 L619.0 124.5 L620.5 122.8 L622.0 121.4 L623.5 120.3 L625.0 119.6 L626.5 119.2 L628.0 119.3 L629.5 119.7 L631.0 120.1 L632.5 120.5 L634.0 121.0 L635.5 121.6 L637.0 122.3 L638.5 123.0 L640.0 123.8 L641.5 124.6 L643.0 125.5 L644.5 126.4 L646.0 127.4 L647.5 128.3 L649.0 129.3 L650.5 130.3 L652.0 131.3 L653.5 132.3 L655.0 133.3 L656.5 134.2 L658.0 135.1 L659.5 136.0 L661.0 136.8 L662.5 137.5 L664.0 138.2 L665.5 138.8 L667.0 139.3 L668.5 139.8 L670.0 140.1 L671.5 140.4 L673.0 140.5 L674.5 140.6 L676.0 140.6 L677.5 140.5 L679.0 140.3 L680.5 140.0 L682.0 139.6 L683.5 139.1 L685.0 138.6 L686.5 138.0 L688.0 137.3 L689.5 136.5 L691.0 135.7 L692.5 134.8 L694.0 133.9 L695.5 133.0 L697.0 132.0 L698.5 131.0 L700.0 130.0 L701.5 129.0 L703.0 128.0 L704.5 127.0 L706.0 126.1 L707.5 125.2 L709.0 124.3 L710.5 123.5 L712.0 122.7 L713.5 122.0 L715.0 121.4 L716.5 120.9 L718.0 120.4 L719.5 120.0 L721.0 119.7 L722.5 119.5 L724.0 119.4 L725.5 119.4 L727.0 119.5 L728.5 119.6 L730.0 119.9 L731.5 120.2 L733.0 120.7 L734.5 121.2 L736.0 121.8 L737.5 122.5 L739.0 123.2 L740.5 124.0 L742.0 124.9 L743.5 125.8 L745.0 126.7 L746.5 127.7 L748.0 128.7 L749.5 129.7 L751.0 130.7 L752.5 131.7 L754.0 132.6 L755.5 133.6 L757.0 134.5 L758.5 135.4 L760.0 136.2 L761.5 137.0 L763.0 137.7 L764.5 138.4 L766.0 139.0 L767.5 139.5 L769.0 139.9 L770.5 140.2 L772.0 140.4 L773.5 140.6 L775.0 140.6 L776.5 140.6 L778.0 140.4 L779.5 140.2 L781.0 139.9 L782.5 139.5 L784.0 139.0 L785.5 138.4 L787.0 137.7 L788.5 137.0 L790.0 136.2 L791.5 135.4 L793.0 134.5 L794.5 133.6 L796.0 132.6 L797.5 131.7 L799.0 130.7 L800.5 129.7 L802.0 128.7 L803.5 127.7 L805.0 126.7 L806.5 125.8 L808.0 124.9 L809.5 124.0 L811.0 123.2 L812.5 122.5 L814.0 121.8 L815.5 121.2 L817.0 120.7 L818.5 120.2 L820.0 119.9 L821.5 119.6 L823.0 119.5 L824.5 119.4 L826.0 119.4 L827.5 119.5 L829.0 119.7 L830.5 120.0 L832.0 120.4 L833.5 120.9 L835.0 121.4 L836.5 122.0 L838.0 122.7 L839.5 123.5 L841.0 124.3 L842.5 125.2 L844.0 126.1 L845.5 127.0 L847.0 128.0 L848.5 129.0 L850.0 130.0 L851.5 131.0 L853.0 132.0 L854.5 133.0 L856.0 133.9 L857.5 134.8 L859.0 135.7"/>
+        <path d="M120 244 H220" class="d-arrow" marker-end="url(#nk-head)"/>
+        <text x="122" y="266" class="d-note">λ in air (100 units)</text>
+        <path d="M345 244 H395" class="d-arrow" marker-end="url(#nk-head)"/>
+        <text x="347" y="266" class="d-note">λ/n inside (50 units)</text>
+        <path d="M330.0 60.0 L335.0 62.2 L340.0 64.3 L345.0 66.3 L350.0 68.3 L355.0 70.2 L360.0 72.0 L365.0 73.8 L370.0 75.6 L375.0 77.2 L380.0 78.9 L385.0 80.5 L390.0 82.0 L395.0 83.5 L400.0 84.9 L405.0 86.3 L410.0 87.7 L415.0 89.0 L420.0 90.2 L425.0 91.5 L430.0 92.7 L435.0 93.8 L440.0 94.9 L445.0 96.0 L450.0 97.1 L455.0 98.1 L460.0 99.1 L465.0 100.0 L470.0 101.0 L475.0 101.9 L480.0 102.7 L485.0 103.6 L490.0 104.4 L495.0 105.2 L500.0 105.9 L505.0 106.7 L510.0 107.4 L515.0 108.1 L520.0 108.8 L525.0 109.4 L530.0 110.1 L535.0 110.7 L540.0 111.3 L545.0 111.9 L550.0 112.4 L555.0 113.0 L560.0 113.5 L565.0 114.0 L570.0 114.5 L575.0 115.0 L580.0 115.4 L585.0 115.9 L590.0 116.3 L595.0 116.8 L600.0 117.2 L605.0 117.6 L610.0 117.9 L615.0 118.3 L620.0 118.7 L625.0 119.0 L630.0 119.4" class="d-dash"/>
+        <text x="642" y="62" class="d-note">dashed: exp(−2πkx/λ)</text>
+        <defs><marker id="nk-head" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8" fill="none" stroke="currentColor" stroke-width="1.3"/></marker></defs>
+      </svg>
+      <figcaption><b>Figure 1.</b> Schematic with <i>n</i> = 2 and <i>k</i> = 0.1. Inside the material the wave is shorter, because of <i>n</i>, and weaker as it goes deeper, because of <i>k</i>. The light reflected at the surfaces is left out of the drawing; Section 3 deals with it.</figcaption>
+    </figure>
+
+    <section class="wrap-text">
+      <h2 id="explorer-title"><span>2</span> Explore real materials</h2>
+      <p>Choose a material and move the wavelength. The panel converts <i>n</i> and <i>k</i> into quantities you can picture: how short the wavelength becomes, how deep light gets before it is absorbed, and how much a bare surface reflects. The data are measured values from the refractiveindex.info database (CC0), each with its original publication.<sup><a href="#ref-2">2</a></sup></p>
+    </section>
+
+    <figure class="fig wide interactive" id="explorer" aria-labelledby="ex-title">
+      <div class="ix-head">
+        <h3 id="ex-title">Material explorer</h3>
+        <label class="ex-select"><span class="visually-hidden">Material</span><select id="ex-material" disabled><option>Loading data…</option></select></label>
+      </div>
+      <div class="ex-body">
+        <div>
+          <svg class="ix-svg" id="ex-plot" viewBox="0 0 600 300" role="img" aria-labelledby="ex-plot-desc"><desc id="ex-plot-desc">n and k of the selected material against wavelength, with a vertical line at the chosen wavelength.</desc></svg>
+          <label for="ex-wavelength" class="ex-wl-label">Wavelength <output id="ex-wl-out">633 nm</output></label>
+          <input type="range" id="ex-wavelength" min="200" max="1600" step="1" value="633" disabled>
+        </div>
+        <dl class="ex-values">
+          <div><dt>Refractive index <i>n</i></dt><dd id="ex-n">–</dd></div>
+          <div><dt>Extinction coefficient <i>k</i></dt><dd id="ex-k">–</dd></div>
+          <div><dt>Wavelength inside, λ/<i>n</i></dt><dd id="ex-inside">–</dd></div>
+          <div><dt>Absorption depth δ</dt><dd id="ex-depth">–</dd></div>
+          <div><dt>Reflection from air, normal incidence</dt><dd id="ex-r">–</dd></div>
+          <div><dt>Permittivity ε₁ + <i>i</i>ε₂</dt><dd id="ex-eps">–</dd></div>
+        </dl>
+      </div>
+      <p class="ex-regime" id="ex-regime" aria-live="polite"></p>
+      <figcaption><b>Interactive 1.</b> Values are interpolated linearly between the tabulated points and are never extrapolated beyond the measured range. δ = λ/(4π<i>k</i>) is the depth at which the intensity falls to 1/<i>e</i>. <i>R</i> = [(<i>n</i> − 1)² + <i>k</i>²] / [(<i>n</i> + 1)² + <i>k</i>²] holds for a single flat surface of a thick sample in air at normal incidence. ε₁ = <i>n</i>² − <i>k</i>², ε₂ = 2<i>nk</i>. <span id="ex-source"></span></figcaption>
+    </figure>
+
+    <section id="surface" class="wrap-text">
+      <h2><span>3</span> What happens at a surface</h2>
+      <p>Where light meets a material, part of it is reflected. At normal incidence from air the reflected fraction is</p>
+      <p class="equation"><i>R</i> = [(<i>n</i> − 1)² + <i>k</i>²] / [(<i>n</i> + 1)² + <i>k</i>²]</p>
+      <p>Glass, with <i>n</i> ≈ 1.46, reflects about 3.5% per surface. Crystalline silicon at 633 nm (<i>n</i> ≈ 3.87) reflects about 35%. Gold at 633 nm has a small <i>n</i> (0.18) and a large <i>k</i> (3.4), and reflects about 94%: a large <i>k</i> makes a mirror, not a black surface, as long as <i>n</i> is small.<sup><a href="#ref-3">3</a>,<a href="#ref-4">4</a></sup></p>
+      <p>Physicists often use the <strong>permittivity</strong> ε = <i>ñ</i>² instead, which is what Maxwell’s equations take directly. Its real part ε₁ = <i>n</i>² − <i>k</i>² becomes negative when <i>k</i> &gt; <i>n</i>. That is the signature of a metal at optical frequencies: gold at 633 nm has ε₁ ≈ −12. A negative ε₁ is what allows surface plasmons, the collective oscillations of free electrons at a metal surface.<sup><a href="#ref-5">5</a></sup></p>
+    </section>
+
+    <section id="linked" class="wrap-text">
+      <h2><span>4</span> Why <i>n</i> and <i>k</i> come together</h2>
+      <p>A material’s response cannot come before the light that causes it. This causality links <i>n</i> and <i>k</i> through the Kramers–Kronig relations: if you know <i>k</i> at all wavelengths you can calculate <i>n</i>, and the other way round.<sup><a href="#ref-1">1</a></sup> One practical consequence is that <i>n</i> changes fastest, and usually peaks, near a wavelength where the material starts to absorb. TiO₂ shows this clearly: as <i>k</i> rises below about 350 nm, <i>n</i> climbs to its maximum (Figure 3a on the <a href="anapoles.html#fig-3">anapole page</a>). This is why the most useful high-index materials are often used just on the long-wavelength side of their absorption edge, where <i>n</i> is high and <i>k</i> is still small.</p>
+      <p>Another consequence: a material model with a constant <i>n</i> and zero <i>k</i> over a wide band is an approximation that only holds far from any absorption. It is fine for glass in the visible. It is not fine for TiO₂ in the ultraviolet.</p>
+    </section>
+
+    <section id="simulations" class="wrap-text">
+      <h2><span>5</span> Where <i>n</i> and <i>k</i> enter a simulation</h2>
+      <p>Every method below needs the same two numbers, but each is sensitive to them in a different way.</p>
+    </section>
+
+    <div class="fig wide table-wrap" role="region" aria-labelledby="sim-table-cap" tabindex="0">
+      <table class="sim-table">
+        <caption id="sim-table-cap"><b>Table 1.</b> How <i>n</i> and <i>k</i> act in common kinds of optical simulation.</caption>
+        <thead><tr><th scope="col">Simulation</th><th scope="col">What <i>n</i> decides</th><th scope="col">What <i>k</i> decides</th><th scope="col">Watch out for</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Thin films and coatings<br><small>transfer-matrix method</small></th><td>The phase each layer adds, 2π<i>nd</i>/λ, and so which colours reflect or pass</td><td>How much light each layer absorbs</td><td>A thickness error and an index error shift the spectrum in the same way.<sup><a href="#ref-6">6</a></sup> <a href="lab.html">Try one film</a></td></tr>
+          <tr><th scope="row">Dielectric nanoparticles and metasurfaces<br><small>Mie theory, FDTD, FEM</small></th><td>The size at which a particle resonates (about λ/<i>n</i>); a higher <i>n</i> gives smaller, stronger resonators</td><td>How sharp the resonance is; small <i>k</i> is essential</td><td>Resonances such as the <a href="anapoles.html">anapole</a> move with <i>n</i> and are damped by <i>k</i>.<sup><a href="#ref-7">7</a></sup></td></tr>
+          <tr><th scope="row">Plasmonics<br><small>metal nanostructures</small></th><td>Together with <i>k</i>, whether ε₁ is negative</td><td>Losses; the large ε₂ of real metals broadens every plasmon resonance</td><td>A small metal sphere resonates near ε₁ = −2 ε<sub>surrounding</sub>, so the medium around it matters.<sup><a href="#ref-5">5</a></sup></td></tr>
+          <tr><th scope="row">Waveguides and photonic chips<br><small>mode solvers</small></th><td>Confinement: the core must have a higher <i>n</i> than the cladding; silicon (3.48 at 1450 nm) in silica (1.45) gives a strong contrast</td><td>Propagation loss along centimetres of guide</td><td>Small <i>k</i> values matter over long distances that would be negligible in a 100 nm particle.<sup><a href="#ref-3">3</a>,<a href="#ref-8">8</a></sup></td></tr>
+          <tr><th scope="row">Time-domain solvers<br><small>FDTD: Meep, Lumerical</small></th><td colspan="2">A short pulse contains many wavelengths, so the solver needs ε as a function of frequency, usually fitted with Lorentz or Drude terms over the band of interest.</td><td>A poor fit outside the band, or a constant ε used for a broadband pulse, gives wrong spectra.<sup><a href="#ref-9">9</a></sup> Single-wavelength runs of a transparent material can use a constant ε = <i>n</i>².</td></tr>
+          <tr><th scope="row">Nonlinear and slow light</th><td>How <i>n</i> changes with λ sets how fast energy travels</td><td>Limits the interaction length</td><td>Near an absorption edge, the energy velocity is a safer guide than the group velocity.<sup><a href="#ref-10">10</a></sup></td></tr>
+          <tr><th scope="row">Measurement<br><small>spectroscopic ellipsometry</small></th><td colspan="2">Not measured directly: ellipsometry records how polarised light changes on reflection, and <i>n</i>, <i>k</i> and thickness come from fitting a model.</td><td>The result is only as good as the model and the sample it describes.<sup><a href="#ref-11">11</a></sup></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section id="pitfalls" class="wrap-text">
+      <h2><span>6</span> Same name, different numbers</h2>
+      <p>“TiO₂” is not one set of optical constants. At 366.5 nm, two published data sets for TiO₂ films grown by atomic layer deposition give <i>n</i> = 2.87 (Siefke et al.) and <i>n</i> = 2.81 (Jolivet et al.).<sup><a href="#ref-12">12</a>,<a href="#ref-13">13</a></sup> Crystal phase, deposition temperature, oxidant and thickness all change the result. In our own ALD films, the choice of oxidant changed the optical constants and the third-harmonic response.<sup><a href="#ref-10">10</a></sup> The difference matters: for a resonance whose wavelength scales roughly with <i>n</i>, a 2% change in <i>n</i> moves it by about 2%, some 8 nm at 370 nm (a rough estimate).</p>
+      <h3 class="subhead">Before using a table of n and k</h3>
+      <ol class="checklist">
+        <li><strong>Find the sample behind it.</strong> Bulk crystal, thin film, deposition method, temperature. Use the data closest to what you will actually make.</li>
+        <li><strong>Stay inside the measured range.</strong> Extrapolating optical constants, especially towards an absorption edge, is guessing.</li>
+        <li><strong>Check whether <i>k</i> was measured.</strong> Some records give <i>n</i> only. The fused silica data used here, for example, list no <i>k</i>; zero is an assumption.</li>
+        <li><strong>Check the sign convention.</strong> Physics texts usually write <i>n</i> + <i>ik</i> with time dependence exp(−<i>iωt</i>); engineering texts often write <i>n</i> − <i>ik</i> with exp(+<i>iωt</i>). Mixing them turns absorption into gain.</li>
+        <li><strong>Check the units.</strong> Nanometres, micrometres and electronvolts all appear in data files.</li>
+        <li><strong>Measure when it matters.</strong> For a design that depends on a few nanometres, ellipsometry on your own film beats any table.<sup><a href="#ref-11">11</a></sup></li>
+      </ol>
+      <p class="aside">You do not need another database. The refractiveindex.info collection is open and well documented.<sup><a href="#ref-2">2</a></sup> This page explains how to read it. To see what one layer does to a spectrum, use the <a href="lab.html">single-film calculator</a>.</p>
+    </section>
+
+    <section class="refs wrap-text" aria-labelledby="refs-title">
+      <h2 id="refs-title">References</h2>
+      <ol>
+        <li id="ref-1">C. F. Bohren and D. R. Huffman, <i>Absorption and Scattering of Light by Small Particles</i> (Wiley, 1998). <a href="https://doi.org/10.1002/9783527618156">doi:10.1002/9783527618156</a></li>
+        <li id="ref-2">M. N. Polyanskiy, “Refractiveindex.info database of optical constants,” <i>Scientific Data</i> 11, 94 (2024). <a href="https://doi.org/10.1038/s41597-023-02898-2">doi:10.1038/s41597-023-02898-2</a></li>
+        <li id="ref-3">M. A. Green, “Self-consistent optical parameters of intrinsic silicon at 300 K including temperature coefficients,” <i>Solar Energy Materials and Solar Cells</i> 92, 1305–1310 (2008). <a href="https://doi.org/10.1016/j.solmat.2008.06.009">doi:10.1016/j.solmat.2008.06.009</a></li>
+        <li id="ref-4">P. B. Johnson and R. W. Christy, “Optical constants of the noble metals,” <i>Physical Review B</i> 6, 4370–4379 (1972). <a href="https://doi.org/10.1103/PhysRevB.6.4370">doi:10.1103/PhysRevB.6.4370</a></li>
+        <li id="ref-5">S. A. Maier, <i>Plasmonics: Fundamentals and Applications</i> (Springer, 2007). <a href="https://doi.org/10.1007/0-387-37825-1">doi:10.1007/0-387-37825-1</a></li>
+        <li id="ref-6">S. J. Byrnes, “Multilayer optical calculations,” arXiv:1603.02720 (2016). <a href="https://arxiv.org/abs/1603.02720">arxiv.org/abs/1603.02720</a></li>
+        <li id="ref-7">A. I. Kuznetsov et al., “Optically resonant dielectric nanostructures,” <i>Science</i> 354, aag2472 (2016). <a href="https://doi.org/10.1126/science.aag2472">doi:10.1126/science.aag2472</a></li>
+        <li id="ref-8">I. H. Malitson, “Interspecimen comparison of the refractive index of fused silica,” <i>Journal of the Optical Society of America</i> 55, 1205–1208 (1965). <a href="https://doi.org/10.1364/JOSA.55.001205">doi:10.1364/JOSA.55.001205</a></li>
+        <li id="ref-9">A. F. Oskooi et al., “Meep: a flexible free-software package for electromagnetic simulations by the FDTD method,” <i>Computer Physics Communications</i> 181, 687–702 (2010). <a href="https://doi.org/10.1016/j.cpc.2009.11.008">doi:10.1016/j.cpc.2009.11.008</a></li>
+        <li id="ref-10">D. Poeta et al., “Energy velocity as an optical design indicator for the ultraviolet nonlinear response of ALD-grown TiO₂ thin films,” <i>Optical Materials Express</i> 16, 3342 (2026). <a href="https://doi.org/10.1364/OME.611814">doi:10.1364/OME.611814</a></li>
+        <li id="ref-11">H. Fujiwara, <i>Spectroscopic Ellipsometry: Principles and Applications</i> (Wiley, 2007). <a href="https://doi.org/10.1002/9780470060193">doi:10.1002/9780470060193</a></li>
+        <li id="ref-12">T. Siefke et al., “Materials pushing the application limits of wire grid polarizers further into the deep ultraviolet spectral range,” <i>Advanced Optical Materials</i> 4, 1780–1786 (2016). <a href="https://doi.org/10.1002/adom.201600250">doi:10.1002/adom.201600250</a></li>
+        <li id="ref-13">J. Jolivet et al., “Structural, optical, and electrical properties of TiO₂ thin films deposited by ALD,” <i>Applied Surface Science</i> 608, 155214 (2023). <a href="https://doi.org/10.1016/j.apsusc.2022.155214">doi:10.1016/j.apsusc.2022.155214</a></li>
+      </ol>
+      <p class="aside">Values quoted in the text were calculated for this page from the data in Refs. 2–4, 8 and 12, interpolated at the stated wavelength. The Jolivet value is from the refractiveindex.info record of Ref. 13.</p>
+    </section>
+  </main>
+
+  <footer class="foot" id="contact">
+    <div class="wrap foot-grid">
+      <div>
+        <p class="foot-name">Diogo Poeta</p>
+        <p class="foot-role">Physicist · computational and ultraviolet photonics</p>
+      </div>
+      <nav class="foot-links" aria-label="Professional profiles">
+        <a href="https://pt.linkedin.com/in/diogo-poeta" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/diogo-poeta" rel="noopener noreferrer">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" rel="noopener noreferrer">Google Scholar</a>
+        <a href="https://orcid.org/0009-0002-1451-5147" rel="noopener noreferrer">ORCID</a>
+        <a href="recommendations.html">Recommendations</a>
+      </nav>
+    </div>
+    <div class="wrap foot-small">
+      <span>© 2026 Diogo Poeta · Elyvris</span>
+      <details class="credits">
+        <summary>How this site is made</summary>
+        <p>The physics, the research questions and the ideas are mine. The code and parts of the writing are developed with the help of an AI assistant (Claude, by Anthropic). I review every page, and the calculations are tested against independent references before they are published. Scientific claims link to their sources.</p>
+      </details>
+    </div>
+  </footer>
+</body>
+</html>
