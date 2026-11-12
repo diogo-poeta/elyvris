@@ -34,9 +34,28 @@
 .fig img { width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
 .fig figcaption { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-top: 12px; max-width: 760px; }
 .fig figcaption b { color: var(--ink); }
-.two-up { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; align-items: start; }
-.two-up > div { position: relative; }
-.two-up figcaption { grid-column: 1 / -1; }
+.panel-image { position: relative; }
+.panel-image img { display: block; }
+.panel-label {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  min-width: 1.8em;
+  min-height: 1.6em;
+  padding: 0 .25em;
+  border-radius: 3px;
+  background: #fff;
+  color: #171717;
+  font: 700 clamp(.7rem, 1.5vw, 1rem)/1.1 system-ui, sans-serif;
+}
+.concept-panels .panel-a { top: 2%; left: 2%; }
+.concept-panels .panel-b { top: 39.7%; left: 7.7%; min-width: 6%; min-height: 4.6%; }
+.concept-panels .panel-c { top: 39.7%; left: 56%; min-width: 6%; min-height: 4.6%; }
+.microscopy .panel-image { margin: 0 auto 16px; }
+.microscopy .flakes-panel { max-width: 62%; }
+.grating-panels .panel-a { top: 3%; left: .8%; }
+.grating-panels .panel-b { top: 3.4%; left: 53.6%; min-height: max(1.6em, 7.6%); }
+.flakes-panel .panel-c { top: 3%; left: 2%; }
 .panel { position: absolute; top: 8px; left: 10px; font: 600 15px var(--sans); color: var(--ink); }
 
 /* Drawn diagrams */
@@ -141,7 +160,7 @@
   .ex-values { grid-template-columns: 1fr 1fr; }
   .ex-values dd { font-size: 18px; }
   .ix-head { flex-wrap: wrap; }
-  .two-up { grid-template-columns: 1fr; }
+  .microscopy .flakes-panel { max-width: 100%; }
   .standfirst { font-size: 19px; }
   .interactive { padding: 16px 14px; }
 }
