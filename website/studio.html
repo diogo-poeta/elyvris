@@ -5,23 +5,22 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Studio — Describe a nanoparticle, see how it scatters light | Elyvris</title>
-  <meta name="description" content="Elyvris Studio: describe a sphere or cylinder in words, view it in 3D and calculate its scattering and absorption spectrum with Mie theory, using referenced optical constants.">
+  <title>Studio — Build shapes in 3D, get gdsfactory and Meep code | Elyvris</title>
+  <meta name="description" content="Elyvris Studio: add shapes and materials, see them in 3D, and get the matching gdsfactory layout script and Meep geometry. You can also paste code and see what it draws.">
   <meta name="theme-color" content="#F2EEE5">
   <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/studio.html">
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/studio.html">
   <meta property="og:title" content="Elyvris Studio">
-  <meta property="og:description" content="Describe a nanoparticle in words, view it in 3D and calculate how it scatters light.">
+  <meta property="og:description" content="Build shapes in 3D and get gdsfactory and Meep code.">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=7">
   <link rel="stylesheet" href="brand.css?v=20">
-  <link rel="stylesheet" href="studio.css?v=1">
+  <link rel="stylesheet" href="studio.css?v=2">
   <script defer src="materials.js?v=6"></script>
-  <script defer src="geometry-materials.js?v=1"></script>
-  <script defer src="mie.js?v=1"></script>
-  <script defer src="studio-assistant.js?v=1"></script>
-  <script defer src="studio-view3d.js?v=1"></script>
-  <script defer src="studio.js?v=1"></script>
+  <script defer src="studio-assistant.js?v=2"></script>
+  <script defer src="studio-code.js?v=2"></script>
+  <script defer src="studio-view3d.js?v=2"></script>
+  <script defer src="studio.js?v=2"></script>
 </head>
 <body class="studio-page">
   <a class="skip" href="#main">Skip to content</a>
@@ -31,169 +30,103 @@
   </header>
 
   <main id="main" class="wrap studio-main">
-    <section class="studio-intro" aria-labelledby="studio-title">
-      <p class="eyebrow">STUDIO · IN DEVELOPMENT</p>
-      <h1 id="studio-title">Describe a nanoparticle.<br><em>See how it scatters light.</em></h1>
-      <p class="studio-lead">Write what you want to design, for example “a 3D sphere of Si, radius 90 nm”. The studio draws it in 3D and calculates how strongly it scatters and absorbs light at each wavelength.</p>
-      <ul class="studio-tags">
-        <li>Sphere and 2D cylinder: exact Mie theory</li>
-        <li>3D cylinder and box: drawing and layout script</li>
-        <li>Runs in your browser; nothing is uploaded</li>
-      </ul>
-      <button class="studio-play" id="play-example" type="button"><span aria-hidden="true">▶</span> Play a short example</button>
-    </section>
+    <div class="studio-head">
+      <div>
+        <h1 id="studio-title">Studio</h1>
+        <p class="studio-lead">Build shapes, see them in 3D, get the code for gdsfactory and Meep.</p>
+      </div>
+      <div class="head-tools">
+        <label for="example">Example</label>
+        <select id="example">
+          <option value="">Choose…</option>
+          <option value="disk">Disk on a substrate</option>
+          <option value="dimer">Two spheres</option>
+          <option value="ring">Ring and waveguide</option>
+          <option value="pillars">Pillar array</option>
+          <option value="bowtie">Bowtie</option>
+          <option value="empty">Empty</option>
+        </select>
+      </div>
+    </div>
 
-    <noscript><p class="studio-noscript">JavaScript is needed for the studio. The method and its limits are described below.</p></noscript>
+    <noscript><p class="studio-noscript">JavaScript is needed for the studio.</p></noscript>
 
     <div class="studio-grid" id="studio">
-      <section class="panel assistant" aria-labelledby="assistant-title">
-        <div class="panel-top"><h2 id="assistant-title">Assistant</h2><span>Reads your sentence · not a language model</span></div>
-        <div class="chat" id="chat" role="log" aria-live="polite" aria-label="Conversation with the assistant" tabindex="0"></div>
-        <div class="chips" id="chips" aria-label="Suggested replies"></div>
-        <form class="chat-form" id="chat-form" autocomplete="off">
-          <label class="visually-hidden" for="chat-input">Describe your design</label>
-          <input id="chat-input" type="text" maxlength="400" placeholder="Design a 2D cylinder of TiO2, radius 100 nm" enterkeyhint="send">
-          <button type="submit">Send</button>
-        </form>
-        <div class="chat-tools">
-          <label class="file-button">Upload n, k file (.txt)<input type="file" id="nk-file" accept=".txt,.csv,.dat,.tsv,.nk,text/plain,text/csv"></label>
-          <button type="button" class="link-button" id="chat-help">What can I ask?</button>
-          <button type="button" class="link-button" id="chat-reset">Start again</button>
-        </div>
-        <p class="file-note">File format: one row per wavelength with columns <code>wavelength  n  k</code>, separated by spaces, tabs or commas. Wavelength in nm or µm (detected automatically). The file is read on your device only.</p>
-      </section>
-
-      <section class="panel viewer" aria-labelledby="viewer-title">
-        <div class="panel-top"><h2 id="viewer-title">3D view</h2><span id="viewer-mode">—</span></div>
+      <section class="panel viewer" aria-label="3D view">
         <div class="stage" id="stage">
-          <canvas id="view3d" tabindex="0" aria-label="3D view of the design. Drag to rotate, pinch or scroll to zoom, arrow keys to rotate, plus and minus to zoom, zero to reset."></canvas>
+          <canvas id="view3d" tabindex="0" aria-label="3D view of the shapes. Drag to rotate, pinch or scroll to zoom, click a shape to select it."></canvas>
           <div class="stage-labels" id="view-labels" aria-hidden="true"></div>
-          <p class="stage-hint" id="stage-hint">Drag to rotate · pinch or scroll to zoom</p>
-          <p class="stage-key" id="stage-key"><b>k</b> direction of travel<br><b>E</b> electric field</p>
-          <div class="stage-buttons">
+          <div class="stage-top">
+            <div class="button-group" role="group" aria-label="View direction">
+              <button type="button" data-view="3d">3D</button>
+              <button type="button" data-view="top">Top</button>
+              <button type="button" data-view="front">Front</button>
+              <button type="button" data-view="side">Side</button>
+            </div>
+            <div class="button-group" role="group" aria-label="What dragging does">
+              <button type="button" id="mode-orbit" aria-pressed="true">Rotate view</button>
+              <button type="button" id="mode-move" aria-pressed="false">Move shape</button>
+            </div>
+          </div>
+          <p class="stage-scale" id="stage-scale"></p>
+          <div class="stage-bottom button-group" role="group" aria-label="Zoom">
             <button type="button" id="view-zoom-in" aria-label="Zoom in">+</button>
             <button type="button" id="view-zoom-out" aria-label="Zoom out">−</button>
-            <button type="button" id="view-reset" aria-label="Reset the view">Reset</button>
-            <button type="button" id="view-motion" aria-pressed="true" aria-label="Animate the light wave">Pause</button>
+            <button type="button" id="view-fit">Fit</button>
           </div>
-          <p class="stage-fallback" id="stage-fallback" hidden>The 3D view needs WebGL, which is not available in this browser. The calculation still works.</p>
+          <p class="stage-fallback" id="stage-fallback" hidden>The 3D view needs WebGL, which this browser does not provide. The shape list and code still work.</p>
         </div>
-        <p class="viewer-caption" id="viewer-caption">Your design will appear here.</p>
       </section>
 
-      <section class="panel adjust" aria-labelledby="adjust-title">
-        <div class="panel-top"><h2 id="adjust-title">Adjust</h2><span>Change a value and watch the spectrum move</span></div>
-        <form id="adjust-form" novalidate>
-          <div class="field"><label for="f-shape">Shape</label>
-            <select id="f-shape">
-              <option value="sphere">Sphere (3D) · exact</option>
-              <option value="cylinder2d">Cylinder, 2D: infinitely long · exact</option>
-              <option value="cylinder3d">Cylinder, 3D: finite height · drawing only</option>
-              <option value="box2d">Rectangle, 2D: infinitely long · drawing only</option>
-              <option value="box3d">Box (3D) · drawing only</option>
-            </select></div>
-          <div class="field"><label for="f-material">Material</label><select id="f-material"></select></div>
-          <div class="field-pair" id="f-constant" hidden>
-            <div class="field"><label for="f-n">Index n</label><input id="f-n" type="number" min="0.01" max="20" step="any" value="2.4"></div>
-            <div class="field"><label for="f-k">Extinction k</label><input id="f-k" type="number" min="0" max="20" step="any" value="0"></div>
+      <section class="panel build" aria-labelledby="build-title">
+        <div class="panel-top">
+          <h2 id="build-title">Shapes</h2>
+          <div class="panel-tools">
+            <label for="unit" class="visually-hidden">Length unit</label>
+            <select id="unit"><option value="nm">nm</option><option value="um">µm</option></select>
+            <button type="button" id="undo" disabled>Undo</button>
           </div>
-          <p class="field-note" id="f-material-note"></p>
-          <div class="field" id="f-radius-field"><label for="f-radius">Radius (nm)</label><div class="with-slider"><input id="f-radius" type="number" min="1" max="1000000" step="any"><input id="f-radius-slider" type="range" min="10" max="400" step="1" aria-label="Radius slider, 10 to 400 nm"></div></div>
-          <div class="field" id="f-height-field" hidden><label for="f-height">Height (nm)</label><input id="f-height" type="number" min="1" max="1000000" step="any"></div>
-          <div class="field-trio" id="f-box-fields" hidden>
-            <div class="field"><label for="f-sx">x (nm)</label><input id="f-sx" type="number" min="1" max="1000000" step="any"></div>
-            <div class="field"><label for="f-sy">y (nm)</label><input id="f-sy" type="number" min="1" max="1000000" step="any"></div>
-            <div class="field" id="f-sz-field"><label for="f-sz">z (nm)</label><input id="f-sz" type="number" min="1" max="1000000" step="any"></div>
-          </div>
-          <div class="field"><label for="f-medium">Surrounding medium index (air 1, water 1.33)</label><input id="f-medium" type="number" min="1" max="5" step="any" value="1"></div>
-          <div class="field" id="f-pol-field" hidden><label for="f-pol">Polarisation of the light</label>
-            <select id="f-pol">
-              <option value="parallel">Electric field along the cylinder axis</option>
-              <option value="perpendicular">Electric field perpendicular to the axis</option>
-              <option value="unpolarized">Unpolarised: mean of both</option>
-            </select></div>
-          <div class="field-pair" id="f-range-fields">
-            <div class="field"><label for="f-from">Wavelength from (nm)</label><input id="f-from" type="number" min="1" step="any"></div>
-            <div class="field"><label for="f-to">to (nm)</label><input id="f-to" type="number" min="1" step="any"></div>
-          </div>
-          <p class="field-note" id="f-range-note"></p>
+        </div>
+        <div class="add-row" id="add-row" role="group" aria-label="Add a shape"></div>
+        <form class="say-form" id="say-form" autocomplete="off">
+          <label class="visually-hidden" for="say-input">Add a shape with words</label>
+          <input id="say-input" type="text" maxlength="300" placeholder="or type: TiO2 cylinder, radius 150 nm, height 200 nm" enterkeyhint="done">
+          <button type="submit">Add</button>
         </form>
-        <div class="exports">
-          <button type="button" id="export-csv" disabled>Download spectrum (CSV)</button>
-          <button type="button" id="export-python" disabled>Download layout script (gdsfactory)</button>
-          <p class="field-note" id="export-note"></p>
-        </div>
+        <p class="say-status" id="say-status" role="status" aria-live="polite"></p>
+        <ul class="shape-list" id="shape-list" aria-label="Shapes in the design"></ul>
+        <form class="shape-form" id="shape-form" novalidate></form>
       </section>
 
-      <section class="panel results" aria-labelledby="results-title">
-        <div class="panel-top"><h2 id="results-title">Spectrum</h2><span id="results-mode">—</span></div>
-        <p class="results-error" id="results-error" role="alert" hidden></p>
-        <div id="results-exact">
-          <div class="readout" id="readout" aria-live="off"></div>
-          <figure class="plot">
-            <h3>How much light is removed, scattered and absorbed</h3>
-            <div class="legend" id="legend-total"></div>
-            <div class="plot-area"><svg id="plot-total" role="img" tabindex="0" aria-labelledby="plot-total-title plot-total-desc"><title id="plot-total-title">Extinction, scattering and absorption efficiency against wavelength</title><desc id="plot-total-desc">Calculated spectrum. Use the left and right arrow keys to move the selected wavelength.</desc></svg><div class="tooltip" id="tip-total" hidden></div></div>
-            <figcaption id="caption-total"></figcaption>
-          </figure>
-          <figure class="plot">
-            <h3 id="parts-heading">Which resonance does the scattering</h3>
-            <div class="legend" id="legend-parts"></div>
-            <div class="plot-area"><svg id="plot-parts" role="img" tabindex="0" aria-labelledby="plot-parts-title plot-parts-desc"><title id="plot-parts-title">Contributions to the scattering efficiency against wavelength</title><desc id="plot-parts-desc">Calculated contributions. Use the left and right arrow keys to move the selected wavelength.</desc></svg><div class="tooltip" id="tip-parts" hidden></div></div>
-            <figcaption id="caption-parts"></figcaption>
-          </figure>
-          <div class="reading" id="reading"></div>
-          <details class="values"><summary>Show values as a table</summary><div class="table-scroll"><table id="values-table"></table></div></details>
+      <section class="panel code" aria-labelledby="code-title">
+        <div class="panel-top">
+          <h2 id="code-title" class="visually-hidden">Code</h2>
+          <div class="tabs" role="tablist" aria-label="Code">
+            <button type="button" role="tab" id="tab-gds" aria-selected="true" aria-controls="code-area">gdsfactory (KLayout)</button>
+            <button type="button" role="tab" id="tab-meep" aria-selected="false" aria-controls="code-area">Meep</button>
+          </div>
+          <div class="panel-tools">
+            <label class="meep-only" id="index-label" hidden>Index at <input id="index-wavelength" type="number" min="1" step="any" value="633" aria-label="Wavelength for the material index, in nanometres"> nm</label>
+            <button type="button" id="code-copy">Copy</button>
+            <button type="button" id="code-download">Download .py</button>
+          </div>
         </div>
-        <div id="results-geometry" class="geometry-only" hidden>
-          <h3>No spectrum for this shape yet</h3>
-          <p>A finite cylinder or a box has no exact formula for light scattering. Its spectrum has to be computed with a numerical solver (for example the finite-difference time-domain method, FDTD), which this page does not include. Showing a curve here would mean inventing it.</p>
-          <p>What you can do now: inspect the shape in 3D and download a gdsfactory script that draws its outline as a layout file (GDS), which opens in KLayout. A layout is a drawing for fabrication; it does not calculate light.</p>
-          <p>For a first estimate of where resonances appear, switch to a sphere or a 2D cylinder of similar size and material.</p>
-        </div>
+        <label class="visually-hidden" for="code-area">Code. Edit it to change the shapes.</label>
+        <textarea id="code-area" spellcheck="false" autocapitalize="off" autocomplete="off" rows="14"></textarea>
+        <p class="code-status" id="code-status" role="status" aria-live="polite"></p>
       </section>
     </div>
 
-    <details class="studio-help" open>
-      <summary>What is calculated, in plain words</summary>
-      <div class="help-columns">
-        <div><h3>The picture</h3><p>A plane wave of light travels through a uniform, transparent medium and meets one particle. Part of the light is <strong>scattered</strong> (sent in other directions) and part is <strong>absorbed</strong> (turned into heat). Together they are the <strong>extinction</strong>: extinction = scattering + absorption.</p></div>
-        <div><h3>The numbers</h3><p>An <strong>efficiency Q</strong> is the cross section divided by the particle’s geometric shadow, so it has no unit. For a sphere the shadow is πr². For a 2D cylinder it is the width 2r, per unit length. Q = 2 means the particle removes twice the light that hits its shadow. Lengths are in nanometres (nm).</p></div>
-        <div><h3>Resonances</h3><p>At some wavelengths the field inside the particle builds up and scattering peaks. The second plot splits the scattering into terms of the exact series. For a sphere the first terms are the electric dipole, magnetic dipole, electric quadrupole and magnetic quadrupole.</p></div>
-      </div>
-    </details>
-
     <details class="studio-help">
-      <summary>Method, assumptions and checks</summary>
-      <div class="help-text">
-        <h3>Method</h3>
-        <p>Sphere: Lorenz–Mie theory. Cylinder: the corresponding exact series for an infinitely long circular cylinder with light arriving perpendicular to its axis. Both follow Bohren and Huffman, <a href="https://doi.org/10.1002/9783527618156" target="_blank" rel="noopener noreferrer"><cite>Absorption and Scattering of Light by Small Particles</cite> (Wiley, 1983) ↗</a>, chapters 4 and 8. The original sphere solution is G. Mie, <a href="https://doi.org/10.1002/andp.19083300302" target="_blank" rel="noopener noreferrer">Ann. Phys. 330, 377–445 (1908) ↗</a>.</p>
-        <p>The size parameter is x = 2π n<sub>medium</sub> r / λ and the relative index is m = (n + ik) / n<sub>medium</sub>, with k ≥ 0 for an absorbing material. λ is the wavelength in vacuum.</p>
-        <p>The names of the sphere’s terms (a₁ electric dipole, b₁ magnetic dipole, a₂ electric quadrupole, b₂ magnetic quadrupole) are standard; for their role in high-index particles such as silicon see A. I. Kuznetsov et al., <a href="https://doi.org/10.1126/science.aag2472" target="_blank" rel="noopener noreferrer">Science 354, aag2472 (2016) ↗</a>. For the cylinder the plot shows the angular orders n = 0, 1, 2, 3 of the series without multipole names.</p>
-        <h3>Assumptions</h3>
-        <ul>
-          <li>One isolated particle. No substrate, no neighbouring particles, no coupling.</li>
-          <li>Perfect shape, smooth surface, homogeneous and isotropic material, linear response, non-magnetic.</li>
-          <li>The surrounding medium is transparent and has one constant index at all wavelengths.</li>
-          <li>The light is a plane wave. A focused beam can excite the resonances differently.</li>
-          <li>The 2D cylinder is infinitely long. A real nanowire or pillar of finite length behaves differently, especially when it is short.</li>
-          <li>Optical constants describe the sample measured in the cited source. Your material can differ. Values are interpolated linearly and never extrapolated.</li>
-          <li>Each spectrum has 480 evenly spaced wavelengths. A very narrow peak, as in a large particle, can fall between two points; shorten the range to resolve it.</li>
-        </ul>
-        <h3>Checks</h3>
-        <p>The browser code passes 213 automatic checks. Most of them compare it with an independent calculation that uses SciPy Bessel functions and the textbook formulas directly; total efficiencies agree to better than 1 part in 10⁷. It also reproduces the value printed in appendix A of Bohren and Huffman (Q<sub>ext</sub> = 3.10543), conserves energy for lossless materials, and matches the Rayleigh limit for very small spheres. These are checks of the mathematics. They are not a comparison with measurements.</p>
-        <h3>The assistant</h3>
-        <p>The assistant is a rule-based reader that runs on this page. It recognises shapes, material names and formulas, sizes and units, and asks for what is missing. It is not a large language model and it cannot hold a general conversation. Connecting a language model is planned as a later, optional step.</p>
-      </div>
-    </details>
-
-    <details class="studio-help">
-      <summary>Material data and references</summary>
-      <div class="help-text">
-        <p>Optical constants come from the <a href="https://refractiveindex.info/" target="_blank" rel="noopener noreferrer">refractiveindex.info ↗</a> database (CC0 1.0). Each record keeps its original publication and sample conditions. <a href="materials-data.json" download>Download included data and provenance ↓</a></p>
-        <div id="material-references" class="material-references"></div>
-        <p class="database-citation">Database: M. N. Polyanskiy, <a href="https://doi.org/10.1038/s41597-023-02898-2" target="_blank" rel="noopener noreferrer">Scientific Data 11, 94 (2024) ↗</a>.</p>
-      </div>
+      <summary>How it works</summary>
+      <ul>
+        <li><strong>Build.</strong> Add shapes with the buttons or a sentence, then change the numbers. Click a shape in the 3D view to select it.</li>
+        <li><strong>Code.</strong> The code follows your shapes. You can also edit or paste code and the 3D view follows. The page does not run Python: it reads basic commands only and tells you which lines it could not use.</li>
+        <li><strong>gdsfactory.</strong> The script draws the top view, one layer per material, and saves a GDS file that opens in KLayout. A layout has no height, so heights are kept as comments.</li>
+        <li><strong>Meep.</strong> You get the <code>geometry</code> list, with 1 unit = 1 µm. The material lines are simple constant indices from the Elyvris library; replace them with your own models.</li>
+        <li><strong>No simulation here.</strong> This page only draws. Run the code on your own computer.</li>
+      </ul>
+      <p class="help-commands">Commands the code box reads. Meep: <code>mp.Sphere</code>, <code>mp.Cylinder</code>, <code>mp.Block</code>, <code>mp.Cone</code>, <code>mp.Ellipsoid</code>, <code>mp.Prism</code>, <code>mp.Medium(index=…)</code>, <code>mp.inf</code>, and simple variables such as <code>r = 0.1</code>. gdsfactory: <code>circle</code>, <code>rectangle</code>, <code>ellipse</code>, <code>ring</code>, <code>straight</code>, <code>add_ref</code>, <code>move</code>, <code>movex</code>, <code>movey</code>, <code>add_polygon</code>.</p>
     </details>
 
     <footer class="studio-footer"><span>© 2026 Diogo Poeta · Elyvris</span><a href="index.html">Home ↗</a><a href="research.html">Research ↗</a></footer>

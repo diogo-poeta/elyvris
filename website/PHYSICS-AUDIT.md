@@ -59,7 +59,19 @@ The separate spatial FDTD reference and the published formation-timing viewer re
 
 The calculator remains a coherent, linear, planar, isotropic single-film model. It excludes roughness, scattering, anisotropic tensors, nonlinear conversion, finite beams, coherence loss, backside reflections and manufacturing uncertainty. Constant manually entered n/κ are not a dispersive fit. Finite spectral sampling can miss narrow fringes, so the result is not an automatic convergence guarantee or an experimental prediction. Animation and model tests do not validate every visual layout or browser interaction; the root agent handles browser QA and the narrative owner handles thesis-specific prose.
 
-## Studio: Mie scattering (added 11 November 2026)
+## Studio: shapes and code (changed 12 November 2026)
+
+The Studio page no longer shows a spectrum. It draws shapes and writes code; it does not simulate. Lengths are stored in nanometres, the centre of each shape is (x, y, z) and z points up. Written code uses micrometres: gdsfactory's native unit, and 1 Meep unit = 1 µm.
+
+Meep check (`check_studio_meep.py`, run with Meep 1.30.0 in WSL on 12 November 2026): a test design with one shape of every kind was written by the page as a `geometry` list. Meep's own `is_point_in_object` was asked about 25 points chosen from what the 3D view draws: inside and outside each shape, the wide and narrow ends of the cone, the hole of the ring (a second cylinder of `mp.air`, which wins because it comes later in the list), a lying cylinder, the corners and flat sides of the prisms, and an infinite block far from the origin. All 25 agreed, and `Simulation.init_sim()` accepted the list. No fields were computed.
+
+gdsfactory check (gdsfactory 9.51.0): the layout script for the same design ran, and the saved GDS had seven layers with every outline at the expected place and size (for example the sphere of radius 90 nm at (−300, 120) nm gave the box −0.39 to −0.21 µm by 0.03 to 0.21 µm). A layout is flat: heights are written as comments, a sphere or cone becomes its top-view circle, and a shape with an infinite size is left out.
+
+Reading code (`check-studio-code.mjs`, 11 checks, run in a browser): text written by the page reads back as the same shapes; hand-written Meep with variables, arithmetic, `mp.inf` and inline media is read; unsupported lines are reported by line number. The reader does not run Python and knows only the commands listed on the page.
+
+Material lines in the Meep code are a convenience: one constant index per material, taken from the library at the wavelength shown on the page, with absorption left out. Materials with k above 0.5 at that wavelength get no definition, only a comment asking for a dispersive model. This is not a material model for a real simulation.
+
+## Mie scattering code (11 November 2026, not used by a page at present)
 
 `mie.js` calculates plane-wave scattering by one homogeneous sphere and by one infinitely long circular cylinder at normal incidence, in a uniform lossless medium. Convention: exp(−iωt), relative index m = (n + iκ)/n_medium with κ ≥ 0, size parameter x = 2π n_medium r/λ with λ the vacuum wavelength. Efficiencies are cross sections divided by πr² (sphere) or by 2r per unit length (cylinder). Coefficients follow Bohren and Huffman (1983), chapters 4 and 8, using the logarithmic derivative D_n by downward recurrence. Cylinder Bessel functions J_n and Y_n are computed in the file (Miller recurrence and Neumann series), because browsers have none.
 
