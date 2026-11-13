@@ -1,0 +1,43 @@
+/* "Unfolding light": the intro on the home page, about 1.9 s, pure CSS.
+   A white beam enters a prism and leaves as six colours while a counter runs 0 → 100%;
+   then the dark panel wipes upwards. Every colour bends towards the prism's base:
+   red the least, violet the most, so red is on top (paths in index.html).
+   intro-loader.js adds .ey-seen on later page loads in the same visit; reduced motion skips it. */
+.ey-loader {
+  --ld-night: #0B1016;
+  --ld-on-dark: #EDE8DC;
+  --ld-on-dark-2: rgba(237, 232, 220, .66);
+  --ld-mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, "Courier New", monospace;
+  --ld-ease-io: cubic-bezier(.76, 0, .24, 1);
+  position: fixed; inset: 0; z-index: 2000;
+  display: grid; place-items: center; align-content: center; gap: 22px;
+  background: var(--ld-night); color: var(--ld-on-dark);
+  animation: ld-out .75s var(--ld-ease-io) 1.15s both;
+}
+.ey-loader::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, #6A4D95 0%, #A38CD9 18%, #79A9D8 36%, #7CCFB0 54%, #EFB653 74%, #E2734B 100%);
+}
+@keyframes ld-out { to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
+
+.ld-art { width: min(560px, 82vw); height: auto; overflow: visible; }
+.ld-art path { fill: none; stroke-linecap: round; }
+.ld-beam { stroke: #fff; stroke-width: 2.4; stroke-linejoin: round; stroke-dasharray: 340; stroke-dashoffset: 340; animation: ld-draw .45s cubic-bezier(.6, 0, .4, 1) .05s forwards; }
+.ld-prism { stroke: rgba(237, 232, 220, .8); stroke-width: 1.6; stroke-linejoin: round; stroke-dasharray: 330; stroke-dashoffset: 330; animation: ld-draw .5s ease .2s forwards; }
+.ld-fan path { stroke-width: 2.4; stroke-dasharray: 300; stroke-dashoffset: 300; animation: ld-draw .55s cubic-bezier(.2, .7, .2, 1) forwards; animation-delay: calc(.5s + var(--k) * 40ms); }
+.ld-fan path:nth-child(1) { --k: 0; stroke: #E2734B; }
+.ld-fan path:nth-child(2) { --k: 1; stroke: #EFB653; }
+.ld-fan path:nth-child(3) { --k: 2; stroke: #7CCFB0; }
+.ld-fan path:nth-child(4) { --k: 3; stroke: #79A9D8; }
+.ld-fan path:nth-child(5) { --k: 4; stroke: #A38CD9; }
+.ld-fan path:nth-child(6) { --k: 5; stroke: #6A4D95; }
+@keyframes ld-draw { to { stroke-dashoffset: 0; } }
+
+@property --ld-n { syntax: "<integer>"; inherits: false; initial-value: 0; }
+.ld-count { margin: 0; display: flex; gap: 16px; font: 500 13px/1 var(--ld-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ld-on-dark-2); }
+.ld-count b { font-weight: 500; color: var(--ld-on-dark); min-width: 4ch; text-align: right; counter-reset: ld var(--ld-n); animation: ld-count 1.1s cubic-bezier(.3, 0, .2, 1) forwards; }
+.ld-count b::after { content: counter(ld) "%"; }
+@keyframes ld-count { to { --ld-n: 100; } }
+
+.ey-seen .ey-loader { display: none; }
+@media (prefers-reduced-motion: reduce) { .ey-loader { display: none; } }

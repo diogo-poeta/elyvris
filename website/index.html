@@ -18,9 +18,28 @@
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
   <link rel="stylesheet" href="home.css?v=3">
+  <link rel="stylesheet" href="intro-loader.css?v=2">
+  <script src="intro-loader.js?v=1"></script>
   <script defer src="tour.js?v=1"></script>
 </head>
 <body>
+  <div class="ey-loader" aria-hidden="true">
+    <!-- Ray paths traced with Snell's law (indices exaggerated, 1.40 to 1.62, so the fan is visible):
+         every colour bends towards the base, red the least (24°), violet the most (39°). -->
+    <svg class="ld-art" viewBox="0 20 600 220">
+      <path class="ld-beam" d="M10 183 L266.6 112 L333.1 111.5"/>
+      <path class="ld-prism" d="M300 44 L352 150 L248 150 Z"/>
+      <g class="ld-fan">
+        <path d="M332.1 109.5 L590 148"/>
+        <path d="M332.6 110.5 L590 162"/>
+        <path d="M333.1 111.5 L590 176"/>
+        <path d="M333.6 112.5 L590 191"/>
+        <path d="M334 113.4 L590 207"/>
+        <path d="M334.5 114.2 L590 225"/>
+      </g>
+    </svg>
+    <p class="ld-count"><span>Unfolding light</span><b></b></p>
+  </div>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="top wrap">
