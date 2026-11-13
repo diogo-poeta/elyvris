@@ -5,8 +5,8 @@
  *  (b) Each published electric-to-magnetic offset drawn as an angle on one
  *      optical cycle (360 degrees = T = lambda/c). The Meep marker comes from
  *      anapole-field-cycle.js (energy inside the particle), when it has loaded.
- *  (c) The fourteen S2 pairs on a time axis, with guide lines every T/2 that
- *      start at the first electric event; the magnetic guides are shifted by T/4.
+ *  (c) One row per published instance, each aligned to its own first electric
+ *      event, so the repeating electric-then-magnetic pattern can be compared.
  * Source: https://doi.org/10.6084/m9.figshare.27648525.v5 (CC BY 4.0).
  * Nothing is interpolated between the published samples.
  */
@@ -15,13 +15,12 @@
 const NS='http://www.w3.org/2000/svg',C_NM_FS=299.792458,WAVELENGTH_NM=366.5,PERIOD=WAVELENGTH_NM/C_NM_FS;
 // Pixel geometry of the published S3 raster (3408 x 2379): frame from t = 0 to 45 fs and P = 0 to 3e-16 W.
 const S3=Object.freeze({x0:610,x1:2934,tMax:45,yTop:279,yBottom:1981});
-const TL=Object.freeze({min:8.2,max:10.7,left:56,right:884,eY:92,hY:168});
 function normalize(value){
  if(!value||value.schemaVersion!==1||!Array.isArray(value.samples)||value.samples.length<1||value.samples.length>48)throw new TypeError('Invalid samples');
  return Object.freeze(value.samples.map(s=>{
   if(!s||!Number.isInteger(s.instance)||![s.electricTimeFs,s.magneticTimeFs,s.electricIntensity].every(Number.isFinite))throw new TypeError('Invalid sample');
   const delayFs=Number((s.magneticTimeFs-s.electricTimeFs).toFixed(2));
-  if(delayFs<0||s.electricTimeFs<TL.min||s.magneticTimeFs>TL.max)throw new TypeError('Sample outside the plotted range');
+  if(delayFs<0||delayFs>.5)throw new TypeError('Offset outside the plotted range');
   return Object.freeze({instance:s.instance,tE:s.electricTimeFs,tH:s.magneticTimeFs,intensity:s.electricIntensity,delay:delayFs,degrees:360*delayFs/PERIOD});
  }));
 }
@@ -74,33 +73,62 @@ function showMeep(lagDeg){
  g.setAttribute('visibility','visible');$('meep-note').hidden=false;$('meep-value').textContent=lagDeg.toFixed(1)+'° ('+(lagDeg/360*PERIOD).toFixed(3)+' fs)';
 }
 
-/* (c) timeline with T/2 and T/4 guides */
-const tx=t=>TL.left+(TL.right-TL.left)*(t-TL.min)/(TL.max-TL.min);
+/* (c) stacked half-cycles: one row per instance, aligned to its own first electric event.
+   Wide layout: labels to the left of each row. Compact layout (phones): labels above each row. */
+const LAYOUTS=Object.freeze({
+ wide:Object.freeze({w:712,left:236,right:700,top:62,step:58,band:22,axisGap:30,compact:false}),
+ compact:Object.freeze({w:400,left:16,right:384,top:74,step:76,band:18,axisGap:28,compact:true})
+});
+const R_MIN=-.03,R_MAX=.5;
+let L=LAYOUTS.wide,rowOf=[],startOf={};
+const rx=r=>L.left+(L.right-L.left)*(r-R_MIN)/(R_MAX-R_MIN);
+const rowY=k=>L.top+k*L.step;
 function buildTimeline(){
- const svg=$('timeline'),t0=data[0].tE,half=PERIOD/2,quarter=PERIOD/4;
- svg.append(el('text',{x:16,y:TL.eY+6,class:'as-row-label as-row-E'},'E'),el('text',{x:16,y:TL.hY+6,class:'as-row-label as-row-H'},'H'));
- for(let k=0;t0+k*half<=TL.max;k++){
-  const e=t0+k*half,h=e+quarter;
-  svg.append(el('line',{x1:tx(e),x2:tx(e),y1:TL.eY-26,y2:TL.eY+26,class:'as-guide as-guide-E'}));
-  if(h<=TL.max)svg.append(el('line',{x1:tx(h),x2:tx(h),y1:TL.hY-26,y2:TL.hY+26,class:'as-guide as-guide-H'}));
- }
- const bracket=(xa,xb,y,text,cls)=>{svg.append(el('path',{d:'M'+xa+','+(y+6)+'V'+y+'H'+xb+'V'+(y+6),class:'as-bracket'}),el('text',{x:(xa+xb)/2,y:y-6,'text-anchor':'middle',class:'as-bracket-text '+cls},text));};
- bracket(tx(t0),tx(t0+half),TL.eY-36,'T/2 = '+half.toFixed(2)+' fs','');
- bracket(tx(t0),tx(t0+quarter),TL.hY+38,'T/4 = '+quarter.toFixed(2)+' fs','');
- svg.append(el('line',{x1:tx(t0),x2:tx(t0),y1:TL.eY,y2:TL.hY+38,class:'as-guide-link'}));
- data.forEach((s,i)=>{
-  svg.append(el('line',{x1:tx(s.tE),y1:TL.eY,x2:tx(s.tH),y2:TL.hY,class:'as-pair'}));
+ const svg=$('timeline'),instances=[...new Set(data.map(s=>s.instance))],quarter=PERIOD/4,axisY=rowY(instances.length-1)+L.axisGap;
+ for(const child of [...svg.children])if(child.tagName.toLowerCase()!=='title')child.remove();
+ svg.setAttribute('viewBox','0 0 '+L.w+' '+(axisY+46));svg.classList.toggle('as-compact',L.compact);
+ instances.forEach(n=>{startOf[n]=Math.min(...data.filter(s=>s.instance===n).map(s=>s.tE));});
+ rowOf=data.map(s=>instances.indexOf(s.instance));
+ if(!L.compact)svg.append(el('text',{x:0,y:16,class:'as-col-head'},'Instance and start time'),el('text',{x:L.left,y:16,class:'as-col-head'},'Events, measured from the first electric event of each instance'));
+ instances.forEach((n,k)=>{
+  const y=rowY(k),start=startOf[n],prev=k?startOf[instances[k-1]]:null,gap=prev===null?'':'  +'+(start-prev).toFixed(2)+' fs';
+  svg.append(el('rect',{x:L.left-10,y:y-L.band,width:L.right-L.left+20,height:2*L.band,rx:4,class:'as-row-band'}));
+  if(L.compact){
+   const t=el('text',{x:L.left-10,y:y-L.band-8,class:'as-row-start'});
+   t.append(el('tspan',{class:'as-row-name-inline'},'Instance '+n),el('tspan',{},'  starts '+fs(start)));
+   if(gap)t.append(el('tspan',{class:'as-row-gap'},gap));
+   svg.append(t);
+  }else{
+   svg.append(el('text',{x:0,y:y-3,class:'as-row-name'},'Instance '+n));
+   const sub=el('text',{x:0,y:y+15,class:'as-row-start'},'starts '+fs(start));
+   if(gap)sub.append(el('tspan',{class:'as-row-gap'},gap));
+   svg.append(sub);
+  }
  });
+ const refTop=L.compact?L.top-L.band-2:L.top-24;
+ svg.append(el('line',{x1:rx(0),x2:rx(0),y1:refTop,y2:axisY,class:'as-ref as-ref-E'}),el('line',{x1:rx(quarter),x2:rx(quarter),y1:L.compact?20:L.top-40,y2:axisY,class:'as-ref as-ref-H'}));
+ svg.append(el('text',{x:rx(quarter)+6,y:L.compact?30:L.top-28,class:'as-ref-text'},'T/4 = '+quarter.toFixed(2)+' fs'));
  data.forEach((s,i)=>{
-  const e=el('circle',{cx:tx(s.tE),cy:TL.eY,r:4.5,class:'as-point-E'}),h=el('path',{d:'M'+tx(s.tH)+','+(TL.hY-6)+'l6,6l-6,6l-6,-6z',class:'as-point-H'});
+  const y=rowY(rowOf[i]),xe=rx(s.tE-startOf[s.instance]),xh=rx(s.tH-startOf[s.instance]);
+  const e=el('circle',{cx:xe,cy:y,r:5,class:'as-point-E'}),h=el('path',{d:'M'+xh+','+(y-6.5)+'l6.5,6.5l-6.5,6.5l-6.5,-6.5z',class:'as-point-H'});
   for(const m of [e,h]){m.addEventListener('click',()=>select(i));m.style.cursor='pointer';}
   svg.append(e,h);Object.assign(marks[i],{e,h});
  });
- const axisY=212;svg.append(el('line',{x1:TL.left,x2:TL.right,y1:axisY,y2:axisY,class:'as-axis'}));
- for(let k=Math.round(TL.min*10);k<=Math.round(TL.max*10);k++){const t=k/10,major=k%5===0;svg.append(el('line',{x1:tx(t),x2:tx(t),y1:axisY,y2:axisY+(major?7:4),class:'as-axis'}));if(major)svg.append(el('text',{x:tx(t),y:axisY+21,'text-anchor':'middle',class:'as-axis-text'},t.toFixed(1)));}
- svg.append(el('text',{x:TL.right,y:axisY+40,'text-anchor':'end',class:'as-axis-text'},'Time (fs), as reported in Supplement Fig. S2'));
- const sel=el('g',{id:'as-tl-selected'});sel.append(el('line',{class:'as-pair-selected'}),el('circle',{r:7,cy:TL.eY,class:'as-dot-E'}),el('path',{class:'as-dot-H'}));svg.append(sel);
+ svg.append(el('line',{x1:L.left,x2:L.right,y1:axisY,y2:axisY,class:'as-axis'}));
+ for(let k=0;k<=5;k++){const r=k/10;svg.append(el('line',{x1:rx(r),x2:rx(r),y1:axisY,y2:axisY+6,class:'as-axis'}),el('text',{x:rx(r),y:axisY+20,'text-anchor':'middle',class:'as-axis-text'},r.toFixed(1)));}
+ svg.append(el('text',{x:L.right,y:axisY+40,'text-anchor':'end',class:'as-axis-text'},L.compact?'Time since the instance’s first electric event (fs)':'Time since the first electric event of the instance (fs)'));
+ const sel=el('g',{id:'as-tl-selected'});sel.append(el('path',{class:'as-span'}),el('text',{'text-anchor':'middle',class:'as-span-text'}),el('circle',{r:7,class:'as-dot-E'}),el('path',{class:'as-dot-H'}));svg.append(sel);
 }
+function selectRow(s,i){
+ const tl=fig.querySelector('#as-tl-selected'),y=rowY(rowOf[i]),ex=rx(s.tE-startOf[s.instance]),hx=rx(s.tH-startOf[s.instance]),[span,text,dot,dia]=tl.children,yb=y-12;
+ span.setAttribute('d','M'+ex+','+(yb+4)+'V'+yb+'H'+hx+'V'+(yb+4));text.setAttribute('x',(ex+hx)/2);text.setAttribute('y',yb-3);text.textContent='Δt = '+fs(s.delay);
+ dot.setAttribute('cx',ex);dot.setAttribute('cy',y);dia.setAttribute('d','M'+hx+','+(y-8)+'l8,8l-8,8l-8,-8z');
+}
+function fitTimeline(){
+ if(!data)return;const box=$('timeline').parentElement,next=box.clientWidth<540?LAYOUTS.compact:LAYOUTS.wide;
+ if(next===L&&$('timeline').childElementCount>1)return;L=next;buildTimeline();selectRow(data[current],current);
+}
+if('ResizeObserver'in window)new ResizeObserver(fitTimeline).observe(fig);else window.addEventListener('resize',fitTimeline);
 
 /* shared selection */
 function select(index){
@@ -108,8 +136,7 @@ function select(index){
  const [x,y]=polar(s.degrees,D.r-3),dial=fig.querySelector('#as-dial-selected');
  dial.querySelector('line').setAttribute('x1',D.cx);dial.querySelector('line').setAttribute('y1',D.cy);dial.querySelector('line').setAttribute('x2',x);dial.querySelector('line').setAttribute('y2',y);
  dial.querySelector('path').setAttribute('d','M'+x+','+(y-7)+'l7,7l-7,7l-7,-7z');
- const tl=fig.querySelector('#as-tl-selected'),ex=tx(s.tE),hx=tx(s.tH),pair=tl.querySelector('line');
- pair.setAttribute('x1',ex);pair.setAttribute('y1',TL.eY);pair.setAttribute('x2',hx);pair.setAttribute('y2',TL.hY);tl.querySelector('circle').setAttribute('cx',ex);tl.querySelector('path').setAttribute('d','M'+hx+','+(TL.hY-8)+'l8,8l-8,8l-8,-8z');
+ selectRow(s,current);
  $('label').textContent='Instance '+s.instance+', sample '+(current-first+1)+' (pair '+(current+1)+' of '+data.length+')';
  $('tE').textContent=fs(s.tE);$('tH').textContent=fs(s.tH);$('dt').textContent=fs(s.delay);$('deg').textContent=Math.round(s.degrees)+'°';$('frac').textContent=(s.delay/PERIOD).toFixed(2)+' T';$('int').textContent=s.intensity.toFixed(3);
  $('prev').disabled=current===0;$('next').disabled=current===data.length-1;
@@ -126,7 +153,7 @@ function buildControls(){
 function onEnergy(detail){if(detail&&Number.isFinite(detail.lagDeg))showMeep(detail.lagDeg);}
 document.addEventListener('anapole-field-cycle:energy',e=>{if(data)onEnergy(e.detail);});
 fetch('anapole-temporal-samples.json',{credentials:'same-origin'}).then(r=>{if(!r.ok)throw new Error('Samples unavailable');return r.json();}).then(value=>{
- data=normalize(value);buildPower();buildDial();buildTimeline();buildControls();select(0);
+ data=normalize(value);buildPower();buildDial();L=$('timeline').parentElement.clientWidth<540?LAYOUTS.compact:LAYOUTS.wide;buildTimeline();buildControls();select(0);
  onEnergy(root.AnapoleFieldCycleEnergy);
  fig.setAttribute('aria-busy','false');fig.classList.add('as-ready');
 }).catch(()=>{fig.setAttribute('aria-busy','false');const e=$('error');e.hidden=false;e.textContent='The published timing samples could not be loaded. The original S2 table is linked below.';});
