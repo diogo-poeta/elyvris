@@ -30,8 +30,9 @@ for page in pages.values():
 home=(root/'index.html').read_text(encoding='utf-8')
 research=(root/'research.html').read_text(encoding='utf-8')
 assert 'lab.html' not in home, 'The legacy calculator must not return to the homepage'
-assert all(x in research for x in ['anapole-field-cycle','anapole-temporal','OL.536925','OME.611814','OE.564577','eti.2026.104895']), 'Retain the research viewers and all four papers'
+assert all(x in research for x in ['research-reader.js','OL.536925','OME.611814','OE.564577','eti.2026.104895','unibi/3020621']), 'List all four articles and the PhD thesis'
+assert research.count('class="paper"')==5, 'Five papers to read in the page'
+assert research.count('Optica Publishing Group')==3 and 'CC BY-NC-ND' in research and 'CC BY 4.0' in research, 'Keep the copyright notices required to post the PDFs'
 assert all(x in (root/'cv.html').read_text(encoding='utf-8') for x in ['Research Intern','Invited Researcher in Proteomics']), 'Preserve the CV research history'
-assert 'Jolivet' in research and 'apsusc.2022.155214' in research, 'Show the field-map optical-property source'
 assert (root/'publications.bib').read_text(encoding='utf-8').count('@article{')==4
 print(json.dumps({'status':'passed','pages':list(pages),'local_links_checked':checked,'research_and_cv':'retained','publication_exports':4}))

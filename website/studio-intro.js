@@ -47,7 +47,7 @@
     '  </ol>',
     '  <p class="si-goal">So first decide what the structure must do, and whether it can be made. Then draw it.</p>',
     '  <div class="si-actions"><button type="button" class="si-start">Start designing</button></div>',
-    '  <p class="si-refs"><sup>1</sup> T. Cao, K. Liu, Y. Tang, J. Deng, K. Li and G. Li, “Giant enhancement of third harmonic generation from Ge<sub>2</sub>Sb<sub>2</sub>Te<sub>5</sub> based Fabry-Perot cavity,” <a href="https://arxiv.org/abs/1901.08795" rel="noopener noreferrer">arXiv:1901.08795</a> (2019); the 422× is relative to non-resonant conditions. <sup>2</sup> D. Poeta et al., <i>Optical Materials Express</i> 16, 3342 (2026), <a href="https://doi.org/10.1364/OME.611814" rel="noopener noreferrer">doi:10.1364/OME.611814</a>; see also <a href="research.html#films">Research, Part III</a>.</p>',
+    '  <p class="si-refs"><sup>1</sup> T. Cao, K. Liu, Y. Tang, J. Deng, K. Li and G. Li, “Giant enhancement of third harmonic generation from Ge<sub>2</sub>Sb<sub>2</sub>Te<sub>5</sub> based Fabry-Perot cavity,” <a href="https://arxiv.org/abs/1901.08795" rel="noopener noreferrer">arXiv:1901.08795</a> (2019); the 422× is relative to non-resonant conditions. <sup>2</sup> D. Poeta et al., <i>Optical Materials Express</i> 16, 3342 (2026), <a href="https://doi.org/10.1364/OME.611814" rel="noopener noreferrer">doi:10.1364/OME.611814</a>; see also <a href="research.html#ome-2026">read it on the Research page</a>.</p>',
     '</section>'
   ].join('\n');
   document.body.append(dialog);

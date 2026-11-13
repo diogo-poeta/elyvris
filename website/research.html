@@ -6,17 +6,12 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Research · Elyvris</title>
-  <meta name="description" content="From transparent metal films to tunable ultraviolet light for gas sensing: the research of Diogo Poeta, explained with figures from two theses and four journal articles.">
+  <meta name="description" content="The published research of Diogo Poeta: four journal articles and a PhD thesis on ultraviolet anapoles, tunable vacuum-ultraviolet light, gas sensing and slow light in TiO₂ films, to read in the page.">
   <meta name="theme-color" content="#11161C">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
   <link rel="stylesheet" href="home.css?v=3">
-  <link rel="stylesheet" href="article.css?v=20261114">
-  <link rel="stylesheet" href="anapole-field-cycle.css?v=3">
-  <link rel="stylesheet" href="anapole-story.css?v=5">
-  <link rel="stylesheet" href="research-paged.css?v=1">
-  <script defer src="anapole-field-cycle.js?v=5"></script>
-  <script defer src="anapole-story.js?v=6"></script>
-  <script defer src="research-paged.js?v=1"></script>
+  <link rel="stylesheet" href="papers.css?v=1">
+  <script defer src="research-reader.js?v=1"></script>
   <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/research.html">
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/research.html">
   <meta property="og:title" content="Research · Elyvris">
@@ -34,491 +29,93 @@
     </nav>
   </header>
 
-  <main id="main" class="article">
-    <!-- On a laptop, research-paged.js shows one part (.rp) at a time with a contents list on the left.
-         On a phone, or without JavaScript, the whole page reads top to bottom as before. -->
-    <div class="rp" id="overview" data-title="Overview">
-    <header class="article-head wrap-text">
-      <p class="kicker">Research · 2021–2026</p>
-      <h1>Light through matter: metal films, ultraviolet sources and nanostructures</h1>
-      <p class="standfirst">Five years of photonics, told through the figures of two theses and four journal articles: how to make a metal film let light through, how to make tunable vacuum-ultraviolet light, how to use it to tell gas molecules apart, and how to design materials and nanostructures that could make it all smaller.</p>
-      <p class="byline">Diogo Poeta</p>
+  <main id="main" class="papers wrap">
+    <header class="papers-head">
+      <p class="kicker">Research · 2024–2026</p>
+      <h1>Articles and thesis</h1>
+      <p class="papers-lede">Choose a paper to read it here. On a phone it opens in your PDF viewer.</p>
     </header>
 
-    <nav class="journey" aria-label="Parts of this page">
-      <ol>
-        <li>
-          <a class="j-part" href="#part-1"><span class="j-years">MSc · 2021, recalculated 2026</span><span class="j-num">Part I</span><span class="j-title">Light through metal</span></a>
-          <a href="#msc">1 Making a metal transparent</a>
-        </li>
-        <li>
-          <a class="j-part" href="#part-2"><span class="j-years">PhD · 2023–2026</span><span class="j-num">Part II</span><span class="j-title">Tunable ultraviolet light for gas sensing</span></a>
-          <a href="#problem">2 The problem</a>
-          <a href="#vuv">3 Tunable VUV light</a>
-          <a href="#sips">4 Telling molecules apart</a>
-        </li>
-        <li>
-          <a class="j-part" href="#part-3"><span class="j-years">PhD · 2024–2026</span><span class="j-num">Part III</span><span class="j-title">Slowing down light in thin films</span></a>
-          <a href="#films">5 TiO₂ films and slow light</a>
-        </li>
-        <li>
-          <a class="j-part" href="#part-4"><span class="j-years">PhD · 2024–2026</span><span class="j-num">Part IV</span><span class="j-title">Anapoles: a particle that holds light</span></a>
-          <a href="#what-anapole">6 What is an anapole?</a>
-          <a href="#anapoles">7 An anapole in the ultraviolet</a>
-          <a href="#data">8 Inside an anapole</a>
-          <a href="#thg">9 Using it to make VUV light</a>
-        </li>
-      </ol>
-      <p class="j-more"><a href="#applications">Where this could be used</a> · <a href="#publications">Publications</a> · <a href="#refs-title">References</a></p>
-    </nav>
-
-    <div class="stats-wrap">
-      <dl class="stats">
-        <div><dt>94%</dt><dd>calculated transmission through a continuous 30 nm silver film, checked with two methods</dd></div>
-        <div><dt>120 nm</dt><dd>shortest tunable vacuum-ultraviolet wavelength generated</dd></div>
-        <div><dt>0.5 ppm</dt><dd>benzene picked out of a gas mixture</dd></div>
-        <div><dt>≈ 0.2 <i>c</i></dt><dd>energy velocity in ozone-grown TiO₂ films near 380–400 nm</dd></div>
-        <div><dt>UV-A</dt><dd>first report of anapole states in the UV-A, in TiO₂ nanostructures (simulation)<sup><a href="#ref-6">6</a></sup></dd></div>
-      </dl>
-    </div>
-    </div>
-
-    <div class="rp" id="part-1" data-num="Part I" data-title="Light through metal">
-    <div class="part">
-      <div class="wrap-text">
-        <p class="part-num">Part I · MSc, 2021, recalculated in 2026</p>
-        <p class="part-title">Light through metal</p>
-        <p class="part-line">How a pattern of a semiconductor lets light pass through a continuous metal film.</p>
-      </div>
-    </div>
-
-    <aside class="physics wrap-text" aria-labelledby="phys-1">
-      <p class="physics-label" id="phys-1">The physics in brief</p>
-      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="A wave enters a slab of material. Inside, its wavelength is shorter, because n slows it, and its height shrinks, because k absorbs it.">
-        <rect class="ph-slab" x="250" y="10" width="330" height="100"/>
-        <path class="ph-wave" d="M10 60 c 20 -40, 40 -40, 60 0 s 40 40, 60 0 s 40 -40, 60 0 s 40 40, 60 0"/>
-        <path class="ph-wave ph-in" d="M250 60 c 12 -32, 24 -32, 36 0 s 24 26, 36 0 s 24 -20, 36 0 s 24 16, 36 0 s 24 -12, 36 0 s 24 9, 36 0 s 24 -6, 36 0 s 24 4, 36 0 s 24 -2, 36 0"/>
-        <text class="ph-label" x="262" y="104">shorter (n), fading (k)</text>
-      </svg>
-      <p>Inside a material, light slows down and fades. Two numbers describe how: the refractive index <i>n</i>, how much the wave slows and bends, and the extinction coefficient <i>k</i>, how quickly it is absorbed. A metal has a large <i>k</i>: its free electrons follow the field and send the light back, so even 30 nm of silver reflects most of it. A grating can hand the light to <em>surface plasmons</em>, waves of the electrons bound to each face of the metal. In a film this thin the plasmons of the two faces couple, and through them the energy crosses to the other side.<sup><a href="#ref-1">1</a></sup></p>
-      <p class="physics-more"><a class="arrow" href="refractive-index.html">n and k, explained</a> <a class="arrow" href="light.html#l">In the essay: L, layers</a></p>
-    </aside>
-
-    <section id="msc" class="wrap-text">
-      <h2><span>1</span> Making a metal transparent</h2>
-      <p class="chapter-meta">MSc in Micro and Nano Technologies · University of Minho and International Iberian Nanotechnology Laboratory · 2021<sup><a href="#ref-1">1</a></sup> · recalculated with free solvers in 2026</p>
-      <p class="question"><span>The question</span>Can a pattern on both sides of a continuous silver film, 30 nm thick, let light through it without cutting holes in the metal?</p>
-      <p>Touch screens and solar cells need electrodes that conduct electricity and let light through. Metals conduct well, but a silver film only 30 nm thick still reflects almost all near-infrared light: about 2% gets through (Figure 1a).</p>
-      <p>The idea of the thesis was to place lines of a <strong>transition metal dichalcogenide</strong> (TMDC) such as MoS₂, a layered semiconductor with a very high refractive index, above and below the metal. The lines couple the incoming light to <em>surface plasmons</em>, oscillations of the electrons at the two faces of the metal, which carry the light across the film (Figure 1b).<sup><a href="#ref-1">1</a></sup></p>
-    </section>
-
-    <figure class="fig narrow" id="fig-1">
-      <img src="assets/research/msc-2026-concept.webp" width="1524" height="1050" loading="lazy" alt="Two sketches. Left: a red beam falls on a bare silver film and almost nothing passes, T about 0.02. Right: the same film with blue TMDC lines above and below; the beam passes through, T about 0.96.">
-      <figcaption><span class="tag sketch">Sketch</span><b>Figure 1.</b> The idea. (a) A continuous 30 nm silver film transmits about 0.02 of near-infrared light at normal incidence. (b) With TMDC lines above and below it (period 580 nm, line width 174 nm, thickness 150 nm), the calculated transmission near 1.06 µm reaches about 0.96 when the electric field <b>E</b> points across the lines, and stays at about 0.02 when it points along them. The width of the red beam shows the transmitted power. Not to scale; values from the 2026 calculation in Figure 2.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <h3 class="subhead">Checking the result with free tools</h3>
-      <p>The 2021 simulations used the commercial solver Lumerical. In 2026 I recalculated the main designs with two free methods that work in different ways: the FDTD solver Meep, which steps the fields forward in time on a grid, and rigorous coupled-wave analysis (RCWA), which has no spatial grid at all. I drew the geometry with gdsfactory, the layout library that <a href="studio.html">Studio</a> writes code for, and took every optical constant from public tables.</p>
-      <p>With MoS₂ lines, <strong>94% of the light passes through the silver</strong> in Meep and 96% in RCWA, near 1050 nm. The bare film lets through 2% at that wavelength, so the lines raise the transmission about 45 times (Figure 2). The 2021 thesis reported up to 90%.<sup><a href="#ref-1">1</a></sup> The structure also sorts polarisation: with the field across the lines it passes light near 1050 nm, and with the field along the lines it passes light near 880 nm and blocks 1050 nm. That makes it a polariser for the near infrared.</p>
-    </div>
-
-    <figure class="fig narrow" id="fig-2">
-      <img src="assets/research/msc-2026-result.webp" width="1240" height="1000" loading="lazy" alt="Transmission from 860 to 1250 nm. The bare silver film stays near 0.02. With MoS₂ lines and the field across them, transmission rises to 0.94 near 1050 nm, and the RCWA circles follow the Meep curve. With the field along the lines, transmission is high near 880 nm and drops to near zero above 1000 nm.">
-      <figcaption><span class="tag sim">Simulation</span><b>Figure 2.</b> Transmission <i>T</i> of a continuous 30 nm silver film with MoS₂ lines on both sides (period 580 nm, line width 174 nm, thickness 150 nm), at normal incidence. Orange line: electric field across the lines, Meep (2D FDTD, 2 nm grid). Circles: the same case calculated with RCWA and the same material formulas. Dashed blue line: field along the lines, Meep. Grey line: bare silver film, exact single-layer formula. Optical constants: silver from Johnson and Christy (1972); MoS₂ in-plane from Beal and Hughes (1979); for the MoS₂ out-of-plane index the thesis does not name its source, so Munkhbat et al. (2022) is assumed. Calculation, not measurement.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <h3 class="subhead">Why it works</h3>
-      <p>The field maps show what carries the light (Figure 3). At the transmission maxima the field is strongest on the silver surface at the edges of the lines, five to six times the incident field. The component normal to the film has the same sign on both faces at one maximum and opposite signs at the other. These are the two coupled surface plasmons of a thin metal film, the same pair the thesis identified in 2021 at about 960 and 1100 nm.<sup><a href="#ref-1">1</a></sup></p>
-    </div>
-
-    <figure class="fig narrow" id="fig-3">
-      <img src="assets/research/msc-2026-fields.webp" width="1240" height="920" loading="lazy" alt="Two field maps of one grating period. At 947 nm, red and blue lobes sit at the line edges with the same colour above and below the silver film. At 1127 nm the colours are swapped between the top and bottom faces.">
-      <figcaption><span class="tag sim">Simulation</span><b>Figure 3.</b> Electric field normal to the film, <i>E<sub>y</sub></i>, in one period at the two transmission maxima, with the field across the lines. Red and blue are opposite signs. Grey: the 30 nm silver film. Outlines: MoSe₂ lines, period 500 nm, width 150 nm, thickness 150 nm. (a) 947 nm: the same sign above and below the film. (b) 1127 nm: opposite signs. Meep, 2D FDTD, 2.5 nm grid. This MoSe₂ grating is the first design of the thesis; it behaves like the MoS₂ grating of Figure 2, with its maxima at shorter wavelengths.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <h3 class="subhead">From the simulation to the laboratory</h3>
-      <p>The experimental part started from MoS₂ flakes exfoliated with adhesive tape and stacked as MoS₂–gold–MoS₂ around a 30 nm gold film. Under the microscope, flakes of different thickness show different colours (Figure 4c). Measured through two such samples, the stack transmitted up to about 1.5 to 1.6 times as much light as the bare gold, at near-infrared wavelengths. To pattern the flakes without a cleanroom, I cut gratings directly into them by laser ablation: lines 0.4 µm wide, 2.16 µm apart (Figures 4a and 4b).<sup><a href="#ref-1">1</a></sup></p>
-    </div>
-
-    <figure class="fig wide microscopy" id="fig-4">
-      <div class="panel-image grating-panels">
-        <img src="assets/research/msc-4-12-laser-grating.webp" width="989" height="402" loading="lazy" alt="(a) Optical micrograph of a MoS₂ flake with six parallel lines cut by a laser. (b) Electron micrograph of the grating with measured line length, width and spacing.">
-        <span class="panel-label panel-a" aria-hidden="true">(a)</span>
-        <span class="panel-label panel-b" aria-hidden="true">(b)</span>
-      </div>
-      <div class="panel-image flakes-panel">
-        <img src="assets/research/msc-4-2-flakes.webp" width="974" height="608" loading="lazy" alt="(c) Optical micrograph of MoS₂ flakes in pink, yellow and blue-grey tones on a substrate.">
-        <span class="panel-label panel-c" aria-hidden="true">(c)</span>
-      </div>
-      <figcaption><span class="tag meas">Microscopy</span><b>Figure 4.</b> (a) Optical micrograph of a grating cut into a MoS₂ flake by laser ablation. (b) Electron micrograph of the grating. The annotated line is 9.66 µm long and 0.403 µm wide, with a spacing of 2.16 µm. (c) Optical micrograph of exfoliated MoS₂ flakes whose colour varies with thickness. From Ref. 1, Figs. 4.12 and 4.2.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>Lines of MoS₂ on both sides let about 94% of near-infrared light through 30 nm of silver, some 45 times more than the bare film, and two independent free methods agree. The first samples measured in 2021 showed a smaller gain, 1.5 to 1.6 times. Possible uses: transparent electrodes for solar cells, plasmonic colour filters, polarisers, and cavities that make photodetectors more efficient.<sup><a href="#ref-1">1</a></sup></p>
-    </div>
-    </div>
-
-    <div class="rp" id="part-2" data-num="Part II" data-title="Tunable ultraviolet light for gas sensing">
-    <div class="part">
-      <div class="wrap-text">
-        <p class="part-num">Part II · PhD, 2023–2026</p>
-        <p class="part-title">Tunable ultraviolet light for gas sensing</p>
-        <p class="part-line">A light source whose ultraviolet colour can be tuned, and how it tells gas molecules apart.</p>
-      </div>
-    </div>
-
-    <aside class="physics wrap-text" aria-labelledby="phys-2">
-      <p class="physics-label" id="phys-2">The physics in brief</p>
-      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="A long-wavelength pump wave passes through a thin membrane and leaves as a wave with three times the frequency.">
-        <path class="ph-wave" d="M10 60 c 22 -36, 44 -36, 66 0 s 44 36, 66 0 s 44 -36, 66 0"/>
-        <rect class="ph-slab" x="226" y="14" width="18" height="92"/>
-        <path class="ph-wave ph-out" d="M250 60 c 7.3 -36, 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0"/>
-        <text class="ph-label" x="10" y="112">pump, frequency ν</text>
-        <text class="ph-label" x="250" y="112">third harmonic, 3ν</text>
-      </svg>
-      <p>Each photon carries an energy fixed by its frequency, <i>E</i> = <i>hν</i>: about 10 eV at 120 nm. A molecule loses an electron only when a photon brings at least its ionisation energy, and each molecule has its own threshold. Light at these energies, the vacuum ultraviolet, is absorbed by air and by most materials, so here it is made inside the set-up by <em>third-harmonic generation</em>: in a thin membrane, three photons of the pump light combine into one photon with three times the frequency.<sup><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup></p>
-      <p class="physics-more"><a class="arrow" href="light.html#nu">In the essay: ν, frequency</a></p>
-    </aside>
-
-    <section id="problem" class="wrap-text">
-      <h2><span>2</span> The problem the PhD set out to solve</h2>
-      <p class="chapter-meta">PhD in Physics · Bielefeld University · 2026<sup><a href="#ref-2">2</a></sup></p>
-      <p class="question"><span>The question</span>Can a portable detector say which gas molecules are in the air, and not only how many?</p>
-      <p>Indoor air carries volatile organic compounds (VOCs) from paints, cleaning products and fuels. Some, like benzene, are regulated at concentrations below one part per million. The standard portable detector, a <strong>photoionization detector</strong>, uses an ultraviolet lamp to knock an electron off each gas molecule and counts the resulting current. But the lamp emits at a fixed photon energy, so every molecule that can be ionised at that energy adds to the same signal. The detector tells you <em>how much</em>, not <em>what</em>.<sup><a href="#ref-2">2</a></sup></p>
-      <p>Each molecule needs a different minimum photon energy to be ionised, its ionisation potential. Most VOCs lie between about 7.75 and 11.8 eV, which corresponds to vacuum-ultraviolet (VUV) light of about 160 to 105 nm. A VUV source whose wavelength can be tuned across those thresholds would let a detector tell molecules apart.<sup><a href="#ref-2">2</a></sup></p>
-    </section>
-
-    <figure class="fig wide" id="fig-5">
-      <img src="assets/research/phd-1-1-concept.webp" width="1588" height="736" loading="lazy" alt="Concept drawing: a laser beam is focused on a nanomembrane, whose third harmonic at one third of the laser wavelength ionises molecules of benzene, ethylbenzene, toluene and xylene in a sample chamber; the resulting signal is turned into concentration curves and a toxicity reading.">
-      <figcaption><span class="tag sketch">Schematic</span><b>Figure 5.</b> The idea behind the PhD. A laser is focused on a thin nanomembrane, which generates light at one third of the laser wavelength (λ<sub>VUV</sub> = λ<sub>laser</sub>/3). This vacuum-ultraviolet light ionises the gas molecules in a sample chamber, and the current reveals which compounds are present and how much. From Ref. 2, Fig. 1.1 (CC BY 4.0).</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>A lamp-based detector measures the total of all ionisable gases. A light source whose photon energy can be tuned across the ionisation thresholds, about 105 to 160 nm, could tell the molecules apart.</p>
-    </div>
-
-    <section id="vuv" class="wrap-text">
-      <h2><span>3</span> Making tunable vacuum-ultraviolet light</h2>
-      <p class="question"><span>The question</span>How do you make vacuum-ultraviolet light whose wavelength you can choose?</p>
-      <p>Vacuum-ultraviolet light is absorbed by air and by most optical materials, which is why it is hard to make and to handle. The approach here was nonlinear optics. A femtosecond laser drives an optical parametric amplifier, which produces a tunable wavelength. A crystal of β-barium borate doubles its frequency into the near ultraviolet. Finally a suspended SiO₂ membrane only 600 nm thick triples it, by <strong>third-harmonic generation</strong>, into the VUV (Figure 6). The membrane is thin enough that phase matching, the main limit of bulk crystals, matters much less.<sup><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup></p>
-      <p>The source is tunable across 120–180 nm, with generation shown at 130 nm and at 120 nm. Coupled to a custom detector, it ionised ethanolamine and eucalyptol, and the signal grew linearly with the ethanolamine concentration.<sup><a href="#ref-3">3</a></sup> My part of this work was the gas-handling system, the low-noise current amplifier and the data-acquisition software, together with simulations of the third-harmonic generation and the measurements.<sup><a href="#ref-2">2</a></sup></p>
-    </section>
-
-    <figure class="fig wide" id="fig-6">
-      <img src="assets/research/phd-2-2-vuv-setup.webp" width="1600" height="778" loading="lazy" alt="Top view of the optical table: 1 pump laser at 1030 nm, 2 optical parametric amplifier 600–2300 nm, 3 second-harmonic stage 315–440 nm, 4 SiO₂ nanomembranes producing third harmonic at 105–180 nm, 5 ionisation chamber; with a microscope image of round membranes and a close-up drawing of the chamber.">
-      <figcaption><span class="tag sketch">Set-up</span><b>Figure 6.</b> The tunable VUV source: (1) pump laser, 1030 nm; (2) optical parametric amplifier, 600–2300 nm; (3) second-harmonic stage, 315–440 nm; (4) SiO₂ nanomembranes, third harmonic at 105–180 nm; (5) ionisation chamber. Inset: microscope image of the suspended membranes. From Ref. 2, Fig. 2.2 (CC BY 4.0).</figcaption>
-    </figure>
-
-    <figure class="fig narrow" id="fig-7">
-      <img src="assets/research/phd-3-7-thg.webp" width="1108" height="696" loading="lazy" alt="Four panels: (a) alignment optics; (b) camera image of the laser spot on one membrane; (c) optical layout for spectral detection; (d) overlapping third-harmonic spectra between about 395 and 460 nm, one per pump wavelength.">
-      <figcaption><span class="tag meas">Measurement</span><b>Figure 7.</b> Checking third-harmonic generation in the membranes with near-ultraviolet output, where it can be measured with an ordinary spectrometer. (a) Alignment set-up. (b) Camera image of the laser spot centred on one membrane. (c) Optical layout for spectral detection. (d) Third-harmonic spectra for pump wavelengths from 1190 to 1380 nm in 10 nm steps. From Ref. 2, Fig. 3.7, adapted from Ref. 3.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>Third-harmonic generation in a 600 nm SiO₂ membrane gave vacuum-ultraviolet light tunable across 120–180 nm, and that light ionised test gases.<sup><a href="#ref-3">3</a></sup></p>
-    </div>
-
-    <section id="sips" class="wrap-text">
-      <h2><span>4</span> Telling molecules apart</h2>
-      <p class="question"><span>The question</span>Can the tunable source name the molecules in a mixture?</p>
-      <p>With a tunable source, the detector can do something a lamp cannot. As the photon energy is raised step by step, the current jumps each time it crosses the ionisation potential of a compound present in the gas. The size of each jump is proportional to that compound’s concentration, weighted by how easily it ionises. Taking the derivative of the current turns the steps into peaks, one per molecule: a spectrum of the mixture. The method is called <strong>sample ionization potential spectroscopy</strong> (SIPS).<sup><a href="#ref-4">4</a></sup></p>
-      <p>Applied to a certified mixture of benzene, toluene, ethylbenzene and xylenes (BTEX), it separated the individual compounds at the concentrations of occupational exposure limits: 0.5 ppm benzene, 50 ppm toluene, 20 ppm ethylbenzene and 50 ppm of each xylene (Figure 8).<sup><a href="#ref-2">2</a>,<a href="#ref-4">4</a></sup> The experiments and measurements were carried out by my co-authors. My contribution was the earlier lamp-based photoionization detector project that this set-up grew from, the research discussion, and writing and editing the manuscript.<sup><a href="#ref-2">2</a></sup></p>
-    </section>
-
-    <figure class="fig wide" id="fig-8">
-      <img src="assets/research/phd-4-7-sips.webp" width="1495" height="521" loading="lazy" alt="Left: photoionisation current rising from about 10 to 105 nA as photon energy increases from 8.4 to 9.3 eV. Right: bars of the derivative at the ionisation potentials of p-xylene, o-xylene, ethylbenzene, toluene and benzene.">
-      <figcaption><span class="tag meas">Measurement</span><b>Figure 8.</b> Reading a gas mixture. (a) Cumulative photoionisation current against photon energy, built from the steps measured for each compound. (b) Its derivative at each ionisation potential; each bar is one compound of the BTEX mixture. From Ref. 2, Fig. 4.7, adapted from Ref. 4 (CC BY-NC-ND 4.0).</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>Yes. Stepping the photon energy separated benzene, toluene, ethylbenzene and xylenes in one mixture, at occupational exposure limits and down to 0.5 ppm of benzene.<sup><a href="#ref-4">4</a></sup></p>
-    </div>
-    </div>
-
-    <div class="rp" id="part-3" data-num="Part III" data-title="Slowing down light in thin films">
-    <div class="part">
-      <div class="wrap-text">
-        <p class="part-num">Part III · PhD, 2024–2026</p>
-        <p class="part-title">Slowing down light in thin films</p>
-        <p class="part-line">How to choose a thin film that makes the third harmonic stronger, before building it.</p>
-      </div>
-    </div>
-
-    <aside class="physics wrap-text" aria-labelledby="phys-3">
-      <p class="physics-label" id="phys-3">The physics in brief</p>
-      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="Inside a thin film the energy of the light moves slowly, shown by a short arrow under a long one for light in air.">
-        <rect class="ph-slab" x="20" y="40" width="560" height="40"/>
-        <path class="ph-arrow" d="M30 24 H570 M562 18 L570 24 L562 30"/>
-        <text class="ph-label" x="40" y="18">energy in air: c</text>
-        <path class="ph-arrow ph-amber" d="M30 60 H140 M132 54 L140 60 L132 66"/>
-        <text class="ph-label" x="150" y="65">energy in the film: about 0.2 c</text>
-        <text class="ph-label" x="20" y="112">slow light in a TiO₂ film near 380 nm</text>
-      </svg>
-      <p>Third-harmonic generation is stronger when light stays longer, or is more concentrated, inside the material. In a thin film, the <em>energy velocity</em>, the flow of energy divided by the energy stored, says how fast the light’s energy really moves; in ozone-grown TiO₂ near 380 nm it falls to about a fifth of <i>c</i>.<sup><a href="#ref-5">5</a></sup> Part IV shows the second way: a nanostructure that holds the light.</p>
-    </aside>
-
-    <section id="films" class="wrap-text">
-      <h2><span>5</span> A better material: TiO₂ films and slow light</h2>
-      <p class="question"><span>The question</span>Which material and which film make the third harmonic stronger, and can you tell before you build it?</p>
-      <p>Third-harmonic generation is weak, so the next question was how to make it stronger. One route is a material with a larger nonlinear response in a geometry that holds the light longer. TiO₂ has a high refractive index and low absorption in the near ultraviolet. It can be grown atomic layer by atomic layer by <strong>atomic layer deposition</strong> (ALD), which controls thickness to a fraction of a nanometre. Growing it with different oxidants (water, hydrogen peroxide, ozone) gave films with different structure, defects and optical constants (Figure 9).<sup><a href="#ref-2">2</a>,<a href="#ref-5">5</a></sup></p>
-    </section>
-
-    <figure class="fig wide" id="fig-9">
-      <img src="assets/research/phd-5-1-films.webp" width="1178" height="435" loading="lazy" alt="Four coated wafers in gold, brown, dark violet and green, labelled TiO₂ grown with H₂O 1250 cycles, O₃ 1250 cycles, H₂O₂ 1250 cycles and O₃ 2135 cycles.">
-      <figcaption><span class="tag photo">Photograph</span><b>Figure 9.</b> TiO₂ coatings grown by ALD with different oxidants and numbers of cycles: H₂O (1250 cycles), O₃ (1250), H₂O₂ (1250) and O₃ (2135). The colours change with film thickness and optical constants through thin-film interference (see <a href="refractive-index.html">n and k, explained</a>). From Ref. 2, Fig. 5.1.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p>To compare films before measuring them, I needed a number that says how long light lingers in a material. The usual choice, the group velocity, can give nonsense, even faster than light, near an absorption edge. The <strong>energy velocity</strong> <i>v</i><sub>e</sub> = ⟨<i>S</i>⟩/⟨<i>u</i>⟩, the energy flow divided by the stored energy, stays physical. It follows directly from the measured <i>n</i>(λ) and <i>k</i>(λ). In ozone-grown films it fell to about 0.18–0.21 of the speed of light near 380–400 nm, confirmed by ellipsometry and simulation (Figure 10).<sup><a href="#ref-5">5</a></sup></p>
-    </div>
-
-    <figure class="fig wide" id="fig-10">
-      <img src="assets/research/phd-6-2-energy-velocity.webp" width="1600" height="621" loading="lazy" alt="Left: simulation layout with a 100 nm TiO₂ film between air regions and absorbing layers, lit from below. Right: map of energy velocity relative to c with streamlines, slower inside and around the film.">
-      <figcaption><span class="tag sim">Simulation</span><b>Figure 10.</b> (a) Simulation layout: a 100 nm TiO₂ film in air, lit from below by a plane wave, with absorbing boundary layers (PML). (b) Energy velocity |<i>v</i><sub>e</sub>|/<i>c</i> (colour) and energy-flow streamlines at λ₀ = 380 nm. The low values at the left and right edges come from the absorbing boundaries and have no physical meaning. 2D FDTD, Meep. From Ref. 2, Fig. 6.2; published in Ref. 5.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p>The third-harmonic measurements followed the material chemistry. The hydrogen-peroxide film gave the strongest signal at 400 nm, while the thicker ozone film was strongest at 380 nm (Figure 11). Because the energy velocity comes straight from ellipsometry data, it costs almost nothing to calculate and can screen film thickness, oxidant and wavelength before anything is fabricated.<sup><a href="#ref-5">5</a></sup></p>
-    </div>
-
-    <figure class="fig wide" id="fig-11">
-      <img src="assets/research/phd-6-7-thg-spectra.webp" width="1600" height="586" loading="lazy" alt="Two panels of reflected third-harmonic spectra, centred at 380 nm and at 400 nm, for silicon and for four TiO₂ films; the H₂O₂ film is highest at 400 nm and the 2135-cycle O₃ film is highest at 380 nm.">
-      <figcaption><span class="tag meas">Measurement</span><b>Figure 11.</b> Reflected third-harmonic spectra from bare silicon and from TiO₂-coated silicon, centred at (a) 380 nm and (b) 400 nm, for films grown with H₂O and H₂O₂ (1250 cycles) and O₃ (1250 and 2135 cycles). From Ref. 2, Fig. 6.7; published in Ref. 5.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>In ozone-grown TiO₂ the energy velocity falls to about 0.2 <i>c</i> near 380–400 nm. It is calculated from ellipsometry alone, so it can help choose a film before anything is fabricated.<sup><a href="#ref-5">5</a></sup></p>
-    </div>
-    </div>
-
-    <div class="rp" id="part-4" data-num="Part IV" data-title="Anapoles: a particle that holds light">
-    <div class="part">
-      <div class="wrap-text">
-        <p class="part-num">Part IV · PhD, 2024–2026</p>
-        <p class="part-title">Anapoles: a particle that holds light</p>
-        <p class="part-line">What an anapole is, what the light does inside one, and how it could make ultraviolet light.</p>
-      </div>
-    </div>
-
-    <div class="wrap-text story-lead">
-      <p>Shine light on a particle smaller than the wavelength and it sends light back out in every direction. That is scattering, and it is how we see most things. While I was simulating a small block of TiO₂ under ultraviolet light, the scattering almost disappeared at one wavelength, 366.5 nm. The particle went nearly dark, and yet the field inside it was strong.</p>
-      <p>So where was the light? The answer has a name, the <strong>anapole</strong>, and following it in time showed me something more: inside the particle, the electric and the magnetic field do not peak together. They take turns. This part tells that story in four steps.</p>
-    </div>
-
-    <section id="what-anapole" class="wrap-text">
-      <h2><span>6</span> What is an anapole?</h2>
-      <p class="question"><span>The question</span>How can a particle be full of light and still look almost dark from outside?</p>
-      <p>When light reaches a small particle, its electric field pushes the charges in the material back and forth. A charge swinging up and down is an <strong>electric dipole</strong>, <i>p</i>, and it radiates (Figure 12a). In a particle with a high refractive index the currents can also run in loops, wound around a ring like the wire of a doughnut-shaped coil. This is a <strong>toroidal dipole</strong>, <i>T</i>, and far away it radiates with exactly the same pattern as <i>p</i> (Figure 12b).<sup><a href="#ref-8">8</a></sup></p>
-      <p>Because the two patterns are the same, an observer far away sees only their sum. When <i>p</i> and <i>T</i> are equally strong and oscillate in opposite phase, their waves cancel outside the particle, while both currents, and the field they make, are still there inside (Figure 12c). This is the <strong>anapole</strong>, from the Greek for “without poles”. Two loudspeakers playing the same note in opposite phase do the same: far away the sound cancels, while the air between them still moves.<sup><a href="#ref-6">6</a>,<a href="#ref-8">8</a></sup></p>
-    </section>
-
-    <figure class="fig wide" id="fig-12">
-      <svg class="diagram" viewBox="0 0 900 300" role="img" aria-labelledby="fig12-t">
-        <title id="fig12-t">Three panels. (a) An electric dipole, a plus and a minus charge with an upward arrow p, sends out strong rings of radiation. (b) A toroidal dipole, currents wound around a ring, with a downward arrow T, sends out the same rings. (c) Both together in a small particle: the arrows point opposite ways, the particle glows inside and the rings outside are faint.</title>
-        <text class="d-head" x="20" y="34">(a) Electric dipole <tspan font-style="italic">p</tspan></text>
-        <g class="d-waves strong"><circle cx="150" cy="160" r="58"/><circle cx="150" cy="160" r="84"/><circle cx="150" cy="160" r="110"/></g>
-        <circle class="d-plus" cx="150" cy="128" r="11"/><text class="d-sign" x="145" y="133">+</text>
-        <circle class="d-minus" cx="150" cy="192" r="11"/><text class="d-sign" x="146" y="197">−</text>
-        <path class="d-arrow" d="M178 196 V124 M171 136 L178 124 L185 136"/>
-        <text class="d-note" x="40" y="292">charges swing up and down: it radiates</text>
-
-        <text class="d-head" x="320" y="34">(b) Toroidal dipole <tspan font-style="italic">T</tspan></text>
-        <g class="d-waves strong"><circle cx="450" cy="160" r="58"/><circle cx="450" cy="160" r="84"/><circle cx="450" cy="160" r="110"/></g>
-        <ellipse class="d-ring" cx="450" cy="160" rx="62" ry="20"/>
-        <ellipse class="d-loop" cx="392" cy="160" rx="10" ry="24"/><ellipse class="d-loop" cx="508" cy="160" rx="10" ry="24"/>
-        <ellipse class="d-loop" cx="422" cy="174" rx="9" ry="20"/><ellipse class="d-loop" cx="478" cy="174" rx="9" ry="20"/>
-        <path class="d-arrow toroidal" d="M450 124 V196 M443 184 L450 196 L457 184"/>
-        <text class="d-note" x="330" y="292">currents wound round a ring: same pattern</text>
-
-        <text class="d-head" x="620" y="34">(c) Anapole: <tspan font-style="italic">p</tspan> and <tspan font-style="italic">T</tspan> cancel</text>
-        <g class="d-waves faint"><circle cx="750" cy="160" r="58"/><circle cx="750" cy="160" r="84"/><circle cx="750" cy="160" r="110"/></g>
-        <rect class="d-particle" x="702" y="128" width="96" height="64" rx="3"/>
-        <rect class="d-glow" x="716" y="140" width="68" height="40"/>
-        <path class="d-arrow" d="M736 186 V134 M729 146 L736 134 L743 146"/>
-        <path class="d-arrow toroidal" d="M764 134 V186 M757 174 L764 186 L771 174"/>
-        <text class="d-note" x="630" y="292">outside: almost nothing. inside: strong field</text>
-      </svg>
-      <figcaption><span class="tag sketch">Sketch</span><b>Figure 12.</b> The anapole in three drawings. (a) An oscillating electric dipole <i>p</i> radiates. (b) A toroidal dipole <i>T</i>, currents wound around a ring, radiates with the same far-field pattern. (c) With equal strength and opposite phase, the two radiated waves cancel outside the particle, while the field inside stays strong (amber). Rings: radiated waves; faint rings in (c): almost no radiation. Drawn for this site; not to scale. A real particle also has magnetic dipole and quadrupole parts that still radiate a little, so the cancellation is never complete.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>An anapole is two ways of oscillating, an electric and a toroidal dipole, whose radiation cancels outside the particle. The particle looks almost dark, yet holds a strong field inside. <a class="arrow" href="anapoles.html">Try the cancellation yourself on the anapole page</a></p>
-    </div>
-
-    <section id="anapoles" class="wrap-text">
-      <h2><span>7</span> An anapole in the ultraviolet</h2>
-      <p class="question"><span>The question</span>Can a particle smaller than the wavelength hold ultraviolet light inside it?</p>
-      <p>Most anapoles had been shown in the infrared and the visible, with silicon or germanium. Below 400 nm silicon absorbs strongly, so we turned to amorphous TiO₂ grown by atomic layer deposition: its refractive index is about 2.8 at 366 nm and its absorption is close to zero above about 350 nm.<sup><a href="#ref-2">2</a>,<a href="#ref-6">6</a></sup></p>
-      <p>We simulated a free-standing TiO₂ nano-rectangle 190 nm long, 160 nm wide and 100 nm high, lit from above with the electric field along its length. Near 366.5 nm the total scattering has a pronounced dip. Splitting the scattering into its parts shows why: there, the electric and the toroidal dipole interfere destructively (Figure 13).<sup><a href="#ref-6">6</a></sup></p>
-    </section>
-
-    <figure class="fig narrow" id="fig-13">
-      <a href="anapoles.html#fig-3"><img src="assets/anapoles/fig7-2-multipoles.webp" width="991" height="748" loading="lazy" alt="Four panels: refractive index and extinction coefficient of amorphous TiO₂ from 200 to 700 nm; a schematic of the nano-rectangle with light direction; multipole contributions to the scattering cross-section from 320 to 420 nm with a dip in the total labelled anapole state; and the phase difference between electric and toroidal dipoles."></a>
-      <figcaption><span class="tag sim">Simulation</span><b>Figure 13.</b> (a) Refractive index <i>n</i> and extinction coefficient <i>k</i> of amorphous ALD TiO₂. (b) The nano-rectangle, 190 × 160 × 100 nm, with the direction of the light <i>k</i> and of its electric field <i>E</i>. (c) Scattering cross-section split into electric dipole, toroidal dipole, magnetic dipole and quadrupole parts, and the total (dashed); the arrow marks the anapole. (d) Phase difference between the electric and toroidal dipoles. FDTD with multipole decomposition. From Ref. 2, Fig. 7.2; published in Ref. 6.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p>The near-field maps are the second check (Figure 14). At the anapole the electric field intensity inside the rectangle reaches about six times that of the incoming light, while the magnetic field intensity stays small. And the dip moves smoothly with the width of the rectangle, from about 357 nm at 145 nm width to about 384 nm at 180 nm, as a resonance of the particle should.<sup><a href="#ref-2">2</a>,<a href="#ref-6">6</a></sup></p>
-    </div>
-
-    <figure class="fig wide" id="fig-14">
-      <img src="assets/anapoles/fig7-3-fields-width.webp" width="1060" height="730" loading="lazy" alt="Electric field intensity map with strong lobes inside the dashed outline of the rectangle; magnetic field intensity map with two weak lobes inside; and a plot of anapole wavelength rising from about 357 to 384 nm as the width increases from 145 to 180 nm.">
-      <figcaption><span class="tag sim">Simulation</span><b>Figure 14.</b> Near fields at the anapole. (a) Electric field intensity |<i>E</i>|² and (b) magnetic field intensity |<i>H</i>|² in the middle plane of the nano-rectangle, both relative to the incoming light; dashed line: outline of the particle. (c) Anapole wavelength against rectangle width, with length and height fixed. FDTD. From Ref. 2, Fig. 7.3; published in Ref. 6.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>A TiO₂ block of 190 × 160 × 100 nm nearly stops scattering at 366.5 nm while its inside field is about six times the incoming one. It is the first anapole reported in the UV-A (simulation).<sup><a href="#ref-6">6</a></sup></p>
-    </div>
-
-    <section id="data" class="wrap-text">
-      <h2><span>8</span> Inside an anapole: the fields take turns</h2>
-      <p class="question"><span>The question</span>The particle hardly radiates. So what is the light inside it doing?</p>
-      <p>Here is what I found. In our published simulation, a short ultraviolet pulse hits the particle.<sup><a href="#ref-6">6</a></sup> Once it has passed, the particle radiates very little, but the light inside does not sit still. When I listed the moments at which the electric and the magnetic field inside are strongest, they never came together: every time, the magnetic peak followed the electric one by about 0.3 femtoseconds. One optical period at 366.5 nm is <i>T</i> = λ/<i>c</i> = 1.22 fs, so 0.3 fs is a quarter of a period.</p>
-      <p>A quarter period is the signature of stored light. A pendulum swaps its energy between height and speed; an LC circuit swaps it between the capacitor and the coil; light held in a resonator swaps it between the electric and the magnetic field, a quarter cycle apart, with equal shares on average.<sup><a href="#ref-7">7</a></sup> A wave travelling freely through air is different: its two fields rise and fall together.</p>
-      <h3 class="subhead">How to read the next two figures</h3>
-      <ol class="plain-list">
-        <li><strong>Figure 15</strong> is the evidence from the paper. Panel (a): the pulse passes, and the particle goes quiet (shaded window). Panel (b): each line on the clock face is one moment when the electric field peaked; its end shows where the magnetic peak came. They all point close to a quarter turn.</li>
-        <li><strong>Figure 16</strong> lets you watch it, with an independent calculation. Press <em>Play cycle</em>: one optical cycle, 1.22 fs, is slowed down to 16 seconds. Watch the electric map (left) brighten while the magnetic map (right) dims, then the reverse. The curve below shows the same swap as energy.</li>
-      </ol>
-    </section>
-
-    <div class="fig wide viewers">
-      <figure id="anapole-temporal" class="anapole-story" aria-labelledby="as-title" aria-busy="true">
-        <div class="as-heading"><h3 id="as-title">Anapole formation, step by step</h3><p>Published pulse simulation of the 190 × 160 × 100 nm TiO₂ nano-rectangle in air, read against the optical period at 366.5 nm. Choose a pair below to highlight it in (b).</p></div>
-        <div class="as-grid">
-          <section class="as-panel" aria-labelledby="as-a">
-            <h4 id="as-a"><b>(a)</b>The pulse passes and the particle goes quiet</h4>
-            <p>Radiated power in the published simulation. The shaded window contains every electric and magnetic event plotted in (b).</p>
-            <svg id="as-power" class="as-power-svg" viewBox="200 110 2850 2230" role="img" aria-labelledby="as-power-title"><title id="as-power-title">Published radiated power against time, from 0 to 45 femtoseconds, with its peak near 6.5 femtoseconds. A shaded window from 8.36 to 10.52 femtoseconds marks the timing events; there the radiated power is at most about a tenth of its peak.</title><image href="assets/anapole-temporal/published-s3-power.svg" x="0" y="0" width="3408" height="2379"/></svg>
-          </section>
-          <section class="as-panel" aria-labelledby="as-b">
-            <h4 id="as-b"><b>(b)</b>Electric first, magnetic a quarter cycle later</h4>
-            <p>The full circle is one optical cycle. Each published pair starts with its electric event at the top; its line points to where the magnetic event falls. All fourteen lie between <span id="as-range">77° and 94°</span>, around <i>T</i>/4 = 90°.</p>
-            <svg id="as-dial" class="as-dial-svg" viewBox="0 0 320 300" role="img" aria-labelledby="as-dial-title"><title id="as-dial-title">Dial of one optical cycle. The fourteen published magnetic events fall between 77 and 94 degrees after the electric event, around a quarter of the cycle.</title></svg>
-            <ul class="as-dial-key"><li><i class="as-k-E"></i>electric event</li><li><i class="as-k-H"></i>magnetic event, published</li><li><i class="as-k-range"></i>published range</li><li><i class="as-k-meep"></i>Meep, energy inside (Fig. 16)</li></ul>
-          </section>
+    <!-- Each card is a plain link to the PDF, so it works on phones and without JavaScript.
+         On wider screens research-reader.js opens the PDF in the reader below instead.
+         The data-* attributes fill the reader's title, citation, links and copyright notice. -->
+    <ol class="paper-cards">
+      <li id="ol-2024">
+        <a class="paper" href="documents/articles/poeta-2024-optics-letters.pdf"
+           data-doi="https://doi.org/10.1364/OL.536925"
+           data-cite="D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule · Optics Letters 49(24), 7198–7201 (2024)"
+           data-notice="© 2024 Optica Publishing Group. Published under the terms of the Optica Open Access Publishing Agreement. Online abstract:">
+          <span class="p-meta">2024 · <i>Optics Letters</i></span>
+          <span class="p-title">Optical anapoles excited by UV-A illumination</span>
+          <span class="p-role">First author</span>
+        </a>
+      </li>
+      <li id="oe-2025">
+        <a class="paper" href="documents/articles/vilarinho-2025-optics-express.pdf"
+           data-doi="https://doi.org/10.1364/OE.564577"
+           data-cite="R. Vilarinho, H. Mahmoodnia, C. Maibohm, D. Poeta, et al. · Optics Express 33(12), 26342–26355 (2025)"
+           data-notice="© 2025 Optica Publishing Group. Published under the terms of the Optica Open Access Publishing Agreement. Online abstract:">
+          <span class="p-meta">2025 · <i>Optics Express</i></span>
+          <span class="p-title">Volatile organic compound photoionization utilizing tunable quasi-monochromatic vacuum ultraviolet down to 120 nm obtained by third harmonic generation from a suspended dielectric nanomembrane</span>
+          <span class="p-role">Co-author</span>
+        </a>
+      </li>
+      <li id="eti-2026">
+        <a class="paper" href="documents/articles/vilarinho-2026-eti.pdf"
+           data-doi="https://doi.org/10.1016/j.eti.2026.104895"
+           data-cite="R. Vilarinho, H. Mahmoodnia, C. Maibohm, D. Poeta, et al. · Environmental Technology &amp; Innovation 42, 104895 (2026)"
+           data-notice="© 2026 The Authors. Published by Elsevier B.V. as an open access article under the CC BY-NC-ND 4.0 licence (creativecommons.org/licenses/by-nc-nd/4.0). Article page:">
+          <span class="p-meta">2026 · <i>Environmental Technology &amp; Innovation</i></span>
+          <span class="p-title">Real-time molecular specific BTEX detection at TLV-TWA concentration levels</span>
+          <span class="p-role">Co-author</span>
+        </a>
+      </li>
+      <li id="ome-2026">
+        <a class="paper" href="documents/articles/poeta-2026-optical-materials-express.pdf"
+           data-doi="https://doi.org/10.1364/OME.611814"
+           data-cite="D. Poeta, C. Maibohm, C. Calaza, A. Miranda, M. López-García, et al. · Optical Materials Express 16(10), 3342–3356 (2026)"
+           data-notice="© 2026 Optica Publishing Group. Published under the terms of the Optica Open Access Publishing Agreement. Online abstract:">
+          <span class="p-meta">2026 · <i>Optical Materials Express</i></span>
+          <span class="p-title">Energy velocity as an optical design indicator for the ultraviolet nonlinear response of ALD-grown TiO₂ thin films</span>
+          <span class="p-role">First author</span>
+        </a>
+      </li>
+      <li id="phd-2026">
+        <a class="paper" href="documents/articles/poeta-2026-phd-thesis.pdf"
+           data-doi="https://doi.org/10.4119/unibi/3020621"
+           data-cite="D. Poeta · PhD thesis, Bielefeld University (2026)"
+           data-notice="© 2026 Diogo Poeta. Licensed under CC BY 4.0 (creativecommons.org/licenses/by/4.0). Record at Bielefeld University:">
+          <span class="p-meta">2026 · PhD thesis, Bielefeld University</span>
+          <span class="p-title">Tunable VUV photoionization and slow-light enhanced third-harmonic generation in TiO₂ for selective VOC sensing</span>
+          <span class="p-role">Author</span>
+        </a>
+      </li>
+      <li id="in-progress">
+        <div class="paper paper-soon" aria-disabled="true">
+          <span class="p-meta">In development</span>
+          <span class="p-title">Light through continuous metal films</span>
+          <span class="p-role">Not yet published</span>
         </div>
-        <div class="as-controls">
-          <div id="as-groups" class="as-pick" role="group" aria-label="Choose a published pair"><button id="as-prev" type="button" aria-label="Previous pair" disabled>←</button><button id="as-next" type="button" aria-label="Next pair" disabled>→</button></div>
-          <dl class="as-values">
-            <div><dt>Electric event <i>t</i><sub>E</sub></dt><dd id="as-tE">—</dd></div>
-            <div class="as-v-H"><dt>Magnetic event <i>t</i><sub>H</sub></dt><dd id="as-tH">—</dd></div>
-            <div><dt>Offset <i>t</i><sub>H</sub> − <i>t</i><sub>E</sub></dt><dd id="as-dt">—</dd></div>
-            <div class="as-v-key"><dt>Share of one cycle</dt><dd><span id="as-frac">—</span> · <span id="as-deg">—</span></dd></div>
-            <div><dt>|<i>E</i>|²/|<i>E</i>₀|² at <i>t</i><sub>E</sub></dt><dd id="as-int">—</dd></div>
-          </dl>
-          <p id="as-label" class="as-label"></p>
+      </li>
+    </ol>
+
+    <section class="reader" id="reader" aria-labelledby="reader-title" hidden>
+      <div class="reader-bar">
+        <div>
+          <h2 id="reader-title"></h2>
+          <p class="reader-cite" id="reader-cite"></p>
         </div>
-        <p id="as-meep-note" class="as-meep-note" hidden>Dashed line in (b): in the independent Meep calculation (Figure 16), the magnetic energy inside the particle peaks <span id="as-meep-value">—</span> after the electric energy.</p>
-        <p id="as-error" class="as-error" hidden></p><p id="as-status" class="as-status" role="status" aria-live="polite"></p>
-        <figcaption><p><span class="tag sim">Simulation</span><b>Figure 15.</b> Anapole formation in the published pulse simulation (Lumerical FDTD) of a free-standing TiO₂ nano-rectangle, 190 × 160 × 100 nm, in air. (a) Radiated power against time, Supplement Fig. S3, unchanged; the shaded window is added here. (b) The fourteen electric-to-magnetic offsets of Supplement Fig. S2, 0.26–0.32 fs, drawn as angles on one optical cycle (360° = <i>T</i> = 1.22 fs). Data from Ref. 6, Supplement 1; angles and shading added for this site.</p>
-          <details><summary>What this shows, and what it does not</summary><p>The supplement lists the times of selected electric and magnetic intensity events. It does not give the observation point, the signed fields or the magnetic amplitudes, so the quarter-period spacing is a comparison with the optical period, not a measured phase of the whole field. The level of radiated power in the shaded window, at most about 11% of the peak, is read from the published figure. A quarter-period hand-off is the mark of stored, resonant light in general. The anapole itself is identified in Ref. 6 by the multipole decomposition and the scattering minimum (Figure 13).</p><p>Source: D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule, <i>Optics Letters</i> 49(24), 7198–7201 (2024), <a href="https://doi.org/10.1364/OL.536925" target="_blank" rel="noopener noreferrer">article ↗</a>; Supplement 1, Figs. S2 and S3, <a href="https://doi.org/10.6084/m9.figshare.27648525.v5" target="_blank" rel="noopener noreferrer">version 5 ↗</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a>. <a href="assets/anapole-temporal/published-s2-table.svg" target="_blank" rel="noopener">Published S2 table ↗</a> · <a href="assets/anapole-temporal/published-s3-power.svg" target="_blank" rel="noopener">Published S3 figure ↗</a> · <a href="https://github.com/diogo-poeta/elyvris/tree/main/anapoles/temporal" target="_blank" rel="noopener noreferrer">Code, data and methods ↗</a></p></details>
-        </figcaption>
-        <details class="as-data"><summary>Open data: all fourteen published pairs</summary><div class="as-table-scroll" role="region" aria-label="Published time pairs" tabindex="0"><table><caption>Transcribed from Supplement Fig. S2; offset and angle calculated here (360° = 1.2225 fs).</caption><thead><tr><th scope="col">Instance / sample</th><th scope="col"><i>t</i><sub>E</sub> (fs)</th><th scope="col"><i>t</i><sub>H</sub> (fs)</th><th scope="col">Δ<i>t</i> (fs)</th><th scope="col">Angle</th><th scope="col">|<i>E</i>|²/|<i>E</i>₀|²</th></tr></thead><tbody id="as-table-body"></tbody></table></div></details>
-        <noscript><p class="as-error">The interactive panels need JavaScript. The published S2 table and S3 figure are linked in the caption.</p></noscript>
-      </figure>
-
-      <figure id="anapole-field-cycle" class="anapole-field-cycle" data-source="assets/anapole-temporal/rectangle-xy.json" aria-busy="true" aria-label="Calculated electric and magnetic fields and stored energy over one optical cycle">
-        <div data-afc-mount></div>
-        <figcaption><p><span class="tag sim">Simulation</span><b>Figure 16.</b> Independent three-dimensional Meep calculation for this site: the 190 × 160 × 100 nm TiO₂ nano-rectangle in air, driven continuously at 366.5 nm, central x–y plane. Top: |<b>E</b>|² and |<b>H</b>|² at the same instant, each on a fixed colour scale; press <em>Play cycle</em> (one cycle, 1.22 fs, lasts 16 s) or move the slider. Bottom: the electric and the magnetic energy stored inside the particle in this plane. They take turns, peaking 90.9° (0.309 fs) apart, close to <i>T</i>/4, with nearly equal averages, while their sum changes by only about 30% over the cycle. In the air around the particle, by contrast, the two peaks are only 4° apart, as in a travelling wave.</p><p><strong>Optical constants:</strong> <a href="https://doi.org/10.1016/j.apsusc.2022.155214" target="_blank" rel="noopener noreferrer">Jolivet et al. (2023)</a>, amorphous ALD TiO₂ deposited at 200 °C: <i>n</i> = 2.8081, κ = 0 at 366.5 nm, from <a href="https://refractiveindex.info/?shelf=main&amp;book=TiO2&amp;page=Jolivet-amorphous" target="_blank" rel="noopener noreferrer">refractiveindex.info</a>.</p><details><summary>Calculation, data and scope</summary><p>The energy curve sums the energy densities ε<sub>r</sub>|<b>E</b>/<i>E</i>₀|² and |<b>H</b>/<i>H</i>₀|² (both in units of ½ε₀<i>E</i>₀², with <i>H</i>₀ = <i>E</i>₀/<i>Z</i>₀) over the grid cells inside the particle, in this plane only. It is a steady-state, single-frequency result: it shows the energy exchange of the driven particle, not the build-up in Figure 15.</p><p>The tabulated optical constants are linearly interpolated in wavelength without extrapolation. This calculation holds ε = n² as a real constant at the selected frequency; it does not model broadband dispersion or the paper’s transient formation. Both E and H use the same reconstructed optical phase. The mesh is 6.67 nm at z = 0, with separate fixed display scales. The field map alone does not establish an anapole condition.</p><span class="afc-code-links"><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/SIMULATION.md" target="_blank" rel="noopener noreferrer">Numerical methods ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/convergence.json" target="_blank" rel="noopener noreferrer">Convergence checks ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/meep_rectangle.py" target="_blank" rel="noopener noreferrer">Meep source ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/energy_exchange.py" target="_blank" rel="noopener noreferrer">Energy calculation ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/rectangle-xy.json" target="_blank" rel="noopener noreferrer">Complex-field data ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/Jolivet-amorphous.yml" target="_blank" rel="noopener noreferrer">Optical-constant table ↗</a></span></details></figcaption>
-      </figure>
-    </div>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>Once the pulse has passed, the particle radiates little, yet the light inside it keeps moving between electric and magnetic form, a quarter of an optical period (about 0.3 fs) apart. The published pulse simulation and an independent calculation agree on this timing. It is how light stored in a resonator behaves; the anapole is what lets this small particle hold the light while scattering very little.<sup><a href="#ref-6">6</a></sup></p>
-    </div>
-
-    <section id="thg" class="wrap-text">
-      <h2><span>9</span> Using the anapole to make vacuum-ultraviolet light</h2>
-      <p class="question"><span>The question</span>Can stored light in a nanostructure make the third harmonic of Part II stronger?</p>
-      <p>The third-harmonic signal grows with the cube of the light intensity inside the material, so a structure that holds a strong field is a natural place for it. Anapoles have already raised the third harmonic of single germanium nanodisks in the infrared, and TiO₂ metasurfaces have made third-harmonic light in the vacuum ultraviolet.<sup><a href="#ref-9">9</a>,<a href="#ref-10">10</a></sup> The proposal here joins the two: pump a TiO₂ anapole metasurface in the UV-A, near 370 nm, and collect its third harmonic near 123 nm, inside the 105–160 nm window where the gas molecules of Part II are ionised (Figure 17a).<sup><a href="#ref-2">2</a></sup></p>
-      <p>One particle is too small to use on its own, so the rectangles are arranged as a <strong>metasurface</strong>: a flat array on a suspended fused silica membrane 600 nm thick, spaced 733 nm apart (Figure 17b). The array keeps the anapole, seen as a dip in transmission at 370 nm, with the field concentrated inside each rectangle (Figure 17c).<sup><a href="#ref-2">2</a></sup> This is a simulated design; it has not been fabricated or measured.</p>
-    </section>
-
-    <figure class="fig wide" id="fig-17">
-      <svg class="ph-art thg-art" viewBox="0 0 900 190" role="img" aria-labelledby="fig17-t">
-        <title id="fig17-t">Proposed set-up. A UV-A pump wave at 370 nm enters from the left and meets a membrane carrying small TiO₂ rectangles. A wave with three times the frequency, at about 123 nm, leaves on the right and reaches gas molecules, which are ionised.</title>
-        <path class="ph-wave" d="M20 90 c 25 -42, 50 -42, 75 0 s 50 42, 75 0 s 50 -42, 75 0 s 50 42, 75 0"/>
-        <text class="ph-label" x="20" y="160">pump: UV-A, 370 nm, frequency ν</text>
-        <rect class="ph-slab" x="330" y="20" width="16" height="140"/>
-        <rect class="ph-particle" x="346" y="34" width="12" height="18"/><rect class="ph-particle" x="346" y="66" width="12" height="18"/><rect class="ph-particle" x="346" y="98" width="12" height="18"/><rect class="ph-particle" x="346" y="130" width="12" height="18"/>
-        <text class="ph-label" x="290" y="182">TiO₂ anapole metasurface</text>
-        <path class="ph-wave ph-out" d="M370 90 c 8.3 -40, 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0"/>
-        <text class="ph-label" x="400" y="160">third harmonic: VUV, ≈ 123 nm, 3ν</text>
-        <g class="ph-rings"><circle cx="780" cy="90" r="60"/></g>
-        <circle class="ph-glow" cx="755" cy="70" r="7"/><circle class="ph-glow" cx="800" cy="105" r="7"/><circle class="ph-glow" cx="770" cy="118" r="7"/><circle class="ph-glow" cx="808" cy="62" r="7"/>
-        <text class="ph-label" x="700" y="182">gas molecules, ionised</text>
-      </svg>
-      <div class="two-up-thg">
-        <img src="assets/anapoles/fig7-12-metasurface-schematic.webp" width="775" height="408" loading="lazy" alt="Drawing of a fused silica slab 600 nm thick with a square grid of small TiO₂ rectangles spaced 733 nm apart, lit from above.">
-        <img src="assets/anapoles/fig7-10-metasurface-spectrum.webp" width="1142" height="808" loading="lazy" alt="Transmittance from 340 to 400 nm oscillating between about 0.26 and 0.62 with a dip at 370 nm marked by an arrow; electric and magnetic field maps of one rectangle at the dip.">
+        <p class="reader-actions">
+          <a id="reader-open" href="#" rel="noopener">Open PDF in a new tab</a>
+          <a id="reader-doi" href="#" rel="noopener noreferrer">Journal page</a>
+          <button type="button" id="reader-close">Close</button>
+        </p>
       </div>
-      <figcaption><span class="tag sketch">Proposal</span><b>Figure 17.</b> Using the anapole for third-harmonic generation. (a) Sketch of the proposed set-up, drawn for this site: a UV-A pump near 370 nm on a TiO₂ anapole metasurface; the third harmonic near 123 nm (λ/3) ionises gas molecules as in Part II. Not to scale. (b) The metasurface: TiO₂ nano-rectangles, 190 × 160 × 100 nm, on a 600 nm fused silica membrane, period 733 nm, lit at normal incidence with the electric field along the long side. (c) Simulated transmittance with the anapole dip at 370 nm (arrow), and the electric and magnetic field intensities in one rectangle at that wavelength. FDTD; not yet fabricated. (b) and (c) from Ref. 2, Figs. 7.12 and 7.10.</figcaption>
-    </figure>
-
-    <div class="wrap-text">
-      <p class="in-short"><span>In short</span>A TiO₂ anapole metasurface pumped near 370 nm could make third-harmonic light near 123 nm, the vacuum ultraviolet needed for gas sensing. It is a design in simulation; fabrication and measurement are future work.<sup><a href="#ref-2">2</a></sup> <a class="arrow" href="anapoles.html">More on the anapole page: tolerances and design for fabrication</a></p>
-    </div>
-    </div>
-
-    <div class="rp" id="part-5" data-num="Outlook" data-title="Uses and publications">
-    <section id="applications" class="wrap-text">
-      <h2><span>10</span> Where this could be used</h2>
-      <p class="question"><span>The question</span>Where could each result be used, and how far has it gone?</p>
-      <p>Each application below is labelled with how far the work has gone.</p>
-      <ul class="apps">
-        <li><span class="tag shown">Shown in the lab</span><strong>Selective air-quality monitoring.</strong> Telling benzene from toluene and xylenes in real time, at occupational exposure limits, for workplaces and indoor air.<sup><a href="#ref-4">4</a></sup></li>
-        <li><span class="tag shown">Shown in the lab</span><strong>Tunable VUV light from a thin membrane.</strong> A source tunable across 120–180 nm without a gas cell or a bulk crystal at the last stage.<sup><a href="#ref-3">3</a></sup></li>
-        <li><span class="tag method">Method proposed</span><strong>Screening thin films before fabrication.</strong> Using the energy velocity, calculated from ellipsometry data, to choose film thickness and growth chemistry for ultraviolet nonlinear optics.<sup><a href="#ref-5">5</a></sup></li>
-        <li><span class="tag sim">Simulated</span><strong>Ultraviolet metasurfaces.</strong> Anapole metasurfaces in TiO₂ as compact elements for third-harmonic generation; fabrication is future work.<sup><a href="#ref-6">6</a></sup></li>
-        <li><span class="tag sim">Simulated, partly measured</span><strong>Transparent metal electrodes, filters and polarisers.</strong> TMDC-patterned metal films for solar cells and photodetectors.<sup><a href="#ref-1">1</a></sup></li>
-      </ul>
-      <p class="in-short"><span>In short</span>The long-term goal joins these threads: a compact, tunable ultraviolet gas sensor that names the molecules it detects.<sup><a href="#ref-2">2</a></sup></p>
+      <iframe id="reader-frame" title="PDF reader" loading="lazy"></iframe>
+      <p class="reader-notice"><span id="reader-notice"></span> <a id="reader-notice-link" href="#" rel="noopener noreferrer"></a></p>
     </section>
 
-    <section id="publications" class="wrap-text pubs">
-      <h2>Publications</h2>
-      <p><a href="publications.bib" download>Download BibTeX</a> · <a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" rel="noopener noreferrer">Google Scholar</a></p>
-      <h3 class="subhead">Journal articles</h3>
-      <ol class="pub-list">
-        <li><span class="pub-year">2026</span><a href="https://doi.org/10.1364/OME.611814" rel="noopener noreferrer">Energy velocity as an optical design indicator for the ultraviolet nonlinear response of ALD-grown TiO₂ thin films</a><small>D. Poeta, C. Maibohm, C. Calaza, A. Miranda, M. López-García, et al. · <i>Optical Materials Express</i> 16(10), 3342–3356 · first author</small></li>
-        <li><span class="pub-year">2026</span><a href="https://doi.org/10.1016/j.eti.2026.104895" rel="noopener noreferrer">Real-time molecular specific BTEX detection at TLV-TWA concentration levels</a><small>R. Vilarinho, H. Mahmoodnia, C. Maibohm, D. Poeta, et al. · <i>Environmental Technology &amp; Innovation</i> 42, 104895 · co-author</small></li>
-        <li><span class="pub-year">2025</span><a href="https://doi.org/10.1364/OE.564577" rel="noopener noreferrer">Volatile organic compound photoionization utilizing tunable quasi-monochromatic vacuum ultraviolet down to 120 nm obtained by third harmonic generation from a suspended dielectric nanomembrane</a><small>R. Vilarinho, H. Mahmoodnia, C. Maibohm, D. Poeta, et al. · <i>Optics Express</i> 33(12), 26342–26355 · co-author</small></li>
-        <li><span class="pub-year">2024</span><a href="https://doi.org/10.1364/OL.536925" rel="noopener noreferrer">Optical anapoles excited by UV-A illumination</a><small>D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule · <i>Optics Letters</i> 49(24), 7198–7201 · first author</small></li>
-      </ol>
-      <h3 class="subhead">Theses</h3>
-      <ol class="pub-list">
-        <li><span class="pub-year">2026</span><a href="https://doi.org/10.4119/unibi/3020621" rel="noopener noreferrer">Tunable VUV photoionization and slow-light enhanced third-harmonic generation in TiO₂ for selective VOC sensing</a><small>PhD thesis, Bielefeld University · supervisors T. Huser and P. A. A. De Beule<br>Research carried out within <a href="https://cordis.europa.eu/project/id/101057510">EU Horizon Europe · LEARN · Grant agreement 101057510</a></small></li>
-        <li><span class="pub-year">2021</span><a href="https://zenodo.org/records/6346240">Extraordinary transparency in continuous metallic thin films</a><small><a href="extraordinary-transparency-msc.pdf">PDF</a> &middot; MSc thesis, University of Minho · supervisors J. L. Garcia-Pomar and J. P. Alpuim<br>Funding acknowledged in the thesis: <a href="https://cordis.europa.eu/project/id/840064">EU Horizon 2020 Marie Skłodowska-Curie Actions · 2D_PHOT · Grant agreement 840064</a></small></li>
-      </ol>
-      <h3 class="subhead">Conference contributions</h3>
-      <ol class="pub-list">
-        <li><span class="pub-year">2025</span><a href="https://doi.org/10.1117/12.3058399" rel="noopener noreferrer">TiO₂/SiO₂ metasurfaces for the enhancement of THG with pump wavelengths in the UV-A</a><small>D. Poeta, R. Vilarinho, H. Mahmoodnia and C. Calaza · SPIE Metamaterials XV</small></li>
-        <li><span class="pub-year">2021</span><a href="documents/conferences/cen2021-abstract.pdf">Extraordinary transparency in continuous metallic thin film based on transition metal dichalcogenides metasurfaces</a><small>D. Poeta, P. Alpuim and J. L. Garcia-Pomar · Spanish Conference on Nanophotonics, abstract</small></li>
-      </ol>
-      <p class="more-links"><a class="arrow" href="cv.html">Curriculum vitae</a> <a class="arrow" href="records.html">Gallery: research and travel</a></p>
-    </section>
-    </div>
-
-    <section class="refs wrap-text" aria-labelledby="refs-title">
-      <h2 id="refs-title">References</h2>
-      <ol>
-        <li id="ref-1">D. Poeta, <i>Extraordinary transparency in continuous metallic thin films</i>, MSc thesis, University of Minho (2021). <a href="https://zenodo.org/records/6346240">Zenodo record</a> · <a href="extraordinary-transparency-msc.pdf">PDF</a>. Licensed CC BY-NC-ND 4.0.</li>
-        <li id="ref-2">D. Poeta, <i>Tunable VUV photoionization and slow-light enhanced third-harmonic generation in TiO₂ for selective VOC sensing</i>, PhD thesis, Bielefeld University (2026). <a href="https://doi.org/10.4119/unibi/3020621">doi:10.4119/unibi/3020621</a>. Licensed CC BY 4.0.</li>
-        <li id="ref-3">R. Vilarinho et al., “Volatile organic compound photoionization utilizing tunable quasi-monochromatic vacuum ultraviolet down to 120 nm obtained by third harmonic generation from a suspended dielectric nanomembrane,” <i>Optics Express</i> 33, 26342–26355 (2025). <a href="https://doi.org/10.1364/OE.564577">doi:10.1364/OE.564577</a></li>
-        <li id="ref-4">R. Vilarinho et al., “Real-time molecular specific BTEX detection at TLV-TWA concentration levels,” <i>Environmental Technology &amp; Innovation</i> 42, 104895 (2026). <a href="https://doi.org/10.1016/j.eti.2026.104895">doi:10.1016/j.eti.2026.104895</a></li>
-        <li id="ref-5">D. Poeta et al., “Energy velocity as an optical design indicator for the ultraviolet nonlinear response of ALD-grown TiO₂ thin films,” <i>Optical Materials Express</i> 16, 3342–3356 (2026). <a href="https://doi.org/10.1364/OME.611814">doi:10.1364/OME.611814</a></li>
-        <li id="ref-6">D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule, “Optical anapoles excited by UV-A illumination,” <i>Optics Letters</i> 49, 7198–7201 (2024). <a href="https://doi.org/10.1364/OL.536925">doi:10.1364/OL.536925</a></li>
-        <li id="ref-7">J. D. Jackson, <i>Classical Electrodynamics</i>, 3rd ed. (Wiley, 1999), Sec. 6.9, Poynting’s theorem for harmonic fields: at resonance the stored electric and magnetic energies are equal.</li>
-        <li id="ref-8">A. E. Miroshnichenko et al., “Nonradiating anapole modes in dielectric nanoparticles,” <i>Nature Communications</i> 6, 8069 (2015). <a href="https://doi.org/10.1038/ncomms9069">doi:10.1038/ncomms9069</a></li>
-        <li id="ref-9">G. Grinblat et al., “Enhanced third harmonic generation in single germanium nanodisks excited at the anapole mode,” <i>Nano Letters</i> 16, 4635–4640 (2016). <a href="https://doi.org/10.1021/acs.nanolett.6b01958">doi:10.1021/acs.nanolett.6b01958</a></li>
-        <li id="ref-10">M. Semmlinger et al., “Generating third harmonic vacuum ultraviolet light with a TiO₂ metasurface,” <i>Nano Letters</i> 19, 8972–8978 (2019). <a href="https://doi.org/10.1021/acs.nanolett.9b03961">doi:10.1021/acs.nanolett.9b03961</a></li>
-      </ol>
-      <p class="aside">Figures 1–3 were made for this site from my 2026 recalculation of the MSc designs with Meep and RCWA. The source images for Figure 4 are from the MSc thesis (Ref. 1, CC BY-NC-ND 4.0); the website adds panel labels. Figures 5–11, 13, 14 and 17b–c are from the PhD thesis (Ref. 2, CC BY 4.0). Figures 12 and 17a are drawings made for this site. Figure 15 combines Supplement Figs. S2 and S3 of Ref. 6 (CC BY 4.0) with additions made for this site; Figure 16 is a new calculation. Where a figure was first published in a journal, the article is cited in the caption. Refs. 3, 5 and 6 are open access under the Optica Open Access Publishing Agreement, and Ref. 4 under CC BY-NC-ND 4.0.</p>
-    </section>
+    <p class="papers-foot"><a href="publications.bib" download>Download citations (BibTeX)</a> · <a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" rel="noopener noreferrer">Google Scholar</a></p>
   </main>
 
   <footer class="foot" id="contact">
