@@ -9,6 +9,8 @@
 (function(root){
 'use strict';
 const TAU=2*Math.PI,C_NM_FS=299.792458,MAX_CELLS=250000;
+// One optical cycle (1.22 fs) is shown over this many seconds. The animation starts paused.
+const CYCLE_SECONDS=16;
 function axis(values,count,name){
  if(!Array.isArray(values)||values.length!==count||count<2||!values.every(Number.isFinite))throw new TypeError(name+' axis is invalid');
  const step=values[1]-values[0];if(!(step>0)||values.some((v,i)=>i&&Math.abs(v-values[i-1]-step)>Math.max(1,step)*1e-6))throw new TypeError('Viewer requires a uniform increasing '+name+' grid');
@@ -54,7 +56,7 @@ const panel=field=>'<section class="afc-panel afc-panel-'+field+'"><div class="a
 mount.innerHTML='<div class="afc-heading"><div><h3>Calculated fields over one optical cycle, <span id="afc-wavelength">366.5</span> nm</h3><p>Independent Meep calculation made for this site: the TiO₂ nano-rectangle in air, steady state, central x–y plane.</p></div><button id="afc-toggle" type="button" aria-pressed="false" disabled>Play cycle</button></div><div class="afc-panels">'+panel('E')+panel('H')+'</div><div class="afc-controls"><div class="afc-phase-control"><label for="afc-phase">Shared optical phase</label><input id="afc-phase" type="range" min="0" max="359.9" step="0.1" value="0" disabled><div id="afc-quarters" class="afc-quarters" role="group" aria-label="Inspect quarter-cycle phases"><button type="button" data-phase="0" disabled>0</button><button type="button" data-phase="90" disabled>π/2</button><button type="button" data-phase="180" disabled>π</button><button type="button" data-phase="270" disabled>3π/2</button></div></div><div class="afc-time"><span>t mod T</span><span id="afc-time" aria-live="off">— fs</span><small>T = <span id="afc-period">—</span> fs</small></div><div class="afc-phase-value"><span>Common phase</span><span id="afc-phase-value" aria-live="off">0°</span></div></div><section class="afc-energy" aria-labelledby="afc-energy-title"><div class="afc-energy-heading"><h4 id="afc-energy-title">Energy stored inside the particle</h4><p class="afc-energy-legend"><span class="afc-key afc-key-E"></span>Electric <span class="afc-key afc-key-H"></span>Magnetic <span class="afc-key afc-key-sum"></span>Sum <span class="afc-energy-scale">· scale: largest sum = 1</span></p></div><canvas id="afc-energy-canvas" width="900" height="200" role="img" aria-label="Electric and magnetic energy inside the particle over one optical cycle. The two alternate a quarter cycle apart while their sum changes little.">Electric and magnetic energy inside the particle over one optical cycle.</canvas><div class="afc-energy-foot"><div class="afc-energy-jumps" role="group" aria-label="Jump to an energy maximum"><button type="button" data-energy-peak="E" disabled>Electric energy maximum</button><button type="button" data-energy-peak="H" disabled>Magnetic energy maximum</button></div><p class="afc-energy-share">Electric share of the stored energy now <span id="afc-share" aria-live="off">—</span></p></div></section><p id="afc-plane" class="afc-plane"></p><p id="afc-error" class="afc-error" role="alert">Loading the complex-field export…</p><p id="afc-status" class="afc-status" role="status"></p>';
 const get=id=>viewer.querySelector('#afc-'+id),toggle=get('toggle'),slider=get('phase'),status=get('status'),error=get('error'),quarters=[...viewer.querySelectorAll('[data-phase]')];
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
-let data=null,phase=0,playing=!reduced.matches,visible=true,raf=0,last=0,lastDraw=0;
+let data=null,phase=0,playing=false,visible=true,raf=0,last=0,lastDraw=0;
 const panels={};
 for(const name of ['E','H']){
  const canvas=get(name+'-canvas'),ctx=canvas.getContext('2d'),buffer=document.createElement('canvas');
@@ -155,7 +157,7 @@ function resize(){
  draw();
 }
 function frame(now){
- raf=0;if(!data||!playing||!visible||document.hidden){last=0;return;}if(!last)last=now;phase=wrap(phase+Math.min(.1,(now-last)/1000)*TAU/5);last=now;
+ raf=0;if(!data||!playing||!visible||document.hidden){last=0;return;}if(!last)last=now;phase=wrap(phase+Math.min(.1,(now-last)/1000)*TAU/CYCLE_SECONDS);last=now;
  if(!lastDraw||now-lastDraw>=1000/30){draw();lastDraw=now;}raf=requestAnimationFrame(frame);
 }
 function sync(){if(data&&playing&&visible&&!document.hidden){if(!raf)raf=requestAnimationFrame(frame);}else{cancelAnimationFrame(raf);raf=0;last=0;}}

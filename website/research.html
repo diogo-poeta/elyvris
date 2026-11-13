@@ -13,8 +13,10 @@
   <link rel="stylesheet" href="article.css?v=20261114">
   <link rel="stylesheet" href="anapole-field-cycle.css?v=3">
   <link rel="stylesheet" href="anapole-story.css?v=5">
-  <script defer src="anapole-field-cycle.js?v=4"></script>
+  <link rel="stylesheet" href="research-paged.css?v=1">
+  <script defer src="anapole-field-cycle.js?v=5"></script>
   <script defer src="anapole-story.js?v=6"></script>
+  <script defer src="research-paged.js?v=1"></script>
   <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/research.html">
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/research.html">
   <meta property="og:title" content="Research · Elyvris">
@@ -33,6 +35,9 @@
   </header>
 
   <main id="main" class="article">
+    <!-- On a laptop, research-paged.js shows one part (.rp) at a time with a contents list on the left.
+         On a phone, or without JavaScript, the whole page reads top to bottom as before. -->
+    <div class="rp" id="overview" data-title="Overview">
     <header class="article-head wrap-text">
       <p class="kicker">Research · 2021–2026</p>
       <h1>Light through matter: metal films, ultraviolet sources and nanostructures</h1>
@@ -40,7 +45,7 @@
       <p class="byline">Diogo Poeta</p>
     </header>
 
-    <nav class="journey wrap" aria-label="On this page">
+    <nav class="journey" aria-label="Parts of this page">
       <ol>
         <li>
           <a class="j-part" href="#part-1"><span class="j-years">MSc · 2021, recalculated 2026</span><span class="j-num">Part I</span><span class="j-title">Light through metal</span></a>
@@ -53,13 +58,18 @@
           <a href="#sips">4 Telling molecules apart</a>
         </li>
         <li>
-          <a class="j-part" href="#part-3"><span class="j-years">PhD · 2024–2026</span><span class="j-num">Part III</span><span class="j-title">Slowing down light in thin films and nanostructures</span></a>
+          <a class="j-part" href="#part-3"><span class="j-years">PhD · 2024–2026</span><span class="j-num">Part III</span><span class="j-title">Slowing down light in thin films</span></a>
           <a href="#films">5 TiO₂ films and slow light</a>
-          <a href="#anapoles">6 Anapoles</a>
-          <a href="#applications">7 Where this could be used</a>
+        </li>
+        <li>
+          <a class="j-part" href="#part-4"><span class="j-years">PhD · 2024–2026</span><span class="j-num">Part IV</span><span class="j-title">Anapoles: a particle that holds light</span></a>
+          <a href="#what-anapole">6 What is an anapole?</a>
+          <a href="#anapoles">7 An anapole in the ultraviolet</a>
+          <a href="#data">8 Inside an anapole</a>
+          <a href="#thg">9 Using it to make VUV light</a>
         </li>
       </ol>
-      <p class="j-more"><a href="#publications">Publications</a> · <a href="#data">Inside an anapole</a> · <a href="#refs-title">References</a></p>
+      <p class="j-more"><a href="#applications">Where this could be used</a> · <a href="#publications">Publications</a> · <a href="#refs-title">References</a></p>
     </nav>
 
     <div class="stats-wrap">
@@ -71,8 +81,10 @@
         <div><dt>UV-A</dt><dd>first report of anapole states in the UV-A, in TiO₂ nanostructures (simulation)<sup><a href="#ref-6">6</a></sup></dd></div>
       </dl>
     </div>
+    </div>
 
-    <div class="part" id="part-1">
+    <div class="rp" id="part-1" data-num="Part I" data-title="Light through metal">
+    <div class="part">
       <div class="wrap-text">
         <p class="part-num">Part I · MSc, 2021, recalculated in 2026</p>
         <p class="part-title">Light through metal</p>
@@ -147,8 +159,10 @@
     <div class="wrap-text">
       <p class="in-short"><span>In short</span>Lines of MoS₂ on both sides let about 94% of near-infrared light through 30 nm of silver, some 45 times more than the bare film, and two independent free methods agree. The first samples measured in 2021 showed a smaller gain, 1.5 to 1.6 times. Possible uses: transparent electrodes for solar cells, plasmonic colour filters, polarisers, and cavities that make photodetectors more efficient.<sup><a href="#ref-1">1</a></sup></p>
     </div>
+    </div>
 
-    <div class="part" id="part-2">
+    <div class="rp" id="part-2" data-num="Part II" data-title="Tunable ultraviolet light for gas sensing">
+    <div class="part">
       <div class="wrap-text">
         <p class="part-num">Part II · PhD, 2023–2026</p>
         <p class="part-title">Tunable ultraviolet light for gas sensing</p>
@@ -222,30 +236,28 @@
     <div class="wrap-text">
       <p class="in-short"><span>In short</span>Yes. Stepping the photon energy separated benzene, toluene, ethylbenzene and xylenes in one mixture, at occupational exposure limits and down to 0.5 ppm of benzene.<sup><a href="#ref-4">4</a></sup></p>
     </div>
+    </div>
 
-    <div class="part" id="part-3">
+    <div class="rp" id="part-3" data-num="Part III" data-title="Slowing down light in thin films">
+    <div class="part">
       <div class="wrap-text">
         <p class="part-num">Part III · PhD, 2024–2026</p>
-        <p class="part-title">Slowing down light in thin films and nanostructures</p>
-        <p class="part-line">Thin films and nanostructures that could make the ultraviolet source stronger and smaller.</p>
+        <p class="part-title">Slowing down light in thin films</p>
+        <p class="part-line">How to choose a thin film that makes the third harmonic stronger, before building it.</p>
       </div>
     </div>
 
     <aside class="physics wrap-text" aria-labelledby="phys-3">
       <p class="physics-label" id="phys-3">The physics in brief</p>
-      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="Left: inside a thin film the energy of the light moves slowly, shown by a short arrow. Right: a small particle holds a strong field inside while the scattered rings around it are faint.">
-        <rect class="ph-slab" x="20" y="40" width="310" height="40"/>
-        <path class="ph-arrow" d="M30 24 H310 M302 18 L310 24 L302 30"/>
-        <path class="ph-arrow ph-amber" d="M30 60 H90 M82 54 L90 60 L82 66"/>
-        <text class="ph-label" x="100" y="65">energy: about 0.2 c</text>
-        <g class="ph-rings"><circle cx="490" cy="60" r="30"/><circle cx="490" cy="60" r="44"/><circle cx="490" cy="60" r="56"/></g>
-        <rect class="ph-particle" x="468" y="46" width="44" height="28" rx="2"/>
-        <rect class="ph-glow" x="476" y="53" width="28" height="14" rx="5"/>
-        <text class="ph-label" x="20" y="112">slow light in a film</text>
-        <text class="ph-label" x="380" y="112">anapole in a particle</text>
+      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="Inside a thin film the energy of the light moves slowly, shown by a short arrow under a long one for light in air.">
+        <rect class="ph-slab" x="20" y="40" width="560" height="40"/>
+        <path class="ph-arrow" d="M30 24 H570 M562 18 L570 24 L562 30"/>
+        <text class="ph-label" x="40" y="18">energy in air: c</text>
+        <path class="ph-arrow ph-amber" d="M30 60 H140 M132 54 L140 60 L132 66"/>
+        <text class="ph-label" x="150" y="65">energy in the film: about 0.2 c</text>
+        <text class="ph-label" x="20" y="112">slow light in a TiO₂ film near 380 nm</text>
       </svg>
-      <p>Third-harmonic generation is stronger when light stays longer, or is more concentrated, inside the material. Two ways are shown here. In a thin film, the <em>energy velocity</em>, the flow of energy divided by the energy stored, says how fast the light’s energy really moves; in ozone-grown TiO₂ near 380 nm it falls to about a fifth of <i>c</i>.<sup><a href="#ref-5">5</a></sup> In a nanostructure, an <em>anapole</em> holds the light: two ways of oscillating, the electric and the toroidal dipole, radiate in opposite phase and cancel outside the particle, so it scatters little while the field inside stays strong.<sup><a href="#ref-6">6</a></sup></p>
-      <p class="physics-more"><a class="arrow" href="anapoles.html">Anapoles, explained</a> <a class="arrow" href="light.html#r">In the essay: R, resonance</a></p>
+      <p>Third-harmonic generation is stronger when light stays longer, or is more concentrated, inside the material. In a thin film, the <em>energy velocity</em>, the flow of energy divided by the energy stored, says how fast the light’s energy really moves; in ozone-grown TiO₂ near 380 nm it falls to about a fifth of <i>c</i>.<sup><a href="#ref-5">5</a></sup> Part IV shows the second way: a nanostructure that holds the light.</p>
     </aside>
 
     <section id="films" class="wrap-text">
@@ -280,21 +292,181 @@
     <div class="wrap-text">
       <p class="in-short"><span>In short</span>In ozone-grown TiO₂ the energy velocity falls to about 0.2 <i>c</i> near 380–400 nm. It is calculated from ellipsometry alone, so it can help choose a film before anything is fabricated.<sup><a href="#ref-5">5</a></sup></p>
     </div>
+    </div>
 
-    <section id="anapoles" class="wrap-text">
-      <h2><span>6</span> Nanostructures that hold the light: anapoles</h2>
-      <p class="question"><span>The question</span>Can a particle smaller than the wavelength hold ultraviolet light inside it?</p>
-      <p>The second route to stronger third-harmonic generation is to concentrate the light inside nanostructures. In simulations, TiO₂ nano-rectangles 190 × 160 × 100 nm support an <strong>anapole</strong> near 366 nm, a state in which the particle scatters very little while the field inside is strong. Arranged in a metasurface on a thin silica membrane, the effect appears at 370 nm.<sup><a href="#ref-6">6</a></sup> The full story, with figures and two interactive explanations, is on its own page.</p>
-      <p><a class="arrow" href="anapoles.html">Anapoles, explained</a></p>
+    <div class="rp" id="part-4" data-num="Part IV" data-title="Anapoles: a particle that holds light">
+    <div class="part">
+      <div class="wrap-text">
+        <p class="part-num">Part IV · PhD, 2024–2026</p>
+        <p class="part-title">Anapoles: a particle that holds light</p>
+        <p class="part-line">What an anapole is, what the light does inside one, and how it could make ultraviolet light.</p>
+      </div>
+    </div>
+
+    <div class="wrap-text story-lead">
+      <p>Shine light on a particle smaller than the wavelength and it sends light back out in every direction. That is scattering, and it is how we see most things. While I was simulating a small block of TiO₂ under ultraviolet light, the scattering almost disappeared at one wavelength, 366.5 nm. The particle went nearly dark, and yet the field inside it was strong.</p>
+      <p>So where was the light? The answer has a name, the <strong>anapole</strong>, and following it in time showed me something more: inside the particle, the electric and the magnetic field do not peak together. They take turns. This part tells that story in four steps.</p>
+    </div>
+
+    <section id="what-anapole" class="wrap-text">
+      <h2><span>6</span> What is an anapole?</h2>
+      <p class="question"><span>The question</span>How can a particle be full of light and still look almost dark from outside?</p>
+      <p>When light reaches a small particle, its electric field pushes the charges in the material back and forth. A charge swinging up and down is an <strong>electric dipole</strong>, <i>p</i>, and it radiates (Figure 12a). In a particle with a high refractive index the currents can also run in loops, wound around a ring like the wire of a doughnut-shaped coil. This is a <strong>toroidal dipole</strong>, <i>T</i>, and far away it radiates with exactly the same pattern as <i>p</i> (Figure 12b).<sup><a href="#ref-8">8</a></sup></p>
+      <p>Because the two patterns are the same, an observer far away sees only their sum. When <i>p</i> and <i>T</i> are equally strong and oscillate in opposite phase, their waves cancel outside the particle, while both currents, and the field they make, are still there inside (Figure 12c). This is the <strong>anapole</strong>, from the Greek for “without poles”. Two loudspeakers playing the same note in opposite phase do the same: far away the sound cancels, while the air between them still moves.<sup><a href="#ref-6">6</a>,<a href="#ref-8">8</a></sup></p>
     </section>
 
-    <figure class="fig narrow" id="fig-12">
-      <a href="anapoles.html#fig-3"><img src="assets/anapoles/fig7-2-multipoles.webp" width="991" height="748" loading="lazy" alt="Multipole analysis of a TiO₂ nano-rectangle, with a dip in total scattering marked as the anapole state."></a>
-      <figcaption><span class="tag sim">Simulation</span><b>Figure 12.</b> Multipole decomposition of the scattering by a TiO₂ nano-rectangle; the dip in the total marks the anapole. From Ref. 2, Fig. 7.2; published in Ref. 6. Explained in detail on the <a href="anapoles.html">anapole page</a>.</figcaption>
+    <figure class="fig wide" id="fig-12">
+      <svg class="diagram" viewBox="0 0 900 300" role="img" aria-labelledby="fig12-t">
+        <title id="fig12-t">Three panels. (a) An electric dipole, a plus and a minus charge with an upward arrow p, sends out strong rings of radiation. (b) A toroidal dipole, currents wound around a ring, with a downward arrow T, sends out the same rings. (c) Both together in a small particle: the arrows point opposite ways, the particle glows inside and the rings outside are faint.</title>
+        <text class="d-head" x="20" y="34">(a) Electric dipole <tspan font-style="italic">p</tspan></text>
+        <g class="d-waves strong"><circle cx="150" cy="160" r="58"/><circle cx="150" cy="160" r="84"/><circle cx="150" cy="160" r="110"/></g>
+        <circle class="d-plus" cx="150" cy="128" r="11"/><text class="d-sign" x="145" y="133">+</text>
+        <circle class="d-minus" cx="150" cy="192" r="11"/><text class="d-sign" x="146" y="197">−</text>
+        <path class="d-arrow" d="M178 196 V124 M171 136 L178 124 L185 136"/>
+        <text class="d-note" x="40" y="292">charges swing up and down: it radiates</text>
+
+        <text class="d-head" x="320" y="34">(b) Toroidal dipole <tspan font-style="italic">T</tspan></text>
+        <g class="d-waves strong"><circle cx="450" cy="160" r="58"/><circle cx="450" cy="160" r="84"/><circle cx="450" cy="160" r="110"/></g>
+        <ellipse class="d-ring" cx="450" cy="160" rx="62" ry="20"/>
+        <ellipse class="d-loop" cx="392" cy="160" rx="10" ry="24"/><ellipse class="d-loop" cx="508" cy="160" rx="10" ry="24"/>
+        <ellipse class="d-loop" cx="422" cy="174" rx="9" ry="20"/><ellipse class="d-loop" cx="478" cy="174" rx="9" ry="20"/>
+        <path class="d-arrow toroidal" d="M450 124 V196 M443 184 L450 196 L457 184"/>
+        <text class="d-note" x="330" y="292">currents wound round a ring: same pattern</text>
+
+        <text class="d-head" x="620" y="34">(c) Anapole: <tspan font-style="italic">p</tspan> and <tspan font-style="italic">T</tspan> cancel</text>
+        <g class="d-waves faint"><circle cx="750" cy="160" r="58"/><circle cx="750" cy="160" r="84"/><circle cx="750" cy="160" r="110"/></g>
+        <rect class="d-particle" x="702" y="128" width="96" height="64" rx="3"/>
+        <rect class="d-glow" x="716" y="140" width="68" height="40"/>
+        <path class="d-arrow" d="M736 186 V134 M729 146 L736 134 L743 146"/>
+        <path class="d-arrow toroidal" d="M764 134 V186 M757 174 L764 186 L771 174"/>
+        <text class="d-note" x="630" y="292">outside: almost nothing. inside: strong field</text>
+      </svg>
+      <figcaption><span class="tag sketch">Sketch</span><b>Figure 12.</b> The anapole in three drawings. (a) An oscillating electric dipole <i>p</i> radiates. (b) A toroidal dipole <i>T</i>, currents wound around a ring, radiates with the same far-field pattern. (c) With equal strength and opposite phase, the two radiated waves cancel outside the particle, while the field inside stays strong (amber). Rings: radiated waves; faint rings in (c): almost no radiation. Drawn for this site; not to scale. A real particle also has magnetic dipole and quadrupole parts that still radiate a little, so the cancellation is never complete.</figcaption>
     </figure>
 
+    <div class="wrap-text">
+      <p class="in-short"><span>In short</span>An anapole is two ways of oscillating, an electric and a toroidal dipole, whose radiation cancels outside the particle. The particle looks almost dark, yet holds a strong field inside. <a class="arrow" href="anapoles.html">Try the cancellation yourself on the anapole page</a></p>
+    </div>
+
+    <section id="anapoles" class="wrap-text">
+      <h2><span>7</span> An anapole in the ultraviolet</h2>
+      <p class="question"><span>The question</span>Can a particle smaller than the wavelength hold ultraviolet light inside it?</p>
+      <p>Most anapoles had been shown in the infrared and the visible, with silicon or germanium. Below 400 nm silicon absorbs strongly, so we turned to amorphous TiO₂ grown by atomic layer deposition: its refractive index is about 2.8 at 366 nm and its absorption is close to zero above about 350 nm.<sup><a href="#ref-2">2</a>,<a href="#ref-6">6</a></sup></p>
+      <p>We simulated a free-standing TiO₂ nano-rectangle 190 nm long, 160 nm wide and 100 nm high, lit from above with the electric field along its length. Near 366.5 nm the total scattering has a pronounced dip. Splitting the scattering into its parts shows why: there, the electric and the toroidal dipole interfere destructively (Figure 13).<sup><a href="#ref-6">6</a></sup></p>
+    </section>
+
+    <figure class="fig narrow" id="fig-13">
+      <a href="anapoles.html#fig-3"><img src="assets/anapoles/fig7-2-multipoles.webp" width="991" height="748" loading="lazy" alt="Four panels: refractive index and extinction coefficient of amorphous TiO₂ from 200 to 700 nm; a schematic of the nano-rectangle with light direction; multipole contributions to the scattering cross-section from 320 to 420 nm with a dip in the total labelled anapole state; and the phase difference between electric and toroidal dipoles."></a>
+      <figcaption><span class="tag sim">Simulation</span><b>Figure 13.</b> (a) Refractive index <i>n</i> and extinction coefficient <i>k</i> of amorphous ALD TiO₂. (b) The nano-rectangle, 190 × 160 × 100 nm, with the direction of the light <i>k</i> and of its electric field <i>E</i>. (c) Scattering cross-section split into electric dipole, toroidal dipole, magnetic dipole and quadrupole parts, and the total (dashed); the arrow marks the anapole. (d) Phase difference between the electric and toroidal dipoles. FDTD with multipole decomposition. From Ref. 2, Fig. 7.2; published in Ref. 6.</figcaption>
+    </figure>
+
+    <div class="wrap-text">
+      <p>The near-field maps are the second check (Figure 14). At the anapole the electric field intensity inside the rectangle reaches about six times that of the incoming light, while the magnetic field intensity stays small. And the dip moves smoothly with the width of the rectangle, from about 357 nm at 145 nm width to about 384 nm at 180 nm, as a resonance of the particle should.<sup><a href="#ref-2">2</a>,<a href="#ref-6">6</a></sup></p>
+    </div>
+
+    <figure class="fig wide" id="fig-14">
+      <img src="assets/anapoles/fig7-3-fields-width.webp" width="1060" height="730" loading="lazy" alt="Electric field intensity map with strong lobes inside the dashed outline of the rectangle; magnetic field intensity map with two weak lobes inside; and a plot of anapole wavelength rising from about 357 to 384 nm as the width increases from 145 to 180 nm.">
+      <figcaption><span class="tag sim">Simulation</span><b>Figure 14.</b> Near fields at the anapole. (a) Electric field intensity |<i>E</i>|² and (b) magnetic field intensity |<i>H</i>|² in the middle plane of the nano-rectangle, both relative to the incoming light; dashed line: outline of the particle. (c) Anapole wavelength against rectangle width, with length and height fixed. FDTD. From Ref. 2, Fig. 7.3; published in Ref. 6.</figcaption>
+    </figure>
+
+    <div class="wrap-text">
+      <p class="in-short"><span>In short</span>A TiO₂ block of 190 × 160 × 100 nm nearly stops scattering at 366.5 nm while its inside field is about six times the incoming one. It is the first anapole reported in the UV-A (simulation).<sup><a href="#ref-6">6</a></sup></p>
+    </div>
+
+    <section id="data" class="wrap-text">
+      <h2><span>8</span> Inside an anapole: the fields take turns</h2>
+      <p class="question"><span>The question</span>The particle hardly radiates. So what is the light inside it doing?</p>
+      <p>Here is what I found. In our published simulation, a short ultraviolet pulse hits the particle.<sup><a href="#ref-6">6</a></sup> Once it has passed, the particle radiates very little, but the light inside does not sit still. When I listed the moments at which the electric and the magnetic field inside are strongest, they never came together: every time, the magnetic peak followed the electric one by about 0.3 femtoseconds. One optical period at 366.5 nm is <i>T</i> = λ/<i>c</i> = 1.22 fs, so 0.3 fs is a quarter of a period.</p>
+      <p>A quarter period is the signature of stored light. A pendulum swaps its energy between height and speed; an LC circuit swaps it between the capacitor and the coil; light held in a resonator swaps it between the electric and the magnetic field, a quarter cycle apart, with equal shares on average.<sup><a href="#ref-7">7</a></sup> A wave travelling freely through air is different: its two fields rise and fall together.</p>
+      <h3 class="subhead">How to read the next two figures</h3>
+      <ol class="plain-list">
+        <li><strong>Figure 15</strong> is the evidence from the paper. Panel (a): the pulse passes, and the particle goes quiet (shaded window). Panel (b): each line on the clock face is one moment when the electric field peaked; its end shows where the magnetic peak came. They all point close to a quarter turn.</li>
+        <li><strong>Figure 16</strong> lets you watch it, with an independent calculation. Press <em>Play cycle</em>: one optical cycle, 1.22 fs, is slowed down to 16 seconds. Watch the electric map (left) brighten while the magnetic map (right) dims, then the reverse. The curve below shows the same swap as energy.</li>
+      </ol>
+    </section>
+
+    <div class="fig wide viewers">
+      <figure id="anapole-temporal" class="anapole-story" aria-labelledby="as-title" aria-busy="true">
+        <div class="as-heading"><h3 id="as-title">Anapole formation, step by step</h3><p>Published pulse simulation of the 190 × 160 × 100 nm TiO₂ nano-rectangle in air, read against the optical period at 366.5 nm. Choose a pair below to highlight it in (b).</p></div>
+        <div class="as-grid">
+          <section class="as-panel" aria-labelledby="as-a">
+            <h4 id="as-a"><b>(a)</b>The pulse passes and the particle goes quiet</h4>
+            <p>Radiated power in the published simulation. The shaded window contains every electric and magnetic event plotted in (b).</p>
+            <svg id="as-power" class="as-power-svg" viewBox="200 110 2850 2230" role="img" aria-labelledby="as-power-title"><title id="as-power-title">Published radiated power against time, from 0 to 45 femtoseconds, with its peak near 6.5 femtoseconds. A shaded window from 8.36 to 10.52 femtoseconds marks the timing events; there the radiated power is at most about a tenth of its peak.</title><image href="assets/anapole-temporal/published-s3-power.svg" x="0" y="0" width="3408" height="2379"/></svg>
+          </section>
+          <section class="as-panel" aria-labelledby="as-b">
+            <h4 id="as-b"><b>(b)</b>Electric first, magnetic a quarter cycle later</h4>
+            <p>The full circle is one optical cycle. Each published pair starts with its electric event at the top; its line points to where the magnetic event falls. All fourteen lie between <span id="as-range">77° and 94°</span>, around <i>T</i>/4 = 90°.</p>
+            <svg id="as-dial" class="as-dial-svg" viewBox="0 0 320 300" role="img" aria-labelledby="as-dial-title"><title id="as-dial-title">Dial of one optical cycle. The fourteen published magnetic events fall between 77 and 94 degrees after the electric event, around a quarter of the cycle.</title></svg>
+            <ul class="as-dial-key"><li><i class="as-k-E"></i>electric event</li><li><i class="as-k-H"></i>magnetic event, published</li><li><i class="as-k-range"></i>published range</li><li><i class="as-k-meep"></i>Meep, energy inside (Fig. 16)</li></ul>
+          </section>
+        </div>
+        <div class="as-controls">
+          <div id="as-groups" class="as-pick" role="group" aria-label="Choose a published pair"><button id="as-prev" type="button" aria-label="Previous pair" disabled>←</button><button id="as-next" type="button" aria-label="Next pair" disabled>→</button></div>
+          <dl class="as-values">
+            <div><dt>Electric event <i>t</i><sub>E</sub></dt><dd id="as-tE">—</dd></div>
+            <div class="as-v-H"><dt>Magnetic event <i>t</i><sub>H</sub></dt><dd id="as-tH">—</dd></div>
+            <div><dt>Offset <i>t</i><sub>H</sub> − <i>t</i><sub>E</sub></dt><dd id="as-dt">—</dd></div>
+            <div class="as-v-key"><dt>Share of one cycle</dt><dd><span id="as-frac">—</span> · <span id="as-deg">—</span></dd></div>
+            <div><dt>|<i>E</i>|²/|<i>E</i>₀|² at <i>t</i><sub>E</sub></dt><dd id="as-int">—</dd></div>
+          </dl>
+          <p id="as-label" class="as-label"></p>
+        </div>
+        <p id="as-meep-note" class="as-meep-note" hidden>Dashed line in (b): in the independent Meep calculation (Figure 16), the magnetic energy inside the particle peaks <span id="as-meep-value">—</span> after the electric energy.</p>
+        <p id="as-error" class="as-error" hidden></p><p id="as-status" class="as-status" role="status" aria-live="polite"></p>
+        <figcaption><p><span class="tag sim">Simulation</span><b>Figure 15.</b> Anapole formation in the published pulse simulation (Lumerical FDTD) of a free-standing TiO₂ nano-rectangle, 190 × 160 × 100 nm, in air. (a) Radiated power against time, Supplement Fig. S3, unchanged; the shaded window is added here. (b) The fourteen electric-to-magnetic offsets of Supplement Fig. S2, 0.26–0.32 fs, drawn as angles on one optical cycle (360° = <i>T</i> = 1.22 fs). Data from Ref. 6, Supplement 1; angles and shading added for this site.</p>
+          <details><summary>What this shows, and what it does not</summary><p>The supplement lists the times of selected electric and magnetic intensity events. It does not give the observation point, the signed fields or the magnetic amplitudes, so the quarter-period spacing is a comparison with the optical period, not a measured phase of the whole field. The level of radiated power in the shaded window, at most about 11% of the peak, is read from the published figure. A quarter-period hand-off is the mark of stored, resonant light in general. The anapole itself is identified in Ref. 6 by the multipole decomposition and the scattering minimum (Figure 13).</p><p>Source: D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule, <i>Optics Letters</i> 49(24), 7198–7201 (2024), <a href="https://doi.org/10.1364/OL.536925" target="_blank" rel="noopener noreferrer">article ↗</a>; Supplement 1, Figs. S2 and S3, <a href="https://doi.org/10.6084/m9.figshare.27648525.v5" target="_blank" rel="noopener noreferrer">version 5 ↗</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a>. <a href="assets/anapole-temporal/published-s2-table.svg" target="_blank" rel="noopener">Published S2 table ↗</a> · <a href="assets/anapole-temporal/published-s3-power.svg" target="_blank" rel="noopener">Published S3 figure ↗</a> · <a href="https://github.com/diogo-poeta/elyvris/tree/main/anapoles/temporal" target="_blank" rel="noopener noreferrer">Code, data and methods ↗</a></p></details>
+        </figcaption>
+        <details class="as-data"><summary>Open data: all fourteen published pairs</summary><div class="as-table-scroll" role="region" aria-label="Published time pairs" tabindex="0"><table><caption>Transcribed from Supplement Fig. S2; offset and angle calculated here (360° = 1.2225 fs).</caption><thead><tr><th scope="col">Instance / sample</th><th scope="col"><i>t</i><sub>E</sub> (fs)</th><th scope="col"><i>t</i><sub>H</sub> (fs)</th><th scope="col">Δ<i>t</i> (fs)</th><th scope="col">Angle</th><th scope="col">|<i>E</i>|²/|<i>E</i>₀|²</th></tr></thead><tbody id="as-table-body"></tbody></table></div></details>
+        <noscript><p class="as-error">The interactive panels need JavaScript. The published S2 table and S3 figure are linked in the caption.</p></noscript>
+      </figure>
+
+      <figure id="anapole-field-cycle" class="anapole-field-cycle" data-source="assets/anapole-temporal/rectangle-xy.json" aria-busy="true" aria-label="Calculated electric and magnetic fields and stored energy over one optical cycle">
+        <div data-afc-mount></div>
+        <figcaption><p><span class="tag sim">Simulation</span><b>Figure 16.</b> Independent three-dimensional Meep calculation for this site: the 190 × 160 × 100 nm TiO₂ nano-rectangle in air, driven continuously at 366.5 nm, central x–y plane. Top: |<b>E</b>|² and |<b>H</b>|² at the same instant, each on a fixed colour scale; press <em>Play cycle</em> (one cycle, 1.22 fs, lasts 16 s) or move the slider. Bottom: the electric and the magnetic energy stored inside the particle in this plane. They take turns, peaking 90.9° (0.309 fs) apart, close to <i>T</i>/4, with nearly equal averages, while their sum changes by only about 30% over the cycle. In the air around the particle, by contrast, the two peaks are only 4° apart, as in a travelling wave.</p><p><strong>Optical constants:</strong> <a href="https://doi.org/10.1016/j.apsusc.2022.155214" target="_blank" rel="noopener noreferrer">Jolivet et al. (2023)</a>, amorphous ALD TiO₂ deposited at 200 °C: <i>n</i> = 2.8081, κ = 0 at 366.5 nm, from <a href="https://refractiveindex.info/?shelf=main&amp;book=TiO2&amp;page=Jolivet-amorphous" target="_blank" rel="noopener noreferrer">refractiveindex.info</a>.</p><details><summary>Calculation, data and scope</summary><p>The energy curve sums the energy densities ε<sub>r</sub>|<b>E</b>/<i>E</i>₀|² and |<b>H</b>/<i>H</i>₀|² (both in units of ½ε₀<i>E</i>₀², with <i>H</i>₀ = <i>E</i>₀/<i>Z</i>₀) over the grid cells inside the particle, in this plane only. It is a steady-state, single-frequency result: it shows the energy exchange of the driven particle, not the build-up in Figure 15.</p><p>The tabulated optical constants are linearly interpolated in wavelength without extrapolation. This calculation holds ε = n² as a real constant at the selected frequency; it does not model broadband dispersion or the paper’s transient formation. Both E and H use the same reconstructed optical phase. The mesh is 6.67 nm at z = 0, with separate fixed display scales. The field map alone does not establish an anapole condition.</p><span class="afc-code-links"><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/SIMULATION.md" target="_blank" rel="noopener noreferrer">Numerical methods ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/convergence.json" target="_blank" rel="noopener noreferrer">Convergence checks ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/meep_rectangle.py" target="_blank" rel="noopener noreferrer">Meep source ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/energy_exchange.py" target="_blank" rel="noopener noreferrer">Energy calculation ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/rectangle-xy.json" target="_blank" rel="noopener noreferrer">Complex-field data ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/Jolivet-amorphous.yml" target="_blank" rel="noopener noreferrer">Optical-constant table ↗</a></span></details></figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap-text">
+      <p class="in-short"><span>In short</span>Once the pulse has passed, the particle radiates little, yet the light inside it keeps moving between electric and magnetic form, a quarter of an optical period (about 0.3 fs) apart. The published pulse simulation and an independent calculation agree on this timing. It is how light stored in a resonator behaves; the anapole is what lets this small particle hold the light while scattering very little.<sup><a href="#ref-6">6</a></sup></p>
+    </div>
+
+    <section id="thg" class="wrap-text">
+      <h2><span>9</span> Using the anapole to make vacuum-ultraviolet light</h2>
+      <p class="question"><span>The question</span>Can stored light in a nanostructure make the third harmonic of Part II stronger?</p>
+      <p>The third-harmonic signal grows with the cube of the light intensity inside the material, so a structure that holds a strong field is a natural place for it. Anapoles have already raised the third harmonic of single germanium nanodisks in the infrared, and TiO₂ metasurfaces have made third-harmonic light in the vacuum ultraviolet.<sup><a href="#ref-9">9</a>,<a href="#ref-10">10</a></sup> The proposal here joins the two: pump a TiO₂ anapole metasurface in the UV-A, near 370 nm, and collect its third harmonic near 123 nm, inside the 105–160 nm window where the gas molecules of Part II are ionised (Figure 17a).<sup><a href="#ref-2">2</a></sup></p>
+      <p>One particle is too small to use on its own, so the rectangles are arranged as a <strong>metasurface</strong>: a flat array on a suspended fused silica membrane 600 nm thick, spaced 733 nm apart (Figure 17b). The array keeps the anapole, seen as a dip in transmission at 370 nm, with the field concentrated inside each rectangle (Figure 17c).<sup><a href="#ref-2">2</a></sup> This is a simulated design; it has not been fabricated or measured.</p>
+    </section>
+
+    <figure class="fig wide" id="fig-17">
+      <svg class="ph-art thg-art" viewBox="0 0 900 190" role="img" aria-labelledby="fig17-t">
+        <title id="fig17-t">Proposed set-up. A UV-A pump wave at 370 nm enters from the left and meets a membrane carrying small TiO₂ rectangles. A wave with three times the frequency, at about 123 nm, leaves on the right and reaches gas molecules, which are ionised.</title>
+        <path class="ph-wave" d="M20 90 c 25 -42, 50 -42, 75 0 s 50 42, 75 0 s 50 -42, 75 0 s 50 42, 75 0"/>
+        <text class="ph-label" x="20" y="160">pump: UV-A, 370 nm, frequency ν</text>
+        <rect class="ph-slab" x="330" y="20" width="16" height="140"/>
+        <rect class="ph-particle" x="346" y="34" width="12" height="18"/><rect class="ph-particle" x="346" y="66" width="12" height="18"/><rect class="ph-particle" x="346" y="98" width="12" height="18"/><rect class="ph-particle" x="346" y="130" width="12" height="18"/>
+        <text class="ph-label" x="290" y="182">TiO₂ anapole metasurface</text>
+        <path class="ph-wave ph-out" d="M370 90 c 8.3 -40, 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0 s 16.7 -40, 25 0 s 16.7 40, 25 0"/>
+        <text class="ph-label" x="400" y="160">third harmonic: VUV, ≈ 123 nm, 3ν</text>
+        <g class="ph-rings"><circle cx="780" cy="90" r="60"/></g>
+        <circle class="ph-glow" cx="755" cy="70" r="7"/><circle class="ph-glow" cx="800" cy="105" r="7"/><circle class="ph-glow" cx="770" cy="118" r="7"/><circle class="ph-glow" cx="808" cy="62" r="7"/>
+        <text class="ph-label" x="700" y="182">gas molecules, ionised</text>
+      </svg>
+      <div class="two-up-thg">
+        <img src="assets/anapoles/fig7-12-metasurface-schematic.webp" width="775" height="408" loading="lazy" alt="Drawing of a fused silica slab 600 nm thick with a square grid of small TiO₂ rectangles spaced 733 nm apart, lit from above.">
+        <img src="assets/anapoles/fig7-10-metasurface-spectrum.webp" width="1142" height="808" loading="lazy" alt="Transmittance from 340 to 400 nm oscillating between about 0.26 and 0.62 with a dip at 370 nm marked by an arrow; electric and magnetic field maps of one rectangle at the dip.">
+      </div>
+      <figcaption><span class="tag sketch">Proposal</span><b>Figure 17.</b> Using the anapole for third-harmonic generation. (a) Sketch of the proposed set-up, drawn for this site: a UV-A pump near 370 nm on a TiO₂ anapole metasurface; the third harmonic near 123 nm (λ/3) ionises gas molecules as in Part II. Not to scale. (b) The metasurface: TiO₂ nano-rectangles, 190 × 160 × 100 nm, on a 600 nm fused silica membrane, period 733 nm, lit at normal incidence with the electric field along the long side. (c) Simulated transmittance with the anapole dip at 370 nm (arrow), and the electric and magnetic field intensities in one rectangle at that wavelength. FDTD; not yet fabricated. (b) and (c) from Ref. 2, Figs. 7.12 and 7.10.</figcaption>
+    </figure>
+
+    <div class="wrap-text">
+      <p class="in-short"><span>In short</span>A TiO₂ anapole metasurface pumped near 370 nm could make third-harmonic light near 123 nm, the vacuum ultraviolet needed for gas sensing. It is a design in simulation; fabrication and measurement are future work.<sup><a href="#ref-2">2</a></sup> <a class="arrow" href="anapoles.html">More on the anapole page: tolerances and design for fabrication</a></p>
+    </div>
+    </div>
+
+    <div class="rp" id="part-5" data-num="Outlook" data-title="Uses and publications">
     <section id="applications" class="wrap-text">
-      <h2><span>7</span> Where this could be used</h2>
+      <h2><span>10</span> Where this could be used</h2>
       <p class="question"><span>The question</span>Where could each result be used, and how far has it gone?</p>
       <p>Each application below is labelled with how far the work has gone.</p>
       <ul class="apps">
@@ -329,59 +501,8 @@
       </ol>
       <p class="more-links"><a class="arrow" href="cv.html">Curriculum vitae</a> <a class="arrow" href="records.html">Gallery: research and travel</a></p>
     </section>
-
-    <section id="data" class="wrap-text">
-      <h2>Inside an anapole: where the light goes</h2>
-      <p class="question"><span>The question</span>After a short ultraviolet pulse has passed through the TiO₂ nano-rectangle, what is the light inside it doing?</p>
-      <p>A light wave travelling through air carries its energy away, and its electric and magnetic fields rise and fall together. Light held inside a resonator behaves differently: its energy moves back and forth between the electric and the magnetic field, which take turns at being strongest, a quarter of an optical period apart. An LC circuit does the same with the charge on its capacitor and the current in its coil, and a pendulum with its height and its speed. At resonance the two forms hold, on average, equal energy.<sup><a href="#ref-7">7</a></sup> At 366.5 nm one optical period is <i>T</i> = λ/<i>c</i> = 1.22 fs, so a quarter period is 0.31 fs.</p>
-      <p>The two figures below look for this hand-off in the anapole study. Figure 13 reads the published pulse simulation (Ref. 6, Supplement Figs. S2 and S3) against the optical period. Figure 14 is an independent steady-state calculation made for this site with the free solver Meep. For the anapole itself, see Figure 12 and the <a href="anapoles.html">anapole page</a>.</p>
-    </section>
-
-    <div class="fig wide viewers">
-      <figure id="anapole-temporal" class="anapole-story" aria-labelledby="as-title" aria-busy="true">
-        <div class="as-heading"><h3 id="as-title">Anapole formation, step by step</h3><p>Published pulse simulation of the 190 × 160 × 100 nm TiO₂ nano-rectangle in air, read against the optical period at 366.5 nm. Choose a pair below to highlight it in (b).</p></div>
-        <div class="as-grid">
-          <section class="as-panel" aria-labelledby="as-a">
-            <h4 id="as-a"><b>(a)</b>The pulse passes and the particle goes quiet</h4>
-            <p>Radiated power in the published simulation. The shaded window contains every electric and magnetic event plotted in (b).</p>
-            <svg id="as-power" class="as-power-svg" viewBox="200 110 2850 2230" role="img" aria-labelledby="as-power-title"><title id="as-power-title">Published radiated power against time, from 0 to 45 femtoseconds, with its peak near 6.5 femtoseconds. A shaded window from 8.36 to 10.52 femtoseconds marks the timing events; there the radiated power is at most about a tenth of its peak.</title><image href="assets/anapole-temporal/published-s3-power.svg" x="0" y="0" width="3408" height="2379"/></svg>
-          </section>
-          <section class="as-panel" aria-labelledby="as-b">
-            <h4 id="as-b"><b>(b)</b>Electric first, magnetic a quarter cycle later</h4>
-            <p>The full circle is one optical cycle. Each published pair starts with its electric event at the top; its line points to where the magnetic event falls. All fourteen lie between <span id="as-range">77° and 94°</span>, around <i>T</i>/4 = 90°.</p>
-            <svg id="as-dial" class="as-dial-svg" viewBox="0 0 320 300" role="img" aria-labelledby="as-dial-title"><title id="as-dial-title">Dial of one optical cycle. The fourteen published magnetic events fall between 77 and 94 degrees after the electric event, around a quarter of the cycle.</title></svg>
-            <ul class="as-dial-key"><li><i class="as-k-E"></i>electric event</li><li><i class="as-k-H"></i>magnetic event, published</li><li><i class="as-k-range"></i>published range</li><li><i class="as-k-meep"></i>Meep, energy inside (Fig. 14)</li></ul>
-          </section>
-        </div>
-        <div class="as-controls">
-          <div id="as-groups" class="as-pick" role="group" aria-label="Choose a published pair"><button id="as-prev" type="button" aria-label="Previous pair" disabled>←</button><button id="as-next" type="button" aria-label="Next pair" disabled>→</button></div>
-          <dl class="as-values">
-            <div><dt>Electric event <i>t</i><sub>E</sub></dt><dd id="as-tE">—</dd></div>
-            <div class="as-v-H"><dt>Magnetic event <i>t</i><sub>H</sub></dt><dd id="as-tH">—</dd></div>
-            <div><dt>Offset <i>t</i><sub>H</sub> − <i>t</i><sub>E</sub></dt><dd id="as-dt">—</dd></div>
-            <div class="as-v-key"><dt>Share of one cycle</dt><dd><span id="as-frac">—</span> · <span id="as-deg">—</span></dd></div>
-            <div><dt>|<i>E</i>|²/|<i>E</i>₀|² at <i>t</i><sub>E</sub></dt><dd id="as-int">—</dd></div>
-          </dl>
-          <p id="as-label" class="as-label"></p>
-        </div>
-        <p id="as-meep-note" class="as-meep-note" hidden>Dashed line in (b): in the independent Meep calculation (Figure 14), the magnetic energy inside the particle peaks <span id="as-meep-value">—</span> after the electric energy.</p>
-        <p id="as-error" class="as-error" hidden></p><p id="as-status" class="as-status" role="status" aria-live="polite"></p>
-        <figcaption><p><span class="tag sim">Simulation</span><b>Figure 13.</b> Anapole formation in the published pulse simulation (Lumerical FDTD) of a free-standing TiO₂ nano-rectangle, 190 × 160 × 100 nm, in air. (a) Radiated power against time, Supplement Fig. S3, unchanged; the shaded window is added here. (b) The fourteen electric-to-magnetic offsets of Supplement Fig. S2, 0.26–0.32 fs, drawn as angles on one optical cycle (360° = <i>T</i> = 1.22 fs). Data from Ref. 6, Supplement 1; angles and shading added for this site.</p>
-          <details><summary>What this shows, and what it does not</summary><p>The supplement lists the times of selected electric and magnetic intensity events. It does not give the observation point, the signed fields or the magnetic amplitudes, so the quarter-period spacing is a comparison with the optical period, not a measured phase of the whole field. The level of radiated power in the shaded window, at most about 11% of the peak, is read from the published figure. A quarter-period hand-off is the mark of stored, resonant light in general. The anapole itself is identified in Ref. 6 by the multipole decomposition and the scattering minimum (Figure 12).</p><p>Source: D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule, <i>Optics Letters</i> 49(24), 7198–7201 (2024), <a href="https://doi.org/10.1364/OL.536925" target="_blank" rel="noopener noreferrer">article ↗</a>; Supplement 1, Figs. S2 and S3, <a href="https://doi.org/10.6084/m9.figshare.27648525.v5" target="_blank" rel="noopener noreferrer">version 5 ↗</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a>. <a href="assets/anapole-temporal/published-s2-table.svg" target="_blank" rel="noopener">Published S2 table ↗</a> · <a href="assets/anapole-temporal/published-s3-power.svg" target="_blank" rel="noopener">Published S3 figure ↗</a> · <a href="https://github.com/diogo-poeta/elyvris/tree/main/anapoles/temporal" target="_blank" rel="noopener noreferrer">Code, data and methods ↗</a></p></details>
-        </figcaption>
-        <details class="as-data"><summary>Open data: all fourteen published pairs</summary><div class="as-table-scroll" role="region" aria-label="Published time pairs" tabindex="0"><table><caption>Transcribed from Supplement Fig. S2; offset and angle calculated here (360° = 1.2225 fs).</caption><thead><tr><th scope="col">Instance / sample</th><th scope="col"><i>t</i><sub>E</sub> (fs)</th><th scope="col"><i>t</i><sub>H</sub> (fs)</th><th scope="col">Δ<i>t</i> (fs)</th><th scope="col">Angle</th><th scope="col">|<i>E</i>|²/|<i>E</i>₀|²</th></tr></thead><tbody id="as-table-body"></tbody></table></div></details>
-        <noscript><p class="as-error">The interactive panels need JavaScript. The published S2 table and S3 figure are linked in the caption.</p></noscript>
-      </figure>
-
-      <figure id="anapole-field-cycle" class="anapole-field-cycle" data-source="assets/anapole-temporal/rectangle-xy.json" aria-busy="true" aria-label="Calculated electric and magnetic fields and stored energy over one optical cycle">
-        <div data-afc-mount></div>
-        <figcaption><p><span class="tag sim">Simulation</span><b>Figure 14.</b> Independent three-dimensional Meep calculation for this site: the 190 × 160 × 100 nm TiO₂ nano-rectangle in air, driven continuously at 366.5 nm, central x–y plane. Top: |<b>E</b>|² and |<b>H</b>|² at the same instant, each on a fixed colour scale; play the cycle or move the slider. Bottom: the electric and the magnetic energy stored inside the particle in this plane. They take turns, peaking 90.9° (0.309 fs) apart, close to <i>T</i>/4, with nearly equal averages, while their sum changes by only about 30% over the cycle. In the air around the particle, by contrast, the two peaks are only 4° apart, as in a travelling wave.</p><p><strong>Optical constants:</strong> <a href="https://doi.org/10.1016/j.apsusc.2022.155214" target="_blank" rel="noopener noreferrer">Jolivet et al. (2023)</a>, amorphous ALD TiO₂ deposited at 200 °C: <i>n</i> = 2.8081, κ = 0 at 366.5 nm, from <a href="https://refractiveindex.info/?shelf=main&amp;book=TiO2&amp;page=Jolivet-amorphous" target="_blank" rel="noopener noreferrer">refractiveindex.info</a>.</p><details><summary>Calculation, data and scope</summary><p>The energy curve sums the energy densities ε<sub>r</sub>|<b>E</b>/<i>E</i>₀|² and |<b>H</b>/<i>H</i>₀|² (both in units of ½ε₀<i>E</i>₀², with <i>H</i>₀ = <i>E</i>₀/<i>Z</i>₀) over the grid cells inside the particle, in this plane only. It is a steady-state, single-frequency result: it shows the energy exchange of the driven particle, not the build-up in Figure 13.</p><p>The tabulated optical constants are linearly interpolated in wavelength without extrapolation. This calculation holds ε = n² as a real constant at the selected frequency; it does not model broadband dispersion or the paper’s transient formation. Both E and H use the same reconstructed optical phase. The mesh is 6.67 nm at z = 0, with separate fixed display scales. The field map alone does not establish an anapole condition.</p><span class="afc-code-links"><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/SIMULATION.md" target="_blank" rel="noopener noreferrer">Numerical methods ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/convergence.json" target="_blank" rel="noopener noreferrer">Convergence checks ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/meep_rectangle.py" target="_blank" rel="noopener noreferrer">Meep source ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/energy_exchange.py" target="_blank" rel="noopener noreferrer">Energy calculation ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/rectangle-xy.json" target="_blank" rel="noopener noreferrer">Complex-field data ↗</a><a href="https://github.com/diogo-poeta/elyvris/blob/main/anapoles/temporal/Jolivet-amorphous.yml" target="_blank" rel="noopener noreferrer">Optical-constant table ↗</a></span></details></figcaption>
-      </figure>
     </div>
 
-    <section class="wrap-text">
-      <p class="in-short"><span>In short</span>Once the pulse has passed, the particle radiates little, yet the light inside it keeps moving between electric and magnetic form, a quarter of an optical period (about 0.3 fs) apart. The published pulse simulation and an independent calculation agree on this timing. It is how light stored in a resonator behaves; the anapole is what lets this small particle hold the light while scattering very little.<sup><a href="#ref-6">6</a></sup></p>
-    </section>
     <section class="refs wrap-text" aria-labelledby="refs-title">
       <h2 id="refs-title">References</h2>
       <ol>
@@ -392,8 +513,11 @@
         <li id="ref-5">D. Poeta et al., “Energy velocity as an optical design indicator for the ultraviolet nonlinear response of ALD-grown TiO₂ thin films,” <i>Optical Materials Express</i> 16, 3342–3356 (2026). <a href="https://doi.org/10.1364/OME.611814">doi:10.1364/OME.611814</a></li>
         <li id="ref-6">D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule, “Optical anapoles excited by UV-A illumination,” <i>Optics Letters</i> 49, 7198–7201 (2024). <a href="https://doi.org/10.1364/OL.536925">doi:10.1364/OL.536925</a></li>
         <li id="ref-7">J. D. Jackson, <i>Classical Electrodynamics</i>, 3rd ed. (Wiley, 1999), Sec. 6.9, Poynting’s theorem for harmonic fields: at resonance the stored electric and magnetic energies are equal.</li>
+        <li id="ref-8">A. E. Miroshnichenko et al., “Nonradiating anapole modes in dielectric nanoparticles,” <i>Nature Communications</i> 6, 8069 (2015). <a href="https://doi.org/10.1038/ncomms9069">doi:10.1038/ncomms9069</a></li>
+        <li id="ref-9">G. Grinblat et al., “Enhanced third harmonic generation in single germanium nanodisks excited at the anapole mode,” <i>Nano Letters</i> 16, 4635–4640 (2016). <a href="https://doi.org/10.1021/acs.nanolett.6b01958">doi:10.1021/acs.nanolett.6b01958</a></li>
+        <li id="ref-10">M. Semmlinger et al., “Generating third harmonic vacuum ultraviolet light with a TiO₂ metasurface,” <i>Nano Letters</i> 19, 8972–8978 (2019). <a href="https://doi.org/10.1021/acs.nanolett.9b03961">doi:10.1021/acs.nanolett.9b03961</a></li>
       </ol>
-      <p class="aside">Figures 1–3 were made for this site from my 2026 recalculation of the MSc designs with Meep and RCWA. The source images for Figure 4 are from the MSc thesis (Ref. 1, CC BY-NC-ND 4.0); the website adds panel labels. Figures 5–12 are from the PhD thesis (Ref. 2, CC BY 4.0). Figure 13 combines Supplement Figs. S2 and S3 of Ref. 6 (CC BY 4.0) with additions made for this site; Figure 14 is a new calculation. Where a figure was first published in a journal, the article is cited in the caption. Refs. 3, 5 and 6 are open access under the Optica Open Access Publishing Agreement, and Ref. 4 under CC BY-NC-ND 4.0.</p>
+      <p class="aside">Figures 1–3 were made for this site from my 2026 recalculation of the MSc designs with Meep and RCWA. The source images for Figure 4 are from the MSc thesis (Ref. 1, CC BY-NC-ND 4.0); the website adds panel labels. Figures 5–11, 13, 14 and 17b–c are from the PhD thesis (Ref. 2, CC BY 4.0). Figures 12 and 17a are drawings made for this site. Figure 15 combines Supplement Figs. S2 and S3 of Ref. 6 (CC BY 4.0) with additions made for this site; Figure 16 is a new calculation. Where a figure was first published in a journal, the article is cited in the caption. Refs. 3, 5 and 6 are open access under the Optica Open Access Publishing Agreement, and Ref. 4 under CC BY-NC-ND 4.0.</p>
     </section>
   </main>
 
