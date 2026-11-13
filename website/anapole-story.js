@@ -5,8 +5,6 @@
  *  (b) Each published electric-to-magnetic offset drawn as an angle on one
  *      optical cycle (360 degrees = T = lambda/c). The Meep marker comes from
  *      anapole-field-cycle.js (energy inside the particle), when it has loaded.
- *  (c) One row per published instance, each aligned to its own first electric
- *      event, so the repeating electric-then-magnetic pattern can be compared.
  * Source: https://doi.org/10.6084/m9.figshare.27648525.v5 (CC BY 4.0).
  * Nothing is interpolated between the published samples.
  */
@@ -41,7 +39,7 @@ function buildPower(){
  svg.append(el('rect',{x:a,y:S3.yTop,width:b-a,height:S3.yBottom-S3.yTop,class:'as-window'}));
  svg.append(el('line',{x1:b,y1:1260,x2:1380,y2:900,class:'as-leader'}));
  const label=el('text',{x:1400,y:850,class:'as-svg-note'});
- label.append(el('tspan',{x:1400,dy:0},'Timing events in (b) and (c)'),el('tspan',{x:1400,dy:105},fs(first)+' to '+fs(last)),el('tspan',{x:1400,dy:105,class:'as-svg-note-soft'},'radiated power here is at most'),el('tspan',{x:1400,dy:95,class:'as-svg-note-soft'},'about a tenth of its peak'));
+ label.append(el('tspan',{x:1400,dy:0},'Timing events in (b)'),el('tspan',{x:1400,dy:105},fs(first)+' to '+fs(last)),el('tspan',{x:1400,dy:105,class:'as-svg-note-soft'},'radiated power here is at most'),el('tspan',{x:1400,dy:95,class:'as-svg-note-soft'},'about a tenth of its peak'));
  svg.append(label);
 }
 
@@ -73,70 +71,12 @@ function showMeep(lagDeg){
  g.setAttribute('visibility','visible');$('meep-note').hidden=false;$('meep-value').textContent=lagDeg.toFixed(1)+'° ('+(lagDeg/360*PERIOD).toFixed(3)+' fs)';
 }
 
-/* (c) stacked half-cycles: one row per instance, aligned to its own first electric event.
-   Wide layout: labels to the left of each row. Compact layout (phones): labels above each row. */
-const LAYOUTS=Object.freeze({
- wide:Object.freeze({w:712,left:236,right:700,top:62,step:58,band:22,axisGap:30,compact:false}),
- compact:Object.freeze({w:400,left:16,right:384,top:74,step:76,band:18,axisGap:28,compact:true})
-});
-const R_MIN=-.03,R_MAX=.5;
-let L=LAYOUTS.wide,rowOf=[],startOf={};
-const rx=r=>L.left+(L.right-L.left)*(r-R_MIN)/(R_MAX-R_MIN);
-const rowY=k=>L.top+k*L.step;
-function buildTimeline(){
- const svg=$('timeline'),instances=[...new Set(data.map(s=>s.instance))],quarter=PERIOD/4,axisY=rowY(instances.length-1)+L.axisGap;
- for(const child of [...svg.children])if(child.tagName.toLowerCase()!=='title')child.remove();
- svg.setAttribute('viewBox','0 0 '+L.w+' '+(axisY+46));svg.classList.toggle('as-compact',L.compact);
- instances.forEach(n=>{startOf[n]=Math.min(...data.filter(s=>s.instance===n).map(s=>s.tE));});
- rowOf=data.map(s=>instances.indexOf(s.instance));
- if(!L.compact)svg.append(el('text',{x:0,y:16,class:'as-col-head'},'Instance and start time'),el('text',{x:L.left,y:16,class:'as-col-head'},'Events, measured from the first electric event of each instance'));
- instances.forEach((n,k)=>{
-  const y=rowY(k),start=startOf[n],prev=k?startOf[instances[k-1]]:null,gap=prev===null?'':'  +'+(start-prev).toFixed(2)+' fs';
-  svg.append(el('rect',{x:L.left-10,y:y-L.band,width:L.right-L.left+20,height:2*L.band,rx:4,class:'as-row-band'}));
-  if(L.compact){
-   const t=el('text',{x:L.left-10,y:y-L.band-8,class:'as-row-start'});
-   t.append(el('tspan',{class:'as-row-name-inline'},'Instance '+n),el('tspan',{},'  starts '+fs(start)));
-   if(gap)t.append(el('tspan',{class:'as-row-gap'},gap));
-   svg.append(t);
-  }else{
-   svg.append(el('text',{x:0,y:y-3,class:'as-row-name'},'Instance '+n));
-   const sub=el('text',{x:0,y:y+15,class:'as-row-start'},'starts '+fs(start));
-   if(gap)sub.append(el('tspan',{class:'as-row-gap'},gap));
-   svg.append(sub);
-  }
- });
- const refTop=L.compact?L.top-L.band-2:L.top-24;
- svg.append(el('line',{x1:rx(0),x2:rx(0),y1:refTop,y2:axisY,class:'as-ref as-ref-E'}),el('line',{x1:rx(quarter),x2:rx(quarter),y1:L.compact?20:L.top-40,y2:axisY,class:'as-ref as-ref-H'}));
- svg.append(el('text',{x:rx(quarter)+6,y:L.compact?30:L.top-28,class:'as-ref-text'},'T/4 = '+quarter.toFixed(2)+' fs'));
- data.forEach((s,i)=>{
-  const y=rowY(rowOf[i]),xe=rx(s.tE-startOf[s.instance]),xh=rx(s.tH-startOf[s.instance]);
-  const e=el('circle',{cx:xe,cy:y,r:5,class:'as-point-E'}),h=el('path',{d:'M'+xh+','+(y-6.5)+'l6.5,6.5l-6.5,6.5l-6.5,-6.5z',class:'as-point-H'});
-  for(const m of [e,h]){m.addEventListener('click',()=>select(i));m.style.cursor='pointer';}
-  svg.append(e,h);Object.assign(marks[i],{e,h});
- });
- svg.append(el('line',{x1:L.left,x2:L.right,y1:axisY,y2:axisY,class:'as-axis'}));
- for(let k=0;k<=5;k++){const r=k/10;svg.append(el('line',{x1:rx(r),x2:rx(r),y1:axisY,y2:axisY+6,class:'as-axis'}),el('text',{x:rx(r),y:axisY+20,'text-anchor':'middle',class:'as-axis-text'},r.toFixed(1)));}
- svg.append(el('text',{x:L.right,y:axisY+40,'text-anchor':'end',class:'as-axis-text'},L.compact?'Time since the instance’s first electric event (fs)':'Time since the first electric event of the instance (fs)'));
- const sel=el('g',{id:'as-tl-selected'});sel.append(el('path',{class:'as-span'}),el('text',{'text-anchor':'middle',class:'as-span-text'}),el('circle',{r:7,class:'as-dot-E'}),el('path',{class:'as-dot-H'}));svg.append(sel);
-}
-function selectRow(s,i){
- const tl=fig.querySelector('#as-tl-selected'),y=rowY(rowOf[i]),ex=rx(s.tE-startOf[s.instance]),hx=rx(s.tH-startOf[s.instance]),[span,text,dot,dia]=tl.children,yb=y-12;
- span.setAttribute('d','M'+ex+','+(yb+4)+'V'+yb+'H'+hx+'V'+(yb+4));text.setAttribute('x',(ex+hx)/2);text.setAttribute('y',yb-3);text.textContent='Δt = '+fs(s.delay);
- dot.setAttribute('cx',ex);dot.setAttribute('cy',y);dia.setAttribute('d','M'+hx+','+(y-8)+'l8,8l-8,8l-8,-8z');
-}
-function fitTimeline(){
- if(!data)return;const box=$('timeline').parentElement,next=box.clientWidth<540?LAYOUTS.compact:LAYOUTS.wide;
- if(next===L&&$('timeline').childElementCount>1)return;L=next;buildTimeline();selectRow(data[current],current);
-}
-if('ResizeObserver'in window)new ResizeObserver(fitTimeline).observe(fig);else window.addEventListener('resize',fitTimeline);
-
 /* shared selection */
 function select(index){
  current=Math.max(0,Math.min(data.length-1,index));const s=data[current],first=data.findIndex(v=>v.instance===s.instance);
  const [x,y]=polar(s.degrees,D.r-3),dial=fig.querySelector('#as-dial-selected');
  dial.querySelector('line').setAttribute('x1',D.cx);dial.querySelector('line').setAttribute('y1',D.cy);dial.querySelector('line').setAttribute('x2',x);dial.querySelector('line').setAttribute('y2',y);
  dial.querySelector('path').setAttribute('d','M'+x+','+(y-7)+'l7,7l-7,7l-7,-7z');
- selectRow(s,current);
  $('label').textContent='Instance '+s.instance+', sample '+(current-first+1)+' (pair '+(current+1)+' of '+data.length+')';
  $('tE').textContent=fs(s.tE);$('tH').textContent=fs(s.tH);$('dt').textContent=fs(s.delay);$('deg').textContent=Math.round(s.degrees)+'°';$('frac').textContent=(s.delay/PERIOD).toFixed(2)+' T';$('int').textContent=s.intensity.toFixed(3);
  $('prev').disabled=current===0;$('next').disabled=current===data.length-1;
@@ -153,7 +93,7 @@ function buildControls(){
 function onEnergy(detail){if(detail&&Number.isFinite(detail.lagDeg))showMeep(detail.lagDeg);}
 document.addEventListener('anapole-field-cycle:energy',e=>{if(data)onEnergy(e.detail);});
 fetch('anapole-temporal-samples.json',{credentials:'same-origin'}).then(r=>{if(!r.ok)throw new Error('Samples unavailable');return r.json();}).then(value=>{
- data=normalize(value);buildPower();buildDial();L=$('timeline').parentElement.clientWidth<540?LAYOUTS.compact:LAYOUTS.wide;buildTimeline();buildControls();select(0);
+ data=normalize(value);buildPower();buildDial();buildControls();select(0);
  onEnergy(root.AnapoleFieldCycleEnergy);
  fig.setAttribute('aria-busy','false');fig.classList.add('as-ready');
 }).catch(()=>{fig.setAttribute('aria-busy','false');const e=$('error');e.hidden=false;e.textContent='The published timing samples could not be loaded. The original S2 table is linked below.';});
