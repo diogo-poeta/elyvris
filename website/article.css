@@ -127,7 +127,8 @@
 .sim-table tbody th small { display: block; font: 12.5px var(--sans); color: var(--muted); margin-top: 4px; }
 
 /* Research story */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 36px 0 8px; padding: 20px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.stats-wrap { width: min(960px, 100% - 32px); margin-inline: auto; }
+.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin: 36px 0 8px; padding: 20px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .stats dt { font: 500 30px/1.1 var(--serif); color: var(--ink); }
 .stats dd { margin: 6px 0 0; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
 .chapter-meta { font-size: 14px; color: var(--muted); margin-top: -6px !important; }
