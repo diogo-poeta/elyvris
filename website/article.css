@@ -126,6 +126,23 @@
 .sim-table tbody th { font: 500 16px/1.3 var(--serif); width: 20%; }
 .sim-table tbody th small { display: block; font: 12.5px var(--sans); color: var(--muted); margin-top: 4px; }
 
+/* n and k in simulations: one small card per method instead of a wide table */
+.nk-uses-cap { font-size: 14.5px; color: var(--ink-2); margin: 0 0 14px !important; }
+.nk-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.nk-cards li { position: relative; background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 18px 20px 14px 78px; }
+.nk-icon { position: absolute; left: 18px; top: 18px; width: 44px; height: 44px; }
+.nk-icon * { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+.nk-icon .pi-faint { stroke-opacity: .35; }
+.nk-icon .pi-metal { fill: #C9C2B4; }
+.nk-icon .pi-amber { stroke: var(--amber-ink); stroke-width: 2.2; }
+.nk-cards h3 { font: 500 20px/1.25 var(--serif); margin: 0 0 10px; }
+.nk-cards h3 small { display: block; font: 13px var(--sans); color: var(--muted); margin-top: 3px; }
+.nk-cards dl { margin: 0; display: grid; gap: 8px; }
+.nk-cards dt { font: 600 13px var(--sans); color: var(--muted); }
+.nk-cards dd { margin: 1px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.nk-cards .nk-watch dt { color: var(--amber-ink); }
+.nk-cards .nk-watch { padding-top: 8px; border-top: 1px solid var(--rule); }
+
 /* Research story */
 .stats-wrap { width: min(960px, 100% - 32px); margin-inline: auto; }
 .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin: 36px 0 8px; padding: 20px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
@@ -161,7 +178,24 @@
 .part-num { font: 600 13px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--amber-ink); }
 .part-title { font: 500 clamp(32px, 4.4vw, 46px)/1.08 var(--serif); color: var(--ink); margin-top: 8px !important; }
 .part-line { font: 19px/1.45 var(--serif); color: var(--ink-2); margin-top: 10px !important; }
-.part + section h2 { margin-top: 44px; }
+.part + section h2, .physics + section h2 { margin-top: 44px; }
+
+/* "The physics in brief": one short explanation and one drawing at the start of each part */
+.physics { margin-top: 36px; padding: 20px 22px 16px; background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--amber); border-radius: 0 8px 8px 0; }
+.physics p { font-size: 16px; line-height: 1.6; color: var(--ink-2); }
+.physics .physics-label { font: 600 12px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--amber-ink); margin: 0 0 10px !important; }
+.physics .physics-more { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: 15px; margin: 0 !important; }
+.ph-art { display: block; width: 100%; height: auto; margin: 0 0 14px; background: var(--paper); border-radius: 6px; }
+.ph-slab { fill: rgba(20,25,31,.07); stroke: var(--ink); stroke-width: 1.2; }
+.ph-wave { fill: none; stroke: var(--ink); stroke-width: 1.8; }
+.ph-wave.ph-in { stroke: var(--ink-2); stroke-width: 1.6; }
+.ph-wave.ph-out { stroke: var(--amber-ink); stroke-width: 1.8; }
+.ph-arrow { fill: none; stroke: var(--ink); stroke-opacity: .4; stroke-width: 1.8; }
+.ph-arrow.ph-amber { stroke: var(--amber-ink); stroke-opacity: 1; stroke-width: 2.4; }
+.ph-rings circle { fill: none; stroke: var(--ink); stroke-opacity: .15; stroke-dasharray: 3 5; stroke-width: 1.2; }
+.ph-particle { fill: #fff; stroke: var(--ink); stroke-width: 1.3; }
+.ph-glow { fill: var(--amber); fill-opacity: .85; }
+.ph-label { font: 14px var(--sans); fill: var(--ink-2); }
 
 .question, .in-short { font-size: 16.5px; line-height: 1.55; }
 .question { font: 20px/1.45 var(--serif); color: var(--ink); padding: 2px 0 2px 16px; border-left: 3px solid var(--amber); margin: 6px 0 22px !important; }
@@ -188,6 +222,11 @@
   .ix-body, .ex-body { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr 1fr; }
   .journey ol { grid-template-columns: 1fr; gap: 10px; }
+  .nk-cards { grid-template-columns: 1fr; }
+  .nk-cards li { padding: 16px 16px 12px 16px; }
+  .nk-icon { position: static; display: block; margin-bottom: 8px; }
+  .physics { padding: 16px 16px 12px; }
+  .ph-label { font-size: 20px; }
   .part { margin-top: 64px; padding: 30px 0 26px; }
   .question { font-size: 18px; }
   .stats dt { font-size: 26px; }

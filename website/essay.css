@@ -1,0 +1,49 @@
+/* "Light, unfolded": an essay in seven short chapters, one per letter of the name.
+   Loaded after home.css and article.css. The layout is a quiet reading column, like a small book. */
+
+.essay .article-head h1 { font-size: clamp(48px, 7.5vw, 86px); }
+.essay .standfirst { font-size: 22px; line-height: 1.55; }
+
+.letters-nav { display: flex; justify-content: space-between; gap: 8px; margin-top: 30px; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.letters-nav a { font: 500 34px/1 var(--serif); color: var(--ink); text-decoration: none; padding: 4px 8px; border-radius: 6px; }
+.letters-nav a:hover, .letters-nav a:focus-visible { color: var(--amber-ink); background: var(--paper-2); }
+
+.letter { margin-top: 84px; scroll-margin-top: 24px; }
+.letter .letter-mark { font: 400 clamp(84px, 12vw, 128px)/.9 var(--serif); color: var(--amber); margin: 0 0 4px !important; }
+.essay .letter h2 { margin: 0 0 22px; font-size: clamp(30px, 3.6vw, 38px); }
+.letter p { font: 19px/1.7 var(--serif); color: var(--ink); }
+.letter .in-work { font: 15.5px/1.55 var(--sans); color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 22px !important; }
+.in-work span { display: block; font: 600 12px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--amber-ink); margin-bottom: 3px; }
+
+.essay-art { display: block; width: 100%; height: auto; margin: 6px 0 26px; background: var(--paper-2); border-radius: 8px; padding: 10px; }
+.ea-axis { fill: none; stroke: var(--ink); stroke-opacity: .25; stroke-width: 1; }
+.ea-wave { fill: none; stroke: var(--ink); stroke-width: 1.8; }
+.ea-wave.ea-thin { stroke-width: 1.2; stroke-opacity: .55; }
+.ea-wave.ea-alt { stroke-dasharray: 4 4; }
+.ea-wave.ea-strong { stroke: var(--amber-ink); stroke-width: 2.2; }
+.ea-arrows path { stroke: var(--amber-ink); stroke-width: 2; marker-end: none; }
+.ea-dir, .ea-ray { fill: none; stroke: var(--ink); stroke-width: 1.8; }
+.ea-ray.ea-faint { stroke-opacity: .55; }
+.ea-ray.ea-fainter { stroke-opacity: .25; }
+.ea-slab { fill: rgba(20,25,31,.07); stroke: var(--ink); stroke-width: 1.2; }
+.ea-grid path { fill: none; stroke: var(--ink); stroke-opacity: .3; stroke-width: 1; }
+.ea-cell { fill: rgba(227,166,70,.18); stroke: var(--ink); stroke-width: 1.4; }
+.ea-e { fill: none; stroke: var(--amber-ink); stroke-width: 2; }
+.ea-h { fill: #2F6F9F; }
+.ea-rings circle { fill: none; stroke: var(--ink); stroke-opacity: .14; stroke-dasharray: 3 5; stroke-width: 1.2; }
+.ea-particle { fill: #fff; stroke: var(--ink); stroke-width: 1.4; }
+.ea-glow { fill: var(--amber); fill-opacity: .85; }
+.ea-dot { fill: var(--amber); stroke: var(--ink); stroke-width: 1.2; }
+.ea-out path { fill: none; stroke: var(--ink); stroke-opacity: .45; stroke-width: 1.4; }
+.ea-label { font: 15px var(--sans); fill: var(--ink); }
+.ea-muted { fill: var(--muted); }
+
+.essay-end { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--ink); }
+.essay-end p:first-child { font: italic 22px/1.6 var(--serif); color: var(--ink); }
+
+@media (max-width: 760px) {
+  .letters-nav a { font-size: 26px; padding: 4px 4px; }
+  .letter { margin-top: 64px; }
+  .letter p { font-size: 18px; }
+  .ea-label { font-size: 19px; }
+}

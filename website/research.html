@@ -80,6 +80,18 @@
       </div>
     </div>
 
+    <aside class="physics wrap-text" aria-labelledby="phys-1">
+      <p class="physics-label" id="phys-1">The physics in brief</p>
+      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="A wave enters a slab of material. Inside, its wavelength is shorter, because n slows it, and its height shrinks, because k absorbs it.">
+        <rect class="ph-slab" x="250" y="10" width="330" height="100"/>
+        <path class="ph-wave" d="M10 60 c 20 -40, 40 -40, 60 0 s 40 40, 60 0 s 40 -40, 60 0 s 40 40, 60 0"/>
+        <path class="ph-wave ph-in" d="M250 60 c 12 -32, 24 -32, 36 0 s 24 26, 36 0 s 24 -20, 36 0 s 24 16, 36 0 s 24 -12, 36 0 s 24 9, 36 0 s 24 -6, 36 0 s 24 4, 36 0 s 24 -2, 36 0"/>
+        <text class="ph-label" x="262" y="104">shorter (n), fading (k)</text>
+      </svg>
+      <p>Inside a material, light slows down and fades. Two numbers describe how: the refractive index <i>n</i>, how much the wave slows and bends, and the extinction coefficient <i>k</i>, how quickly it is absorbed. A metal has a large <i>k</i>: its free electrons follow the field and send the light back, so even 30 nm of silver reflects most of it. A grating can hand the light to <em>surface plasmons</em>, waves of the electrons bound to each face of the metal. In a film this thin the plasmons of the two faces couple, and through them the energy crosses to the other side.<sup><a href="#ref-1">1</a></sup></p>
+      <p class="physics-more"><a class="arrow" href="refractive-index.html">n and k, explained</a> <a class="arrow" href="light.html#l">In the essay: L, layers</a></p>
+    </aside>
+
     <section id="msc" class="wrap-text">
       <h2><span>1</span> Making a metal transparent</h2>
       <p class="chapter-meta">MSc in Micro and Nano Technologies · University of Minho and International Iberian Nanotechnology Laboratory · 2021<sup><a href="#ref-1">1</a></sup> · recalculated with free solvers in 2026</p>
@@ -144,6 +156,19 @@
       </div>
     </div>
 
+    <aside class="physics wrap-text" aria-labelledby="phys-2">
+      <p class="physics-label" id="phys-2">The physics in brief</p>
+      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="A long-wavelength pump wave passes through a thin membrane and leaves as a wave with three times the frequency.">
+        <path class="ph-wave" d="M10 60 c 22 -36, 44 -36, 66 0 s 44 36, 66 0 s 44 -36, 66 0"/>
+        <rect class="ph-slab" x="226" y="14" width="18" height="92"/>
+        <path class="ph-wave ph-out" d="M250 60 c 7.3 -36, 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0 s 14.7 36, 22 0 s 14.7 -36, 22 0"/>
+        <text class="ph-label" x="10" y="112">pump, frequency ν</text>
+        <text class="ph-label" x="250" y="112">third harmonic, 3ν</text>
+      </svg>
+      <p>Each photon carries an energy fixed by its frequency, <i>E</i> = <i>hν</i>: about 10 eV at 120 nm. A molecule loses an electron only when a photon brings at least its ionisation energy, and each molecule has its own threshold. Light at these energies, the vacuum ultraviolet, is absorbed by air and by most materials, so here it is made inside the set-up by <em>third-harmonic generation</em>: in a thin membrane, three photons of the laser combine into one photon with three times the frequency.<sup><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup></p>
+      <p class="physics-more"><a class="arrow" href="light.html#nu">In the essay: ν, frequency</a></p>
+    </aside>
+
     <section id="problem" class="wrap-text">
       <h2><span>2</span> The problem the PhD set out to solve</h2>
       <p class="chapter-meta">PhD in Physics · Bielefeld University · 2026<sup><a href="#ref-2">2</a></sup></p>
@@ -205,6 +230,23 @@
         <p class="part-line">Thin films and nanostructures that could make the ultraviolet source stronger and smaller.</p>
       </div>
     </div>
+
+    <aside class="physics wrap-text" aria-labelledby="phys-3">
+      <p class="physics-label" id="phys-3">The physics in brief</p>
+      <svg class="ph-art" viewBox="0 0 600 120" role="img" aria-label="Left: inside a thin film the energy of the light moves slowly, shown by a short arrow. Right: a small particle holds a strong field inside while the scattered rings around it are faint.">
+        <rect class="ph-slab" x="20" y="40" width="310" height="40"/>
+        <path class="ph-arrow" d="M30 24 H310 M302 18 L310 24 L302 30"/>
+        <path class="ph-arrow ph-amber" d="M30 60 H90 M82 54 L90 60 L82 66"/>
+        <text class="ph-label" x="100" y="65">energy: about 0.2 c</text>
+        <g class="ph-rings"><circle cx="490" cy="60" r="30"/><circle cx="490" cy="60" r="44"/><circle cx="490" cy="60" r="56"/></g>
+        <rect class="ph-particle" x="468" y="46" width="44" height="28" rx="2"/>
+        <rect class="ph-glow" x="476" y="53" width="28" height="14" rx="5"/>
+        <text class="ph-label" x="20" y="112">slow light in a film</text>
+        <text class="ph-label" x="380" y="112">anapole in a particle</text>
+      </svg>
+      <p>Third-harmonic generation is stronger when light stays longer, or is more concentrated, inside the material. Two ways are shown here. In a thin film, the <em>energy velocity</em>, the flow of energy divided by the energy stored, says how fast the light’s energy really moves; in ozone-grown TiO₂ near 380 nm it falls to about a fifth of <i>c</i>.<sup><a href="#ref-5">5</a></sup> In a nanostructure, an <em>anapole</em> holds the light: two ways of oscillating, the electric and the toroidal dipole, radiate in opposite phase and cancel outside the particle, so it scatters little while the field inside stays strong.<sup><a href="#ref-6">6</a></sup></p>
+      <p class="physics-more"><a class="arrow" href="anapoles.html">Anapoles, explained</a> <a class="arrow" href="light.html#r">In the essay: R, resonance</a></p>
+    </aside>
 
     <section id="films" class="wrap-text">
       <h2><span>5</span> A better material: TiO₂ films and slow light</h2>

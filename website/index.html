@@ -17,7 +17,7 @@
   <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/">
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
-  <link rel="stylesheet" href="home.css?v=2">
+  <link rel="stylesheet" href="home.css?v=3">
   <script defer src="tour.js?v=1"></script>
 </head>
 <body>
@@ -51,29 +51,13 @@
       </figure>
     </section>
 
-    <section class="paths wrap" aria-labelledby="paths-title">
-      <h2 id="paths-title" class="section-title">Three ways in</h2>
-      <div class="path-grid">
-        <article class="path" id="learn">
-          <svg class="path-art" viewBox="0 0 200 90" aria-hidden="true"><path class="art-line" d="M0 45 Q12 15 25 45 T50 45 T75 45 T100 45"/><rect class="art-slab" x="100" y="10" width="50" height="70"/><path class="art-line art-fade" d="M100 45 Q106 30 112 45 T125 45 T137 45 T150 45"/><path class="art-line art-weak" d="M150 45 Q162 38 175 45 T200 45"/></svg>
-          <h3>Learn</h3>
-          <p>Short, illustrated explanations of the ideas behind every simulation: what the refractive index <em>n</em> and the extinction coefficient <em>k</em> do, why particles resonate, and how a design meets the cleanroom.</p>
-          <p class="status"><a class="arrow" href="refractive-index.html">n and k, explained</a><br><a class="arrow" href="anapoles.html">Anapoles, explained</a><br>More in preparation. Or start with the <button class="link-button" type="button" aria-controls="tour" aria-haspopup="dialog">tour</button>.</p>
-        </article>
-        <article class="path" id="tools">
-          <svg class="path-art" viewBox="0 0 200 90" aria-hidden="true"><path class="art-grid" d="M20 75 L100 50 L180 75 L100 88 Z"/><ellipse class="art-solid" cx="70" cy="62" rx="12" ry="5"/><path class="art-solid" d="M58 62 V36 A12 5 0 0 1 82 36 V62"/><ellipse class="art-top" cx="70" cy="36" rx="12" ry="5"/><ellipse class="art-solid" cx="128" cy="66" rx="12" ry="5"/><path class="art-solid" d="M116 66 V40 A12 5 0 0 1 140 40 V66"/><ellipse class="art-top" cx="128" cy="40" rx="12" ry="5"/></svg>
-          <h3>Tools</h3>
-          <p><a href="studio.html">Studio</a> lets you place spheres, cylinders, rings and other shapes in 3D, then gives you the matching gdsfactory layout script and Meep geometry. It runs in your browser; nothing is uploaded.</p>
-          <p class="status"><a class="arrow" href="studio.html">Open Studio</a></p>
-        </article>
-        <article class="path">
-          <svg class="path-art" viewBox="0 0 200 90" aria-hidden="true"><path class="art-axis" d="M10 80 H190 M10 80 V8"/><path class="art-line" d="M14 70 C50 68 70 64 85 50 C95 40 98 18 104 18 C110 18 114 44 124 58 C140 74 170 74 188 74"/><circle class="art-dot" cx="104" cy="18" r="3"/></svg>
-          <h3>Research</h3>
-          <p>From transparent metal films (2021) to ultraviolet anapoles, tunable vacuum-ultraviolet light for gas sensing and slow light in TiO₂ thin films (2026). Four journal articles and two theses.</p>
-          <p class="status"><a class="arrow" href="research.html">Read the research</a></p>
-        </article>
-      </div>
-    </section>
+    <nav class="ways wrap" aria-label="Where to go">
+      <ul>
+        <li id="essay"><a href="light.html"><span class="way-title">Light, unfolded</span><span class="way-line">An essay in seven letters: what light does when it meets matter, and why this work exists.</span></a></li>
+        <li id="tools"><a href="studio.html"><span class="way-title">Tools</span><span class="way-line">Studio: build a structure in 3D and get its gdsfactory layout and Meep code. It runs in your browser; nothing is uploaded.</span></a></li>
+        <li id="research"><a href="research.html"><span class="way-title">Research</span><span class="way-line">From transparent metal films to ultraviolet gas sensing, 2021–2026. Four journal articles and two theses.</span></a></li>
+      </ul>
+    </nav>
 
     <section class="journey wrap" aria-labelledby="journey-title">
       <h2 id="journey-title" class="section-title">The work so far</h2>

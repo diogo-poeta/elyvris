@@ -76,7 +76,17 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.005e
 /* Section titles */
 .section-title { font-size: 30px; margin: 0 0 28px; padding-top: 22px; border-top: 1px solid var(--ink); }
 
-/* Three ways in */
+/* Where to go: three plain links under the hero */
+.ways { padding: 8px 0 64px; }
+.ways ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.ways li { border-bottom: 1px solid var(--rule); }
+.ways a { display: grid; grid-template-columns: minmax(220px, 1fr) 2fr; gap: 8px 40px; align-items: baseline; padding: 26px 0; text-decoration: none; color: var(--ink); }
+.way-title { font: 500 clamp(30px, 3.6vw, 42px)/1.1 var(--serif); }
+.way-title::after { content: " →"; color: var(--amber); font-size: .7em; transition: margin-left .2s; }
+.way-line { font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+.ways a:hover .way-title, .ways a:focus-visible .way-title { text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
+/* Older card layout, kept for reference; no longer used on the home page */
 .paths { padding: 32px 0 56px; }
 .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 .path { display: flex; flex-direction: column; }
@@ -173,6 +183,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.005e
   .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 40px; }
   .hero-mark img { width: 180px; margin-left: 0; }
   .path-grid { grid-template-columns: 1fr; gap: 36px; }
+  .ways a { grid-template-columns: 1fr; padding: 20px 0; }
   .timeline li { grid-template-columns: 1fr; gap: 4px; }
   .top nav { gap: 16px; }
 }
