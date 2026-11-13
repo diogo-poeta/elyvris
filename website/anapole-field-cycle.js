@@ -51,7 +51,7 @@ const viewer=document.querySelector('#anapole-field-cycle');if(!viewer)return;
 let mount=viewer.querySelector('[data-afc-mount]');
 if(!mount){mount=document.createElement('div');mount.setAttribute('data-afc-mount','');viewer.insertBefore(mount,viewer.querySelector('figcaption'));}
 const panel=field=>'<section class="afc-panel afc-panel-'+field+'"><div class="afc-panel-heading"><h4>'+ (field==='E'?'Electric field':'Magnetic field') +'</h4><span>|'+field+'(t)|² / |'+field+'₀|²</span></div><canvas id="afc-'+field+'-canvas" width="600" height="480" role="img" aria-label="Instantaneous normalized '+(field==='E'?'electric':'magnetic')+' vector-field squared in the exported x–y plane.">A genuine complex-field export is required.</canvas><div class="afc-scale"><span>0</span><span class="afc-gradient"></span><span id="afc-'+field+'-maximum">—</span></div><p class="afc-peak">Current sampled maximum <span id="afc-'+field+'-peak" aria-live="off">—</span></p></section>';
-mount.innerHTML='<div class="afc-heading"><div><h3>FDTD reference at <span id="afc-wavelength">366.5</span> nm</h3><p>Electric and magnetic fields at a common optical phase.</p></div><button id="afc-toggle" type="button" aria-pressed="false" disabled>Play cycle</button></div><div class="afc-panels">'+panel('E')+panel('H')+'</div><div class="afc-controls"><div class="afc-phase-control"><label for="afc-phase">Shared optical phase</label><input id="afc-phase" type="range" min="0" max="359.9" step="0.1" value="0" disabled><div id="afc-quarters" class="afc-quarters" role="group" aria-label="Inspect quarter-cycle phases"><button type="button" data-phase="0" disabled>0</button><button type="button" data-phase="90" disabled>π/2</button><button type="button" data-phase="180" disabled>π</button><button type="button" data-phase="270" disabled>3π/2</button></div></div><div class="afc-time"><span>t mod T</span><span id="afc-time" aria-live="off">— fs</span><small>T = <span id="afc-period">—</span> fs</small></div><div class="afc-phase-value"><span>Common phase</span><span id="afc-phase-value" aria-live="off">0°</span></div></div><p id="afc-plane" class="afc-plane"></p><p id="afc-error" class="afc-error" role="alert">Loading the complex-field export…</p><p id="afc-status" class="afc-status" role="status"></p>';
+mount.innerHTML='<div class="afc-heading"><div><h3>Calculated fields over one optical cycle, <span id="afc-wavelength">366.5</span> nm</h3><p>Independent Meep calculation made for this site: the TiO₂ nano-rectangle in air, steady state, central x–y plane.</p></div><button id="afc-toggle" type="button" aria-pressed="false" disabled>Play cycle</button></div><div class="afc-panels">'+panel('E')+panel('H')+'</div><div class="afc-controls"><div class="afc-phase-control"><label for="afc-phase">Shared optical phase</label><input id="afc-phase" type="range" min="0" max="359.9" step="0.1" value="0" disabled><div id="afc-quarters" class="afc-quarters" role="group" aria-label="Inspect quarter-cycle phases"><button type="button" data-phase="0" disabled>0</button><button type="button" data-phase="90" disabled>π/2</button><button type="button" data-phase="180" disabled>π</button><button type="button" data-phase="270" disabled>3π/2</button></div></div><div class="afc-time"><span>t mod T</span><span id="afc-time" aria-live="off">— fs</span><small>T = <span id="afc-period">—</span> fs</small></div><div class="afc-phase-value"><span>Common phase</span><span id="afc-phase-value" aria-live="off">0°</span></div></div><section class="afc-energy" aria-labelledby="afc-energy-title"><div class="afc-energy-heading"><h4 id="afc-energy-title">Energy stored inside the particle</h4><p class="afc-energy-legend"><span class="afc-key afc-key-E"></span>Electric <span class="afc-key afc-key-H"></span>Magnetic <span class="afc-key afc-key-sum"></span>Sum <span class="afc-energy-scale">· scale: largest sum = 1</span></p></div><canvas id="afc-energy-canvas" width="900" height="200" role="img" aria-label="Electric and magnetic energy inside the particle over one optical cycle. The two alternate a quarter cycle apart while their sum changes little.">Electric and magnetic energy inside the particle over one optical cycle.</canvas><div class="afc-energy-foot"><div class="afc-energy-jumps" role="group" aria-label="Jump to an energy maximum"><button type="button" data-energy-peak="E" disabled>Electric energy maximum</button><button type="button" data-energy-peak="H" disabled>Magnetic energy maximum</button></div><p class="afc-energy-share">Electric share of the stored energy now <span id="afc-share" aria-live="off">—</span></p></div></section><p id="afc-plane" class="afc-plane"></p><p id="afc-error" class="afc-error" role="alert">Loading the complex-field export…</p><p id="afc-status" class="afc-status" role="status"></p>';
 const get=id=>viewer.querySelector('#afc-'+id),toggle=get('toggle'),slider=get('phase'),status=get('status'),error=get('error'),quarters=[...viewer.querySelectorAll('[data-phase]')];
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
 let data=null,phase=0,playing=!reduced.matches,visible=true,raf=0,last=0,lastDraw=0;
@@ -92,12 +92,57 @@ function drawPanel(name,state){
  ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText('x (nm)',x0+plotW/2,h-1);ctx.save();ctx.translate(compact?7:11,y0+plotH/2);ctx.rotate(-Math.PI/2);ctx.fillText('y (nm)',0,0);ctx.restore();
  p.peak.textContent=number(result.peak);
 }
+const energyCanvas=get('energy-canvas'),ectx=energyCanvas.getContext('2d'),shareOut=get('share'),peakButtons=[...viewer.querySelectorAll('[data-energy-peak]')];
+let energy=null,ew=900,eh=200;
+/* Energy in the particle cells of this plane, in units of (1/2)eps0 E0^2 (H0 = E0/Z0):
+   u_E = eps_r |E/E0|^2, u_H = |H/H0|^2. Each sum is A cos^2 + B sin^2 + 2C sin cos of the phase.
+   Same calculation as anapoles/temporal/energy_exchange.py. */
+function energySums(){
+ const size=data.metadata.geometry.sizeNm,m=data.metadata.material||{},eps=(m.n||1)**2-(m.k||0)**2,s={E:[0,0,0],H:[0,0,0]};
+ for(let row=0;row<data.height;row++)for(let col=0;col<data.width;col++){
+  if(Math.abs(data.x.values[col])>=size[0]/2||Math.abs(data.y.values[row])>=size[1]/2)continue;
+  const i=row*data.width+col;
+  s.E[0]+=eps*data.electric.A[i];s.E[1]+=eps*data.electric.B[i];s.E[2]+=eps*data.electric.C[i];
+  s.H[0]+=data.magnetic.A[i];s.H[1]+=data.magnetic.B[i];s.H[2]+=data.magnetic.C[i];
+ }
+ const at=(q,p)=>{const c=Math.cos(p),n=Math.sin(p);return q[0]*c*c+q[1]*n*n+2*q[2]*n*c;};
+ const peak=q=>((0.5*Math.atan2(2*q[2],q[0]-q[1]))%Math.PI+Math.PI)%Math.PI;
+ const pE=peak(s.E),pH=peak(s.H),lag=((pH-pE)%Math.PI+Math.PI)%Math.PI;let top=0;
+ for(let k=0;k<=720;k++){const p=k*TAU/720;top=Math.max(top,at(s.E,p)+at(s.H,p));}
+ if(!(top>0))throw new TypeError('No energy inside the particle plane');
+ return Object.freeze({at:p=>({E:at(s.E,p)/top,H:at(s.H,p)/top}),pE,pH:pH<pE?pH+Math.PI:pH,lagDeg:lag*180/Math.PI,lagFs:lag/TAU*data.periodFs});
+}
+function drawEnergy(){
+ if(!energy)return;
+ const c=ectx,w=ew,h=eh,compact=w<520,left=compact?30:40,right=compact?10:18,top=compact?40:34,bottom=28,pw=w-left-right,ph=h-top-bottom;
+ const X=p=>left+pw*p/TAU,Y=v=>top+ph*(1-v/1.08);
+ c.clearRect(0,0,w,h);c.fillStyle='#f7f7f0';c.fillRect(0,0,w,h);
+ c.lineWidth=1;c.strokeStyle='#dfe4d6';
+ for(let k=0;k<=4;k++){const x=X(k*TAU/4);c.beginPath();c.moveTo(x,top);c.lineTo(x,top+ph);c.stroke();}
+ for(const v of [.5,1]){c.beginPath();c.moveTo(left,Y(v));c.lineTo(left+pw,Y(v));c.stroke();}
+ c.strokeStyle='#a2b092';c.beginPath();c.moveTo(left,top+ph);c.lineTo(left+pw,top+ph);c.stroke();
+ c.font=(compact?'10':'11')+'px Arial,sans-serif';c.fillStyle='#5f7055';c.textAlign='center';c.textBaseline='top';
+ ['0','T/4','T/2','3T/4','T'].forEach((t,k)=>c.fillText(t,X(k*TAU/4),top+ph+7));
+ c.textAlign='right';c.textBaseline='middle';for(const v of [0,.5,1])c.fillText(String(v),left-6,Y(v));
+ const trace=(key,colour,dash)=>{c.beginPath();for(let k=0;k<=360;k++){const p=k*TAU/360,v=key==='sum'?energy.at(p).E+energy.at(p).H:energy.at(p)[key];k?c.lineTo(X(p),Y(v)):c.moveTo(X(p),Y(v));}c.setLineDash(dash);c.strokeStyle=colour;c.lineWidth=key==='sum'?1.5:2.2;c.stroke();c.setLineDash([]);};
+ trace('sum','#8b917f',[2,3]);trace('H','#886448',[7,4]);trace('E','#3f6a3c',[]);
+ const xa=X(energy.pE),xb=X(energy.pH),yb=compact?14:12;
+ c.strokeStyle='#5d4a39';c.lineWidth=1;c.beginPath();c.moveTo(xa,yb+6);c.lineTo(xa,yb);c.lineTo(xb,yb);c.lineTo(xb,yb+6);c.stroke();
+ c.setLineDash([2,3]);c.strokeStyle='#b8a48d';for(const x of [xa,xb]){c.beginPath();c.moveTo(x,yb+6);c.lineTo(x,top+ph);c.stroke();}c.setLineDash([]);
+ c.fillStyle='#5d4a39';c.textBaseline='bottom';c.font=(compact?'10':'11')+'px Arial,sans-serif';
+ const label=(compact?'':'magnetic peak comes ')+energy.lagDeg.toFixed(1)+'° = '+energy.lagFs.toFixed(3)+' fs later ≈ T/4';
+ const mid=(xa+xb)/2;c.textAlign=mid<w/3?'left':'center';c.fillText(label,mid<w/3?xa:mid,yb-2);
+ const p=wrap(phase),now=energy.at(p),x=X(p);
+ c.strokeStyle='#26392c';c.lineWidth=1.2;c.beginPath();c.moveTo(x,top-2);c.lineTo(x,top+ph);c.stroke();
+ for(const [v,col]of [[now.E,'#3f6a3c'],[now.H,'#886448']]){c.beginPath();c.arc(x,Y(v),4.5,0,TAU);c.fillStyle=col;c.fill();c.lineWidth=1.5;c.strokeStyle='#f7f7f0';c.stroke();}
+ shareOut.textContent=Math.round(100*now.E/(now.E+now.H))+' %';
+}
 function updateControls(){
- toggle.disabled=slider.disabled=!data;for(const button of quarters)button.disabled=!data;
+ toggle.disabled=slider.disabled=!data;for(const button of quarters)button.disabled=!data;for(const button of peakButtons)button.disabled=!energy;
  toggle.setAttribute('aria-pressed',String(playing));toggle.textContent=playing?'Pause cycle':'Play cycle';
 }
 function draw(){
- if(!data)return;drawPanel('E');drawPanel('H');
+ if(!data)return;drawPanel('E');drawPanel('H');drawEnergy();
  const degrees=wrap(phase)*180/Math.PI;slider.value=degrees.toFixed(1);get('phase-value').textContent=degrees.toFixed(1)+'°';get('time').textContent=(wrap(phase)/TAU*data.periodFs).toFixed(3)+' fs';
  slider.setAttribute('aria-valuetext',degrees.toFixed(1)+' degrees; '+(wrap(phase)/TAU*data.periodFs).toFixed(3)+' femtoseconds within the optical period');
  for(const button of quarters){const delta=Math.abs(degrees-Number(button.dataset.phase));button.setAttribute('aria-pressed',String(Math.min(delta,360-delta)<.05));}
@@ -105,7 +150,9 @@ function draw(){
 function resize(){
  for(const p of Object.values(panels)){
   const rect=p.canvas.getBoundingClientRect();p.width=Math.max(1,rect.width);p.height=Math.max(1,rect.height);const dpr=Math.min(window.devicePixelRatio||1,2);p.canvas.width=Math.round(p.width*dpr);p.canvas.height=Math.round(p.height*dpr);p.ctx.setTransform(dpr,0,0,dpr,0,0);
- }draw();
+ }
+ {const rect=energyCanvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);ew=Math.max(1,rect.width);eh=Math.max(1,rect.height);energyCanvas.width=Math.round(ew*dpr);energyCanvas.height=Math.round(eh*dpr);ectx.setTransform(dpr,0,0,dpr,0,0);}
+ draw();
 }
 function frame(now){
  raf=0;if(!data||!playing||!visible||document.hidden){last=0;return;}if(!last)last=now;phase=wrap(phase+Math.min(.1,(now-last)/1000)*TAU/5);last=now;
@@ -115,6 +162,7 @@ function sync(){if(data&&playing&&visible&&!document.hidden){if(!raf)raf=request
 function inspect(degrees){playing=false;phase=wrap(degrees*Math.PI/180);updateControls();draw();sync();status.textContent='Paused at common phase '+degrees.toFixed(1)+' degrees, time '+(phase/TAU*data.periodFs).toFixed(3)+' femtoseconds modulo the optical period.';}
 toggle.addEventListener('click',()=>{if(!data)return;playing=!playing;updateControls();sync();status.textContent=playing?'Playing a steady-state optical cycle.':'Cycle paused.';});
 slider.addEventListener('input',()=>{if(data)inspect(Number(slider.value));});for(const button of quarters)button.addEventListener('click',()=>{if(data)inspect(Number(button.dataset.phase));});
+for(const button of peakButtons)button.addEventListener('click',()=>{if(energy)inspect((button.dataset.energyPeak==='E'?energy.pE:energy.pH)%TAU*180/Math.PI);});
 document.addEventListener('visibilitychange',sync);reduced.addEventListener?.('change',()=>{if(reduced.matches){playing=false;updateControls();sync();}});
 if('IntersectionObserver'in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{rootMargin:'60px'}).observe(viewer);
 if('ResizeObserver'in window)new ResizeObserver(resize).observe(viewer);else window.addEventListener('resize',resize);
@@ -126,6 +174,7 @@ fetch(url.href,{credentials:'same-origin'}).then(response=>{if(!response.ok)thro
  data=normalize(value);
  for(const [name,p]of Object.entries(panels)){p.buffer.width=data.width;p.buffer.height=data.height;p.image=p.bctx.createImageData(data.width,data.height);p.values=new Float64Array(data.width*data.height);p.palette=palette(name);p.maximum.textContent=number((name==='E'?data.electric:data.magnetic).maximum);}
  get('wavelength').textContent=String(data.metadata.wavelengthNm);get('period').textContent=data.periodFs.toFixed(3);get('plane').textContent='x–y plane at z = '+Number(data.zNm.toFixed(6))+' nm. Dashed outline: '+data.metadata.geometry.sizeNm.join(' × ')+' nm resonator. Colour limits are fixed across the full optical cycle for each field.';
+ try{energy=energySums();root.AnapoleFieldCycleEnergy=Object.freeze({lagDeg:energy.lagDeg,lagFs:energy.lagFs});document.dispatchEvent(new CustomEvent('anapole-field-cycle:energy',{detail:root.AnapoleFieldCycleEnergy}));}catch(cause){energy=null;}
  error.hidden=true;viewer.setAttribute('aria-busy','false');updateControls();resize();sync();
 }).catch(()=>{playing=false;data=null;updateControls();viewer.setAttribute('aria-busy','false');error.textContent='The complex-field export could not be loaded or validated.';error.hidden=false;});
 })(typeof globalThis!=='undefined'?globalThis:window);

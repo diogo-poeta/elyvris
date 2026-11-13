@@ -30,6 +30,15 @@ python -m unittest -v test_complex_fields.py
 python render_timing_animation.py --input anapole-temporal-samples.json --output-dir outputs
 ```
 
+To compute the electric and magnetic energy stored inside the particle over one cycle (Figure 14 on the research page), and to test the method on analytic travelling and standing waves:
+
+```sh
+python energy_exchange.py --self-test
+python energy_exchange.py
+```
+
+It writes [energy-exchange.json](energy-exchange.json). In the z = 0 plane the magnetic energy inside the particle peaks 90.9° (0.309 fs, close to a quarter period) after the electric energy; in the surrounding air the two peaks are 4° apart.
+
 To check the stored diagnostics and render the field cycle from the exported plane:
 
 ```sh
