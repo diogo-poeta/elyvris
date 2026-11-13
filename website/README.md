@@ -28,9 +28,9 @@ python website/scripts/check-site.py
 ## Where to edit
 
 - [Project home](index.html) and [its layout](project-home.css)
-- [Publications and anapole viewers](research.html)
-- [Film Bench](lab.html), the single-film calculator
-- [Studio](studio.html): build shapes, view them in 3D, and get gdsfactory and Meep code. Shapes-to-code and code-to-shapes in [studio-code.js](studio-code.js), 3D view in [studio-view3d.js](studio-view3d.js), page logic in [studio.js](studio.js), sentence reader in [studio-assistant.js](studio-assistant.js)
+- [Publications and anapole viewers](research.html); on laptops [research-paged.js](research-paged.js) and [research-paged.css](research-paged.css) show one part at a time with a contents list
+- [Film Bench](lab.html), the single-film calculator (not linked from any page since 13 November 2026; kept in the repository)
+- [Studio](studio.html): build shapes, view them in 3D, and get gdsfactory and Meep code. Shapes-to-code and code-to-shapes in [studio-code.js](studio-code.js), 3D view in [studio-view3d.js](studio-view3d.js), page logic in [studio.js](studio.js), sentence reader in [studio-assistant.js](studio-assistant.js), fabrication note shown before the Studio opens in [studio-intro.js](studio-intro.js)
 - [Photo gallery](records.html) and [gallery data](gallery-data.json)
 - [CV](cv.html)
 

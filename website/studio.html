@@ -20,7 +20,9 @@
   <script defer src="studio-assistant.js?v=2"></script>
   <script defer src="studio-code.js?v=2"></script>
   <script defer src="studio-view3d.js?v=2"></script>
-  <script defer src="studio.js?v=2"></script>
+  <script defer src="studio.js?v=3"></script>
+  <link rel="stylesheet" href="studio-intro.css?v=1">
+  <script defer src="studio-intro.js?v=1"></script>
 </head>
 <body class="studio-page">
   <a class="skip" href="#main">Skip to content</a>
@@ -39,11 +41,22 @@
         <label for="example">Example</label>
         <select id="example">
           <option value="">Choose…</option>
-          <option value="disk">Disk on a substrate</option>
-          <option value="dimer">Two spheres</option>
-          <option value="ring">Ring and waveguide</option>
-          <option value="pillars">Pillar array</option>
-          <option value="bowtie">Bowtie</option>
+          <optgroup label="Simple">
+            <option value="film">Thin film on silicon (Fabry–Pérot)</option>
+            <option value="disk">Disk on a substrate</option>
+            <option value="dimer">Two spheres</option>
+            <option value="ring">Ring and waveguide</option>
+            <option value="pillars">Pillar array</option>
+            <option value="bowtie">Bowtie</option>
+          </optgroup>
+          <optgroup label="More complex">
+            <option value="bragg">Bragg mirror, TiO₂/SiO₂, 370 nm</option>
+            <option value="anapole">TiO₂ anapole metasurface on a membrane</option>
+            <option value="msc">Silver film with MoS₂ lines (MSc design)</option>
+            <option value="coupler">Directional coupler</option>
+            <option value="adddrop">Add–drop ring filter</option>
+            <option value="phc">Photonic-crystal slab, air holes</option>
+          </optgroup>
           <option value="empty">Empty</option>
         </select>
       </div>

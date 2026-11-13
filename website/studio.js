@@ -356,7 +356,50 @@
    * Examples
    * ------------------------------------------------------------------ */
   const make = (type, material, values) => clean(Object.assign(C.newShape(type, material), values));
+  // A material the user defines in the code (Studio has no tabulated data for it): n is left empty on purpose.
+  const own = (type, name, values) => clean(Object.assign(C.newShape(type, 'custom'), { customName: name, customN: null }, values));
+  const range = (count, step) => Array.from({ length: count }, (_, i) => (i - (count - 1) / 2) * step);
   const EXAMPLES = {
+    /* Simple: one TiO₂ film, 100 nm, on silicon, as in the third-harmonic measurements on the Research page.
+       A film is a Fabry–Pérot resonator: its thickness sets which wavelengths build up inside. */
+    film: () => [
+      make('box', 'si', { sx: 2000, sy: 2000, sz: 500, z: -250 }),
+      make('box', 'tio2', { sx: 2000, sy: 2000, sz: 100, z: 50 })],
+    /* Six quarter-wave pairs for 370 nm: d = λ / (4n), TiO₂ (n ≈ 2.87) 32 nm, SiO₂ (n ≈ 1.47) 63 nm. */
+    bragg: () => [make('box', 'sio2', { sx: 2000, sy: 2000, sz: 500, z: -250 })].concat(
+      Array.from({ length: 6 }).flatMap((_, i) => [
+        make('box', 'tio2', { sx: 2000, sy: 2000, sz: 32, z: i * 95 + 16 }),
+        make('box', 'sio2', { sx: 2000, sy: 2000, sz: 63, z: i * 95 + 32 + 31.5 })])),
+    /* Research, Part IV: TiO₂ rectangles 190 × 160 × 100 nm on a 600 nm fused silica membrane, period 733 nm (3 × 3 cells). */
+    anapole: () => [make('box', 'sio2', { sx: 2199, sy: 2199, sz: 600, z: -300 })].concat(
+      range(3, 733).flatMap(x => range(3, 733).map(y => make('box', 'tio2', { sx: 190, sy: 160, sz: 100, x, y, z: 50 })))),
+    /* Research, Part I: a 30 nm silver film with MoS₂ lines above and below (period 580 nm, width 174 nm, height 150 nm).
+       Silver and MoS₂ are absorbing and anisotropic; define them yourself in the Meep code. */
+    msc: () => [own('box', 'Ag', { sx: 2900, sy: 2000, sz: 30, z: 0 })].concat(
+      range(5, 580).flatMap(x => [
+        own('box', 'MoS2', { sx: 174, sy: 2000, sz: 150, x, z: 15 + 75 }),
+        own('box', 'MoS2', { sx: 174, sy: 2000, sz: 150, x, z: -15 - 75 })])),
+    /* Two silicon strip waveguides (450 × 220 nm) 200 nm apart on oxide. */
+    coupler: () => [
+      make('box', 'sio2', { sx: 6000, sy: 3000, sz: 1000, z: -500 }),
+      make('box', 'si', { sx: 6000, sy: 450, sz: 220, y: 325, z: 110 }),
+      make('box', 'si', { sx: 6000, sy: 450, sz: 220, y: -325, z: 110 })],
+    /* A ring between two bus waveguides: light near resonance leaves through the second (drop) waveguide. */
+    adddrop: () => [
+      make('box', 'sio2', { sx: 4600, sy: 5200, sz: 500, z: -250 }),
+      make('ring', 'si', { radius: 1500, width: 450, height: 220, z: 110 }),
+      make('box', 'si', { sx: 4600, sy: 450, sz: 220, y: -1925, z: 110 }),
+      make('box', 'si', { sx: 4600, sy: 450, sz: 220, y: 1925, z: 110 })],
+    /* A 220 nm silicon slab with a triangular lattice of air holes (lattice 420 nm, radius 125 nm).
+       In Meep, later objects replace earlier ones, so the holes come after the slab. */
+    phc: () => {
+      const a = 420, rowH = a * Math.sqrt(3) / 2, holes = [];
+      for (let row = -3; row <= 3; row++) {
+        for (let col = -3; col <= 3; col++) holes.push(make('cylinder', 'air', { radius: 125, height: 220, x: col * a + (row % 2 ? a / 2 : 0), y: row * rowH, z: 110 }));
+      }
+      return [make('box', 'si', { sx: 3400, sy: 3000, sz: 220, z: 110 })].concat(holes);
+    },
+
     disk: () => [
       make('box', 'sio2', { sx: 1200, sy: 1200, sz: 300, z: -150 }),
       make('cylinder', 'tio2', { radius: 150, height: 150, z: 75 })],

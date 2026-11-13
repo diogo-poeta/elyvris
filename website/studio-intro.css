@@ -1,0 +1,83 @@
+/* Studio introduction (studio-intro.js). Colours follow the site: paper, ink, one amber accent. */
+.si-backdrop {
+  --si-paper: #F5F2EB; --si-ink: #14191F; --si-ink-2: #3A424C; --si-muted: #6B7178;
+  --si-rule: #DCD6CA; --si-amber: #E3A646; --si-amber-ink: #8A5A10;
+  --si-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --si-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  position: fixed; inset: 0; z-index: 1000;
+  display: grid; place-items: center; padding: 16px;
+  background: rgba(20, 25, 31, .55);
+  overflow-y: auto;
+}
+.si-backdrop[hidden] { display: none; }
+html.si-lock { overflow: hidden; }
+
+.si-card {
+  position: relative; width: min(760px, 100%);
+  max-height: calc(100vh - 32px); overflow-y: auto;
+  background: var(--si-paper); color: var(--si-ink);
+  border-radius: 10px; border-top: 4px solid var(--si-amber);
+  padding: 26px 30px 20px;
+  font: 16px/1.55 var(--si-sans);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .25);
+}
+.si-close {
+  position: absolute; top: 10px; right: 12px; width: 36px; height: 36px;
+  border: 0; background: transparent; color: var(--si-muted); font-size: 26px; line-height: 1; cursor: pointer; border-radius: 50%;
+}
+.si-close:hover { background: rgba(20, 25, 31, .06); color: var(--si-ink); }
+.si-kicker { margin: 0 0 4px; font: 600 12px var(--si-sans); letter-spacing: .06em; text-transform: uppercase; color: var(--si-amber-ink); }
+.si-card h2 { margin: 0 0 12px; font: 500 30px/1.15 var(--si-serif); color: var(--si-ink); }
+.si-art { display: block; width: 100%; height: auto; margin: 4px 0 14px; background: #fff; border: 1px solid var(--si-rule); border-radius: 6px; }
+.si-sub { fill: rgba(20, 25, 31, .08); stroke: var(--si-ink); stroke-width: 1; }
+.si-shape { fill: #C9A06A; stroke: var(--si-ink); stroke-width: 1.2; }
+.si-tol { fill: none; stroke: #B3261E; stroke-width: 1.5; }
+.si-film { fill: rgba(201, 160, 106, .35); stroke: var(--si-ink); stroke-width: 1.2; }
+.si-glow { fill: var(--si-amber); opacity: .25; }
+.si-ray { fill: none; stroke: var(--si-amber-ink); stroke-width: 2; stroke-linejoin: round; }
+.si-label { font: 13px var(--si-sans); fill: var(--si-ink-2); }
+
+.si-steps { margin: 0 0 12px; padding-left: 1.3em; }
+.si-steps li { margin-bottom: 9px; color: var(--si-ink-2); }
+.si-steps strong { color: var(--si-ink); }
+.si-steps sup, .si-refs sup { font-size: .7em; line-height: 0; }
+.si-goal { margin: 0 0 14px; font: italic 19px/1.45 var(--si-serif); color: var(--si-ink); border-left: 3px solid var(--si-amber); padding-left: 12px; }
+.si-actions { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+.si-start {
+  border: 0; border-radius: 999px; padding: 10px 20px; cursor: pointer;
+  background: var(--si-ink); color: #fff; font: 600 15px var(--si-sans);
+}
+.si-start:hover { background: #2A323C; }
+.si-start:focus-visible, .si-close:focus-visible, .si-card a:focus-visible { outline: 2px solid var(--si-amber-ink); outline-offset: 3px; }
+.si-refs { margin: 0; padding-top: 10px; border-top: 1px solid var(--si-rule); font-size: 12.5px; line-height: 1.5; color: var(--si-muted); }
+.si-refs a { color: var(--si-ink-2); }
+
+.si-again {
+  margin-right: 14px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; font-size: 14px;
+}
+.si-again:hover { border-color: #E3A646; }
+
+/* Entrance: the drawing first, then the three points one by one, then the question. */
+@media (prefers-reduced-motion: no-preference) {
+  .si-play .si-art, .si-play .si-steps li, .si-play .si-goal, .si-play .si-actions { animation: si-in .7s ease both; }
+  .si-play .si-art { animation-delay: .1s; }
+  .si-play .si-steps li:nth-child(1) { animation-delay: .9s; }
+  .si-play .si-steps li:nth-child(2) { animation-delay: 2.1s; }
+  .si-play .si-steps li:nth-child(3) { animation-delay: 3.3s; }
+  .si-play .si-goal { animation-delay: 4.5s; }
+  .si-play .si-actions { animation-delay: 4.9s; }
+  .si-play .si-ray { stroke-dasharray: 560; animation: si-ray 3.2s ease-out .5s both; }
+  .si-play .si-glow { animation: si-glow 2.4s ease-in-out 3.4s infinite alternate; }
+  .si-play .si-tol { animation: si-blink 1.6s ease-in-out .8s 3 both; }
+}
+@keyframes si-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes si-ray { from { stroke-dashoffset: 560; } to { stroke-dashoffset: 0; } }
+@keyframes si-glow { from { opacity: .15; } to { opacity: .6; } }
+@keyframes si-blink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+
+@media (max-width: 560px) {
+  .si-card { padding: 22px 18px 16px; }
+  .si-card h2 { font-size: 25px; }
+  .si-label { font-size: 15px; }
+}
