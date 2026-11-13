@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#11161C">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
   <link rel="stylesheet" href="home.css?v=2">
-  <link rel="stylesheet" href="article.css?v=20261112">
+  <link rel="stylesheet" href="article.css?v=20261113">
   <link rel="stylesheet" href="anapole-field-cycle.css?v=1">
   <link rel="stylesheet" href="anapole-temporal.css?v=1">
   <script defer src="anapole-field-cycle.js?v=2"></script>
@@ -38,60 +38,87 @@
       <h1>From transparent metals to ultraviolet light that can smell the air</h1>
       <p class="standfirst">Five years of photonics, told through the figures of two theses and four journal articles: how to make a metal film let light through, how to make tunable vacuum-ultraviolet light, how to use it to tell gas molecules apart, and how to design materials and nanostructures that could make it all smaller.</p>
       <p class="byline">Diogo Poeta</p>
-      <nav class="toc" aria-label="On this page">
-        <a href="#msc">1. Transparent metals (MSc)</a>
-        <a href="#problem">2. The air-quality problem</a>
-        <a href="#vuv">3. Tunable VUV light</a>
-        <a href="#sips">4. Telling molecules apart</a>
-        <a href="#films">5. TiO₂ films and slow light</a>
-        <a href="#anapoles">6. Anapoles</a>
-        <a href="#applications">7. Applications</a>
-        <a href="#publications">Publications</a>
-        <a href="#data">Simulation data</a>
-      </nav>
     </header>
+
+    <nav class="journey wrap" aria-label="On this page">
+      <ol>
+        <li>
+          <a class="j-part" href="#part-1"><span class="j-years">MSc · 2021, recalculated 2026</span><span class="j-num">Part I</span><span class="j-title">Light through metal</span></a>
+          <a href="#msc">1 Making a metal transparent</a>
+        </li>
+        <li>
+          <a class="j-part" href="#part-2"><span class="j-years">PhD · 2023–2026</span><span class="j-num">Part II</span><span class="j-title">Ultraviolet light that reads the air</span></a>
+          <a href="#problem">2 The problem</a>
+          <a href="#vuv">3 Tunable VUV light</a>
+          <a href="#sips">4 Telling molecules apart</a>
+        </li>
+        <li>
+          <a class="j-part" href="#part-3"><span class="j-years">PhD · 2024–2026</span><span class="j-num">Part III</span><span class="j-title">Better materials, smaller devices</span></a>
+          <a href="#films">5 TiO₂ films and slow light</a>
+          <a href="#anapoles">6 Anapoles</a>
+          <a href="#applications">7 Where this could be used</a>
+        </li>
+      </ol>
+      <p class="j-more"><a href="#publications">Publications</a> · <a href="#data">Simulation data</a> · <a href="#refs-title">References</a></p>
+    </nav>
 
     <div class="wrap-text">
       <dl class="stats">
-        <div><dt>90%</dt><dd>simulated transmission through a continuous 30 nm silver film</dd></div>
+        <div><dt>94%</dt><dd>calculated transmission through a continuous 30 nm silver film, checked with two methods</dd></div>
         <div><dt>120 nm</dt><dd>shortest tunable vacuum-ultraviolet wavelength generated</dd></div>
         <div><dt>0.5 ppm</dt><dd>benzene picked out of a gas mixture</dd></div>
         <div><dt>≈ 0.2 <i>c</i></dt><dd>energy velocity in ozone-grown TiO₂ films near 380–400 nm</dd></div>
       </dl>
     </div>
 
+    <div class="part" id="part-1">
+      <div class="wrap-text">
+        <p class="part-num">Part I · MSc, 2021, recalculated in 2026</p>
+        <p class="part-title">Light through metal</p>
+        <p class="part-line">How a pattern of a semiconductor lets light pass through a continuous metal film.</p>
+      </div>
+    </div>
+
     <section id="msc" class="wrap-text">
       <h2><span>1</span> Making a metal transparent</h2>
-      <p class="chapter-meta">MSc in Micro and Nano Technologies · University of Minho and International Iberian Nanotechnology Laboratory · 2021<sup><a href="#ref-1">1</a></sup></p>
-      <p>Touch screens and solar cells need electrodes that conduct electricity and let light through. Metals conduct well, but even a film 30 nm thick reflects most of the light that reaches it. The question of this thesis was whether a pattern of another material, placed on both sides of a continuous metal film, could make the metal transparent without cutting holes in it.</p>
-      <p>The patterned material was a <strong>transition metal dichalcogenide</strong> (TMDC) such as MoS₂, a layered semiconductor with a very high refractive index. Patterned into a grating above and below the metal, it couples the incoming light to <em>surface plasmons</em>, oscillations of the electrons at the two faces of the metal, which carry the light across the film (Figure 1).</p>
+      <p class="chapter-meta">MSc in Micro and Nano Technologies · University of Minho and International Iberian Nanotechnology Laboratory · 2021<sup><a href="#ref-1">1</a></sup> · recalculated with free solvers in 2026</p>
+      <p class="question"><span>The question</span>Can a pattern on both sides of a continuous silver film, 30 nm thick, let light through it without cutting holes in the metal?</p>
+      <p>Touch screens and solar cells need electrodes that conduct electricity and let light through. Metals conduct well, but a silver film only 30 nm thick still reflects almost all near-infrared light: about 2% gets through (Figure 1a).</p>
+      <p>The idea of the thesis was to place lines of a <strong>transition metal dichalcogenide</strong> (TMDC) such as MoS₂, a layered semiconductor with a very high refractive index, above and below the metal. The lines couple the incoming light to <em>surface plasmons</em>, oscillations of the electrons at the two faces of the metal, which carry the light across the film (Figure 1b).<sup><a href="#ref-1">1</a></sup></p>
     </section>
 
     <figure class="fig narrow" id="fig-1">
-      <div class="panel-image concept-panels">
-        <img src="assets/research/msc-3-1-concept.webp" width="945" height="817" loading="lazy" alt="Top: a thin metal film with TMDC bars above and below. Bottom left: simulated field for a bare silver film showing light blocked. Bottom right: the patterned structure, with field passing through.">
-        <span class="panel-label panel-a" aria-hidden="true">(a)</span>
-        <span class="panel-label panel-b" aria-hidden="true">(b)</span>
-        <span class="panel-label panel-c" aria-hidden="true">(c)</span>
-      </div>
-      <figcaption><b>Figure 1.</b> (a) The TMDC/metal/TMDC metasurface. (b) A plane wave arriving from above on a bare thin silver film is reflected, with no transmission. (c) One unit cell of the patterned structure transmits strongly. Simulation (FDTD). From Ref. 1, Fig. 3.1.</figcaption>
+      <img src="assets/research/msc-2026-concept.webp" width="1524" height="1050" loading="lazy" alt="Two sketches. Left: a red beam falls on a bare silver film and almost nothing passes, T about 0.02. Right: the same film with blue TMDC lines above and below; the beam passes through, T about 0.96.">
+      <figcaption><span class="tag sketch">Sketch</span><b>Figure 1.</b> The idea. (a) A continuous 30 nm silver film transmits about 0.02 of near-infrared light at normal incidence. (b) With TMDC lines above and below it (period 580 nm, line width 174 nm, thickness 150 nm), the calculated transmission near 1.06 µm reaches about 0.96 when the electric field <b>E</b> points across the lines, and stays at about 0.02 when it points along them. The width of the red beam shows the transmitted power. Not to scale; values from the 2026 calculation in Figure 2.</figcaption>
     </figure>
 
     <div class="wrap-text">
-      <p>In simulations, the best designs transmitted up to <strong>90% of the light through 30 nm of silver</strong>, about ten times more than the bare film. Because the effect depends on the grating, it can be tuned by changing the geometry. One variant transmits one polarisation and blocks the other, which makes it a polariser in the near infrared (Figure 2).<sup><a href="#ref-1">1</a></sup></p>
+      <h3 class="subhead">Checking the result with free tools</h3>
+      <p>The 2021 simulations used the commercial solver Lumerical. In 2026 I recalculated the main designs with two free methods that work in different ways: the FDTD solver Meep, which steps the fields forward in time on a grid, and rigorous coupled-wave analysis (RCWA), which has no spatial grid at all. I drew the geometry with gdsfactory, the layout library that <a href="studio.html">Studio</a> writes code for, and took every optical constant from public tables.</p>
+      <p>With MoS₂ lines, <strong>94% of the light passes through the silver</strong> in Meep and 96% in RCWA, near 1050 nm. The bare film lets through 2% at that wavelength, so the lines raise the transmission about 45 times (Figure 2). The 2021 thesis reported up to 90%.<sup><a href="#ref-1">1</a></sup> The structure also sorts polarisation: with the field across the lines it passes light near 1050 nm, and with the field along the lines it passes light near 880 nm and blocks 1050 nm. That makes it a polariser for the near infrared.</p>
     </div>
 
     <figure class="fig narrow" id="fig-2">
-      <img src="assets/research/msc-5-2-summary.webp" width="979" height="735" loading="lazy" alt="Three transmission spectra from 500 to 1200 nm: A, a single peak near 820 nm well above the reference; B, broad transmission up to about 0.85 between 750 and 1000 nm; C, a polarisation-dependent spectrum with TE high and TM low.">
-      <figcaption><b>Figure 2.</b> Simulated transmittance <i>T</i> against wavelength. (A) Adding the TMDC above and below the metal (blue) compared with the metal alone (black). (B) Broadband high transmission with MoS₂, the best material found. (C) A second MoS₂ configuration: high <i>T</i> for transverse-electric light (blue) and low <i>T</i> for transverse-magnetic light (black), the behaviour of a polariser. Simulation (FDTD). From Ref. 1, Fig. 5.2.</figcaption>
+      <img src="assets/research/msc-2026-result.webp" width="1240" height="1000" loading="lazy" alt="Transmission from 860 to 1250 nm. The bare silver film stays near 0.02. With MoS₂ lines and the field across them, transmission rises to 0.94 near 1050 nm, and the RCWA circles follow the Meep curve. With the field along the lines, transmission is high near 880 nm and drops to near zero above 1000 nm.">
+      <figcaption><span class="tag sim">Simulation</span><b>Figure 2.</b> Transmission <i>T</i> of a continuous 30 nm silver film with MoS₂ lines on both sides (period 580 nm, line width 174 nm, thickness 150 nm), at normal incidence. Orange line: electric field across the lines, Meep (2D FDTD, 2 nm grid). Circles: the same case calculated with RCWA and the same material formulas. Dashed blue line: field along the lines, Meep. Grey line: bare silver film, exact single-layer formula. Optical constants: silver from Johnson and Christy (1972); MoS₂ in-plane from Beal and Hughes (1979); for the MoS₂ out-of-plane index the thesis does not name its source, so Munkhbat et al. (2022) is assumed. Calculation, not measurement.</figcaption>
+    </figure>
+
+    <div class="wrap-text">
+      <h3 class="subhead">Why it works</h3>
+      <p>The field maps show what carries the light (Figure 3). At the transmission maxima the field is strongest on the silver surface at the edges of the lines, five to six times the incident field. The component normal to the film has the same sign on both faces at one maximum and opposite signs at the other. These are the two coupled surface plasmons of a thin metal film, the same pair the thesis identified in 2021 at about 960 and 1100 nm.<sup><a href="#ref-1">1</a></sup></p>
+    </div>
+
+    <figure class="fig narrow" id="fig-3">
+      <img src="assets/research/msc-2026-fields.webp" width="1240" height="920" loading="lazy" alt="Two field maps of one grating period. At 947 nm, red and blue lobes sit at the line edges with the same colour above and below the silver film. At 1127 nm the colours are swapped between the top and bottom faces.">
+      <figcaption><span class="tag sim">Simulation</span><b>Figure 3.</b> Electric field normal to the film, <i>E<sub>y</sub></i>, in one period at the two transmission maxima, with the field across the lines. Red and blue are opposite signs. Grey: the 30 nm silver film. Outlines: MoSe₂ lines, period 500 nm, width 150 nm, thickness 150 nm. (a) 947 nm: the same sign above and below the film. (b) 1127 nm: opposite signs. Meep, 2D FDTD, 2.5 nm grid. This MoSe₂ grating is the first design of the thesis; it behaves like the MoS₂ grating of Figure 2, with its maxima at shorter wavelengths.</figcaption>
     </figure>
 
     <div class="wrap-text">
       <h3 class="subhead">From the simulation to the laboratory</h3>
-      <p>The experimental part started from MoS₂ flakes exfoliated with adhesive tape and stacked as MoS₂–gold–MoS₂ around a 30 nm gold film. Under the microscope, flakes of different thickness show different colours (Figure 3c). Measured through two such samples, the stack transmitted up to about 1.5 to 1.6 times as much light as the bare gold, at near-infrared wavelengths. To pattern the flakes without a cleanroom, I cut gratings directly into them by laser ablation: lines 0.4 µm wide, 2.16 µm apart (Figures 3a and 3b).<sup><a href="#ref-1">1</a></sup></p>
+      <p>The experimental part started from MoS₂ flakes exfoliated with adhesive tape and stacked as MoS₂–gold–MoS₂ around a 30 nm gold film. Under the microscope, flakes of different thickness show different colours (Figure 4c). Measured through two such samples, the stack transmitted up to about 1.5 to 1.6 times as much light as the bare gold, at near-infrared wavelengths. To pattern the flakes without a cleanroom, I cut gratings directly into them by laser ablation: lines 0.4 µm wide, 2.16 µm apart (Figures 4a and 4b).<sup><a href="#ref-1">1</a></sup></p>
     </div>
 
-    <figure class="fig wide microscopy" id="fig-3">
+    <figure class="fig wide microscopy" id="fig-4">
       <div class="panel-image grating-panels">
         <img src="assets/research/msc-4-12-laser-grating.webp" width="989" height="402" loading="lazy" alt="(a) Optical micrograph of a MoS₂ flake with six parallel lines cut by a laser. (b) Electron micrograph of the grating with measured line length, width and spacing.">
         <span class="panel-label panel-a" aria-hidden="true">(a)</span>
@@ -101,93 +128,131 @@
         <img src="assets/research/msc-4-2-flakes.webp" width="974" height="608" loading="lazy" alt="(c) Optical micrograph of MoS₂ flakes in pink, yellow and blue-grey tones on a substrate.">
         <span class="panel-label panel-c" aria-hidden="true">(c)</span>
       </div>
-      <figcaption><b>Figure 3.</b> (a) Optical micrograph of a grating cut into a MoS₂ flake by laser ablation. (b) Electron micrograph of the grating. The annotated line is 9.66 µm long and 0.403 µm wide, with a spacing of 2.16 µm. (c) Optical micrograph of exfoliated MoS₂ flakes whose colour varies with thickness. From Ref. 1, Figs. 4.12 and 4.2.</figcaption>
+      <figcaption><span class="tag meas">Microscopy</span><b>Figure 4.</b> (a) Optical micrograph of a grating cut into a MoS₂ flake by laser ablation. (b) Electron micrograph of the grating. The annotated line is 9.66 µm long and 0.403 µm wide, with a spacing of 2.16 µm. (c) Optical micrograph of exfoliated MoS₂ flakes whose colour varies with thickness. From Ref. 1, Figs. 4.12 and 4.2.</figcaption>
     </figure>
 
     <div class="wrap-text">
-      <p class="aside">Possible uses named in the thesis: transparent electrodes for solar cells, plasmonic colour filters, polarisers, and resonant cavities that make photodetectors more efficient.<sup><a href="#ref-1">1</a></sup></p>
+      <p class="in-short"><span>In short</span>Lines of MoS₂ on both sides let about 94% of near-infrared light through 30 nm of silver, some 45 times more than the bare film, and two independent free methods agree. The first samples measured in 2021 showed a smaller gain, 1.5 to 1.6 times. Possible uses: transparent electrodes for solar cells, plasmonic colour filters, polarisers, and cavities that make photodetectors more efficient.<sup><a href="#ref-1">1</a></sup></p>
+    </div>
+
+    <div class="part" id="part-2">
+      <div class="wrap-text">
+        <p class="part-num">Part II · PhD, 2023–2026</p>
+        <p class="part-title">Ultraviolet light that reads the air</p>
+        <p class="part-line">A light source whose ultraviolet colour can be tuned, and how it tells gas molecules apart.</p>
+      </div>
     </div>
 
     <section id="problem" class="wrap-text">
       <h2><span>2</span> The problem the PhD set out to solve</h2>
       <p class="chapter-meta">PhD in Physics · Bielefeld University · 2026<sup><a href="#ref-2">2</a></sup></p>
+      <p class="question"><span>The question</span>Can a portable detector say which gas molecules are in the air, and not only how many?</p>
       <p>Indoor air carries volatile organic compounds (VOCs) from paints, cleaning products and fuels. Some, like benzene, are regulated at concentrations below one part per million. The standard portable detector, a <strong>photoionization detector</strong>, uses an ultraviolet lamp to knock an electron off each gas molecule and counts the resulting current. But the lamp emits at a fixed photon energy, so every molecule that can be ionised at that energy adds to the same signal. The detector tells you <em>how much</em>, not <em>what</em>.<sup><a href="#ref-2">2</a></sup></p>
       <p>Each molecule needs a different minimum photon energy to be ionised, its ionisation potential. Most VOCs lie between about 7.75 and 11.8 eV, which corresponds to vacuum-ultraviolet (VUV) light of about 160 to 105 nm. A VUV source whose wavelength can be tuned across those thresholds would let a detector tell molecules apart.<sup><a href="#ref-2">2</a></sup></p>
     </section>
 
-    <figure class="fig wide" id="fig-4">
+    <figure class="fig wide" id="fig-5">
       <img src="assets/research/phd-1-1-concept.webp" width="1588" height="736" loading="lazy" alt="Concept drawing: a laser beam is focused on a nanomembrane, whose third harmonic at one third of the laser wavelength ionises molecules of benzene, ethylbenzene, toluene and xylene in a sample chamber; the resulting signal is turned into concentration curves and a toxicity reading.">
-      <figcaption><b>Figure 4.</b> The idea behind the PhD. A laser is focused on a thin nanomembrane, which generates light at one third of the laser wavelength (λ<sub>VUV</sub> = λ<sub>laser</sub>/3). This vacuum-ultraviolet light ionises the gas molecules in a sample chamber, and the current reveals which compounds are present and how much. Schematic. From Ref. 2, Fig. 1.1 (CC BY 4.0).</figcaption>
+      <figcaption><span class="tag sketch">Schematic</span><b>Figure 5.</b> The idea behind the PhD. A laser is focused on a thin nanomembrane, which generates light at one third of the laser wavelength (λ<sub>VUV</sub> = λ<sub>laser</sub>/3). This vacuum-ultraviolet light ionises the gas molecules in a sample chamber, and the current reveals which compounds are present and how much. From Ref. 2, Fig. 1.1 (CC BY 4.0).</figcaption>
     </figure>
+
+    <div class="wrap-text">
+      <p class="in-short"><span>In short</span>A lamp-based detector measures the total of all ionisable gases. A light source whose photon energy can be tuned across the ionisation thresholds, about 105 to 160 nm, could tell the molecules apart.</p>
+    </div>
 
     <section id="vuv" class="wrap-text">
       <h2><span>3</span> Making tunable vacuum-ultraviolet light</h2>
-      <p>Vacuum-ultraviolet light is absorbed by air and by most optical materials, which is why it is hard to make and to handle. The approach here was nonlinear optics. A femtosecond laser drives an optical parametric amplifier, which produces a tunable wavelength. A crystal of β-barium borate doubles its frequency into the near ultraviolet. Finally a suspended SiO₂ membrane only 600 nm thick triples it, by <strong>third-harmonic generation</strong>, into the VUV (Figure 5). The membrane is thin enough that phase matching, the main limit of bulk crystals, matters much less.<sup><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup></p>
+      <p class="question"><span>The question</span>How do you make vacuum-ultraviolet light whose wavelength you can choose?</p>
+      <p>Vacuum-ultraviolet light is absorbed by air and by most optical materials, which is why it is hard to make and to handle. The approach here was nonlinear optics. A femtosecond laser drives an optical parametric amplifier, which produces a tunable wavelength. A crystal of β-barium borate doubles its frequency into the near ultraviolet. Finally a suspended SiO₂ membrane only 600 nm thick triples it, by <strong>third-harmonic generation</strong>, into the VUV (Figure 6). The membrane is thin enough that phase matching, the main limit of bulk crystals, matters much less.<sup><a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup></p>
       <p>The source is tunable across 120–180 nm, with generation shown at 130 nm and at 120 nm. Coupled to a custom detector, it ionised ethanolamine and eucalyptol, and the signal grew linearly with the ethanolamine concentration.<sup><a href="#ref-3">3</a></sup> My part of this work was the gas-handling system, the low-noise current amplifier and the data-acquisition software, together with simulations of the third-harmonic generation and the measurements.<sup><a href="#ref-2">2</a></sup></p>
     </section>
 
-    <figure class="fig wide" id="fig-5">
+    <figure class="fig wide" id="fig-6">
       <img src="assets/research/phd-2-2-vuv-setup.webp" width="1600" height="778" loading="lazy" alt="Top view of the optical table: 1 pump laser at 1030 nm, 2 optical parametric amplifier 600–2300 nm, 3 second-harmonic stage 315–440 nm, 4 SiO₂ nanomembranes producing third harmonic at 105–180 nm, 5 ionisation chamber; with a microscope image of round membranes and a close-up drawing of the chamber.">
-      <figcaption><b>Figure 5.</b> The tunable VUV source: (1) pump laser, 1030 nm; (2) optical parametric amplifier, 600–2300 nm; (3) second-harmonic stage, 315–440 nm; (4) SiO₂ nanomembranes, third harmonic at 105–180 nm; (5) ionisation chamber. Inset: microscope image of the suspended membranes. From Ref. 2, Fig. 2.2 (CC BY 4.0).</figcaption>
+      <figcaption><span class="tag sketch">Set-up</span><b>Figure 6.</b> The tunable VUV source: (1) pump laser, 1030 nm; (2) optical parametric amplifier, 600–2300 nm; (3) second-harmonic stage, 315–440 nm; (4) SiO₂ nanomembranes, third harmonic at 105–180 nm; (5) ionisation chamber. Inset: microscope image of the suspended membranes. From Ref. 2, Fig. 2.2 (CC BY 4.0).</figcaption>
     </figure>
 
-    <figure class="fig narrow" id="fig-6">
+    <figure class="fig narrow" id="fig-7">
       <img src="assets/research/phd-3-7-thg.webp" width="1108" height="696" loading="lazy" alt="Four panels: (a) alignment optics; (b) camera image of the laser spot on one membrane; (c) optical layout for spectral detection; (d) overlapping third-harmonic spectra between about 395 and 460 nm, one per pump wavelength.">
-      <figcaption><b>Figure 6.</b> Checking third-harmonic generation in the membranes with near-ultraviolet output, where it can be measured with an ordinary spectrometer. (a) Alignment set-up. (b) Camera image of the laser spot centred on one membrane. (c) Optical layout for spectral detection. (d) Third-harmonic spectra for pump wavelengths from 1190 to 1380 nm in 10 nm steps. Measurement. From Ref. 2, Fig. 3.7, adapted from Ref. 3.</figcaption>
+      <figcaption><span class="tag meas">Measurement</span><b>Figure 7.</b> Checking third-harmonic generation in the membranes with near-ultraviolet output, where it can be measured with an ordinary spectrometer. (a) Alignment set-up. (b) Camera image of the laser spot centred on one membrane. (c) Optical layout for spectral detection. (d) Third-harmonic spectra for pump wavelengths from 1190 to 1380 nm in 10 nm steps. From Ref. 2, Fig. 3.7, adapted from Ref. 3.</figcaption>
     </figure>
+
+    <div class="wrap-text">
+      <p class="in-short"><span>In short</span>Third-harmonic generation in a 600 nm SiO₂ membrane gave vacuum-ultraviolet light tunable across 120–180 nm, and that light ionised test gases.<sup><a href="#ref-3">3</a></sup></p>
+    </div>
 
     <section id="sips" class="wrap-text">
       <h2><span>4</span> Telling molecules apart</h2>
+      <p class="question"><span>The question</span>Can the tunable source name the molecules in a mixture?</p>
       <p>With a tunable source, the detector can do something a lamp cannot. As the photon energy is raised step by step, the current jumps each time it crosses the ionisation potential of a compound present in the gas. The size of each jump is proportional to that compound’s concentration, weighted by how easily it ionises. Taking the derivative of the current turns the steps into peaks, one per molecule: a spectrum of the mixture. The method is called <strong>sample ionization potential spectroscopy</strong> (SIPS).<sup><a href="#ref-4">4</a></sup></p>
-      <p>Applied to a certified mixture of benzene, toluene, ethylbenzene and xylenes (BTEX), it separated the individual compounds at the concentrations of occupational exposure limits: 0.5 ppm benzene, 50 ppm toluene, 20 ppm ethylbenzene and 50 ppm of each xylene (Figure 7).<sup><a href="#ref-2">2</a>,<a href="#ref-4">4</a></sup> The experiments and measurements were carried out by my co-authors. My contribution was the earlier lamp-based photoionization detector project that this set-up grew from, the research discussion, and writing and editing the manuscript.<sup><a href="#ref-2">2</a></sup></p>
-    </section>
-
-    <figure class="fig wide" id="fig-7">
-      <img src="assets/research/phd-4-7-sips.webp" width="1495" height="521" loading="lazy" alt="Left: photoionisation current rising from about 10 to 105 nA as photon energy increases from 8.4 to 9.3 eV. Right: bars of the derivative at the ionisation potentials of p-xylene, o-xylene, ethylbenzene, toluene and benzene.">
-      <figcaption><b>Figure 7.</b> Reading a gas mixture. (a) Cumulative photoionisation current against photon energy, built from the steps measured for each compound. (b) Its derivative at each ionisation potential; each bar is one compound of the BTEX mixture. Measurement. From Ref. 2, Fig. 4.7, adapted from Ref. 4 (CC BY-NC-ND 4.0).</figcaption>
-    </figure>
-
-    <section id="films" class="wrap-text">
-      <h2><span>5</span> A better material: TiO₂ films and slow light</h2>
-      <p>Third-harmonic generation is weak, so the next question was how to make it stronger. One route is a material with a larger nonlinear response in a geometry that holds the light longer. TiO₂ has a high refractive index and low absorption in the near ultraviolet. It can be grown atomic layer by atomic layer by <strong>atomic layer deposition</strong> (ALD), which controls thickness to a fraction of a nanometre. Growing it with different oxidants (water, hydrogen peroxide, ozone) gave films with different structure, defects and optical constants (Figure 8).<sup><a href="#ref-2">2</a>,<a href="#ref-5">5</a></sup></p>
+      <p>Applied to a certified mixture of benzene, toluene, ethylbenzene and xylenes (BTEX), it separated the individual compounds at the concentrations of occupational exposure limits: 0.5 ppm benzene, 50 ppm toluene, 20 ppm ethylbenzene and 50 ppm of each xylene (Figure 8).<sup><a href="#ref-2">2</a>,<a href="#ref-4">4</a></sup> The experiments and measurements were carried out by my co-authors. My contribution was the earlier lamp-based photoionization detector project that this set-up grew from, the research discussion, and writing and editing the manuscript.<sup><a href="#ref-2">2</a></sup></p>
     </section>
 
     <figure class="fig wide" id="fig-8">
-      <img src="assets/research/phd-5-1-films.webp" width="1178" height="435" loading="lazy" alt="Four coated wafers in gold, brown, dark violet and green, labelled TiO₂ grown with H₂O 1250 cycles, O₃ 1250 cycles, H₂O₂ 1250 cycles and O₃ 2135 cycles.">
-      <figcaption><b>Figure 8.</b> TiO₂ coatings grown by ALD with different oxidants and numbers of cycles: H₂O (1250 cycles), O₃ (1250), H₂O₂ (1250) and O₃ (2135). The colours change with film thickness and optical constants through thin-film interference (see <a href="refractive-index.html">n and k, explained</a>). Photograph. From Ref. 2, Fig. 5.1.</figcaption>
+      <img src="assets/research/phd-4-7-sips.webp" width="1495" height="521" loading="lazy" alt="Left: photoionisation current rising from about 10 to 105 nA as photon energy increases from 8.4 to 9.3 eV. Right: bars of the derivative at the ionisation potentials of p-xylene, o-xylene, ethylbenzene, toluene and benzene.">
+      <figcaption><span class="tag meas">Measurement</span><b>Figure 8.</b> Reading a gas mixture. (a) Cumulative photoionisation current against photon energy, built from the steps measured for each compound. (b) Its derivative at each ionisation potential; each bar is one compound of the BTEX mixture. From Ref. 2, Fig. 4.7, adapted from Ref. 4 (CC BY-NC-ND 4.0).</figcaption>
     </figure>
 
     <div class="wrap-text">
-      <p>To compare films before measuring them, I needed a number that says how long light lingers in a material. The usual choice, the group velocity, can give nonsense, even faster than light, near an absorption edge. The <strong>energy velocity</strong> <i>v</i><sub>e</sub> = ⟨<i>S</i>⟩/⟨<i>u</i>⟩, the energy flow divided by the stored energy, stays physical. It follows directly from the measured <i>n</i>(λ) and <i>k</i>(λ). In ozone-grown films it fell to about 0.18–0.21 of the speed of light near 380–400 nm, confirmed by ellipsometry and simulation (Figure 9).<sup><a href="#ref-5">5</a></sup></p>
+      <p class="in-short"><span>In short</span>Yes. Stepping the photon energy separated benzene, toluene, ethylbenzene and xylenes in one mixture, at occupational exposure limits and down to 0.5 ppm of benzene.<sup><a href="#ref-4">4</a></sup></p>
     </div>
 
+    <div class="part" id="part-3">
+      <div class="wrap-text">
+        <p class="part-num">Part III · PhD, 2024–2026</p>
+        <p class="part-title">Better materials, smaller devices</p>
+        <p class="part-line">Thin films and nanostructures that could make the ultraviolet source stronger and smaller.</p>
+      </div>
+    </div>
+
+    <section id="films" class="wrap-text">
+      <h2><span>5</span> A better material: TiO₂ films and slow light</h2>
+      <p class="question"><span>The question</span>Which material and which film make the third harmonic stronger, and can you tell before you build it?</p>
+      <p>Third-harmonic generation is weak, so the next question was how to make it stronger. One route is a material with a larger nonlinear response in a geometry that holds the light longer. TiO₂ has a high refractive index and low absorption in the near ultraviolet. It can be grown atomic layer by atomic layer by <strong>atomic layer deposition</strong> (ALD), which controls thickness to a fraction of a nanometre. Growing it with different oxidants (water, hydrogen peroxide, ozone) gave films with different structure, defects and optical constants (Figure 9).<sup><a href="#ref-2">2</a>,<a href="#ref-5">5</a></sup></p>
+    </section>
+
     <figure class="fig wide" id="fig-9">
-      <img src="assets/research/phd-6-2-energy-velocity.webp" width="1600" height="621" loading="lazy" alt="Left: simulation layout with a 100 nm TiO₂ film between air regions and absorbing layers, lit from below. Right: map of energy velocity relative to c with streamlines, slower inside and around the film.">
-      <figcaption><b>Figure 9.</b> (a) Simulation layout: a 100 nm TiO₂ film in air, lit from below by a plane wave, with absorbing boundary layers (PML). (b) Energy velocity |<i>v</i><sub>e</sub>|/<i>c</i> (colour) and energy-flow streamlines at λ₀ = 380 nm. The low values at the left and right edges come from the absorbing boundaries and have no physical meaning. Simulation (2D FDTD, Meep). From Ref. 2, Fig. 6.2; published in Ref. 5.</figcaption>
+      <img src="assets/research/phd-5-1-films.webp" width="1178" height="435" loading="lazy" alt="Four coated wafers in gold, brown, dark violet and green, labelled TiO₂ grown with H₂O 1250 cycles, O₃ 1250 cycles, H₂O₂ 1250 cycles and O₃ 2135 cycles.">
+      <figcaption><span class="tag photo">Photograph</span><b>Figure 9.</b> TiO₂ coatings grown by ALD with different oxidants and numbers of cycles: H₂O (1250 cycles), O₃ (1250), H₂O₂ (1250) and O₃ (2135). The colours change with film thickness and optical constants through thin-film interference (see <a href="refractive-index.html">n and k, explained</a>). From Ref. 2, Fig. 5.1.</figcaption>
     </figure>
 
     <div class="wrap-text">
-      <p>The third-harmonic measurements followed the material chemistry. The hydrogen-peroxide film gave the strongest signal at 400 nm, while the thicker ozone film was strongest at 380 nm (Figure 10). Because the energy velocity comes straight from ellipsometry data, it costs almost nothing to calculate and can screen film thickness, oxidant and wavelength before anything is fabricated.<sup><a href="#ref-5">5</a></sup></p>
+      <p>To compare films before measuring them, I needed a number that says how long light lingers in a material. The usual choice, the group velocity, can give nonsense, even faster than light, near an absorption edge. The <strong>energy velocity</strong> <i>v</i><sub>e</sub> = ⟨<i>S</i>⟩/⟨<i>u</i>⟩, the energy flow divided by the stored energy, stays physical. It follows directly from the measured <i>n</i>(λ) and <i>k</i>(λ). In ozone-grown films it fell to about 0.18–0.21 of the speed of light near 380–400 nm, confirmed by ellipsometry and simulation (Figure 10).<sup><a href="#ref-5">5</a></sup></p>
     </div>
 
     <figure class="fig wide" id="fig-10">
-      <img src="assets/research/phd-6-7-thg-spectra.webp" width="1600" height="586" loading="lazy" alt="Two panels of reflected third-harmonic spectra, centred at 380 nm and at 400 nm, for silicon and for four TiO₂ films; the H₂O₂ film is highest at 400 nm and the 2135-cycle O₃ film is highest at 380 nm.">
-      <figcaption><b>Figure 10.</b> Reflected third-harmonic spectra from bare silicon and from TiO₂-coated silicon, centred at (a) 380 nm and (b) 400 nm, for films grown with H₂O and H₂O₂ (1250 cycles) and O₃ (1250 and 2135 cycles). Measurement. From Ref. 2, Fig. 6.7; published in Ref. 5.</figcaption>
+      <img src="assets/research/phd-6-2-energy-velocity.webp" width="1600" height="621" loading="lazy" alt="Left: simulation layout with a 100 nm TiO₂ film between air regions and absorbing layers, lit from below. Right: map of energy velocity relative to c with streamlines, slower inside and around the film.">
+      <figcaption><span class="tag sim">Simulation</span><b>Figure 10.</b> (a) Simulation layout: a 100 nm TiO₂ film in air, lit from below by a plane wave, with absorbing boundary layers (PML). (b) Energy velocity |<i>v</i><sub>e</sub>|/<i>c</i> (colour) and energy-flow streamlines at λ₀ = 380 nm. The low values at the left and right edges come from the absorbing boundaries and have no physical meaning. 2D FDTD, Meep. From Ref. 2, Fig. 6.2; published in Ref. 5.</figcaption>
     </figure>
+
+    <div class="wrap-text">
+      <p>The third-harmonic measurements followed the material chemistry. The hydrogen-peroxide film gave the strongest signal at 400 nm, while the thicker ozone film was strongest at 380 nm (Figure 11). Because the energy velocity comes straight from ellipsometry data, it costs almost nothing to calculate and can screen film thickness, oxidant and wavelength before anything is fabricated.<sup><a href="#ref-5">5</a></sup></p>
+    </div>
+
+    <figure class="fig wide" id="fig-11">
+      <img src="assets/research/phd-6-7-thg-spectra.webp" width="1600" height="586" loading="lazy" alt="Two panels of reflected third-harmonic spectra, centred at 380 nm and at 400 nm, for silicon and for four TiO₂ films; the H₂O₂ film is highest at 400 nm and the 2135-cycle O₃ film is highest at 380 nm.">
+      <figcaption><span class="tag meas">Measurement</span><b>Figure 11.</b> Reflected third-harmonic spectra from bare silicon and from TiO₂-coated silicon, centred at (a) 380 nm and (b) 400 nm, for films grown with H₂O and H₂O₂ (1250 cycles) and O₃ (1250 and 2135 cycles). From Ref. 2, Fig. 6.7; published in Ref. 5.</figcaption>
+    </figure>
+
+    <div class="wrap-text">
+      <p class="in-short"><span>In short</span>In ozone-grown TiO₂ the energy velocity falls to about 0.2 <i>c</i> near 380–400 nm. It is calculated from ellipsometry alone, so it can help choose a film before anything is fabricated.<sup><a href="#ref-5">5</a></sup></p>
+    </div>
 
     <section id="anapoles" class="wrap-text">
       <h2><span>6</span> Nanostructures that hold the light: anapoles</h2>
+      <p class="question"><span>The question</span>Can a particle smaller than the wavelength hold ultraviolet light inside it?</p>
       <p>The second route to stronger third-harmonic generation is to concentrate the light inside nanostructures. In simulations, TiO₂ nano-rectangles 190 × 160 × 100 nm support an <strong>anapole</strong> near 366 nm, a state in which the particle scatters very little while the field inside is strong. Arranged in a metasurface on a thin silica membrane, the effect appears at 370 nm.<sup><a href="#ref-6">6</a></sup> The full story, with figures and two interactive explanations, is on its own page.</p>
       <p><a class="arrow" href="anapoles.html">Anapoles, explained</a></p>
     </section>
 
-    <figure class="fig narrow" id="fig-11">
+    <figure class="fig narrow" id="fig-12">
       <a href="anapoles.html#fig-3"><img src="assets/anapoles/fig7-2-multipoles.webp" width="991" height="748" loading="lazy" alt="Multipole analysis of a TiO₂ nano-rectangle, with a dip in total scattering marked as the anapole state."></a>
-      <figcaption><b>Figure 11.</b> Multipole decomposition of the scattering by a TiO₂ nano-rectangle; the dip in the total marks the anapole. Simulation. From Ref. 2, Fig. 7.2; published in Ref. 6. Explained in detail on the <a href="anapoles.html">anapole page</a>.</figcaption>
+      <figcaption><span class="tag sim">Simulation</span><b>Figure 12.</b> Multipole decomposition of the scattering by a TiO₂ nano-rectangle; the dip in the total marks the anapole. From Ref. 2, Fig. 7.2; published in Ref. 6. Explained in detail on the <a href="anapoles.html">anapole page</a>.</figcaption>
     </figure>
 
     <section id="applications" class="wrap-text">
       <h2><span>7</span> Where this could be used</h2>
+      <p class="question"><span>The question</span>Where could each result be used, and how far has it gone?</p>
       <p>Each application below is labelled with how far the work has gone.</p>
       <ul class="apps">
         <li><span class="tag shown">Shown in the lab</span><strong>Selective air-quality monitoring.</strong> Telling benzene from toluene and xylenes in real time, at occupational exposure limits, for workplaces and indoor air.<sup><a href="#ref-4">4</a></sup></li>
@@ -196,7 +261,7 @@
         <li><span class="tag sim">Simulated</span><strong>Ultraviolet metasurfaces.</strong> Anapole metasurfaces in TiO₂ as compact elements for third-harmonic generation; fabrication is future work.<sup><a href="#ref-6">6</a></sup></li>
         <li><span class="tag sim">Simulated, partly measured</span><strong>Transparent metal electrodes, filters and polarisers.</strong> TMDC-patterned metal films for solar cells and photodetectors.<sup><a href="#ref-1">1</a></sup></li>
       </ul>
-      <p>The long-term goal joins these threads: a compact, tunable ultraviolet gas sensor that names the molecules it detects.<sup><a href="#ref-2">2</a></sup></p>
+      <p class="in-short"><span>In short</span>The long-term goal joins these threads: a compact, tunable ultraviolet gas sensor that names the molecules it detects.<sup><a href="#ref-2">2</a></sup></p>
     </section>
 
     <section id="publications" class="wrap-text pubs">
@@ -259,7 +324,7 @@
         <li id="ref-5">D. Poeta et al., “Energy velocity as an optical design indicator for the ultraviolet nonlinear response of ALD-grown TiO₂ thin films,” <i>Optical Materials Express</i> 16, 3342–3356 (2026). <a href="https://doi.org/10.1364/OME.611814">doi:10.1364/OME.611814</a></li>
         <li id="ref-6">D. Poeta, R. Vilarinho, M. López-García and P. A. A. De Beule, “Optical anapoles excited by UV-A illumination,” <i>Optics Letters</i> 49, 7198–7201 (2024). <a href="https://doi.org/10.1364/OL.536925">doi:10.1364/OL.536925</a></li>
       </ol>
-      <p class="aside">The source images for Figures 1–3 are from the MSc thesis (Ref. 1, CC BY-NC-ND 4.0). The website adds panel labels to Figures 1 and 3. Figures 4–11 are from the PhD thesis (Ref. 2, CC BY 4.0). Where a figure was first published in a journal, the article is cited in the caption. Refs. 3, 5 and 6 are open access under the Optica Open Access Publishing Agreement, and Ref. 4 under CC BY-NC-ND 4.0.</p>
+      <p class="aside">Figures 1–3 were made for this site from my 2026 recalculation of the MSc designs with Meep and RCWA. The source images for Figure 4 are from the MSc thesis (Ref. 1, CC BY-NC-ND 4.0); the website adds panel labels. Figures 5–12 are from the PhD thesis (Ref. 2, CC BY 4.0). Where a figure was first published in a journal, the article is cited in the caption. Refs. 3, 5 and 6 are open access under the Optica Open Access Publishing Agreement, and Ref. 4 under CC BY-NC-ND 4.0.</p>
     </section>
   </main>
 
