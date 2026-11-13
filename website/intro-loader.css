@@ -40,4 +40,6 @@
 @keyframes ld-count { to { --ld-n: 100; } }
 
 .ey-seen .ey-loader { display: none; }
+/* Keep the hero logo out of sight until the intro ends; intro-loader.js then restarts its animation. */
+.ey-intro:not(.ey-done) .hero-mark img { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) { .ey-loader { display: none; } }
