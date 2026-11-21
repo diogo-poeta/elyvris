@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio — Build shapes in 3D, get gdsfactory and Meep code | Elyvris</title>
+  <meta name="description" content="Elyvris Studio: add shapes and materials, see them in 3D, and get the matching gdsfactory layout script and Meep geometry. You can also paste code and see what it draws.">
+  <meta name="theme-color" content="#f6f5f2">
+  <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/studio.html">
+  <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/studio.html">
+  <meta property="og:title" content="Elyvris Studio">
+  <meta property="og:description" content="Build shapes in 3D and get gdsfactory and Meep code.">
+  <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
+  <link rel="manifest" href="studio.webmanifest">
+  <link rel="apple-touch-icon" href="assets/app/icon-192.png">
+  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="brand.css?v=20">
+  <link rel="stylesheet" href="studio.css?v=19">
+  <script defer src="materials.js?v=6"></script>
+  <script defer src="studio-assistant.js?v=2"></script>
+  <script defer src="studio-py.js?v=5"></script>
+  <script defer src="studio-code.js?v=11"></script>
+  <script defer src="studio-gds.js?v=2"></script>
+  <script defer src="studio-view3d.js?v=8"></script>
+  <script defer src="studio-figure.js?v=2"></script>
+  <script defer src="studio.js?v=19"></script>
+  <link rel="stylesheet" href="studio-intro.css?v=2">
+  <script defer src="studio-intro.js?v=4"></script>
+  <link rel="stylesheet" href="studio-companion.css?v=11">
+  <script defer src="studio-companion.js?v=5"></script>
+  <link rel="stylesheet" href="studio-viewport.css?v=2">
+  <link rel="stylesheet" href="studio-inspector.css?v=1">
+  <script defer src="studio-app.js?v=1"></script>
+</head>
+<body class="studio-page">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="studio-mast">
+    <div class="site-header wrap">
+    <a class="wordmark" href="index.html" aria-label="Elyvris home"><img src="assets/brand/elyvris-mark.svg" width="40" height="40" alt="" aria-hidden="true">Elyvris</a>
+    <nav aria-label="Main navigation"><a href="studio.html" aria-current="page">Studio</a><a href="research.html">Research</a><a href="play.html">Grid</a></nav>
+    <button type="button" id="start-fab" class="guide-button" aria-haspopup="dialog" aria-label="Fabrication notes" title="Fabrication notes">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 6v14m0-14C9 3.5 5.5 3.5 2.5 4.5v14c3-1 6.5-1 9.5 1.5 3-2.5 6.5-2.5 9.5-1.5v-14C18.5 3.5 15 3.5 12 6Z"/></svg><span>Fabrication notes</span>
+    </button>
+    </div>
+  </header>
+
+  <main id="main" class="wrap studio-main">
+    <div class="studio-head">
+      <div>
+        <h1 id="studio-title">Photonics <em>Studio</em></h1>
+        <p class="studio-lead">Build a structure in 3D and edit its gdsfactory or Meep code.</p>
+      </div>
+      <div class="head-tools">
+        <button type="button" id="app-install" class="app-install" hidden>Install app</button>
+        <label class="example-picker">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 8 9-5 9 5-9 5Zm0 4.5 9 5 9-5m-18 4.5 9 5 9-5"/></svg>
+          <span class="visually-hidden">Load an example structure</span>
+          <select id="example">
+          <option value="">Load example</option>
+          <optgroup label="Simple">
+            <option value="film">Thin film on silicon (Fabry–Pérot)</option>
+            <option value="disk">Disk on a substrate</option>
+            <option value="dimer">Two spheres</option>
+            <option value="ring">Ring and waveguide</option>
+            <option value="pillars">Pillar array</option>
+            <option value="bowtie">Bowtie</option>
+          </optgroup>
+          <optgroup label="More complex">
+            <option value="bragg">Bragg mirror, TiO₂/SiO₂, 370 nm</option>
+            <option value="anapole">TiO₂ anapole metasurface on a membrane</option>
+            <option value="msc">Silver film with MoS₂ lines (MSc design)</option>
+            <option value="coupler">Directional coupler</option>
+            <option value="adddrop">Add–drop ring filter</option>
+            <option value="phc">Photonic-crystal slab, air holes</option>
+          </optgroup>
+          <option value="empty">Empty</option>
+          </select>
+        </label>
+        <button type="button" id="project-open" title="Open a .elyvris.json project file">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 18V6a2 2 0 0 1 2-2h4l2 3h7a2 2 0 0 1 2 2v2M3 18l3-7h16l-3 8H4Z"/></svg>Open project
+        </button>
+        <button type="button" id="project-save" title="Download the shapes, code and settings together as a .elyvris.json project">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v11m-4-4 4 4 4-4M4 15v5h16v-5"/></svg>Save project
+        </button>
+        <input type="file" id="project-file" accept=".json,application/json" hidden>
+      </div>
+    </div>
+    <p class="project-status" id="project-status" role="status" aria-live="polite" hidden></p>
+
+    <noscript><p class="studio-noscript">JavaScript is needed for the studio.</p></noscript>
+
+    <section class="start-card" id="start-card" aria-labelledby="start-title" hidden>
+      <div class="start-head">
+        <h2 id="start-title">Quick start</h2>
+        <button type="button" class="start-hide" id="start-hide" aria-label="Hide quick start">Hide <span aria-hidden="true">×</span></button>
+      </div>
+      <div class="start-choices">
+        <button type="button" id="start-example">
+          <svg class="launch-art" aria-hidden="true" viewBox="0 0 52 46">
+            <path class="art-base" d="m3 30 25-12 21 10-25 13Zm0 0v4l21 12 25-14v-4M24 41v5"/>
+            <g class="art-object"><path d="M9 18v10c0 4 9 4 9 0V18m4-8v11c0 4 9 4 9 0V10m2 11v10c0 4 9 4 9 0V21"/><ellipse cx="13.5" cy="18" rx="4.5" ry="2.6"/><ellipse cx="26.5" cy="10" rx="4.5" ry="2.6"/><ellipse cx="37.5" cy="21" rx="4.5" ry="2.6"/></g>
+          </svg>
+          <span class="launch-text"><strong>Guided example</strong><small>Change one radius across three pillars.</small></span>
+        </button>
+        <button type="button" id="start-paste">
+          <svg class="launch-art" aria-hidden="true" viewBox="0 0 52 46">
+            <rect class="art-base" x="6" y="6" width="40" height="34" rx="3"/><path d="M6 14h40m-35-4h1m3 0h1m3 0h1"/><path class="art-code" d="m18 21-5 5 5 5m16-10 5 5-5 5m-6-12-4 14"/>
+          </svg>
+          <span class="launch-text"><strong>Paste Meep code</strong><small>Preview the geometry in your script.</small></span>
+        </button>
+        <button type="button" id="start-new">
+          <svg class="launch-art" aria-hidden="true" viewBox="0 0 52 46">
+            <path class="art-base" d="m5 29 22-11 20 10-22 13Zm7 4 22-11m-15 15 22-11m-30 0 20 12m-13-15 20 11"/><path class="art-axis" d="M25 30V6m-3 4 3-4 3 4"/><path class="art-code" d="M36 11h10m-5-5v10"/>
+          </svg>
+          <span class="launch-text"><strong>Start a structure</strong><small>Build from an empty workspace.</small></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="tour" id="tour" aria-labelledby="tour-title" data-step="1" hidden>
+      <div class="start-head">
+        <h2 id="tour-title">The example in four steps</h2>
+        <button type="button" class="start-hide" id="tour-close">Close</button>
+      </div>
+      <ol class="tour-steps">
+        <li><strong>Select a pillar.</strong> Click one in the 3D view or in the shape list (the first one is already selected).</li>
+        <li><strong>Change its radius</strong> in the shape's form (the Radius field), for example to 120 nm.</li>
+        <li><strong>Look at the code.</strong> The Studio changed only the number in <code>r = …</code><span id="tour-r"></span>, so all three pillars changed. Click in the code box when you have seen it.</li>
+        <li><strong>Save the project</strong> with “Save project” at the top. “Open project” reads the file back, in this or another browser.</li>
+      </ol>
+      <p class="tour-now" id="tour-now" role="status" aria-live="polite"></p>
+      <button type="button" class="start-link" id="tour-skip">Skip this step</button>
+    </section>
+
+    <div class="studio-grid" id="studio">
+      <section class="panel viewer" aria-label="3D view">
+        <div class="viewport-head">
+          <h2>
+            <svg class="viewport-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.7 8.5 4.8v9L12 21.3l-8.5-4.8v-9zM3.5 7.5l8.5 5 8.5-5M12 12.5v8.8"/></svg>
+            Viewport
+          </h2>
+          <div class="stage-top view-directions" role="group" aria-label="View direction">
+            <button type="button" data-view="3d" aria-pressed="true">3D</button>
+            <button type="button" data-view="top" aria-pressed="false">Top</button>
+            <button type="button" data-view="front" aria-pressed="false">Front</button>
+            <button type="button" data-view="side" aria-pressed="false">Side</button>
+          </div>
+        </div>
+        <div class="stage" id="stage">
+          <canvas id="view3d" tabindex="0" aria-label="3D view of the shapes. Drag or use the arrow keys to rotate, pinch or scroll to zoom, click a shape to select it."></canvas>
+          <div class="stage-labels" id="view-labels" aria-hidden="true"></div>
+          <p class="stage-scale" id="stage-scale"></p>
+          <p class="stage-fallback" id="stage-fallback" hidden>The 3D view needs WebGL, which this browser does not provide. The shape list and code still work.</p>
+        </div>
+        <p class="stage-measure" id="stage-measure" role="status" aria-live="polite" hidden></p>
+        <div class="stage-bottom viewport-tools">
+          <div class="viewport-modes" role="group" aria-label="Interaction mode">
+            <button type="button" id="mode-orbit" aria-pressed="true" aria-label="Rotate view" title="Rotate view">
+              <svg class="viewport-icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4.8" transform="rotate(-35 12 12)"/><circle cx="12" cy="12" r="2.1"/></svg>
+              Rotate
+            </button>
+            <button type="button" id="mode-move" aria-pressed="false" aria-label="Move shape" title="Move shape">
+              <svg class="viewport-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M18 9l3 3-3 3M9 18l3 3 3-3M6 9l-3 3 3 3"/></svg>
+              Move
+            </button>
+            <button type="button" id="mode-measure" aria-pressed="false">
+              <svg class="viewport-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 15 12-12 6 6L9 21zM12 6l3 3M9 9l2 2M6 12l3 3"/></svg>
+              Measure
+            </button>
+          </div>
+          <div class="viewport-zoom" role="group" aria-label="Zoom">
+            <button type="button" id="view-zoom-out" aria-label="Zoom out">−</button>
+            <button type="button" id="view-fit" title="Fit geometry in view">Fit</button>
+            <button type="button" id="view-zoom-in" aria-label="Zoom in">+</button>
+          </div>
+          <button type="button" id="view-setup" aria-pressed="true" title="Show or hide the simulation cell and its boundary layers, read from your Meep code" hidden>Setup</button>
+          <details class="viewport-figure">
+            <summary>
+              <svg class="viewport-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m-4-4 4 4 4-4M4 15v5h16v-5"/></svg>
+              Export figure
+            </summary>
+            <div class="figure-options">
+              <label for="figure-size">Figure width</label>
+              <select id="figure-size">
+                <option value="1000">1 column · 1000 px</option>
+                <option value="2000" selected>2 columns · 2000 px</option>
+              </select>
+              <label for="figure-background">Background</label>
+              <select id="figure-background">
+                <option value="paper" selected>White paper</option>
+                <option value="screen">As on screen (dark, with grid)</option>
+                <option value="none">Transparent</option>
+              </select>
+              <label class="figure-check"><input type="checkbox" id="figure-marks"> Names and sizes on the shapes</label>
+              <button type="button" id="figure-save">Save figure</button>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="panel build" aria-labelledby="build-title">
+        <div class="panel-top">
+          <h2 id="build-title"><svg class="panel-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 7h7m4 0h7M3 17h11m4 0h3"/><circle cx="12" cy="7" r="2.4"/><circle cx="16" cy="17" r="2.4"/></svg>Shape inspector</h2>
+          <div class="panel-tools">
+            <label for="unit" class="visually-hidden">Length unit</label>
+            <select id="unit"><option value="nm">nm</option><option value="um">µm</option></select>
+            <button type="button" id="undo" disabled>Undo</button>
+          </div>
+        </div>
+        <div class="inspector-block">
+          <h3 class="inspector-label" id="add-heading">Add a shape</h3>
+          <div class="add-row" id="add-row" role="group" aria-labelledby="add-heading"></div>
+          <form class="say-form" id="say-form" autocomplete="off">
+            <label class="visually-hidden" for="say-input">Add a shape with words</label>
+            <input id="say-input" type="text" maxlength="300" placeholder="e.g. Si sphere, radius 80 nm" enterkeyhint="done">
+            <button type="submit">Add</button>
+          </form>
+          <p class="say-status" id="say-status" role="status" aria-live="polite"></p>
+        </div>
+        <div class="inspector-block">
+          <h3 class="inspector-label">Scene objects <span id="object-count"></span></h3>
+          <ul class="shape-list" id="shape-list" aria-label="Shapes in the design"></ul>
+        </div>
+        <form class="shape-form" id="shape-form" novalidate></form>
+      </section>
+
+      <section class="panel code" aria-labelledby="code-title">
+        <div class="panel-top">
+          <h2 id="code-title"><svg class="panel-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7-5 5 5 5m10-10 5 5-5 5m-3-14-4 18"/></svg>Code editor</h2>
+          <div class="tabs" role="tablist" aria-label="Code">
+            <button type="button" role="tab" id="tab-gds" aria-selected="true" aria-controls="code-panel">gdsfactory (KLayout)</button>
+            <button type="button" role="tab" id="tab-meep" aria-selected="false" aria-controls="code-panel" tabindex="-1">Meep</button>
+          </div>
+          <div class="panel-tools code-tools">
+            <label class="meep-only" id="index-label" hidden>Index at <input id="index-wavelength" type="number" min="1" step="any" value="633" aria-label="Wavelength for the material index, in nanometres"> nm</label>
+            <label class="meep-only" id="scale-label" hidden>1 Meep unit = <input id="meep-scale" type="number" min="0.000001" step="any" value="1" aria-label="Meep length unit, in micrometres"> µm</label>
+            <button type="button" id="code-restore" hidden>Bring back my code</button>
+            <button type="button" id="code-copy">Copy</button>
+            <button type="button" id="code-download">Download layout script (.py)</button>
+            <button type="button" id="gds-download" title="The layout file itself (GDSII), for KLayout or a mask shop: flat outlines, one layer per material, no heights">Download layout (.gds)</button>
+          </div>
+        </div>
+        <div role="tabpanel" id="code-panel" aria-labelledby="tab-gds">
+          <p class="tab-hint" id="tab-hint"></p>
+          <label class="visually-hidden" for="code-area">Code. Edit it to change the shapes.</label>
+          <div class="code-wrap">
+            <textarea id="code-area" spellcheck="false" autocapitalize="off" autocomplete="off" rows="14"></textarea>
+            <div class="code-band" id="code-band" aria-hidden="true" hidden></div>
+          </div>
+          <p class="code-status" id="code-status" role="status" aria-live="polite"></p>
+          <div class="code-coverage" id="code-coverage" hidden></div>
+        </div>
+      </section>
+    </div>
+
+    <details class="studio-help">
+      <summary>How it works</summary>
+      <ul>
+        <li><strong>Build.</strong> Add shapes with the buttons or a sentence, then change the numbers. Click a shape in the 3D view to select it.</li>
+        <li><strong>Code.</strong> The code follows your shapes. You can also edit or paste code and the 3D view follows. Select a shape and the lines of code that made it light up; put the text cursor on a line and its shape is selected. The page does not run Python: it reads a limited part of the language and tells you which lines it could not use, and why. In Meep code you typed or pasted, changing a size or a position in the form changes that one number in your text (or the variable it comes from); numbers that come from a formula are greyed and are changed in the code. Adding, deleting, dragging or changing the material of a shape still makes the Studio rewrite the code: if that happens, “Bring back my code” restores your text.</li>
+        <li><strong>gdsfactory.</strong> The script draws the top view, one layer per material, and saves a GDS file that opens in KLayout. A layout has no height, so heights are kept as comments.</li>
+        <li><strong>Layout file.</strong> “Download layout (.gds)” saves the layout itself, ready for KLayout, without running Python. It holds the same outlines and layers as the script; corners sit on a 1 nm grid, and round outlines are polygons with 144 corners. Shapes with an endless size are left out.</li>
+        <li><strong>Measure.</strong> Press “Measure”, then click two points. The ruler catches points that lie exactly on a shape (its centre, face centres, corners, the outermost points of round shapes); elsewhere it takes the point on the plane z = 0. The distance follows when you change the shape. It is a distance in the drawing, not a simulated quantity. Esc clears it.</li>
+        <li><strong>Meep.</strong> You get the <code>geometry</code> list, in the length unit set by “1 Meep unit = … µm” (1 µm unless you change it). The material lines are constant indices from the Elyvris library at the wavelength you choose; materials from your own code, and Meep’s own library models, are kept as you wrote them. Under your own code, the “Preview” box says what is drawn, approximated or left out. If your code makes an <code>mp.Simulation</code>, its cell (2D when the z size is 0) and its PML or absorber layers are drawn as thin outlines, and listed in the box with links to their lines; “Setup” under the view hides or shows them. Endless shapes stop at the cell walls, where Meep cuts them. Sources and flux monitors are drawn too, in front of the shapes. Every source has a double-headed arrow along its current or field (its polarisation). A travel arrow appears only where Meep launches light one way: a mode source (<code>EigenModeSource</code>) and a Gaussian beam. A plain <code>mp.Source</code> is a current that radiates to both sides, so it has none. Each flux plane has a “+ flux” arrow: the direction in which crossing power counts as positive (turned around by a negative <code>weight</code>). It is a sign convention, not the path of the light. These directions were measured in real Meep 1.30 runs. Nothing is simulated here.</li>
+        <li><strong>Projects.</strong> “Save project” downloads a <code>.elyvris.json</code> file with the shapes, your code and the settings; “Open project” reads it back in any browser.</li>
+        <li><strong>Start options.</strong> <button type="button" class="start-link" id="start-again">Show the start options again</button>.</li>
+        <li><strong>Figure.</strong> “Save figure” downloads the current view as a PNG with a legend of the materials. The background can be white paper, the dark stage with its grid (as on screen) or transparent. “Names and sizes” adds a label to each shape: its name (set under “Name in figures”, or its type) and the sizes that describe it, such as radius and height for a cylinder or the three edge lengths for a box. Identical copies share one label with “× N”. It is sized for print at 300 dpi: 1000 px is one journal column (8.5 cm), 2000 px is two (17 cm). The scale bar appears only in the Top, Front and Side views, which are drawn true to scale. The free 3D view uses perspective, where far things look smaller, so no single scale is valid there.</li>
+        <li><strong>App and offline use.</strong> After one visit the Studio also opens without an internet connection. In Chrome or Edge, “Install app” adds it to your computer with its own icon and window; in Safari use Share → Add to Dock (or Add to Home Screen on a phone). It is the same page: no account, and your designs stay on this computer.</li>
+        <li><strong>No simulation here.</strong> This page only draws. Run the code on your own computer.</li>
+      </ul>
+      <p class="help-commands">Commands the code box reads. Meep: <code>mp.Sphere</code>, <code>mp.Cylinder</code>, <code>mp.Block</code>, <code>mp.Cone</code>, <code>mp.Ellipsoid</code>, <code>mp.Prism</code>, <code>mp.Medium(index=…)</code>, <code>mp.inf</code>, variables and arithmetic, <code>for</code> loops, <code>if</code>, lists and list comprehensions, simple functions (<code>def</code>), and a few <code>math</code> and <code>numpy</code> functions (<code>sqrt</code>, <code>sin</code>, <code>cos</code>, <code>pi</code>, <code>linspace</code>, <code>arange</code>). Not read: <code>while</code>, classes, <code>mp.Wedge</code>, files and other libraries. gdsfactory: <code>circle</code>, <code>rectangle</code>, <code>ellipse</code>, <code>ring</code>, <code>straight</code>, <code>add_ref</code>, <code>move</code>, <code>movex</code>, <code>movey</code>, <code>add_polygon</code>.</p>
+    </details>
+
+    <footer class="studio-footer"><span>© 2026 Diogo Poeta · Elyvris</span><a href="index.html">Home ↗</a><a href="research.html">Research ↗</a></footer>
+  </main>
+</body>
+</html>

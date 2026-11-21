@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "If you use Elyvris in your work, please cite it as below."
+type: software
+title: "Elyvris: an open workshop for computational photonics"
+abstract: >-
+  Free browser tools for computational photonics. Studio places 3D shapes
+  with materials and writes the matching gdsfactory layout script, GDS file
+  and Meep geometry list. Studio draws; it does not simulate.
+authors:
+  - family-names: Poeta
+    given-names: Diogo
+    orcid: "https://orcid.org/0009-0002-1451-5147"
+repository-code: "https://github.com/diogo-poeta/elyvris"
+url: "https://diogo-poeta.github.io/elyvris/"
+license: MIT
+doi: 10.5281/zenodo.24310867
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24310867
+    description: "Elyvris Studio, all versions (always resolves to the latest)"
+  - type: doi
+    value: 10.5281/zenodo.24310868
+    description: "Elyvris Studio, version 0.1.0"
+preferred-citation:
+  type: software
+  title: "Elyvris Studio"
+  version: "0.1.0"
+  date-released: "2026-11-17"
+  doi: 10.5281/zenodo.24310867
+  publisher:
+    name: Zenodo
+  authors:
+    - family-names: Poeta
+      given-names: Diogo
+      orcid: "https://orcid.org/0009-0002-1451-5147"
+  repository-code: "https://github.com/diogo-poeta/elyvris"
+  url: "https://doi.org/10.5281/zenodo.24310867"
+  license: MIT
+keywords:
+  - photonics
+  - nanophotonics
+  - computational photonics
+  - gdsfactory
+  - meep
+  - fdtd
+  - gds

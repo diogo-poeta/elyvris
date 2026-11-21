@@ -1,0 +1,46 @@
+{
+ "about": "Material test cases for check_studio_materials_meep.py. 'original' is a script a user might paste; 'rewritten' is the code the Studio page writes after reading it (studio-code.js at commit 4372f4f, 17 November 2026, library stand-in n = 3.874). 'before_fix' is what the Studio wrote before that commit, kept to show that the check detects a changed material. 'scale' (case length_unit_half) is the length unit of the rewritten code in micrometres: the original uses 1 = 1 um, the rewrite 1 = 0.5 um (studio-code.js, 17 November 2026); its before_fix leaves the library models unrescaled.",
+ "cases": {
+  "explicit_index": {
+   "original": "import meep as mp\nSi = mp.Medium(index=2)\ngeometry = [mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\n\nSi = mp.Medium(index=2)\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si),\n]\n",
+   "before_fix": "import meep as mp\n\nSi = mp.Medium(index=3.874)  # n at 633 nm, absorption left out\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si),\n]\n"
+  },
+  "epsilon": {
+   "original": "import meep as mp\nSi = mp.Medium(epsilon=4)\ngeometry = [mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\n\nSi = mp.Medium(index=2)\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si),\n]\n"
+  },
+  "lorentzian_needs_f0": {
+   "original": "import meep as mp\nf0 = 1 / 0.3\nSi = mp.Medium(epsilon=11.7,\n    E_susceptibilities=[mp.LorentzianSusceptibility(frequency=f0, gamma=0.1, sigma=1)])\ngeometry = [mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\n\n# Si: copied unchanged from your code (more than one constant index); it also needs f0 from your script\nSi = mp.Medium(epsilon=11.7,\n    E_susceptibilities=[mp.LorentzianSusceptibility(frequency=f0, gamma=0.1, sigma=1)])\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si),\n]\n",
+   "needs": "f0 = 1 / 0.3\n",
+   "before_fix": "import meep as mp\n\nSi = mp.Medium(index=3.874)  # n at 633 nm, absorption left out\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si),\n]\n"
+  },
+  "conductive": {
+   "original": "import meep as mp\nloss = mp.Medium(epsilon=2.1, D_conductivity=0.05)\ngeometry = [mp.Block(size=mp.Vector3(0.2, 0.2, 0.2), center=mp.Vector3(0, 0, 0), material=loss)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\n\n# loss: copied unchanged from your code (more than one constant index)\nloss = mp.Medium(epsilon=2.1, D_conductivity=0.05)\n\ngeometry = [\n    mp.Block(size=mp.Vector3(0.2, 0.2, 0.2), center=mp.Vector3(0, 0, 0), material=loss),\n]\n"
+  },
+  "meep_library": {
+   "original": "import meep as mp\nfrom meep.materials import Si\ngeometry = [mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\nfrom meep.materials import Si\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=Si),\n]\n"
+  },
+  "metal": {
+   "original": "import meep as mp\ngeometry = [mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=mp.metal)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\n\n# metal: copied unchanged from your code (more than one constant index)\nmetal = mp.metal\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(0, 0, 0), material=metal),\n]\n"
+  },
+  "two_silicons": {
+   "original": "import meep as mp\nfrom meep.materials import Si as cSi\nSi = mp.Medium(index=2)\ngeometry = [mp.Sphere(radius=0.1, center=mp.Vector3(-0.3, 0, 0), material=Si), mp.Sphere(radius=0.1, center=mp.Vector3(0.3, 0, 0), material=cSi)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\nfrom meep.materials import Si as Si_2\n\nSi = mp.Medium(index=2)\n\ngeometry = [\n    mp.Sphere(radius=0.1, center=mp.Vector3(-0.3, 0, 0), material=Si),\n    mp.Sphere(radius=0.1, center=mp.Vector3(0.3, 0, 0), material=Si_2),\n]\n"
+  },
+  "mixed": {
+   "original": "import meep as mp\nfrom meep.materials import Si as cSi\n\nSi = mp.Medium(index=2)\ngold = mp.Medium(epsilon=1.0, E_susceptibilities=[mp.DrudeSusceptibility(frequency=1.0, gamma=0.05, sigma=50)])\n\ngeometry = [\n    mp.Cylinder(radius=0.1, height=0.2, center=mp.Vector3(-0.4, 0, 0), material=Si),\n    mp.Cylinder(radius=0.1, height=0.2, center=mp.Vector3(0, 0, 0), material=cSi),\n    mp.Sphere(radius=0.1, center=mp.Vector3(0.4, 0, 0.1), material=gold),\n]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 1 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\nfrom meep.materials import Si as Si_2\n\nSi = mp.Medium(index=2)\n# gold: copied unchanged from your code (more than one constant index)\ngold = mp.Medium(epsilon=1.0, E_susceptibilities=[mp.DrudeSusceptibility(frequency=1.0, gamma=0.05, sigma=50)])\n\ngeometry = [\n    mp.Cylinder(radius=0.1, height=0.2, axis=mp.Vector3(0, 0, 1), center=mp.Vector3(-0.4, 0, 0), material=Si),\n    mp.Cylinder(radius=0.1, height=0.2, axis=mp.Vector3(0, 0, 1), center=mp.Vector3(0, 0, 0), material=Si_2),\n    mp.Sphere(radius=0.1, center=mp.Vector3(0.4, 0, 0.1), material=gold),\n]\n"
+  },
+  "length_unit_half": {
+   "scale": 0.5,
+   "original": "import meep as mp\nfrom meep.materials import Si, Ag, SiO2\ngeometry = [mp.Sphere(radius=0.1, center=mp.Vector3(-0.3, 0, 0), material=Si),\n            mp.Sphere(radius=0.1, center=mp.Vector3(0, 0.1, 0), material=Ag),\n            mp.Block(size=mp.Vector3(0.2, 0.2, 0.2), center=mp.Vector3(0.3, 0, 0), material=SiO2)]\n",
+   "rewritten": "# Elyvris Studio: Meep geometry. Length unit: 1 = 0.5 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\nfrom meep.materials import Si\nfrom meep.materials import Ag\nfrom meep.materials import SiO2\n\n# Meep's library assumes 1 = 1 micrometre. Here 1 = 0.5 micrometre, so each library model is rescaled:\n# its frequencies, damping rates and conductivities are multiplied by 0.5 (frequencies are a/wavelength).\nimport copy\ndef rescale(medium, s):\n    m = copy.deepcopy(medium)\n    for sus in m.E_susceptibilities + m.H_susceptibilities:\n        sus.frequency *= s\n        sus.gamma *= s\n    m.D_conductivity_diag *= s\n    m.B_conductivity_diag *= s\n    m.valid_freq_range = mp.FreqRange(min=m.valid_freq_range.min * s, max=m.valid_freq_range.max * s)\n    return m\nSi = rescale(Si, 0.5)\nAg = rescale(Ag, 0.5)\nSiO2 = rescale(SiO2, 0.5)\n\ngeometry = [\n    mp.Sphere(radius=0.2, center=mp.Vector3(-0.6, 0, 0), material=Si),\n    mp.Sphere(radius=0.2, center=mp.Vector3(0, 0.2, 0), material=Ag),\n    mp.Block(size=mp.Vector3(0.4, 0.4, 0.4), center=mp.Vector3(0.6, 0, 0), material=SiO2),\n]\n",
+   "before_fix": "# Elyvris Studio: Meep geometry. Length unit: 1 = 0.5 micrometre.\n# Shapes only. Add your own cell, sources, boundaries and run commands.\nimport meep as mp\nfrom meep.materials import Si\nfrom meep.materials import Ag\nfrom meep.materials import SiO2\n\ngeometry = [\n    mp.Sphere(radius=0.2, center=mp.Vector3(-0.6, 0, 0), material=Si),\n    mp.Sphere(radius=0.2, center=mp.Vector3(0, 0.2, 0), material=Ag),\n    mp.Block(size=mp.Vector3(0.4, 0.4, 0.4), center=mp.Vector3(0.6, 0, 0), material=SiO2),\n]\n"
+  }
+ }
+}

@@ -1,0 +1,150 @@
+/* The project front page takes its proportions from the layered mark. */
+.project-home { background: #131B23; color: #F2EEE5; }
+.project-home .site-header { height: 100px; border-color: #F2EEE526; }
+.project-home .wordmark { color: #F2EEE5; }
+.project-home .wordmark img { content: url('assets/brand/elyvris-mark-light.svg'); }
+.project-home .site-header nav a:hover { color: #BDA7EE; }
+@media (max-width: 720px) {
+  .project-home .site-header { height: auto; min-height: 82px; flex-wrap: wrap; gap: 8px 18px; padding: 18px 0; }
+  .project-home .site-header nav { flex-wrap: wrap; gap: 12px 18px; }
+}
+.landing-main { min-height: 650px; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; padding-top: 56px; padding-bottom: 65px; }
+.landing-copy { padding: 18px 0; }
+.landing-copy .eyebrow { margin-bottom: 31px; color: #BDA7EE; font-size: 10px; letter-spacing: 1.4px; }
+.landing-copy h1 { color: #F2EEE5; font-family: Arial, sans-serif; font-size: clamp(84px,9.4vw,138px); line-height: .95; font-weight: 500; letter-spacing: -8px; margin: 0 0 28px -6px; }
+.landing-headline { max-width: 520px; font-size: clamp(25px,2.7vw,36px); line-height: 1.2; letter-spacing: -1.2px; margin: 0 0 22px; font-weight: 400; }
+.landing-description { max-width: 440px; color: #B9BDC6; font-size: 14px; line-height: 1.8; margin: 0; }
+.landing-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; margin-top: 34px; }
+.workflow-open { background: #EFB653; border: 1px solid #EFB653; color: #131B23; border-radius: 0; padding: 16px 20px; display: inline-flex; gap: 33px; align-items: center; font: 500 12px Arial,sans-serif; cursor: pointer; }
+.workflow-open:hover { background: #F7C97A; }
+.command-reference { background: #e8e0ed; border: 1px solid #c7bbd4; margin: 0 0 28px; }
+.command-reference summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 18px 20px; cursor: pointer; list-style: none; }
+.command-reference summary::-webkit-details-marker { display: none; }
+.command-reference summary:hover { background: #ded2e8; }
+.command-reference summary strong, .command-reference summary small { display: block; }
+.command-reference summary strong { font-size: 16px; font-weight: 600; }
+.command-reference summary small { margin-top: 5px; color: #5d5966; font-size: 12px; line-height: 1.5; }
+.reference-toggle { color: #654989; font: 26px/1 Arial,sans-serif; }
+.command-reference[open] .reference-toggle { transform: rotate(45deg); }
+.command-reference summary:focus-visible, .document-close:focus-visible, .reference-nav a:focus-visible { outline: 2px solid #a56100; outline-offset: 3px; }
+.reference-body { padding: 0 20px 22px; }
+.reference-body { font-family: Arial,sans-serif; }
+.reference-lead { font-size: 15px; line-height: 1.65; color: #434750; margin: 0 0 22px; }
+.reference-nav { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 15px 0; border-top: 1px solid #CDC3D3; border-bottom: 1px solid #CDC3D3; }
+.reference-nav a { color: #654989; font-size: 13px; text-decoration: none; }
+.reference-nav a:hover { text-decoration: underline; }
+.reference-section { padding: 28px 0; border-bottom: 1px solid #D5CEC7; scroll-margin-top: 120px; }
+.reference-section:last-child { border-bottom: 0; padding-bottom: 0; }
+.reference-number { color: #75589A; font: 11px 'Courier New',monospace; letter-spacing: 1px; }
+.reference-section h3 { margin: 10px 0 10px; font-size: 22px; font-weight: 500; letter-spacing: -.4px; }
+.reference-section p { color: #454A53; font-size: 14px; line-height: 1.65; margin: 0 0 15px; }
+.reference-section pre { overflow-x: auto; background: #18212A; color: #F5F0E8; padding: 18px; font: 13px/1.65 Consolas,monospace; margin: 0 0 16px; }
+.reference-section .reference-note { font-size: 13px; color: #635D68; margin-bottom: 0; }
+.reference-links { display: grid; gap: 0; margin: 18px 0; border-top: 1px solid #D5CEC7; }
+.reference-links a { display: flex; gap: 12px; align-items: center; padding: 14px 0; color: #131B23; border-bottom: 1px solid #D5CEC7; text-decoration: none; font-size: 14px; }
+.reference-links a:hover { color: #654989; }
+.reference-links a span:first-child { min-width: 76px; color: #75589A; font: 11px 'Courier New',monospace; }
+.reference-links a span:last-child { margin-left: auto; }
+.landing-research { font-size: 12px; padding: 5px 0; border-bottom: 1px solid #7F848C; }
+.landing-research:hover { color: #BDA7EE; text-decoration: none; }
+.landing-status { display: flex; gap: 9px; align-items: center; color: #929AA6; margin: 31px 0 0; font: 10px/1.7 'Courier New',monospace; }
+.landing-status>span { flex-shrink: 0; width: 5px; height: 5px; background: #A38CD9; }
+.identity-figure { position: relative; align-self: stretch; margin: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 23px 0 20px 36px; border-left: 1px solid #F2EEE526; }
+.identity-figure-top { display: flex; justify-content: space-between; align-items: center; font: 9px/1.7 'Courier New',monospace; letter-spacing: 1.2px; color: #939DA9; }
+.identity-figure-top>span:last-child { color: #A38CD9; font: 24px Arial,sans-serif; }
+.identity-symbol { display: block; width: 88%; max-width: 356px; height: auto; margin: 14px auto 8px; }
+.identity-figure figcaption { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; color: #DDD8E2; font-size: 12px; line-height: 1.5; }
+.identity-caption-small { font: 8px/1.6 'Courier New',monospace; letter-spacing: .5px; max-width: 90px; text-align: right; color: #929AA6; }
+.project-contact { background: #F2EEE5; color: #131B23; padding-top: 36px; }
+.project-contact-top { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-bottom: 32px; }
+.project-contact .eyebrow { color: #6A4D95; margin: 0 0 10px; }
+.project-contact h2 { font: 500 37px/1 Arial,sans-serif; letter-spacing: -1.6px; }
+.project-profiles { display: flex; gap: 28px; flex-wrap: wrap; font-size: 12px; }
+.project-profiles a:hover { color: #6A4D95; }
+.project-contact footer { padding: 21px 0; color: #6A6A70; font-size: 10px; border-color: #D2CFC8; }
+.project-contact footer a { color: #131B23; }
+.workflow-document { box-sizing: border-box; width: min(740px,calc(100% - 32px)); max-height: calc(100dvh - 40px); margin: auto; padding: 0; border: 1px solid #C2B6D2; border-radius: 0; background: #F2EEE5; color: #131B23; box-shadow: 0 30px 100px #0009; overflow: auto; }
+.workflow-document::backdrop { background: #080D14CF; backdrop-filter: blur(5px); }
+.document-header { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; background: #E5DCED; border-bottom: 1px solid #C9BED6; padding: 27px 34px; }
+.document-label { font: 10px/1.6 'Courier New',monospace; letter-spacing: 1px; color: #6A4D95; }
+.document-header h2 { font: 500 34px/1.1 Arial,sans-serif; letter-spacing: -1.3px; margin: 11px 0 8px; }
+.document-header p { margin: 0; color: #61606B; font-size: 11px; }
+.document-close { flex-shrink: 0; background: transparent; color: #131B23; border: 1px solid #AAA0B5; border-radius: 0; width: 36px; height: 36px; font: 24px/1 Arial,sans-serif; cursor: pointer; }
+.document-close:hover { background: #D6C7E7; }
+.document-body { padding: 26px 34px 34px; }
+.document-intro { font-size: 14px; line-height: 1.6; color: #5D626B; margin: 0 0 22px; }
+.workflow-optics { margin: 0 0 30px; padding: 17px 20px; background: #E4DFE9; }
+.stack-sketch { display: block; width: 100%; height: auto; max-height: 290px; margin: 0; }
+.stack-sketch text { fill: #565160; font: 12px Arial,sans-serif; }
+.stack-sketch .beam { fill: none; stroke-width: 2; stroke-linecap: round; }
+.stack-sketch .incident { stroke: #926713; color: #926713; }
+.stack-sketch .reflected { stroke: #7656AA; color: #7656AA; }
+.stack-sketch .transmitted { stroke: #131B23; color: #131B23; }
+.normal-line { stroke: #A096AE; stroke-width: 1; stroke-dasharray: 3 5; }
+.layer-one { fill: #A38CD9; }
+.layer-two { fill: #D1C3E9; }
+.layer-three { fill: #9481B5; }
+.stack-substrate { fill: #CAC2D4; }
+.thickness-bracket { stroke: #746782; fill: none; }
+.workflow-optics figcaption { font-size: 10px; line-height: 1.6; color: #696372; margin-top: 8px; }
+.document-flow { list-style: none; margin: 0; padding: 0; }
+.document-flow li { position: relative; display: grid; grid-template-columns: 34px 1fr; gap: 18px; padding-bottom: 25px; }
+.document-flow li:not(:last-child)::before { content: ''; position: absolute; left: 16px; top: 33px; bottom: 0; border-left: 1px solid #B8AAC9; }
+.document-number { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #B8AAC9; font: 10px 'Courier New',monospace; color: #6A4D95; }
+.document-flow h3, .document-limits h3 { font-size: 15px; font-weight: 500; margin: 6px 0 7px; }
+.document-flow p, .document-limits p { font-size: 12px; line-height: 1.8; color: #5D626B; margin: 0; }
+.document-limits { border-top: 1px solid #D2CFC8; padding-top: 18px; }
+.document-limits h3 { margin-top: 0; }
+@media (min-width: 1600px) { .landing-main { min-height: 750px; } }
+@media (max-width: 1050px) {
+  .landing-main { gap: 36px; min-height: 610px; }
+  .landing-copy h1 { font-size: 94px; letter-spacing: -6px; }
+  .identity-figure { padding-left: 25px; }
+  .identity-figure figcaption { font-size: 11px; }
+  .identity-caption-small { display: none; }
+  .project-profiles { gap: 20px; }
+}
+@media (max-width: 720px) {
+  .project-home .site-header { height: 82px; }
+  .landing-main { min-height: 0; grid-template-columns: 1fr; gap: 32px; padding-top: 35px; padding-bottom: 36px; }
+  .landing-copy { padding: 5px 0 0; }
+  .landing-copy .eyebrow { font-size: 9px; letter-spacing: 1px; margin-bottom: 24px; }
+  .landing-copy h1 { font-size: clamp(76px,18vw,110px); letter-spacing: -5px; margin: 0 0 24px -4px; }
+  .landing-headline { max-width: 470px; font-size: 29px; letter-spacing: -.9px; margin-bottom: 18px; }
+  .landing-description { font-size: 13px; line-height: 1.8; }
+  .landing-actions { margin-top: 26px; gap: 27px; }
+  .workflow-open { padding: 14px 17px; gap: 25px; }
+  .landing-status { font-size: 9px; margin-top: 25px; }
+  .identity-figure { min-height: 340px; padding: 20px 0 0; border-left: 0; border-top: 1px solid #F2EEE526; }
+  .identity-symbol { max-width: 235px; width: 66%; margin: 0 auto 10px; }
+  .identity-caption-small { display: block; }
+  .identity-figure figcaption { font-size: 11px; }
+  .project-contact { padding-top: 28px; }
+  .project-contact-top { align-items: flex-start; flex-direction: column; gap: 25px; padding-bottom: 26px; }
+  .project-contact h2 { font-size: 34px; }
+  .project-profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 30px; }
+  .project-contact footer { gap: 15px; flex-wrap: wrap; font-size: 9px; }
+  .document-header { padding: 23px 22px; }
+  .document-header h2 { font-size: 29px; }
+  .document-body { padding: 24px 22px; }
+  .workflow-optics { padding: 13px 10px; }
+  .workflow-document { max-height: calc(100dvh - 20px); }
+}
+@media (max-width: 370px) {
+  .landing-copy h1 { font-size: 72px; }
+  .landing-headline { font-size: 26px; }
+}
+@media (max-width: 720px) {
+  .project-home .site-header { height: auto; min-height: 82px; }
+  .project-home .site-header nav > a:nth-child(3) { display: inline-block; }
+}
+@media print {
+  .project-home { color: #000; background: #FFF; }
+  .project-home .site-header { border-color: #CCC; }
+  .project-home .wordmark { color: #000; }
+  .landing-main { display: block; min-height: 0; padding: 25px 0; }
+  .landing-copy h1 { color: #000; font-size: 65px; }
+  .landing-headline { font-size: 27px; }
+  .landing-description, .landing-status { color: #444; }
+  .landing-actions, .identity-figure, .project-contact, .workflow-document { display: none; }
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio checks: running</title>
+<style>
+  body { font: 14px/1.5 system-ui, sans-serif; margin: 16px; background: #fff; color: #111; }
+  pre { white-space: pre-wrap; }
+  .failed { color: #8c1d18; }
+  iframe { position: fixed; left: -10000px; top: 0; width: 1200px; height: 900px; }
+</style>
+</head>
+<body>
+<h1>Studio checks</h1>
+<p>Runs every browser check of the Studio, each one inside the Studio page (studio.html), as its own
+instructions say. Serve the website folder with <code>python scripts/run_browser_checks.py</code> and open
+this page; with <code>--browser</code> the script opens it in a headless browser and reads the result.</p>
+<pre id="out">Running…</pre>
+<script type="module">
+const out = document.getElementById('out');
+let results = [], expected = 1;
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+const show = () => { out.textContent = results.map(r => `${r.ok ? 'ok  ' : 'FAIL'} ${r.name}: ${r.detail}`).join('\n'); };
+// Every 2 s, tell run_browser_checks.py which step is running and what has finished. If the
+// browser stops, these messages stop too, and the script can say where it stopped.
+let step = 'opening studio.html', studio = null;
+const progress = setInterval(() => {
+  const running = studio && studio.ElyvrisCheckRunning ? studio.ElyvrisCheckRunning : step;
+  fetch('/check-progress', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ running, results }) }).catch(() => {});
+}, 2000);
+
+async function openStudio() {
+  const frame = document.createElement('iframe');
+  frame.src = `../studio.html?checks=${Date.now()}`;
+  const loaded = new Promise(resolve => frame.addEventListener('load', resolve, { once: true }));
+  document.body.append(frame);
+  await loaded;
+  const win = frame.contentWindow;
+  // Wait until the page has drawn its design and its scripts are ready.
+  for (let i = 0; i < 200 && !(win.ElyvrisStudioCode && win.ElyvrisPy && win.document.querySelector('#shape-list li')); i++) await pause(50);
+  await pause(500);
+  return win;
+}
+
+try {
+  const win = studio = await openStudio();
+  step = 'loading browser-checks.mjs';
+  // The checks run inside the Studio frame, with the Studio's own globals (see browser-checks.mjs).
+  const script = win.document.createElement('script');
+  script.type = 'module'; script.src = `./scripts/browser-checks.mjs?run=${Date.now()}`;
+  script.addEventListener('error', () => { win.ElyvrisCheckResults = [{ name: 'browser-checks.mjs', ok: false, detail: 'could not be loaded' }]; win.ElyvrisChecksDone = true; });
+  win.document.head.append(script);
+  // Each check stops itself after 45 s (browser-checks.mjs); this is the limit for the whole run.
+  for (let i = 0; i < 2100 && !win.ElyvrisChecksDone; i++) { await pause(100); results = (win.ElyvrisCheckResults || []).slice(); show(); }
+  results = (win.ElyvrisCheckResults || []).slice();
+  expected = win.ElyvrisChecksDone ? win.ElyvrisCheckCount || results.length : results.length + 1;
+  if (!win.ElyvrisChecksDone) results.push({ name: 'timeout', ok: false, timeout: true, detail: `the checks did not finish within 210 s (stopped in ${win.ElyvrisCheckRunning || step})` });
+} catch (error) {
+  results.push({ name: 'studio page', ok: false, detail: String(error && error.message || error) });
+}
+clearInterval(progress);
+show();
+const passed = results.length === expected && results.every(r => r.ok);
+document.title = passed ? 'Studio checks: passed' : 'Studio checks: FAILED';
+out.classList.toggle('failed', !passed);
+// Report to run_browser_checks.py when it serves this page; a plain server just ignores this.
+try { await fetch('/check-results', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ passed, results }) }); } catch (error) { /* no reporting server */ }
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+name: Idea
+description: A shape, material, example or feature you would use.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What would you like to do?
+      description: Describe the task in your own work, not only the feature.
+      placeholder: "Example: I design grating couplers and would like to draw a row of etched teeth in one step."
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+  - type: textarea
+    id: sources
+    attributes:
+      label: References (optional)
+      description: For materials or physics, a paper, datasheet or refractiveindex.info page.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Would you like to work on it?
+      options:
+        - label: Yes, I would like to try making this change myself.

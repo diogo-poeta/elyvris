@@ -1,0 +1,44 @@
+name: Problem
+description: "Something is wrong: a shape, the generated code, or a page."
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for reporting this. A few details help to find the cause quickly.
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did it happen?
+      options:
+        - Studio, 3D view
+        - Studio, gdsfactory code or .gds file
+        - Studio, Meep code
+        - Research page
+        - Another page
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      placeholder: "Example: I added a ring with radius 400 nm, but the gdsfactory code draws it with radius 0.2 µm."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to see it again
+      placeholder: |
+        1. Open Studio
+        2. Choose the example "..."
+        3. ...
+  - type: textarea
+    id: code
+    attributes:
+      label: Code or error message (if any)
+      render: python
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and system
+      placeholder: "Example: Firefox 140 on Windows 11"

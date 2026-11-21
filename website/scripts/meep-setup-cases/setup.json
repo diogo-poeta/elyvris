@@ -1,0 +1,564 @@
+{
+ "meep": "1.30.0",
+ "cases": {
+  "ring_simulation.py": {
+   "cell": [
+    16.0,
+    16.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 10.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 2.0,
+     "direction": -1,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [
+    {
+     "kind": "Source",
+     "center": [
+      1.1,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "component": "Ez"
+    }
+   ],
+   "monitors": []
+  },
+  "dir_beam.py": {
+   "cell": [
+    10.0,
+    4.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 20.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 1.0,
+     "direction": -1,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [
+    {
+     "kind": "GaussianBeamSource",
+     "center": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "beam_kdir": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "beam_E0": [
+      0.0,
+      0.0,
+      1.0
+     ]
+    }
+   ],
+   "monitors": [
+    {
+     "kind": "flux",
+     "center": [
+      -3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    },
+    {
+     "kind": "flux",
+     "center": [
+      3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    }
+   ]
+  },
+  "dir_eig_back.py": {
+   "cell": [
+    10.0,
+    4.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 20.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 1.0,
+     "direction": -1,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [
+    {
+     "kind": "EigenModeSource",
+     "center": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "eig_kpoint": [
+      -1.0,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "monitors": [
+    {
+     "kind": "flux",
+     "center": [
+      -3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    },
+    {
+     "kind": "flux",
+     "center": [
+      3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    }
+   ]
+  },
+  "dir_eig_default.py": {
+   "cell": [
+    10.0,
+    4.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 20.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 1.0,
+     "direction": -1,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [
+    {
+     "kind": "EigenModeSource",
+     "center": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "eig_kpoint": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "monitors": [
+    {
+     "kind": "flux",
+     "center": [
+      -3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    },
+    {
+     "kind": "flux",
+     "center": [
+      3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    }
+   ]
+  },
+  "dir_eig_direction.py": {
+   "cell": [
+    10.0,
+    4.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 20.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 1.0,
+     "direction": -1,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [
+    {
+     "kind": "EigenModeSource",
+     "center": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": 0,
+     "eig_kpoint": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "monitors": [
+    {
+     "kind": "flux",
+     "center": [
+      -3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    },
+    {
+     "kind": "flux",
+     "center": [
+      3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": -1.0
+    }
+   ]
+  },
+  "dir_plane.py": {
+   "cell": [
+    10.0,
+    4.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 20.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 1.0,
+     "direction": -1,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [
+    {
+     "kind": "Source",
+     "center": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "component": "Ez"
+    }
+   ],
+   "monitors": [
+    {
+     "kind": "flux",
+     "center": [
+      -3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    },
+    {
+     "kind": "flux",
+     "center": [
+      3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    }
+   ]
+  },
+  "dir_point.py": {
+   "cell": [
+    10.0,
+    4.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 20.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 1.0,
+     "direction": -1,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [
+    {
+     "kind": "Source",
+     "center": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "component": "Ez"
+    }
+   ],
+   "monitors": [
+    {
+     "kind": "flux",
+     "center": [
+      -3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    },
+    {
+     "kind": "flux",
+     "center": [
+      3.0,
+      0.0,
+      0.0
+     ],
+     "size": [
+      0.0,
+      2.0,
+      0.0
+     ],
+     "direction": -1,
+     "weight": 1.0
+    }
+   ]
+  },
+  "pml_sides_3d.py": {
+   "cell": [
+    4.0,
+    3.0,
+    2.0
+   ],
+   "center": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 3,
+   "resolution": 20.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 0.5,
+     "direction": 1,
+     "side": 0
+    },
+    {
+     "kind": "Absorber",
+     "thickness": 1.0,
+     "direction": 0,
+     "side": -1
+    }
+   ],
+   "walls": "periodic",
+   "kPoint": [
+    0.1,
+    0.0,
+    0.0
+   ],
+   "sources": [],
+   "monitors": []
+  },
+  "slab_2d.py": {
+   "cell": [
+    6.0,
+    4.0,
+    0.0
+   ],
+   "center": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dimensions": 2,
+   "resolution": 10.0,
+   "layers": [
+    {
+     "kind": "PML",
+     "thickness": 1.0,
+     "direction": 0,
+     "side": -1
+    }
+   ],
+   "walls": "metal",
+   "kPoint": null,
+   "sources": [],
+   "monitors": []
+  }
+ }
+}

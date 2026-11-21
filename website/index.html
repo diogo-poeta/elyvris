@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elyvris · Light, unfolded</title>
+  <meta name="description" content="Elyvris is an open workshop for computational photonics by Diogo Poeta: explanations of the physics, free design tools for gdsfactory, KLayout and Meep, and the research behind them.">
+  <meta name="theme-color" content="#11161C">
+  <meta property="og:title" content="Elyvris · Light, unfolded">
+  <meta property="og:description" content="Explanations of the physics, free photonics design tools and the research behind them. By Diogo Poeta.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://diogo-poeta.github.io/elyvris/assets/brand/elyvris-social.png">
+  <meta property="og:image:alt" content="Elyvris layered optical mark and wordmark">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/">
+  <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
+  <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
+  <link rel="stylesheet" href="home.css?v=4">
+  <link rel="stylesheet" href="intro-loader.css?v=3">
+  <script src="intro-loader.js?v=4"></script>
+  <script defer src="tour.js?v=1"></script>
+</head>
+<body>
+  <div class="ey-loader" aria-hidden="true">
+    <!-- Ray paths traced with Snell's law (indices exaggerated, 1.40 to 1.62, so the fan is visible):
+         every colour bends towards the base, red the least (24°), violet the most (39°). -->
+    <svg class="ld-art" viewBox="0 20 600 220">
+      <path class="ld-beam" d="M10 183 L266.6 112 L333.1 111.5"/>
+      <path class="ld-prism" d="M300 44 L352 150 L248 150 Z"/>
+      <g class="ld-fan">
+        <path d="M332.1 109.5 L590 148"/>
+        <path d="M332.6 110.5 L590 162"/>
+        <path d="M333.1 111.5 L590 176"/>
+        <path d="M333.6 112.5 L590 191"/>
+        <path d="M334 113.4 L590 207"/>
+        <path d="M334.5 114.2 L590 225"/>
+      </g>
+    </svg>
+    <p class="ld-count"><span>Unfolding light</span><b></b></p>
+  </div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top wrap">
+    <a class="brand" href="./" aria-label="Elyvris home"><img src="assets/brand/elyvris-mark.svg" width="34" height="36" alt="">Elyvris</a>
+    <nav aria-label="Main navigation">
+      <a href="studio.html">Studio</a>
+      <a href="research.html">Research</a>
+      <a href="play.html">Grid</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <h1 id="hero-title">Light, unfolded.</h1>
+        <p class="lede">Elyvris is an open workshop for computational photonics. It explains the physics in plain language, offers free tools that turn a sketch into a layout and a simulation script, and shows the published research behind them.</p>
+        <button class="tour-tile" type="button" aria-haspopup="dialog" aria-controls="tour">
+          <span class="tour-tile-art" aria-hidden="true">
+            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" class="tile-ring"/><path class="tile-wave" d="M8 40 Q 16 22 24 40 T 40 40 T 56 40 T 72 40"/><path class="tile-play" d="M33 28 L54 40 L33 52 Z"/></svg>
+          </span>
+          <span class="tour-tile-text"><strong>What is Elyvris?</strong></span>
+        </button>
+      </div>
+      <figure class="hero-mark">
+        <img src="assets/brand/elyvris-mark.svg" width="320" height="340" alt="The Elyvris mark: three layers crossed by a continuous amber path of light">
+        <figcaption><strong>Elyvris</strong> comes from the Greek <em>lyō</em>, “to unfold, to set free” (the root of <em>analysis</em>), the Greek letter <em>ν</em> that physicists use for the frequency of light, and <em>Iris</em>, the rainbow.</figcaption>
+      </figure>
+    </section>
+
+    <nav class="ways wrap" aria-label="Where to go">
+      <ul>
+        <li id="tools"><a href="studio.html"><span class="way-title">Studio</span></a></li>
+        <li id="research"><a href="research.html"><span class="way-title">Research</span></a></li>
+      </ul>
+    </nav>
+
+  </main>
+
+  <footer class="foot" id="contact">
+    <div class="wrap foot-grid">
+      <div>
+        <p class="foot-name">Diogo Poeta</p>
+        <p class="foot-role">Photonics R&amp;D | Optical Systems and Simulation | PhD Physicist</p>
+      </div>
+      <nav class="foot-links" aria-label="Professional profiles">
+        <a href="https://pt.linkedin.com/in/diogo-poeta" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/diogo-poeta" rel="noopener noreferrer">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=9GATdmUAAAAJ" rel="noopener noreferrer">Google Scholar</a>
+        <a href="https://orcid.org/0009-0002-1451-5147" rel="noopener noreferrer">ORCID</a>
+        <a href="https://www.researchgate.net/profile/Diogo-Poeta" rel="noopener noreferrer">ResearchGate</a>
+      </nav>
+    </div>
+    <div class="wrap foot-small">
+      <span>© 2026 Diogo Poeta · Elyvris</span>
+      <details class="credits letters">
+        <summary>E · L · Y · ν · R · I · S</summary>
+        <p>Read the name letter by letter and it spells the physics of this project: <b>E</b>, the electric field · <b>L</b>, layers · <b>Y</b>, the Yee cell, the grid behind every FDTD simulation · <b>ν</b>, the frequency of light · <b>R</b>, resonance · <b>I</b>, interference · <b>S</b>, scattering.</p>
+      </details>
+      <p class="credits">This project is made with the assistance of artificial intelligence.</p>
+    </div>
+  </footer>
+
+  <dialog class="tour" id="tour" aria-labelledby="tour-title">
+    <div class="tour-head">
+      <p id="tour-title">Elyvris · a short tour</p>
+      <button class="tour-close" type="button" aria-label="Close the tour">×</button>
+    </div>
+    <div class="tour-stage">
+      <svg id="tour-svg" viewBox="0 0 800 420" aria-hidden="true" focusable="false"></svg>
+    </div>
+    <div class="tour-caption" aria-live="polite">
+      <p class="tour-count"><span id="tour-index">1</span> of <span id="tour-total">6</span></p>
+      <h2 id="tour-heading"></h2>
+      <p id="tour-text"></p>
+      <p class="tour-actions" id="tour-actions" hidden><a class="button" href="studio.html">Open Studio</a><a class="button button-quiet" href="research.html">Read the research</a></p>
+    </div>
+    <div class="tour-controls">
+      <button type="button" id="tour-prev" aria-label="Previous scene">‹</button>
+      <button type="button" id="tour-play" aria-label="Pause">❚❚</button>
+      <button type="button" id="tour-next" aria-label="Next scene">›</button>
+      <div class="tour-progress" id="tour-progress" aria-hidden="true"></div>
+    </div>
+  </dialog>
+</body>
+</html>

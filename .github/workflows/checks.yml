@@ -1,0 +1,26 @@
+name: Website checks
+
+# Runs on every pull request, and before every deployment (pages.yml calls it).
+on:
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Pages, ids and local links
+        run: python3 website/scripts/check-site.py
+      - name: Grid coating lab verification
+        run: node --test website/scripts/check-grid-optics.cjs
+      - name: Studio checks in Chrome
+        run: python3 website/scripts/run_browser_checks.py --browser google-chrome --timeout 240 --stall 60 --attempts 2

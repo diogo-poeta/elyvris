@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security problem
+    url: https://github.com/diogo-poeta/elyvris/security/policy
+    about: Please report security weaknesses privately, not in a public issue.
+  - name: Elyvris website
+    url: https://diogo-poeta.github.io/elyvris/
+    about: Studio and research articles.

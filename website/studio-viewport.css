@@ -1,0 +1,220 @@
+/* The WebGL layer draws the model and its calibrated grid over the stage background. */
+.studio-page .viewer {
+  --view-ink: #f3f1fc;
+  --view-muted: #c0c3d2;
+  --view-line: #404352;
+  --view-accent: #dbcfff;
+  container: viewport / inline-size;
+  isolation: isolate;
+  align-self: stretch;
+  max-height: clamp(610px, 88vh, 710px);
+  background: #20222d;
+  border: 1px solid #323542;
+  border-radius: 14px;
+  color: var(--view-ink);
+}
+.viewport-head, .viewer .viewport-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+}
+.viewport-head {
+  justify-content: space-between;
+  min-height: 52px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--view-line);
+}
+.viewer .viewport-head h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: var(--view-ink);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+.viewport-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: 1 1 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.viewport-head h2 .viewport-icon { width: 21px; height: 21px; color: var(--view-accent); }
+.viewer .view-directions, .viewport-modes, .viewport-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.viewer .view-directions {
+  position: static;
+  flex-wrap: nowrap;
+  pointer-events: auto;
+  padding: 2px;
+  background: #171a24;
+  border: 1px solid #3a3c49;
+  border-radius: 7px;
+}
+.viewer :is(.viewport-head, .viewport-tools) button, .viewer .viewport-figure summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 5px 9px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--view-muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.viewer :is(.viewport-head, .viewport-tools) button:hover, .viewer .viewport-figure summary:hover {
+  background: #343744;
+  color: #fff;
+}
+.viewer .view-directions button { min-height: 26px; padding: 4px 10px; }
+.viewer .view-directions button[aria-pressed=true] {
+  background: var(--view-accent);
+  color: #282039;
+  font-weight: 700;
+}
+.viewer .stage {
+  flex: none;
+  height: clamp(340px, min(58vh, 42vw), 510px);
+  min-height: 0;
+  background: radial-gradient(ellipse at 54% 44%, #2c3043 0%, #1b2030 51%, #121623 100%);
+}
+.viewer .stage-scale {
+  inset: auto 14px 14px auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border: 1px solid #434858;
+  border-radius: 4px;
+  background-color: #181c28eb;
+  color: #d0d2e0;
+  font: 11px/1.35 ui-monospace, Consolas, monospace;
+}
+.viewer .stage-scale::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  border: 1px solid #aeb2c7;
+  background: linear-gradient(to right, transparent 45%, #aeb2c7 45% 55%, transparent 55%),
+    linear-gradient(to top, transparent 45%, #aeb2c7 45% 55%, transparent 55%);
+}
+.viewer .stage-scale:empty { display: none; }
+.viewer .view-label { color: #f4f2ff; text-shadow: 0 1px 3px #080a13; }
+.viewer .stage-measure {
+  position: static;
+  margin: 0;
+  padding: 8px 15px;
+  border-top: 1px solid var(--view-line);
+  color: #f3db9e;
+  background: #25252b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.viewer .viewport-tools {
+  position: relative;
+  inset: auto;
+  flex-wrap: wrap;
+  gap: 5px 8px;
+  padding: 7px 12px;
+  border-top: 1px solid var(--view-line);
+}
+.viewer .viewport-tools button[aria-pressed=true] {
+  background: #373348;
+  border-color: #665879;
+  color: #e4d9ff;
+}
+.viewport-zoom {
+  margin-left: auto;
+  padding-left: 10px;
+  border-left: 1px solid var(--view-line);
+}
+.viewport-zoom button { min-width: 30px; }
+.viewer .viewport-zoom :is(#view-zoom-in, #view-zoom-out) { font: 18px/1 ui-monospace, Consolas, monospace; }
+.viewport-figure { position: relative; margin: 0; }
+.viewer .viewport-figure summary { list-style: none; }
+.viewport-figure summary::-webkit-details-marker { display: none; }
+.viewport-figure summary::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin: 3px 0 0 2px;
+  border-top: 1.5px solid currentColor;
+  border-left: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+.viewport-figure[open] summary::after { transform: rotate(225deg); margin-top: -2px; }
+.viewport-figure[open] summary { background: #343744; }
+.figure-options {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 7px);
+  z-index: 3;
+  display: grid;
+  gap: 8px;
+  width: max-content;
+  padding: 13px;
+  border: 1px solid #5a5a6d;
+  border-radius: 9px;
+  background: #262936;
+  box-shadow: 0 6px 18px #0a0b1650;
+  color: var(--view-ink);
+  font-size: 12px;
+}
+.viewer .figure-options select {
+  min-height: 34px;
+  padding: 5px 7px;
+  border: 1px solid #666979;
+  border-radius: 4px;
+  color-scheme: dark;
+  background: #191c27;
+  color: var(--view-ink);
+  font: inherit;
+}
+.figure-check { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+.figure-check input { width: 15px; height: 15px; margin: 0; accent-color: var(--view-accent); }
+.viewer .figure-options #figure-save { background: var(--view-accent); color: #282039; }
+.viewer :is(button, summary, select, canvas):focus-visible { outline: 2px solid #e3d5ff; outline-offset: 2px; }
+.viewer canvas:focus-visible { outline-offset: -3px; }
+@container viewport (max-width: 560px) {
+  .viewer .viewport-tools { gap: 4px; padding: 6px 8px; }
+  .viewer .viewport-tools button, .viewer .viewport-figure summary { min-height: 38px; }
+  .viewer .viewport-zoom { padding-left: 5px; }
+}
+@container viewport (max-width: 455px) {
+  .viewer .stage { height: clamp(285px, 83vw, 370px); }
+  .viewport-head { padding-left: 11px; gap: 4px; }
+  .viewer .view-directions { gap: 0; }
+  .viewer .view-directions button { padding: 5px 7px; min-height: 32px; }
+  .viewer .viewport-head h2 { gap: 5px; font-size: 14px; }
+  .viewport-head h2 .viewport-icon { width: 17px; height: 17px; }
+  .viewport-modes { width: 100%; }
+  .viewport-modes button { flex: 1; }
+  .viewer .viewport-zoom { margin-left: 0; padding-left: 0; border: 0; }
+  .viewport-figure { margin-left: auto; }
+}
+@container viewport (max-width: 315px) {
+  .viewport-head h2 .viewport-icon { display: none; }
+  .viewer .view-directions button { padding-inline: 5px; }
+}
+@media print {
+  .viewer .viewport-tools, .viewer .view-directions, .viewer .stage-measure { display: none; }
+}

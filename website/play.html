@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://soyrjjixmdwwtffqpccn.supabase.co http://127.0.0.1:8774 http://localhost:8774; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Grid · Elyvris</title>
+  <meta name="description" content="A private corner of Elyvris.">
+  <meta name="theme-color" content="#02040a">
+  <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/play.html">
+  <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
+  <link rel="stylesheet" href="grid.css?v=5">
+  <link rel="stylesheet" href="grid-lab.css?v=1">
+  <link rel="stylesheet" href="grid-coating-lab.css?v=2">
+  <script defer src="grid-config.js?v=1"></script>
+  <script defer src="grid-api.js?v=6"></script>
+  <script defer src="grid-wall.js?v=1"></script>
+  <script defer src="grid-optics.js?v=1"></script>
+  <script defer src="grid-coating.js?v=1"></script>
+  <script defer src="grid-coating-lab.js?v=1"></script>
+  <script defer src="grid-lab.js?v=1"></script>
+  <script defer src="grid-space.js?v=4"></script>
+  <script defer src="grid.js?v=7"></script>
+</head>
+<body class="locked">
+  <canvas id="wall" aria-hidden="true"></canvas>
+
+  <section id="gateLayer" aria-label="Grid">
+    <a class="gate-home" href="./">← Home</a>
+    <p class="wall-status" id="wallStatus" aria-live="polite"></p>
+    <div class="crt" id="crt" hidden>
+      <div class="bezel">
+        <div class="screen">
+          <div id="bootLog" aria-live="polite"></div>
+          <form id="gate" class="gate-form" hidden autocomplete="on">
+            <label for="gridUser">USER ID</label>
+            <div class="key-row"><span class="prompt" aria-hidden="true">&gt;</span><input id="gridUser" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="120" required></div>
+            <label for="gridKey">ACCESS KEY</label>
+            <div class="key-row"><span class="prompt" aria-hidden="true">&gt;</span><input id="gridKey" name="password" type="password" autocomplete="current-password" spellcheck="false" maxlength="200" required><button type="submit">ENTER</button></div>
+            <p id="gateMsg" class="gate-msg" role="status"></p>
+            <button type="button" class="gate-switch" id="toInvite" hidden>I have an invite →</button>
+          </form>
+          <form id="invite" class="gate-form" hidden autocomplete="on" novalidate>
+            <p class="form-title">NEW ACCOUNT · BY INVITATION ONLY</p>
+            <label for="invCode">INVITE CODE</label>
+            <div class="key-row"><span class="prompt" aria-hidden="true">&gt;</span><input id="invCode" name="invite" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="40" placeholder="ELY-XXXX-XXXX-XXXX"></div>
+            <label for="invUser">CHOOSE A USER ID</label>
+            <div class="key-row"><span class="prompt" aria-hidden="true">&gt;</span><input id="invUser" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="32" aria-describedby="invUserHint"></div>
+            <p class="hint" id="invUserHint">3 to 32 letters, digits, dots, dashes or underscores. You log in with it.</p>
+            <label for="invKey">CHOOSE AN ACCESS KEY</label>
+            <div class="key-row"><span class="prompt" aria-hidden="true">&gt;</span><input id="invKey" name="new-password" type="password" autocomplete="new-password" spellcheck="false" maxlength="200" aria-describedby="invKeyHint"></div>
+            <label for="invKey2">TYPE IT AGAIN</label>
+            <div class="key-row"><span class="prompt" aria-hidden="true">&gt;</span><input id="invKey2" name="new-password-again" type="password" autocomplete="new-password" spellcheck="false" maxlength="200"><button type="submit">CREATE</button></div>
+            <p class="hint" id="invKeyHint">At least 12 characters. Only you will know it; a password manager can make one.</p>
+            <p id="invMsg" class="gate-msg" role="status"></p>
+            <button type="button" class="gate-switch" id="toLogin">← Back to login</button>
+          </form>
+        </div>
+        <div class="bezel-foot"><span class="led" aria-hidden="true"></span><span>ELYVRIS · GRID TERMINAL</span><span class="vents" aria-hidden="true"></span></div>
+      </div>
+    </div>
+    <noscript><p class="noscript">Grid needs JavaScript.</p></noscript>
+  </section>
+
+  <div id="spaceShell" hidden>
+    <header class="grid-top">
+      <a class="grid-brand" href="./"><img src="assets/brand/elyvris-mark.svg" width="22" height="24" alt="">Elyvris <span>· Grid</span></a>
+      <span class="grid-actions">
+        <span class="who" id="who"></span>
+        <button id="inviteBtn" type="button" hidden>Invite</button>
+        <button id="changeKey" type="button">Change key</button>
+        <button id="lockGrid" type="button">Lock</button>
+      </span>
+    </header>
+    <main id="space" tabindex="-1">
+      <section id="gridLab" class="grid-lab" aria-labelledby="gridLabTitle" hidden></section>
+      <section id="gridSector" class="grid-sector" aria-label="Your private sector" tabindex="-1"></section>
+    </main>
+    <footer class="grid-foot"><span>© 2026 Diogo Poeta · Elyvris</span><span>Private: only you can see your entries and files.</span><a href="./">Home</a></footer>
+  </div>
+</body>
+</html>

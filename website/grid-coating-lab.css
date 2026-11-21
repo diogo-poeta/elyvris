@@ -1,0 +1,60 @@
+/* Coating lab inside the Operations Deck. Reuses the deck's gn-* frame. */
+.grid-lab [data-agent='explorer'] { --gn-agent: #74ecff; }
+.grid-lab [data-agent='refiner'] { --gn-agent: #d3b7ff; }
+.grid-lab [data-agent='auditor'] { --gn-agent: #ffd17c; }
+.gn-log strong[data-agent] { color: var(--gn-agent); }
+.cl-root .gn-log li { grid-template-columns: minmax(4ch, auto) 9ch minmax(0, 1fr); }
+.cl-section-title { margin: 0 0 6px; font: 700 clamp(22px, 3.4vw, 30px)/1.2 var(--display); color: #f1ebff; }
+.cl-section-intro { margin: 0 0 14px; max-width: 72ch; color: #c9c3d9; }
+.cl-demo { margin-top: clamp(36px, 6vh, 60px); }
+.cl-sub { margin-top: 22px !important; }
+.cl-chart, .cl-progress { display: block; width: 100%; background: radial-gradient(ellipse at center, #24214d9c, #090d1c 77%); border: 1px solid #9487dd39; }
+.cl-chart { max-height: 360px; }
+.cl-progress { max-height: 140px; }
+.cl-chart text, .cl-progress text { fill: #c7bbda; font: 8px var(--mono); }
+.cl-chart .cl-axis { fill: #e2dbf2; font-size: 8.5px; }
+.cl-grid { stroke: #9487dd2e; stroke-width: .5; }
+.cl-curve { fill: none; stroke-width: 1.2; stroke-linejoin: round; }
+.cl-best { stroke: #8cf8cb; stroke-width: 2.2; filter: drop-shadow(0 0 2px #8cf8cb88); }
+.cl-ref-bare { stroke: #ff8fb8; stroke-dasharray: 4 3; }
+.cl-ref-single { stroke: #ffd17c; }
+.cl-ref-vcoat { stroke: #b49bff; }
+.cl-legend { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; font: 12px/1.5 var(--mono); color: #d6cde4; }
+.cl-legend li::before { content: ''; display: inline-block; width: 18px; height: 0; margin-right: 7px; vertical-align: middle; border-top: 2px solid var(--key); }
+.cl-key-best { --key: #8cf8cb; }
+.cl-key-bare { --key: #ff8fb8; }
+.cl-key-single { --key: #ffd17c; }
+.cl-key-vcoat { --key: #b49bff; }
+.cl-bar { display: flex; align-items: stretch; height: 34px; border: 1px solid #9487dd59; font: 11px/34px var(--mono); }
+.cl-air, .cl-glass { flex: 0 0 auto; padding: 0 8px; color: #c7bbda; }
+.cl-air { background: #0b0e1d; }
+.cl-glass { background: #1c3b4a; color: #e6feff; }
+.cl-layer { min-width: 2px; border-right: 1px solid #090b18; }
+.cl-empty { flex: 1; text-align: center; color: #9f97b6; }
+.cl-mgf2 { background: #8cf8cb; }
+.cl-sio2 { background: #74ecff; }
+.cl-al2o3 { background: #b49bff; }
+.cl-tio2 { background: #ffd17c; }
+.cl-table { width: 100%; margin-top: 10px; border-collapse: collapse; font: 12px/1.5 var(--mono); color: #d6cde4; }
+.cl-table caption { text-align: left; padding-bottom: 4px; color: #c7bbda; }
+.cl-table th, .cl-table td { padding: 3px 6px; border-top: 1px solid #a383f326; text-align: left; }
+.cl-table th { color: var(--gn-data); font-weight: 400; }
+.cl-verified { margin: 10px 0 0; padding: 8px 10px; border-left: 3px solid #ffd17c; background: #16152a; color: #d6cde4; font: 12px/1.55 var(--mono); }
+.cl-verified[data-state='ok'] { border-left-color: #8cf8cb; }
+.cl-practice { display: contents; }
+.cl-practice[hidden] { display: none; }
+.cl-notebook-note { margin: 8px 0 0; color: #c4bbd7; font-size: 14px; }
+.cl-notebook { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; max-height: 360px; overflow-y: auto; }
+.cl-notebook li { display: grid; grid-template-columns: 9ch minmax(0, 1fr); gap: 2px 12px; padding: 7px 0; border-top: 1px solid #a383f326; font: 12px/1.5 var(--mono); color: #d6cde4; }
+.cl-notebook small { grid-column: 2; color: #b5abc9; overflow-wrap: anywhere; }
+.cl-nb-score { grid-row: span 2; color: #8cf8cb; font: 700 15px/1.4 var(--display); }
+.cl-swatch { display: inline-block; width: 10px; height: 10px; margin-right: 7px; vertical-align: -1px; }
+.cl-learned { margin-top: 10px !important; color: #c7bbda !important; font: 12px/1.5 var(--mono); }
+.cl-moves { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+.cl-moves li { display: grid; grid-template-columns: minmax(0, 1fr) 70px; gap: 1px 10px; align-items: center; font: 12px/1.4 var(--mono); color: #eee7fc; }
+.cl-moves small { grid-column: 1 / -1; color: #b5abc9; }
+.cl-meter { height: 6px; background: #ffffff14; }
+.cl-meter > span { display: block; height: 100%; background: var(--gn-agent, var(--cyan)); }
+@media (max-width: 680px) {
+  .cl-moves li { grid-template-columns: minmax(0, 1fr) 54px; }
+}
