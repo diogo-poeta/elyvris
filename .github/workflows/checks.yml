@@ -18,6 +18,8 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+      - name: No passwords, secret keys or credential files
+        run: python3 website/scripts/check-private-data.py
       - name: Pages, ids and local links
         run: python3 website/scripts/check-site.py
       - name: Grid coating lab verification

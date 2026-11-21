@@ -15,6 +15,7 @@ Open http://localhost:8000.
 From the repository root:
 
 ```sh
+python website/scripts/check-private-data.py
 python website/scripts/check-site.py
 node --test website/scripts/check-grid-optics.cjs
 python website/scripts/run_browser_checks.py

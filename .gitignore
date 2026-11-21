@@ -1,2 +1,16 @@
 __pycache__/
 *.pyc
+
+# Never commit passwords, keys or credentials: keep them in a private place.
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+*vault*
+*secret*
+*password*
+*credential*
+supabase/.temp/
