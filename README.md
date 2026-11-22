@@ -6,7 +6,7 @@
 
 **Website:** [diogo-poeta.github.io/elyvris](https://diogo-poeta.github.io/elyvris/)
 
-[![Studio: a TiO₂ anapole metasurface in the 3D view, with its gdsfactory layout script.](docs/studio-anapole.png)](https://diogo-poeta.github.io/elyvris/studio.html)
+[![Elyvris: the Resonance Atlas (in development: exact physics, multipoles, written rules, resonance labels) and the Studio (a TiO₂ anapole metasurface in the 3D view, with its gdsfactory layout script).](docs/elyvris-overview.png)](https://diogo-poeta.github.io/elyvris/)
 
 ## Studio
 
