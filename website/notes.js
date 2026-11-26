@@ -4,6 +4,12 @@
 (() => {
   'use strict';
 
+  // Notes belong to Studio; old bookmarks still open the same saved notebook.
+  if (window.top === window) {
+    location.replace('studio.html#notes');
+    return;
+  }
+
   const $ = id => document.getElementById(id);
   const make = (tag, props = {}, parent) => {
     const node = Object.assign(document.createElement(tag), props);
@@ -37,6 +43,14 @@
   const allNotes = () => tx('readonly', s => s.getAll());
   const putNote = note => tx('readwrite', s => s.put(note));
   const deleteNote = id => tx('readwrite', s => s.delete(id));
+
+  function download(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const link = make('a', { href: url, download: filename });
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+  const filename = title => (title || 'elyvris-note').replace(/[<>:"/\\|?*\x00-\x1f]/g, '-').slice(0, 100);
 
   /* ---------- the list of notes ---------- */
   const listView = $('notes-list'), editorView = $('note-editor');
@@ -115,6 +129,22 @@
   }
 
   $('note-title').addEventListener('input', event => { current.title = event.target.value; touch(); });
+  $('note-save-text').addEventListener('click', async () => {
+    if (!current) return;
+    const note = current;
+    await saveNow();
+    const parts = [note.title || 'Untitled note'];
+    for (const block of note.blocks) {
+      if (block.type === 'text') parts.push(block.text);
+      if (block.type === 'image' && block.caption) parts.push(block.caption);
+      if (block.type === 'calc') {
+        const results = runCalc(block.text);
+        parts.push(block.text.split('\n').map((line, i) => line + (results[i].out ? '  ' + results[i].out : '')).join('\n'));
+      }
+      if (block.type === 'drawing') parts.push('[Drawing: use Save PNG in this drawing to download it.]');
+    }
+    download(new Blob([parts.filter(Boolean).join('\n\n') + '\n'], { type: 'text/plain;charset=utf-8' }), filename(note.title) + '.txt');
+  });
   $('note-back').addEventListener('click', async () => { await saveNow(); current = null; showList(); });
   $('note-delete').addEventListener('click', async () => {
     if (!current) return;
@@ -303,6 +333,35 @@
     const undoBtn = make('button', { type: 'button', className: 'n-btn n-small', textContent: 'Undo' }, ag);
     const redoBtn = make('button', { type: 'button', className: 'n-btn n-small', textContent: 'Redo' }, ag);
     const clearBtn = make('button', { type: 'button', className: 'n-btn n-small', textContent: 'Clear' }, ag);
+    const pngBtn = make('button', { type: 'button', className: 'n-btn n-small', textContent: 'Save PNG' }, ag);
+    pngBtn.addEventListener('click', async () => {
+      if (!current) return;
+      const note = current;
+      const number = note.blocks.filter(b => b.type === 'drawing').indexOf(block) + 1;
+      const name = filename(note.title) + '-drawing-' + number + '.png';
+      finish();
+      await saveNow();
+      // Render the stored strokes at a stable size, without the eraser cursor.
+      const output = document.createElement('canvas');
+      output.width = 1600; output.height = 900;
+      const ink = document.createElement('canvas');
+      ink.width = output.width; ink.height = output.height;
+      const temporary = document.createElement('canvas');
+      temporary.width = output.width; temporary.height = output.height;
+      const out = output.getContext('2d'), inkContext = ink.getContext('2d');
+      out.fillStyle = '#F7F4EC'; out.fillRect(0, 0, output.width, output.height);
+      if (block.paper === 'grid' || block.paper === 'lines') {
+        const cell = output.width * .04;
+        out.strokeStyle = block.paper === 'grid' ? 'rgba(47,111,168,.16)' : 'rgba(47,111,168,.22)';
+        out.lineWidth = 1; out.beginPath();
+        for (let y = cell; y < output.height; y += cell) { out.moveTo(0, y); out.lineTo(output.width, y); }
+        if (block.paper === 'grid') for (let x = cell; x < output.width; x += cell) { out.moveTo(x, 0); out.lineTo(x, output.height); }
+        out.stroke();
+      }
+      block.strokes.forEach(stroke => applyStroke(inkContext, stroke, output.width, output.height, temporary.getContext('2d')));
+      out.drawImage(ink, 0, 0);
+      output.toBlob(blob => { if (blob) download(blob, name); }, 'image/png');
+    });
     const paper = make('select', { className: 'draw-paper' }, ag);
     paper.setAttribute('aria-label', 'Paper');
     [['plain', 'Plain paper'], ['grid', 'Squared paper'], ['lines', 'Lined paper']].forEach(([v, t]) => make('option', { value: v, textContent: t }, paper));
@@ -572,7 +631,7 @@
             return { id: newId(), type: 'image', blob, caption: String(b.caption || '') };
           }
           if (b.type === 'text' || b.type === 'calc') return { id: newId(), type: b.type, text: String(b.text || '') };
-          if (b.type === 'drawing' && Array.isArray(b.strokes)) return { id: newId(), type: 'drawing', strokes: b.strokes };
+          if (b.type === 'drawing' && Array.isArray(b.strokes)) return { id: newId(), type: 'drawing', strokes: b.strokes, paper: ['plain', 'grid', 'lines'].includes(b.paper) ? b.paper : 'plain' };
           return null;
         }));
         const id = existing.has(n.id) || !n.id ? newId() : String(n.id);
@@ -587,6 +646,15 @@
   });
 
   window.addEventListener('pagehide', () => { if (current) saveNow(); });
+  window.addEventListener('message', event => {
+    if (event.origin === location.origin && event.source === window.parent && event.data?.type === 'elyvris-notes-save') saveNow();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !document.fullscreenElement) {
+      event.preventDefault();
+      window.parent.postMessage({ type: 'elyvris-notes-close' }, location.origin);
+    }
+  });
   if (!window.indexedDB) {
     $('notes-storage').textContent = 'This browser cannot keep notes (no IndexedDB, for example in some private windows).';
     $('note-new').disabled = true;

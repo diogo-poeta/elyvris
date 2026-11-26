@@ -1,7 +1,7 @@
-const CACHE = 'elyvris-studio-v2';
+const CACHE = 'elyvris-studio-v3';
 const PAGE = 'studio.html';
 // Files the page loads later, which are not written in studio.html itself.
-const EXTRA = ['materials-data.json', 'favicon.svg', 'studio.webmanifest', 'assets/brand/elyvris-mark.svg', 'assets/app/icon-192.png', 'assets/app/icon-512.png'];
+const EXTRA = ['materials-data.json', 'favicon.svg', 'studio.webmanifest', 'assets/brand/elyvris-mark.svg', 'assets/app/icon-192.png', 'assets/app/icon-512.png', 'notes.html', 'home.css', 'notes.css', 'notes.js'];
 const KEPT = /\.(?:html|js|css|json|svg|png|webmanifest)$/;
 
 /* The address of a file without its "?v=7" part: one copy per file, whatever its version. */
@@ -35,7 +35,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const request = event.request, url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin || !KEPT.test(url.pathname)) return;
-  if (request.mode === 'navigate' && !url.pathname.endsWith('/' + PAGE)) return;        // other pages are left to the browser
+  const isNotes = url.pathname.endsWith('/notes.html');
+  if (request.mode === 'navigate' && !url.pathname.endsWith('/' + PAGE) && !isNotes) return; // other pages are left to the browser
   event.respondWith((async () => {
     const cache = await caches.open(CACHE), key = plain(request.url);
     try {

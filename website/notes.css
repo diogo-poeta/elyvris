@@ -118,3 +118,28 @@
   .note-title { font-size: 26px; }
   .calc-out { min-width: 6em; }
 }
+
+/* Compact Studio notebook. The frame scrolls independently of the workspace. */
+.notes-page { min-width: 0; background-attachment: scroll; }
+.notes { width: auto; max-width: none; margin: 0; padding: 12px; }
+.notes-head { gap: 10px; margin-bottom: 14px; }
+.notes-lede { margin: 0; font-size: 13px; }
+.notes-actions { gap: 6px; }
+.note-cards { grid-template-columns: 1fr; gap: 10px; }
+.note-card { min-height: 90px; padding: 10px 12px; }
+.notes-small { font-size: 12px; margin-top: 14px; }
+.editor-bar { flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.editor-status { flex-basis: 100%; order: 1; font-size: 12px; }
+.n-btn { font-size: 12px; padding: 6px 10px; }
+.note-title { font-size: 24px; }
+.note-dates { font-size: 11px; margin-bottom: 12px; }
+.block { padding: 10px; }
+.block textarea { font-size: 14px; }
+.draw-bar { gap: 8px; }
+.draw-group + .draw-group { border-left: 0; padding-left: 0; }
+.draw-size { width: 85px; }
+.draw-group { gap: 5px; }
+.calc-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; font-size: 12px; }
+.calc-out { min-width: 0; overflow-x: auto; }
+.calc-grid textarea { min-width: 0; font-size: 12px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }

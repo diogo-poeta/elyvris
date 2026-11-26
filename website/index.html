@@ -5,11 +5,11 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Elyvris · Light, unfolded</title>
-  <meta name="description" content="Elyvris is an open workshop for computational photonics by Diogo Poeta: explanations of the physics, free design tools for gdsfactory, KLayout and Meep, and the research behind them.">
+  <title>Elyvris</title>
+  <meta name="description" content="Explore optics and photonics through practical design tools and published research. Atlas, now in development, aims to map and predict optical resonances from materials and geometry.">
   <meta name="theme-color" content="#11161C">
-  <meta property="og:title" content="Elyvris · Light, unfolded">
-  <meta property="og:description" content="Explanations of the physics, free photonics design tools and the research behind them. By Diogo Poeta.">
+  <meta property="og:title" content="Elyvris">
+  <meta property="og:description" content="Optics and photonics design tools and published research by Diogo Poeta, with Atlas resonance mapping and prediction in development.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://diogo-poeta.github.io/elyvris/assets/brand/elyvris-social.png">
   <meta property="og:image:alt" content="Elyvris layered optical mark and wordmark">
@@ -17,7 +17,7 @@
   <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/">
   <meta property="og:url" content="https://diogo-poeta.github.io/elyvris/">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
-  <link rel="stylesheet" href="home.css?v=4">
+  <link rel="stylesheet" href="home.css?v=5">
   <link rel="stylesheet" href="intro-loader.css?v=3">
   <script src="intro-loader.js?v=4"></script>
   <script defer src="tour.js?v=2"></script>
@@ -47,7 +47,7 @@
     <nav aria-label="Main navigation">
       <a href="studio.html">Studio</a>
       <a href="research.html">Research</a>
-      <a href="notes.html">Notes</a>
+      <span class="nav-placeholder" role="link" aria-disabled="true" title="Atlas is in development">Atlas</span>
       <a href="play.html">Grid</a>
     </nav>
   </header>
@@ -55,8 +55,8 @@
   <main id="main">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-text">
-        <h1 id="hero-title">Light, unfolded.</h1>
-        <p class="lede">Elyvris is an open workshop for computational photonics. It explains the physics in plain language, offers free tools that turn a sketch into a layout and a simulation script, and shows the published research behind them.</p>
+        <h1 id="hero-title" class="visually-hidden">Elyvris</h1>
+        <p class="lede">Explore optics and photonics through practical design tools and published research. Atlas, now in development, aims to map and predict optical resonances from materials and geometry.</p>
         <button class="tour-tile" type="button" aria-haspopup="dialog" aria-controls="tour">
           <span class="tour-tile-art" aria-hidden="true">
             <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" class="tile-ring"/><path class="tile-wave" d="M8 40 Q 16 22 24 40 T 40 40 T 56 40 T 72 40"/><path class="tile-play" d="M33 28 L54 40 L33 52 Z"/></svg>

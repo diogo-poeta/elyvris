@@ -9,31 +9,21 @@
   <meta name="description" content="Private notes for your photonics work: text, pen drawings, images and calculations, saved only in your own browser.">
   <meta name="theme-color" content="#11161C">
   <link rel="icon" href="favicon.svg?v=20" type="image/svg+xml">
-  <link rel="stylesheet" href="home.css?v=4">
-  <link rel="stylesheet" href="notes.css?v=2">
-  <script defer src="notes.js?v=4"></script>
-  <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/notes.html">
+  <link rel="stylesheet" href="home.css?v=5">
+  <link rel="stylesheet" href="notes.css?v=3">
+  <script defer src="notes.js?v=5"></script>
+  <link rel="canonical" href="https://diogo-poeta.github.io/elyvris/studio.html">
 </head>
 <body class="notes-page">
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="top wrap">
-    <a class="brand" href="./" aria-label="Elyvris home"><img src="assets/brand/elyvris-mark-light.svg" width="34" height="36" alt="">Elyvris</a>
-    <nav aria-label="Main navigation">
-      <a href="studio.html">Studio</a>
-      <a href="research.html">Research</a>
-      <a href="notes.html" aria-current="page">Notes</a>
-      <a href="play.html">Grid</a>
-    </nav>
-  </header>
+  <noscript><p>Enable JavaScript to use Notes in <a href="studio.html">Studio</a>.</p></noscript>
 
   <main id="main" class="notes wrap">
     <!-- The list of notes: small cards, like the Research page. -->
     <section id="notes-list" aria-labelledby="notes-title">
       <header class="notes-head">
         <div>
-          <p class="kicker">Notes</p>
-          <h1 id="notes-title">Your notes</h1>
-          <p class="notes-lede">Write, draw with a pen, add images and calculations. Notes are saved only in this browser, on this device. Nobody else can see them.</p>
+          <h1 id="notes-title" class="visually-hidden">Your notes</h1>
+          <p class="notes-lede">Write, draw, add images or calculate. Saved on this browser.</p>
         </div>
         <div class="notes-actions">
           <button type="button" class="n-btn n-primary" id="note-new">New note</button>
@@ -52,6 +42,7 @@
       <div class="editor-bar">
         <button type="button" class="n-btn" id="note-back">← All notes</button>
         <span class="editor-status" id="note-status" aria-live="polite"></span>
+        <button type="button" class="n-btn" id="note-save-text" title="Download written text, captions and calculations">Save TXT</button>
         <button type="button" class="n-btn n-danger" id="note-delete">Delete note</button>
       </div>
       <input type="text" id="note-title" class="note-title" placeholder="Title" aria-label="Title of the note" maxlength="140">
@@ -68,11 +59,5 @@
     </section>
   </main>
 
-  <footer class="foot notes-foot">
-    <div class="wrap foot-small">
-      <span>© 2026 Diogo Poeta · Elyvris</span>
-      <p class="credits">This project is made with the assistance of artificial intelligence.</p>
-    </div>
-  </footer>
 </body>
 </html>

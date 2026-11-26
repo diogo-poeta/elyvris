@@ -23,6 +23,8 @@ python website/scripts/run_browser_checks.py
 
 These run on every pull request. The Meep checks (`check_studio_*meep.py`) need Meep and are run by hand.
 
+The floating Notes panel also has a focused browser check. With Python Playwright and its Chromium browser installed, run `python website/scripts/check-studio-notes.py` from the repository root. Use `--browser /path/to/chromium` for an existing browser. It uses an isolated browser profile and checks saved-note retention, moving and closing the panel, TXT/PNG downloads, mobile layout and offline access.
+
 ## Pages
 
 | Page | Main files |
